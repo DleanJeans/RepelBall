@@ -6,14 +6,16 @@ import flixel.math.FlxAngle;
 import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
 using flixel.util.FlxSpriteUtil;
+using flixel.addons.util.position.FlxPosition;
 
 class Paddle extends FlxSprite {
-	public var startingPoint:FlxPoint;
+	public var startingPoint(default, null):FlxPoint;
 	public var length(default, set):Int = Game.unitLength(5);
-	public var speed:Int = 500;
+	public var speed:Int = 100;
 	
 	public function new() {
 		super();
+		elasticity = 1;
 		startingPoint = FlxPoint.get();
 		facing = FlxObject.UP;
 	}
@@ -21,6 +23,10 @@ class Paddle extends FlxSprite {
 	override public function destroy():Void {
 		startingPoint.put();
 		super.destroy();
+	}
+	
+	public inline function resetPosition() {
+		this.setCenter(startingPoint);
 	}
 	
 	public inline function stop() {
@@ -60,10 +66,10 @@ class Paddle extends FlxSprite {
 	
 	private function drawPaddle() {
 		if (movesHorizontally())
-			makeGraphic(length, Game.unitLength(), 0x0);
-		else makeGraphic(Game.unitLength(), length, 0x0);
+			setSize(length, Game.unitLength());
+		else setSize(Game.unitLength(), length);
 		
-		drawRoundRect(0, 0, width, height, Game.unitLength(), Game.unitLength(), FlxColor.WHITE);
+		Game.renderer.draw(this, width, height);
 	}
 	
 	function set_length(newLength:Int):Int {
