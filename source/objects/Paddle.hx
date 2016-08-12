@@ -15,7 +15,6 @@ class Paddle extends FlxSprite {
 	
 	public function new() {
 		super();
-		elasticity = 1;
 		startingPoint = FlxPoint.get();
 		facing = FlxObject.UP;
 	}

@@ -5,7 +5,7 @@ import flixel.FlxSprite;
 class Wall extends FlxSprite {
 	public function new() {
 		super();
-		elasticity = 1;
+		immovable = true;
 	}
 	
 	public function resetWall(x:Float, y:Float, width:Int, height:Int, facing:Int) {
