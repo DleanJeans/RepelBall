@@ -1,5 +1,6 @@
 package systems.controllers;
 
+import flixel.FlxG;
 import objects.Paddle;
 
 class ControllerList {
@@ -21,7 +22,25 @@ class ControllerList {
 			remove(controller);
 	}
 	
-	public inline function createNewKeyboard(?paddle:Paddle) {
+	public function addNewPlayerController(?paddle:Paddle) {
+		var keyboard = true;
+		#if js
+		if (FlxG.html5.isMobile)
+			keyboard = false;
+		#elseif mobile
+		keyboard = false;
+		#end
+		
+		if (keyboard)
+			addNewKeyboard(paddle);
+		else addNewTouch(paddle);
+	}
+	
+	public inline function addNewKeyboard(?paddle:Paddle) {
 		list.push(new Keyboard(paddle));
+	}
+	
+	public inline function addNewTouch(?paddle:Paddle) {
+		list.push(new Touch(paddle));
 	}
 }
