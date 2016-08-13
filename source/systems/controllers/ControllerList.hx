@@ -23,17 +23,9 @@ class ControllerList {
 	}
 	
 	public function addNewPlayerController(?paddle:Paddle) {
-		var keyboard = true;
-		#if js
-		if (FlxG.html5.isMobile)
-			keyboard = false;
-		#elseif mobile
-		keyboard = false;
-		#end
-		
-		if (keyboard)
-			addNewKeyboard(paddle);
-		else addNewTouch(paddle);
+		if (FlxG.onMobile)
+			addNewTouch(paddle);
+		else addNewKeyboard(paddle);
 	}
 	
 	public inline function addNewKeyboard(?paddle:Paddle) {
