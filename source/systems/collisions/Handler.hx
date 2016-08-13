@@ -1,33 +1,103 @@
 package systems.collisions;
 
 import flixel.FlxG;
+import flixel.FlxObject;
+import flixel.math.FlxAngle;
+import flixel.math.FlxVelocity;
 import objects.Ball;
 import objects.Paddle;
 import objects.Wall;
+using flixel.addons.util.position.FlxPosition;
 
 class Handler {
+	public var ball_paddle:Ball_Paddle;
+	
 	public function new() {
 		Game.signals.ball_ball.add(ball_ball);
 		Game.signals.ball_wall.add(ball_wall);
-		Game.signals.ball_paddle.add(ball_paddle);
 		Game.signals.paddle_wall.add(paddle_wall);
+		
+		ball_paddle = new Ball_Paddle();
 	}
 	
 	public inline function ball_ball(ball:Ball, ball:Ball) {
-		FlxG.collide(ball, ball);
+		FlxObject.separate(ball, ball);
 	}
 	
 	public inline function ball_wall(ball:Ball, wall:Wall) {
-		FlxG.collide(ball, wall);
-	}
-	
-	public inline function ball_paddle(ball:Ball, paddle:Paddle) {
-		paddle.immovable = true;
-		FlxG.collide(ball, paddle);
-		paddle.immovable = false;
+		FlxObject.separate(ball, wall);
 	}
 	
 	public inline function paddle_wall(paddle:Paddle, wall:Wall) {
-		FlxG.collide(paddle, wall);
+		FlxObject.separate(paddle, wall);
 	}
+}
+
+class Ball_Paddle {
+	private var ball:Ball;
+	private var paddle:Paddle;
+	
+	public function new() {
+		Game.signals.ball_paddle.add(update);
+	}
+	
+	private inline function setReferences(ball:Ball, paddle:Paddle) {
+		this.ball = ball;
+		this.paddle = paddle;
+	}
+	
+	private inline function clearReferences() {
+		ball = null;
+		paddle = null;
+	}
+	
+	public function update(ball:Ball, paddle:Paddle) {
+		setReferences(ball, paddle);
+		
+		separate();
+		if (paddleTouchedFacingSide())
+			deflectBall();
+		
+		clearReferences();
+	}
+	
+	private function paddleTouchedFacingSide() {
+		return paddle.isTouching(paddle.facing);
+	}
+	
+	private inline function separate() {
+		paddle.immovable = true;
+		FlxObject.separate(ball, paddle);
+		paddle.immovable = false;
+	}
+	
+	private function deflectBall() {
+		var maxAngle = 45;
+		var normalizedAngle = getNormalizedAngle();
+		var newAngle = calculateNewAngle(maxAngle, normalizedAngle);
+		var newVelocity = FlxVelocity.velocityFromAngle(newAngle, 400);
+		
+		ball.velocity.copyFrom(newVelocity);
+		newVelocity.put();
+	}
+	
+	private function getNormalizedAngle():Float {
+		var paddleCenter = paddle.get1Axis(paddle.getCenter());
+		var ballCenter = paddle.get1Axis(ball.getCenter());
+		var centerDifference = ballCenter - paddleCenter;
+		return centerDifference / paddle.length * 2;
+	}
+	
+	private function calculateNewAngle(maxAngle:Int, normalizedAngle:Float) {
+		var newAngle = FlxAngle.angleFromFacing(paddle.facing, true);
+		var angle = maxAngle * normalizedAngle;
+		
+		if (paddle.facing == FlxObject.RIGHT || paddle.facing == FlxObject.UP)
+			newAngle += angle;
+		else if (paddle.facing == FlxObject.LEFT || paddle.facing == FlxObject.DOWN)
+			newAngle -= angle;
+		
+		return newAngle;
+	}
+	
 }

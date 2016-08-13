@@ -24,6 +24,15 @@ class Paddle extends FlxSprite {
 		super.destroy();
 	}
 	
+	public function get1Axis(point:FlxPoint, parallel:Bool = true):Float {
+		var axis =
+		if (parallel == movesHorizontally())
+			point.x;
+		else point.y;
+		point.putWeak();
+		return axis;
+	}
+	
 	public inline function resetPosition() {
 		this.setCenter(startingPoint);
 	}
