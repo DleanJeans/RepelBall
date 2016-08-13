@@ -17,7 +17,7 @@ class Handler {
 		FlxG.collide(ball, ball);
 	}
 	
-	public function ball_wall(ball:Ball, wall:Wall) {
+	public inline function ball_wall(ball:Ball, wall:Wall) {
 		FlxG.collide(ball, wall);
 	}
 	
