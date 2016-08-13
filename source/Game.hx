@@ -4,6 +4,8 @@ import systems.Level;
 import systems.Renderer;
 import systems.Signals;
 import systems.collisions.Collision;
+import systems.controllers.ControllerList;
+import systems.controllers.PaddleMovement;
 
 class Game {
 	private static inline var UNIT_LENGTH = 16;
@@ -16,11 +18,15 @@ class Game {
 	public static var signals(default, null):Signals;
 	public static var renderer(default, null):Renderer;
 	public static var collision(default, null):Collision;
+	public static var paddleMovement(default, null):PaddleMovement;
+	public static var controllers(default, null):ControllerList;
 	
 	public static function init() {
 		signals = new Signals();
 		renderer = new Renderer();
 		collision = new Collision();
+		paddleMovement = new PaddleMovement();
+		controllers = new ControllerList();
 	}
 	
 	public static inline function startNewLevel() {

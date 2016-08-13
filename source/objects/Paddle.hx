@@ -11,7 +11,7 @@ using flixel.addons.util.position.FlxPosition;
 class Paddle extends FlxSprite {
 	public var startingPoint(default, null):FlxPoint;
 	public var length(default, set):Int = Game.unitLength(5);
-	public var speed:Int = 100;
+	public var speed:Int = 50;
 	
 	public function new() {
 		super();
@@ -35,33 +35,6 @@ class Paddle extends FlxSprite {
 	
 	public inline function resetPosition() {
 		this.setCenter(startingPoint);
-	}
-	
-	public inline function stop() {
-		velocity.set();
-	}
-	
-	public inline function moveLeft() {
-		move(FlxPoint.weak(-speed));
-	}
-	
-	public inline function moveRight() {
-		move(FlxPoint.weak(speed));
-	}
-	
-	/**
-	 * 
-	 * @param	distance The distance vector as if facing is FlxObject.UP
-	 */
-	private function move(distance:FlxPoint) {
-		rotateDistanceMatchingFacing(distance);
-		velocity.addPoint(distance);
-		distance.putWeak();
-	}
-	
-	private function rotateDistanceMatchingFacing(distance:FlxPoint) {
-		var facingAngle = FlxAngle.angleFromFacing(facing, true);
-		distance.rotate(FlxPoint.weak(), facingAngle + 90);
 	}
 	
 	public inline function movesHorizontally():Bool {
