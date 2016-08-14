@@ -1,6 +1,7 @@
 package;
 
 import systems.Level;
+import systems.Positioner;
 import systems.Renderer;
 import systems.Signals;
 import systems.collisions.Collision;
@@ -20,6 +21,7 @@ class Game {
 	public static var collision(default, null):Collision;
 	public static var paddleMovement(default, null):PaddleMovement;
 	public static var controllers(default, null):ControllerList;
+	public static var position(default, null):Positioner;
 	
 	public static function init() {
 		signals = new Signals();
@@ -27,6 +29,7 @@ class Game {
 		collision = new Collision();
 		paddleMovement = new PaddleMovement();
 		controllers = new ControllerList();
+		position = new Positioner();
 	}
 	
 	public static inline function startNewLevel() {
