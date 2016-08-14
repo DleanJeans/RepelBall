@@ -1,6 +1,7 @@
 package;
 
 import systems.Level;
+import systems.Pools;
 import systems.Positioner;
 import systems.Renderer;
 import systems.Signals;
@@ -22,6 +23,7 @@ class Game {
 	public static var paddleMovement(default, null):PaddleMovement;
 	public static var controllers(default, null):ControllerList;
 	public static var position(default, null):Positioner;
+	public static var pools(default, null):Pools;
 	
 	public static function init() {
 		signals = new Signals();
@@ -30,6 +32,7 @@ class Game {
 		paddleMovement = new PaddleMovement();
 		controllers = new ControllerList();
 		position = new Positioner();
+		pools = new Pools();
 	}
 	
 	public static inline function startNewLevel() {
