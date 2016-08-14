@@ -45,12 +45,8 @@ class Paddle extends FlxSprite {
 		return facing == FlxObject.LEFT || facing == FlxObject.RIGHT;
 	}
 	
-	private function drawPaddle() {
-		if (movesHorizontally())
-			setSize(length, Game.unitLength());
-		else setSize(Game.unitLength(), length);
-		
-		Game.renderer.draw(this, width, height);
+	private inline function drawPaddle() {
+		Game.renderer.drawPaddle(this);
 	}
 	
 	function set_length(newLength:Int):Int {
