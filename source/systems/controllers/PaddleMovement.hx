@@ -21,7 +21,7 @@ class PaddleMovement {
 	
 	private function move(paddle:Paddle, distance:FlxPoint) {
 		rotateDistanceMatchingFacing(paddle, distance);
-		paddle.velocity.addPoint(distance);
+		paddle.velocity.copyFrom(distance);
 		distance.putWeak();
 	}
 	

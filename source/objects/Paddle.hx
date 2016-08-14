@@ -11,7 +11,7 @@ using flixel.addons.util.position.FlxPosition;
 class Paddle extends FlxSprite {
 	public var startingPoint(default, null):FlxPoint;
 	public var length(default, set):Int = Game.unitLength(5);
-	public var speed:Int = 50;
+	public var speed:Int = 500;
 	
 	public function new() {
 		super();
