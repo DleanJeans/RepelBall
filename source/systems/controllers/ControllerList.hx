@@ -2,6 +2,8 @@ package systems.controllers;
 
 import flixel.FlxG;
 import objects.Paddle;
+import objects.Wall;
+import systems.ai.SimpleAI;
 
 class ControllerList {
 	public var list(default, null):Array<Controller> = new Array<Controller>();
@@ -20,6 +22,10 @@ class ControllerList {
 	public function removeAll() {
 		for (controller in list)
 			remove(controller);
+	}
+	
+	public inline function addNewSimpleAI(?paddle:Paddle, ?goal:Wall) {
+		list.push(new SimpleAI(paddle, goal));
 	}
 	
 	public function addNewPlayerController(?paddle:Paddle) {

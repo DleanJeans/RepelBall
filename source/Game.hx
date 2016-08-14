@@ -35,4 +35,12 @@ class Game {
 	public static inline function startNewLevel() {
 		level = new Level();
 	}
+	
+	public static function anyNull(objects:Array<Dynamic>) {
+		for (o in objects) {
+            if (o == null)
+                return true;
+        }
+        return false;
+	}
 }
