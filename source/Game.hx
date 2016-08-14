@@ -1,5 +1,6 @@
 package;
 
+import systems.BallShooter;
 import systems.Level;
 import systems.Pools;
 import systems.Positioner;
@@ -24,6 +25,7 @@ class Game {
 	public static var controllers(default, null):ControllerList;
 	public static var position(default, null):Positioner;
 	public static var pools(default, null):Pools;
+	public static var ballShooter(default, null):BallShooter;
 	
 	public static function init() {
 		signals = new Signals();
@@ -33,6 +35,7 @@ class Game {
 		controllers = new ControllerList();
 		position = new Positioner();
 		pools = new Pools();
+		ballShooter = new BallShooter();
 	}
 	
 	public static inline function startNewLevel() {

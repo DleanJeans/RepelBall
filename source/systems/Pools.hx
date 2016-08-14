@@ -6,6 +6,7 @@ import flixel.math.FlxPoint;
 import objects.Ball;
 import objects.Paddle;
 import objects.Wall;
+using flixel.addons.util.position.FlxPosition;
 
 typedef Pool<T:FlxBasic> = FlxTypedGroup<T>;
 typedef BallPool = Pool<Ball>;
@@ -23,8 +24,10 @@ class Pools {
 		walls = new WallPool();
 	}
 	
-	public function getBall(?velocity:FlxPoint):Ball {
+	public function getBall(?position:FlxPoint, ?velocity:FlxPoint):Ball {
 		var ball = balls.recycle(Ball);
+		if (position != null)
+			ball.setCenter(position);
 		if (velocity != null)
 			ball.velocity.copyFrom(velocity);
 		return ball;

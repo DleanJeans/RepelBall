@@ -36,4 +36,8 @@ class Level extends FlxGroup {
 	public inline function addPaddle(paddle:Paddle) {
 		paddles.add(paddle);
 	}
+	
+	public inline function addBall(ball:Ball) {
+		balls.add(ball);
+	}
 }
