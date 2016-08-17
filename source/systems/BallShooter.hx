@@ -22,11 +22,7 @@ class BallShooter {
 	}
 	
 	public function push(paddle:Paddle) {
-		queue.push(getStartingPoint(paddle));
-	}
-	
-	private inline function getStartingPoint(paddle:Paddle):FlxPoint {
-		return paddle.startingPoint;
+		queue.push(paddle.startingPoint);
 	}
 	
 	public function update() {
@@ -40,7 +36,7 @@ class BallShooter {
 	}
 	
 	private function shootAroundStartingPoint(startingPoint:FlxPoint) {
-		var projectileVector = startingPoint.subtractPoint(position);
+		var projectileVector = startingPoint.copyTo().subtractPoint(position);
 		projectileVector.rotate(FlxPoint.weak(), FlxG.random.int( -45, 45));
 		
 		var ball = Game.pools.getBall(position, projectileVector);
