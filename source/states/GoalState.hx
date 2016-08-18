@@ -1,17 +1,16 @@
 package states;
 
 import flixel.FlxSubState;
+import flixel.addons.util.position.FlxText;
 import flixel.util.FlxColor;
 
 class GoalState extends FlxSubState {
-	override public function create():Void {
-		bgColor = 0x0;
-		add(Game.goalText);
-	}
+	private var text:FlxText;
 	
-	override public function destroy():Void {
-		remove(Game.goalText);
-		super.destroy();
+	override public function create():Void {
+		text = new FlxText(0, 0, 0, "GOAL!", 50);
+		text.screenCenter();
+		add(text);
 	}
 	
 }
