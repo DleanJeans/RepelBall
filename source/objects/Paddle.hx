@@ -9,6 +9,10 @@ using flixel.util.FlxSpriteUtil;
 using flixel.addons.util.position.FlxPosition;
 
 class Paddle extends FlxSprite {
+	public static inline function resetPaddlePosition(paddle:Paddle) {
+		paddle.resetPosition();
+	}
+	
 	public var startingPoint(default, null):FlxPoint;
 	public var length(default, set):Int = Game.unitLength(5);
 	public var speed:Int = 500;
@@ -24,6 +28,10 @@ class Paddle extends FlxSprite {
 		super.destroy();
 	}
 	
+	public function resetPosition() {
+		this.setCenter(startingPoint);
+	}
+	
 	public function get1Axis(point:FlxPoint, parallel:Bool = true):Float {
 		var axis =
 		if (parallel == movesHorizontally())
@@ -31,10 +39,6 @@ class Paddle extends FlxSprite {
 		else point.y;
 		point.putWeak();
 		return axis;
-	}
-	
-	public inline function resetPosition() {
-		this.setCenter(startingPoint);
 	}
 	
 	public inline function movesHorizontally():Bool {
