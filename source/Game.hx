@@ -2,6 +2,7 @@ package;
 
 import systems.BallShooter;
 import systems.Level;
+import systems.Match;
 import systems.Pools;
 import systems.Positioner;
 import systems.Renderer;
@@ -18,6 +19,7 @@ class Game {
 	}
 	
 	public static var level(default, null):Level;
+	public static var match(default, null):Match;
 	
 	public static var signals(default, null):Signals;
 	public static var renderer(default, null):Renderer;
@@ -43,6 +45,10 @@ class Game {
 	
 	public static inline function startNewLevel() {
 		level = new Level();
+	}
+	
+	public static inline function startNewMatch(scoreToWin:Int = 5) {
+		match = new Match(scoreToWin);
 	}
 	
 	public static function anyNull(objects:Array<Dynamic>) {
