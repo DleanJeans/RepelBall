@@ -13,6 +13,6 @@ class Main extends Sprite
 		super();
 		// init Game before first state create()
 		FlxG.signals.preStateCreate.addOnce(function(state:FlxState) Game.init());
-		addChild(new FlxGame(480, 640, MenuState, 1, 60, 30, true));
+		addChild(new FlxGame(600, 800, MenuState, 1, 60, 30, true));
 	}
 }
