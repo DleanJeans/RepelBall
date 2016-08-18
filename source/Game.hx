@@ -9,6 +9,7 @@ import systems.Signals;
 import systems.collisions.Collision;
 import systems.controllers.ControllerList;
 import systems.controllers.PaddleMovement;
+import systems.ui.GoalText;
 
 class Game {
 	private static inline var UNIT_LENGTH = 16;
@@ -26,6 +27,7 @@ class Game {
 	public static var position(default, null):Positioner;
 	public static var pools(default, null):Pools;
 	public static var ballShooter(default, null):BallShooter;
+	public static var goalText(default, null):GoalText;
 	
 	public static function init() {
 		signals = new Signals();
@@ -36,6 +38,7 @@ class Game {
 		position = new Positioner();
 		pools = new Pools();
 		ballShooter = new BallShooter();
+		goalText = new GoalText();
 	}
 	
 	public static inline function startNewLevel() {
