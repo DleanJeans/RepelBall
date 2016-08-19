@@ -27,7 +27,10 @@ class CountdownState extends FlxSubState {
 	}
 	
 	private function updateText() {
-		text.text = Std.string(Math.ceil(timer.timeLeft));
+		var timeLeft:Int = Math.round(timer.timeLeft);
+		text.text = Std.string(timeLeft);
+		if (timeLeft == 0)
+			text.text = "GO!";
 		text.screenCenter();
 	}
 }
