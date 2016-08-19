@@ -1,6 +1,7 @@
 package;
 
 import systems.BallShooter;
+import systems.BallShooterAutoPusher;
 import systems.GoalHandler;
 import systems.Level;
 import systems.Match;
@@ -31,6 +32,7 @@ class Game {
 	public static var position(default, null):Positioner;
 	public static var pools(default, null):Pools;
 	public static var ballShooter(default, null):BallShooter;
+	public static var autoPusher(default, null):BallShooterAutoPusher;
 	public static var goalHandler(default, null):GoalHandler;
 	
 	public static function init() {
@@ -43,6 +45,7 @@ class Game {
 		position = new Positioner();
 		pools = new Pools();
 		ballShooter = new BallShooter();
+		autoPusher = new BallShooterAutoPusher();
 		goalHandler = new GoalHandler();
 	}
 	
