@@ -1,4 +1,4 @@
-package systems;
+package systems.ballShooter;
 
 import flixel.FlxG;
 import objects.Paddle;

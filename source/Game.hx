@@ -1,7 +1,6 @@
 package;
 
-import systems.BallShooter;
-import systems.BallShooterAutoPusher;
+import flixel.FlxObject;
 import systems.GoalHandler;
 import systems.Level;
 import systems.Match;
@@ -10,6 +9,8 @@ import systems.Positioner;
 import systems.Renderer;
 import systems.Signals;
 import systems.States;
+import systems.ballShooter.BallShooter;
+import systems.ballShooter.BallShooterAutoPusher;
 import systems.collisions.Collision;
 import systems.controllers.ControllerList;
 import systems.controllers.PaddleMovement;
