@@ -8,17 +8,22 @@ using flixel.addons.util.position.FlxPosition;
 
 class BallShooter {
 	public var maxBalls(default, set):Int = 1;
-	public var interval(default, null):Float = 0.2;
+	public var interval(default, null):Float = 0.5;
 	public var position(default, null):FlxPoint;
 	public var queue(default, null):Array<FlxPoint>;
 	
 	private var _elapsed:Float = 0;
 
 	public function new() {
-		FlxG.signals.preUpdate.add(update);
+		FlxG.signals.postUpdate.add(update);
+		Game.signals.roundStart.add(setElapsedToSpawnInstantly);
 		
 		position = FlxPoint.get(FlxG.width / 2, FlxG.height / 2);
 		queue = new Array<FlxPoint>();
+	}
+	
+	public inline function setElapsedToSpawnInstantly() {
+		_elapsed = interval;
 	}
 	
 	public function push(paddle:Paddle) {

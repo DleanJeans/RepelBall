@@ -33,7 +33,7 @@ class Level extends FlxGroup {
 		add(balls);
 		add(uis);
 		
-		Game.signals.afterGoalReset.add(resetLevel);
+		Game.signals.preRoundStart.add(resetLevel);
 	}
 	
 	public function resetLevel() {

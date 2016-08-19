@@ -13,7 +13,12 @@ class CountdownState extends FlxSubState {
 		text.screenCenter();
 		add(text);
 		
-		timer = new FlxTimer().start(3, function (timer:FlxTimer) close());
+		timer = new FlxTimer().start(3, startRound);
+	}
+	
+	private function startRound(timer:FlxTimer) {
+		Game.signals.roundStart.dispatch();
+		close();
 	}
 	
 	override public function update(elapsed:Float):Void {

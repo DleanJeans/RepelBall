@@ -15,10 +15,15 @@ class Signals {
 	public var ball_wall:Signal2<Ball, Wall> = new Signal2<Ball, Wall>();
 	public var ball_paddle:Signal2<Ball, Paddle> = new Signal2<Ball, Paddle>();
 	public var paddle_wall:Signal2<Paddle, Wall> = new Signal2<Paddle, Wall>();
+	
 	public var goal:Signal2<Wall, Ball> = new Signal2<Wall, Ball>();
-	public var afterGoalPause:FlxSignal = new FlxSignal();
-	public var afterGoalReset:FlxSignal = new FlxSignal();
-	public var gameOver:FlxTypedSignal<Team->Void> = new FlxTypedSignal<Team->Void>();
+	public var pauseAfterGoal:FlxSignal = new FlxSignal();
+	
+	public var matchStart:FlxSignal = new FlxSignal();
+	public var matchOver:FlxTypedSignal<Team->Void> = new FlxTypedSignal<Team->Void>();
+	
+	public var preRoundStart:FlxSignal = new FlxSignal();
+	public var roundStart:FlxSignal = new FlxSignal();
 
 	public function new() {}
 }

@@ -5,7 +5,6 @@ import flixel.addons.util.position.FlxText;
 import flixel.util.FlxTimer;
 import objects.Ball;
 import objects.Wall;
-import states.GoalState;
 
 class GoalHandler {
 	public var multiGoalTimer:FlxTimer;
@@ -23,14 +22,14 @@ class GoalHandler {
 	}
 	
 	private function pause(timer:FlxTimer) {
-		Game.signals.afterGoalPause.dispatch();
+		Game.signals.pauseAfterGoal.dispatch();
 		multiGoalTimer = null;
 		pauseTimer = new FlxTimer().start(1, reset);
-		FlxG.state.openSubState(new GoalState());
+		Game.states.goal();
 	}
 	
 	private function reset(timer:FlxTimer) {
-		Game.signals.afterGoalReset.dispatch();
+		Game.signals.preRoundStart.dispatch();
 		FlxG.state.closeSubState();
 	}
 	

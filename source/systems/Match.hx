@@ -47,7 +47,7 @@ class Match {
 		for (team in teams) {
 			if (team.score >= scoreToWin) {
 				winningTeam = team;
-				Game.signals.gameOver.dispatch(winningTeam);
+				Game.signals.matchOver.dispatch(winningTeam);
 			}
 		}
 	}
