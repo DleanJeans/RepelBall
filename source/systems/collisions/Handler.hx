@@ -3,10 +3,12 @@ package systems.collisions;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.math.FlxAngle;
+import flixel.math.FlxMath;
 import flixel.math.FlxVelocity;
 import objects.Ball;
 import objects.Paddle;
 import objects.Wall;
+import systems.ArrayLoop;
 using flixel.addons.util.position.FlxPosition;
 
 class Handler {
@@ -36,9 +38,11 @@ class Handler {
 class Ball_Paddle {
 	private var ball:Ball;
 	private var paddle:Paddle;
+	private var facingLoop:ArrayLoop<Int>;
 	
 	public function new() {
 		Game.signals.ball_paddle.add(update);
+		facingLoop = new ArrayLoop<Int>([FlxObject.LEFT, FlxObject.UP, FlxObject.RIGHT, FlxObject.DOWN]);
 	}
 	
 	private inline function setReferences(ball:Ball, paddle:Paddle) {
@@ -55,14 +59,16 @@ class Ball_Paddle {
 		setReferences(ball, paddle);
 		
 		separate();
-		if (paddleTouchedFacingSide())
+		if (paddleNotTouchedOppositeFacingSide())
 			deflectBall();
 		
 		clearReferences();
 	}
 	
-	private function paddleTouchedFacingSide() {
-		return paddle.isTouching(paddle.facing);
+	private function paddleNotTouchedOppositeFacingSide() {
+		facingLoop.setToIndexOf(paddle.facing);
+		var oppositeFacing = facingLoop.plus(2, GET_ONLY);
+		return paddle.facing != FlxObject.NONE && paddle.facing != oppositeFacing;
 	}
 	
 	private inline function separate() {

@@ -1,5 +1,11 @@
 package systems;
 
+@:enum
+abstract GetSet(Int) {
+	var GET_SET = 1;
+	var GET_ONLY = 0;
+}
+
 class ArrayLoop<T> {
 	public var array(default, null):Array<T>;
 	public var i(default, null):Int = 0;
@@ -20,46 +26,89 @@ class ArrayLoop<T> {
 		return i;
 	}
 	
-	public inline function first():T {
-		return array[firstIndex()];
+	public function plus(num:Int, getSet:GetSet = GET_SET):T {
+		return array[plusIndex(num, getSet)];
 	}
 	
-	public inline function end():T {
-		return array[endIndex()];
+	public function sub(num:Int, getSet:GetSet = GET_SET):T {
+		return array[subIndex(num, getSet)];
 	}
 	
-	public inline function next():T {
-		return array[nextIndex()];
+	public inline function first(getSet:GetSet = GET_SET):T {
+		return array[firstIndex(getSet)];
 	}
 	
-	public inline function prev():T {
-		return array[prevIndex()];
+	public inline function end(getSet:GetSet = GET_SET):T {
+		return array[endIndex(getSet)];
+	}
+	
+	public inline function next(getSet:GetSet = GET_SET):T {
+		return array[nextIndex(getSet)];
+	}
+	
+	public inline function prev(getSet:GetSet = GET_SET):T {
+		return array[prevIndex(getSet)];
 	}
 	
 	public inline function current():T {
 		return array[i];
 	}
 	
-	public function nextIndex():Int {
+	public function plusIndex(num:Int, getSet:GetSet = GET_SET):Int {
+		var i = this.i;
+		i -= num;
+		i = upperBound(i);
+		applyIndexIfGetSet(i, getSet);
+		return i;
+	}
+	
+	public function subIndex(num:Int, getSet:GetSet = GET_SET):Int {
+		var i = this.i;
+		i -= num;
+		i = upperBound(i);
+		applyIndexIfGetSet(i, getSet);
+		return i;
+	}
+	
+	public function nextIndex(getSet:GetSet = GET_SET):Int {
+		var i = this.i;
 		i++;
-		if (i >= array.length)
-			i = 0;
+		i = upperBound(i);
+		applyIndexIfGetSet(i, getSet);
 		return i;
 	}
 	
-	public function prevIndex():Int {
+	public function prevIndex(getSet:GetSet = GET_SET):Int {
+		var i = this.i;
 		i--;
-		if (i < 0)
-			i = array.length - 1;
+		i = lowerBound(i);
+		applyIndexIfGetSet(i, getSet);
 		return i;
 	}
 	
-	public inline function firstIndex():Int {
-		return i = 0;
+	public inline function firstIndex(getSet:GetSet = GET_SET):Int {
+		return getSet == GET_SET ? 0 : i = 0;
 	}
 	
-	public inline function endIndex():Int {
-		return i = array.length - 1;
+	public inline function endIndex(getSet:GetSet = GET_SET):Int {
+		return getSet == GET_SET ? array.length - 1 : i = array.length - 1;
+	}
+	
+	private inline function lowerBound(index:Int) {
+		if (index < 0)
+			index = array.length - 1;
+		return index;
+	}
+	
+	private inline function upperBound(index:Int) {
+		if (index >= array.length)
+			index = 0;
+		return index;
+	}
+	
+	private inline function applyIndexIfGetSet(index:Int, getSet:GetSet) {
+		if (getSet == GET_SET)
+			i = index;
 	}
 	
 }
