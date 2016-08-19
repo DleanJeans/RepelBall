@@ -10,8 +10,8 @@ class Match {
 	public var teams(default, null):Array<Team>;
 	public var scoreToWin(default, null):Int;
 	
-	public var gameOver(get, null):Bool;
 	public var winningTeam(default, null):Team;
+	public var lastScoringTeam(default, null):Team;
 
 	public function new(scoreToWin:Int = 5) {
 		this.scoreToWin = scoreToWin;
@@ -25,9 +25,10 @@ class Match {
 	}
 	
 	private function checkGoal(ball:Ball, goal:Wall) {
-		var scoreTeam = getScoringTeam(goal);
-		if (scoreTeam != null) {
-			scoreTeam.plusScore();
+		var scoringTeam = getScoringTeam(goal);
+		if (scoringTeam != null) {
+			lastScoringTeam = scoringTeam;
+			scoringTeam.plusScore();
 			Game.signals.goal.dispatch(goal, ball);
 		}
 	}
@@ -50,15 +51,6 @@ class Match {
 				Game.signals.matchOver.dispatch(winningTeam);
 			}
 		}
-	}
-	
-	private function shootNewBall(goal:Wall, ball:Ball) {
-		var scoringTeam = getScoringTeam(goal);
-		Game.ballShooter.push(scoringTeam.paddles[0]);
-	}
-	
-	function get_gameOver():Bool {
-		return winningTeam != null;
 	}
 	
 }
