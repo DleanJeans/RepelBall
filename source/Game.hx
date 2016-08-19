@@ -8,6 +8,7 @@ import systems.Pools;
 import systems.Positioner;
 import systems.Renderer;
 import systems.Signals;
+import systems.States;
 import systems.collisions.Collision;
 import systems.controllers.ControllerList;
 import systems.controllers.PaddleMovement;
@@ -22,6 +23,7 @@ class Game {
 	public static var match(default, null):Match;
 	
 	public static var signals(default, null):Signals;
+	public static var states(default, null):States;
 	public static var renderer(default, null):Renderer;
 	public static var collision(default, null):Collision;
 	public static var paddleMovement(default, null):PaddleMovement;
@@ -33,6 +35,7 @@ class Game {
 	
 	public static function init() {
 		signals = new Signals();
+		states = new States();
 		renderer = new Renderer();
 		collision = new Collision();
 		paddleMovement = new PaddleMovement();
