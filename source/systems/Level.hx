@@ -32,8 +32,6 @@ class Level extends FlxGroup {
 		add(paddles);
 		add(balls);
 		add(uis);
-		
-		Game.signals.preRoundStart.add(resetLevel);
 	}
 	
 	public function resetLevel() {

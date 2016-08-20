@@ -7,10 +7,7 @@ import states.MenuState;
 import states.PlayState;
 
 class States {
-	public function new() {
-		Game.signals.preRoundStart.add(countdown);
-		Game.signals.pauseAfterGoal.add(goal);
-	}
+	public function new() {}
 	
 	public inline function menu() {
 		FlxG.switchState(new MenuState());

@@ -3,6 +3,7 @@ package systems.ui;
 import flixel.FlxSprite;
 import flixel.group.FlxSpriteGroup;
 import flixel.text.FlxText;
+import flixel.util.FlxAxes;
 import flixel.util.FlxColor;
 import objects.Ball;
 import objects.Wall;
@@ -18,8 +19,6 @@ class Scoreboard extends FlxSpriteGroup {
 
 	public function new() {
 		super();
-		
-		Game.signals.goal.add(updateScores);
 		
 		background1 = new FlxSprite();
 		background2 = new FlxSprite();
@@ -38,10 +37,10 @@ class Scoreboard extends FlxSpriteGroup {
 		background1.color = FlxColor.GREEN;
 		background2.color = FlxColor.BLUE;
 		
-		updateScores();
+		screenCenter(FlxAxes.X);
 	}
 	
-	public function updateScores(?goal:Wall, ?ball:Ball) {
+	public function updateScores() {
 		score1.text = Std.string(Game.match.team1.score);
 		score2.text = Std.string(Game.match.team2.score);
 		

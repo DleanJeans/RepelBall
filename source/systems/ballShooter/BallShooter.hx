@@ -16,7 +16,6 @@ class BallShooter {
 
 	public function new() {
 		FlxG.signals.postUpdate.add(update);
-		Game.signals.roundStart.add(setElapsedToSpawnInstantly);
 		
 		position = FlxPoint.get(FlxG.width / 2, FlxG.height / 2);
 		queue = new Array<FlxPoint>();

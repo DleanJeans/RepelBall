@@ -39,8 +39,10 @@ class Game {
 	public static var scoreboard(default, null):Scoreboard;
 	
 	public static function init() {
-		signals = new Signals();
 		FlxObject.SEPARATE_BIAS = unitLength();
+		
+		level = new Level();
+		match = new Match();
 		
 		states = new States();
 		renderer = new Renderer();
@@ -53,14 +55,7 @@ class Game {
 		autoPusher = new BallShooterAutoPusher();
 		goalHandler = new GoalHandler();
 		scoreboard = new Scoreboard();
-	}
-	
-	public static inline function startNewLevel() {
-		level = new Level();
-	}
-	
-	public static inline function startNewMatch(scoreToWin:Int = 5) {
-		match = new Match(scoreToWin);
+		signals = new Signals();
 	}
 	
 	public static function anyNull(objects:Array<Dynamic>) {

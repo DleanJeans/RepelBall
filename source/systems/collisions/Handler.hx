@@ -12,13 +12,9 @@ import systems.ArrayLoop;
 using flixel.addons.util.position.FlxPosition;
 
 class Handler {
-	public var ball_paddle:Ball_Paddle;
+	public var ball_paddle(default, null):Ball_Paddle;
 	
 	public function new() {
-		Game.signals.ball_ball.add(ball_ball);
-		Game.signals.ball_wall.add(ball_wall);
-		Game.signals.paddle_wall.add(paddle_wall);
-		
 		ball_paddle = new Ball_Paddle();
 	}
 	
@@ -41,7 +37,6 @@ class Ball_Paddle {
 	private var facingLoop:ArrayLoop<Int>;
 	
 	public function new() {
-		Game.signals.ball_paddle.add(update);
 		facingLoop = new ArrayLoop<Int>([FlxObject.LEFT, FlxObject.UP, FlxObject.RIGHT, FlxObject.DOWN]);
 	}
 	

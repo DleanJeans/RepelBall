@@ -19,12 +19,18 @@ class Match {
 		team1 = new Team();
 		team2 = new Team();
 		teams = [team1, team2];
-		
-		Game.signals.ball_wall.add(checkGoal);
-		Game.signals.goal.add(checkWin);
 	}
 	
-	private function checkGoal(ball:Ball, goal:Wall) {
+	public function reset() {
+		scoreToWin = 0;
+		winningTeam = null;
+		lastScoringTeam = null;
+		
+		team1.reset();
+		team2.reset();
+	}
+	
+	public function checkGoal(ball:Ball, goal:Wall) {
 		var scoringTeam = getScoringTeam(goal);
 		if (scoringTeam != null) {
 			lastScoringTeam = scoringTeam;
@@ -41,7 +47,7 @@ class Match {
 		else return null;
 	}
 	
-	private function checkWin(goal:Wall, ball:Ball) {
+	public function checkWin(goal:Wall, ball:Ball) {
 		if (team1.goal != team2.goal)
 			return;
 		
@@ -64,7 +70,7 @@ class Team {
 		paddles = new Array<Paddle>();
 	}
 	
-	public function destroy() {
+	public function reset() {
 		paddles.splice(0, paddles.length);
 		goal = null;
 	}

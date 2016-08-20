@@ -9,12 +9,9 @@ class GoalHandler {
 	public var multiGoalTimer:FlxTimer;
 	public var pauseTimer:FlxTimer;
 	
-	public function new() {
-		Game.signals.goal.add(startMultiGoalTimer);
-		Game.signals.goal.add(killBall);
-	}
+	public function new() {}
 	
-	private function startMultiGoalTimer(goal:Wall, ball:Ball) {
+	public function startMultiGoalTimer(goal:Wall, ball:Ball) {
 		if (multiGoalTimer == null)
 			multiGoalTimer = new FlxTimer().start(1, pause);
 		else multiGoalTimer.reset();
@@ -32,7 +29,7 @@ class GoalHandler {
 		FlxG.state.closeSubState();
 	}
 	
-	private function killBall(goal:Wall, ball:Ball) {
+	public function killBall(goal:Wall, ball:Ball) {
 		ball.kill();
 		Game.level.removeBall(ball);
 	}

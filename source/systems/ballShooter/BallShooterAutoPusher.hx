@@ -12,8 +12,6 @@ class BallShooterAutoPusher {
 	private var teamLoop:ArrayLoop<Team>;
 	
 	public function new() {
-		Game.signals.roundStart.add(autoPush);
-		
 		pushedPaddles = new Array<Paddle>();
 		teamLoop = new ArrayLoop<Team>();
 	}
