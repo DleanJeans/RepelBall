@@ -1,7 +1,6 @@
 package systems;
 
 import flixel.FlxG;
-import flixel.addons.util.position.FlxText;
 import flixel.util.FlxTimer;
 import objects.Ball;
 import objects.Wall;

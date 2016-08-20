@@ -1,8 +1,8 @@
 package systems.ui;
 
 import flixel.FlxSprite;
-import flixel.addons.util.position.FlxText;
 import flixel.group.FlxSpriteGroup;
+import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import objects.Ball;
 import objects.Wall;

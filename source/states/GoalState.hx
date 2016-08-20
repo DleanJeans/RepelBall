@@ -1,7 +1,7 @@
 package states;
 
 import flixel.FlxSubState;
-import flixel.addons.util.position.FlxText;
+import flixel.text.FlxText;
 import flixel.util.FlxColor;
 
 class GoalState extends FlxSubState {

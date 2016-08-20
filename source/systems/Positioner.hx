@@ -7,7 +7,6 @@ import objects.Wall;
 using flixel.addons.util.position.FlxPosition;
 
 class Positioner {
-
 	public function new() {}
 	
 	public function putPaddleOnGoal(paddle:Paddle, wall:Wall, ?unitHeight:Int) {
