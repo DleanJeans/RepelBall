@@ -14,6 +14,7 @@ import systems.ballShooter.BallShooterAutoPusher;
 import systems.collisions.Collision;
 import systems.controllers.ControllerList;
 import systems.controllers.PaddleMovement;
+import systems.ui.Scoreboard;
 
 class Game {
 	private static inline var UNIT_LENGTH = 16;
@@ -35,6 +36,7 @@ class Game {
 	public static var ballShooter(default, null):BallShooter;
 	public static var autoPusher(default, null):BallShooterAutoPusher;
 	public static var goalHandler(default, null):GoalHandler;
+	public static var scoreboard(default, null):Scoreboard;
 	
 	public static function init() {
 		signals = new Signals();
@@ -50,6 +52,7 @@ class Game {
 		ballShooter = new BallShooter();
 		autoPusher = new BallShooterAutoPusher();
 		goalHandler = new GoalHandler();
+		scoreboard = new Scoreboard();
 	}
 	
 	public static inline function startNewLevel() {
