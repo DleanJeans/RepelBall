@@ -38,6 +38,8 @@ class Game {
 	
 	public static function init() {
 		signals = new Signals();
+		FlxObject.SEPARATE_BIAS = unitLength();
+		
 		states = new States();
 		renderer = new Renderer();
 		collision = new Collision();
