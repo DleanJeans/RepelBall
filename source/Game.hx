@@ -1,6 +1,7 @@
 package;
 
 import flixel.FlxObject;
+import flixel.system.FlxAssets;
 import systems.BitmapCacher;
 import systems.Colors;
 import systems.GoalHandler;
@@ -44,6 +45,7 @@ class Game {
 	
 	public static function init() {
 		FlxObject.SEPARATE_BIAS = unitLength();
+		FlxAssets.FONT_DEFAULT = AssetPaths.SquareFont__ttf;
 		
 		level = new Level();
 		match = new Match();

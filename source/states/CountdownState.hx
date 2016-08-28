@@ -10,7 +10,6 @@ class CountdownState extends FlxSubState {
 	
 	override public function create():Void {
 		text = new FlxText(0, 0, 0, "3", 100);
-		text.font = AssetPaths.SquareFont__ttf;
 		text.screenCenter();
 		add(text);
 		

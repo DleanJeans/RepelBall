@@ -25,9 +25,6 @@ class Scoreboard extends FlxSpriteGroup {
 		score1 = new FlxText(0, 0, 0, "00", 30);
 		score2 = new FlxText(0, 0, 0, "00", 30);
 		
-		score1.font = AssetPaths.SquareFont__ttf;
-		score2.font = AssetPaths.SquareFont__ttf;
-		
 		background1.makeGraphic(cast score1.width * 1.25, cast score1.height * 1.25);
 		background2.makeGraphic(cast score2.width * 1.25, cast score2.height * 1.25);
 		background2.setTopLeft(background1.getTopRight());
