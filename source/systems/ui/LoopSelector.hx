@@ -30,12 +30,6 @@ class LoopSelector extends FlxSpriteGroup {
 		nextButton = new FlxButton();
 		midText = new FlxText();
 		
-		add(label);
-		add(background);
-		add(prevButton);
-		add(nextButton);
-		add(midText);
-		
 		label.size = 25;
 		label.text = labelText;
 		label.fieldWidth = labelFieldWidth;
@@ -62,6 +56,12 @@ class LoopSelector extends FlxSpriteGroup {
 		midText.fieldWidth = width;
 		midText.alignment = FlxTextAlign.CENTER;
 		midText.setCenter(background.getCenter());
+		
+		add(label);
+		add(background);
+		add(prevButton);
+		add(nextButton);
+		add(midText);
 	}
 	
 	private function prevValue() {
@@ -79,7 +79,7 @@ class LoopSelector extends FlxSpriteGroup {
 	}
 	
 	public function getCurrentValue() {
-		
+		return arrayLoop.current();
 	}
 	
 }
