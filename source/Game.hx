@@ -1,6 +1,7 @@
 package;
 
 import flixel.FlxObject;
+import systems.Colors;
 import systems.GoalHandler;
 import systems.Level;
 import systems.Match;
@@ -37,6 +38,7 @@ class Game {
 	public static var autoPusher(default, null):BallShooterAutoPusher;
 	public static var goalHandler(default, null):GoalHandler;
 	public static var scoreboard(default, null):Scoreboard;
+	public static var colors(default, null):Colors;
 	
 	public static function init() {
 		FlxObject.SEPARATE_BIAS = unitLength();
@@ -55,6 +57,7 @@ class Game {
 		autoPusher = new BallShooterAutoPusher();
 		goalHandler = new GoalHandler();
 		scoreboard = new Scoreboard();
+		colors = new Colors();
 		signals = new Signals();
 	}
 	
