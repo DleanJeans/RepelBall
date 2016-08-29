@@ -1,5 +1,6 @@
 package systems;
 
+import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.util.FlxColor;
 import objects.Paddle;
@@ -7,38 +8,34 @@ import objects.Wall;
 using flixel.util.FlxSpriteUtil;
 
 class Renderer {
-	private var keys:Array<String>;
-	
-	public function new() {
-		keys = new Array<String>();
-	}
+	public function new() {}
 	
 	public function drawSideButton(sprite:FlxSprite, width:Int = 200, height:Int = 50) {
 		var key = 'sb${width}x${height}';
+		var noGraphic = newKey(key);
 		sprite.makeGraphic(width, height, 0x0, false, key);
-		if (newKey(key)) {
+		
+		if (noGraphic)
 			sprite.drawRoundRect(-height, 0, width + height, height, height, height, Game.color.transWhite);
-			addKey(key);
-		}
 	}
 	
 	public function drawRoundRect(sprite:FlxSprite, width:Int = 300, height:Int = 30) {
 		var key = 'rr${width}x${height}';
+		var noGraphic = newKey(key);
 		sprite.makeGraphic(width, height, 0x0, false, key);
 		
-		if (newKey(key)) {
+		if (noGraphic)
 			sprite.drawRoundRect(0, 0, width, height, height, height, Game.color.transWhite);
-			addKey(key);
-		}
 	}
 	
 	public function drawArrow(sprite:FlxSprite, size:Int = 20) {
 		var key = 'arrow$size';
+		var noGraphic = newKey(key);
+		
 		sprite.makeGraphic(size, size, 0x0, false, key);
-		if (newKey(key)) {
+		
+		if (noGraphic)
 			sprite.drawTriangle(0, 0, size, Game.color.white);
-			addKey(key);
-		}
 	}
 	
 	public function drawUnitRoundRect(sprite:FlxSprite, unitWidth:Float, unitHeight:Float) {
@@ -47,11 +44,11 @@ class Renderer {
 		var ellipseSize = Game.unitLength();
 		
 		var key = 'urr${width}x${height}';
+		var noGraphic = newKey(key);
+		
 		sprite.makeGraphic(width, height, 0x0, false, key);
-		if (newKey(key)) {
+		if (noGraphic)
 			sprite.drawRoundRect(0, 0, width, height, ellipseSize, ellipseSize, Game.color.white);
-			addKey(key);
-		}
 	}
 	
 	public function drawPaddle(paddle:Paddle) {
@@ -70,12 +67,8 @@ class Renderer {
 		drawUnitRoundRect(wall, unitWidth, unitHeight);
 	}
 	
-	private inline function newKey(key:String) {
-		return keys.indexOf(key) == -1;
-	}
-	
-	private inline function addKey(key:String) {
-		keys.push(key);
+	private inline function newKey(key:String):Bool {
+		return !FlxG.bitmap.checkCache(key);
 	}
 	
 }
