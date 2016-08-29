@@ -26,25 +26,25 @@ class Signals {
 	public var roundStart:FlxSignal = new FlxSignal();
 
 	public function new() {
-		preRoundStart.add(Game.states.countdown);
-		pauseAfterGoal.add(Game.states.goal);
-		
-		preRoundStart.add(Game.level.resetLevel);
+		matchStart.add(Game.scoreboard.updateColors);
 		
 		ball_ball.add(Game.collision.handler.ball_ball);
 		ball_wall.add(Game.collision.handler.ball_wall);
 		paddle_wall.add(Game.collision.handler.paddle_wall);
 		ball_paddle.add(Game.collision.handler.ball_paddle.update);
-		
-		roundStart.add(Game.ballShooter.setElapsedToSpawnInstantly);
-		roundStart.add(Game.autoPusher.autoPush);
+		ball_wall.add(Game.match.checkGoal);
 		
 		goal.add(Game.goalHandler.startMultiGoalTimer);
 		goal.add(Game.goalHandler.killBall);
-		
-		ball_wall.add(Game.match.checkGoal);
 		goal.add(Game.match.checkWin);
 		
+		pauseAfterGoal.add(Game.states.goal);
+		
+		preRoundStart.add(Game.states.countdown);
+		preRoundStart.add(Game.level.resetLevel);
 		preRoundStart.add(Game.scoreboard.updateScores);
+		
+		roundStart.add(Game.ballShooter.setElapsedToSpawnInstantly);
+		roundStart.add(Game.autoPusher.autoPush);
 	}
 }
