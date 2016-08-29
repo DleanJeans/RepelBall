@@ -20,6 +20,7 @@ class ColorSwatchSelector extends FlxSpriteGroup {
 	public var swatchHeight:Int;
 	public var spacingX:Int;
 	public var spacingY:Int;
+	public var colorChangedCallback:ColorSwatchSelector->Void;
 	
 	private var selectorTween:FlxTween;
 	private var selectedSwatch:FlxSprite;
@@ -37,17 +38,8 @@ class ColorSwatchSelector extends FlxSpriteGroup {
 		
 		label = new FlxText(0, 0, (swatchWidth + spacingX) * maxColumns, "Color", 20);
 		label.alignment = FlxTextAlign.CENTER;
-		add(label);
 		
 		swatches = new FlxSpriteGroup();
-		add(swatches);
-		
-		selector = new FlxSprite();
-		selector.makeGraphic(swatchWidth + 2, swatchHeight + 2, 0x0);
-		selector.drawRect(0, 0, selector.width, selector.height, 0x0, { thickness:6, color:Game.colors.white });
-		selector.setSize(0, 0);
-		selector.centerOffsets();
-		add(selector);
 		
 		var swatch:FlxSprite;
 		for (color in colors) {
@@ -58,8 +50,23 @@ class ColorSwatchSelector extends FlxSpriteGroup {
 			FlxMouseEventManager.add(swatch, selectSwatch);
 		}
 		
+		selector = new FlxSprite();
+		selector.makeGraphic(swatchWidth + 2, swatchHeight + 2, 0x0);
+		selector.drawRect(0, 0, selector.width, selector.height, 0x0, { thickness:6, color:Game.colors.white });
+		selector.setSize(0, 0);
+		selector.centerOffsets();
+		
+		add(label);
+		add(swatches);
+		add(selector);
+		
 		updateLayout();
+		
 		selectSwatch(getFirstSwatch());
+	}
+	
+	public inline function fixSelector() {
+		moveSelectorTo(selectedSwatch != null ? selectedSwatch : getFirstSwatch());
 	}
 	
 	private inline function getFirstSwatch() {
@@ -69,12 +76,19 @@ class ColorSwatchSelector extends FlxSpriteGroup {
 	private inline function selectSwatch(swatch:FlxSprite) {
 		moveSelectorTo(swatch);
 		selectedSwatch = swatch;
+		if (colorChangedCallback != null)
+			colorChangedCallback(this);
 	}
 	
-	private function moveSelectorTo(swatch:FlxSprite) {
-		if (selectorTween != null && !selectorTween.finished)
-			selectorTween.cancel();
-		selectorTween = FlxTween.tween(selector, { x:swatch.getCenterX(), y:swatch.getCenterY()}, 0.25, { ease:FlxEase.quartOut});
+	private function moveSelectorTo(swatch:FlxSprite, instantly:Bool = false) {
+		if (instantly) {
+			selector.setPosition(getFirstSwatch().getCenterX(), getFirstSwatch().getCenterY());
+		}
+		else {
+			if (selectorTween != null && !selectorTween.finished)
+				selectorTween.cancel();
+			selectorTween = FlxTween.tween(selector, { x:swatch.getCenterX(), y:swatch.getCenterY()}, 0.25, { ease:FlxEase.quartOut});
+		}
 	}
 	
 	private function updateLayout() {
@@ -94,7 +108,6 @@ class ColorSwatchSelector extends FlxSpriteGroup {
 		}
 		
 		swatches.y = label.getBottom();
-		selector.setPosition(getFirstSwatch().getCenterX(), getFirstSwatch().getCenterY());
 	}
 	
 	public inline function getColor() {
