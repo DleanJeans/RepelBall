@@ -4,14 +4,17 @@ import flixel.FlxSprite;
 import flixel.group.FlxSpriteGroup;
 import flixel.text.FlxText;
 import flixel.ui.FlxButton;
+import flixel.util.FlxColor;
 import objects.Paddle;
+import systems.Match.Team;
 using flixel.addons.util.position.FlxPosition;
 
 class TeamSettings extends FlxSpriteGroup {
-	public var teamName:FlxText;
-	public var colorSwatch:ColorSwatchSelector;
-	public var paddleBack:FlxSprite;
-	public var paddle:Paddle;
+	public var teamName(default, null):FlxText;
+	public var colorSwatch(default, null):ColorSwatchSelector;
+	public var paddleBack(default, null):FlxSprite;
+	public var paddle(default, null):Paddle;
+	public var teamColor(get, never):FlxColor;
 	
 	public var controlSettingsButton:FlxButton;
 	
@@ -22,6 +25,18 @@ class TeamSettings extends FlxSpriteGroup {
 		setupStuff();
 		addStuff();
 		moreSetup(x, y);
+	}
+	
+	override public function destroy():Void {
+		remove(paddle);
+		super.destroy();
+	}
+	
+	public function setupTeam(team:Team) {
+		team.setup(teamName.text, teamColor);
+		team.addPaddle(paddle);
+		paddle.scale.set(1, 1);
+		paddle.updateHitbox();
 	}
 	
 	private function updateTeamName(colorSwatch:ColorSwatchSelector) {
@@ -55,6 +70,7 @@ class TeamSettings extends FlxSpriteGroup {
 		paddle.scale.set(1.5, 1.5);
 		paddle.updateHitbox();
 		paddle.setCenter(paddleBack.getCenter());
+		paddle.graphic.persist = true;
 	}
 	
 	private function addStuff() {
@@ -68,6 +84,10 @@ class TeamSettings extends FlxSpriteGroup {
 		setPosition(x, y);
 		updateTeamName(colorSwatch);
 		colorSwatch.fixSelector();
+	}
+	
+	inline function get_teamColor():FlxColor {
+		return teamName.color;
 	}
 	
 }
