@@ -16,7 +16,7 @@ class Wall extends FlxSprite {
 	}
 	
 	public inline function drawWall() {
-		Game.renderer.draw(this, width, height);
+		Game.renderer.drawWall(this);
 	}
 	
 }

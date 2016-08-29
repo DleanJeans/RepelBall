@@ -66,20 +66,20 @@ class LoopSelector extends FlxSpriteGroup {
 	}
 	
 	private function setupBackground() {
-		Game.bitmapCacher.drawRoundRect(background, _width, _height);
+		Game.renderer.drawRoundRect(background, _width, _height);
 		background.x = label.getRight() + 20;
 	}
 	
 	private function setupPrevAndNextButton() {
 		var arrowSize:Int = cast _height * 0.65;
 		
-		Game.bitmapCacher.drawArrow(prevButton, arrowSize);
+		Game.renderer.drawArrow(prevButton, arrowSize);
 		prevButton.onUp.callback = prevValue;
 		prevButton.angle = -90;
 		prevButton.setCenterY(background.getCenterY());
 		prevButton.x = background.x + prevButton.y;
 		
-		Game.bitmapCacher.drawArrow(nextButton, arrowSize);
+		Game.renderer.drawArrow(nextButton, arrowSize);
 		nextButton.onUp.callback = nextValue;
 		nextButton.angle = 90;
 		nextButton.setCenterY(background.getCenterY());

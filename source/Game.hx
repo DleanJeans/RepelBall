@@ -1,6 +1,5 @@
 package;
 
-import systems.BitmapCacher;
 import systems.Colors;
 import systems.GoalHandler;
 import systems.Level;
@@ -41,7 +40,6 @@ class Game {
 	public static var goalHandler(default, null):GoalHandler;
 	public static var scoreboard(default, null):Scoreboard;
 	public static var colors(default, null):Colors;
-	public static var bitmapCacher(default, null):BitmapCacher;
 	
 	public static function init() {
 		level = new Level();
@@ -60,7 +58,6 @@ class Game {
 		goalHandler = new GoalHandler();
 		scoreboard = new Scoreboard();
 		colors = new Colors();
-		bitmapCacher = new BitmapCacher();
 		signals = new Signals();
 	}
 	

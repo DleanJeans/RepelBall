@@ -91,7 +91,7 @@ class ColorSwatchSelector extends FlxSpriteGroup {
 	
 	private function setupSelector() {
 		selector.makeGraphic(swatchWidth + 2, swatchHeight + 2, 0x0);
-		selector.drawRect(0, 0, selector.width, selector.height, 0x0, { thickness:6, color:Game.colors.white });
+		selector.drawRect(0, 0, selector.width, selector.height, 0x0, { thickness:6, color:Game.color.white });
 		selector.setSize(0, 0);
 		selector.centerOffsets();
 	}

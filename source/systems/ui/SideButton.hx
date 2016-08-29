@@ -9,13 +9,8 @@ class SideButton extends FlxButton {
 	public function new(x:Float = 0, y:Float = 0, width:Int = 200, height:Int = 50, ?text:String, textSize:Int = 35, ?onClick:Void->Void) {
 		super(x, y, text, onClick);
 		
-		Game.bitmapCacher.drawSideButton(this, width, height);
+		Game.renderer.drawSideButton(this, width, height);
 		changeLabelSettings(textSize);
-	}
-	
-	private function drawButton(width:Int = 200, height:Int = 50) {
-		makeGraphic(width, height, 0x0, true);
-		FlxSpriteUtil.drawRoundRect(this, -height, 0, width + height, height, height, height, Game.colors.transWhite);
 	}
 	
 	private function changeLabelSettings(textSize:Int) {
