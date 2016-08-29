@@ -3,6 +3,8 @@ package systems;
 import flixel.util.FlxColor;
 
 class Colors {
+	public var list(get, null):Array<FlxColor>;
+	
 	public var red(get, never):FlxColor;
 	public var pink(get, never):FlxColor;
 	public var purple(get, never):FlxColor;
@@ -16,6 +18,12 @@ class Colors {
 	public var white(get, never):FlxColor;
 	public var gray(get, never):FlxColor;
 	public var transWhite(get, never):FlxColor;
+	
+	function get_list():Array<FlxColor> {
+		if (list == null)
+			list = [red, pink, purple, blue, green, lime, yellow, orange];
+		return list;
+	}
 	
 	public inline function get_red():FlxColor return 0xFFF44336;
 	public inline function get_pink():FlxColor return 0xFFFF4081;
@@ -33,6 +41,23 @@ class Colors {
 		var white = FlxColor.WHITE;
 		white.alphaFloat = 0.25;
 		return white;
+	}
+	
+	public function getName(color:FlxColor) {
+		return
+		switch (color) {
+			case red: "Red";
+			case pink: "Pink";
+			case purple: "Purple";
+			case blue: "Blue";
+			case green: "Green";
+			case lime: "Lime";
+			case yellow: "Yellow";
+			case orange: "Orange";
+			case black: "Black";
+			case white: "White";
+			default: "Unknown";
+		}
 	}
 	
 	public function new() {}
