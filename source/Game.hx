@@ -1,7 +1,5 @@
 package;
 
-import flixel.FlxObject;
-import flixel.system.FlxAssets;
 import systems.BitmapCacher;
 import systems.Colors;
 import systems.GoalHandler;
@@ -10,6 +8,7 @@ import systems.Match;
 import systems.Pools;
 import systems.Positioner;
 import systems.Renderer;
+import systems.Settings;
 import systems.Signals;
 import systems.States;
 import systems.ballShooter.BallShooter;
@@ -28,6 +27,7 @@ class Game {
 	public static var level(default, null):Level;
 	public static var match(default, null):Match;
 	
+	public static var settings(default, null):Settings;
 	public static var signals(default, null):Signals;
 	public static var states(default, null):States;
 	public static var renderer(default, null):Renderer;
@@ -44,12 +44,10 @@ class Game {
 	public static var bitmapCacher(default, null):BitmapCacher;
 	
 	public static function init() {
-		FlxObject.SEPARATE_BIAS = unitLength();
-		FlxAssets.FONT_DEFAULT = AssetPaths.SquareFont__ttf;
-		
 		level = new Level();
 		match = new Match();
 		
+		settings = new Settings();
 		states = new States();
 		renderer = new Renderer();
 		collision = new Collision();
