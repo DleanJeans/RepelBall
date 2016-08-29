@@ -17,27 +17,61 @@ class LoopSelector extends FlxSpriteGroup {
 	
 	private var arrayLoop:ArrayLoop<Dynamic>;
 	
+	private var _labelText:String;
+	private var _labelFieldWidth:Int;
+	private var _width:Int;
+	private var _height:Int;
+	
 	public function new<T>(x:Float, y:Float, width:Int = 300, height:Int = 30, labelText:String, values:Array<T>, labelFieldWidth:Int = 200) {
 		super();
 		
-		setPosition(x, y);
-		
+		assignArguments(width, height, labelText, labelFieldWidth);
+		createStuff(values);
+		setupStuff();
+		addStuff();
+		moreSetup(x, y);
+	}
+	
+	public function getCurrentValue() {
+		return arrayLoop.current();
+	}
+	
+	private function assignArguments(width:Int, height:Int, labelText:String, labelFieldWidth:Int) {
+		_width = width;
+		_height = height;
+		_labelText = labelText;
+		_labelFieldWidth = labelFieldWidth;
+	}
+	
+	private function createStuff<T>(values:Array<T>) {
 		arrayLoop = new ArrayLoop<T>(values);
-		
 		label = new FlxText();
 		background = new FlxSprite();
 		prevButton = new FlxButton();
 		nextButton = new FlxButton();
 		midText = new FlxText();
-		
+	}
+	
+	private function setupStuff() {
+		setupLabel();
+		setupBackground();
+		setupPrevAndNextButton();
+		setupMidText();
+	}
+	
+	private function setupLabel() {
 		label.size = 25;
-		label.text = labelText;
-		label.fieldWidth = labelFieldWidth;
-		
-		Game.bitmapCacher.drawRoundRect(background, width, height);
+		label.text = _labelText;
+		label.fieldWidth = _labelFieldWidth;
+	}
+	
+	private function setupBackground() {
+		Game.bitmapCacher.drawRoundRect(background, _width, _height);
 		background.x = label.getRight() + 20;
-		
-		var arrowSize:Int = cast height * 0.65;
+	}
+	
+	private function setupPrevAndNextButton() {
+		var arrowSize:Int = cast _height * 0.65;
 		
 		Game.bitmapCacher.drawArrow(prevButton, arrowSize);
 		prevButton.onUp.callback = prevValue;
@@ -50,18 +84,6 @@ class LoopSelector extends FlxSpriteGroup {
 		nextButton.angle = 90;
 		nextButton.setCenterY(background.getCenterY());
 		nextButton.setRight(background.getRight() - nextButton.y);
-		
-		showValue(arrayLoop.current());
-		midText.size = 25;
-		midText.fieldWidth = width;
-		midText.alignment = FlxTextAlign.CENTER;
-		midText.setCenter(background.getCenter());
-		
-		add(label);
-		add(background);
-		add(prevButton);
-		add(nextButton);
-		add(midText);
 	}
 	
 	private function prevValue() {
@@ -74,12 +96,28 @@ class LoopSelector extends FlxSpriteGroup {
 		showValue(value);
 	}
 	
-	public inline function showValue(value:Dynamic) {
+	private inline function showValue(value:Dynamic) {
 		midText.text = Std.string(value);
 	}
 	
-	public function getCurrentValue() {
-		return arrayLoop.current();
+	private function setupMidText() {
+		midText.size = 25;
+		midText.fieldWidth = _width;
+		midText.alignment = FlxTextAlign.CENTER;
+		midText.setCenter(background.getCenter());
+	}
+	
+	private function addStuff() {
+		add(label);
+		add(background);
+		add(prevButton);
+		add(nextButton);
+		add(midText);
+	}
+	
+	private function moreSetup(x:Float, y:Float) {
+		setPosition(x, y);
+		showValue(arrayLoop.current());
 	}
 	
 }
