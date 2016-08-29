@@ -47,7 +47,7 @@ class Pools {
 	}
 	
 	public function getDefaultColorSwatch(x:Float = 0, y:Float = 0) {
-		return new ColorSwatchSelector(Game.colors.list, x, y);
+		return new ColorSwatchSelector(Game.color.list, x, y);
 	}
 	
 }

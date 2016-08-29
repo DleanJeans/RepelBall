@@ -39,7 +39,7 @@ class Game {
 	public static var autoPusher(default, null):BallShooterAutoPusher;
 	public static var goalHandler(default, null):GoalHandler;
 	public static var scoreboard(default, null):Scoreboard;
-	public static var colors(default, null):Colors;
+	public static var color(default, null):Colors;
 	
 	public static function init() {
 		level = new Level();
@@ -57,7 +57,7 @@ class Game {
 		autoPusher = new BallShooterAutoPusher();
 		goalHandler = new GoalHandler();
 		scoreboard = new Scoreboard();
-		colors = new Colors();
+		color = new Colors();
 		signals = new Signals();
 	}
 	

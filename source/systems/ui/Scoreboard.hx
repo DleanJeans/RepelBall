@@ -61,8 +61,8 @@ class Scoreboard extends FlxSpriteGroup {
 	private function moreSetup() {
 		screenCenter(FlxAxes.X);
 		
-		background1.color = Game.colors.green;
-		background2.color = Game.colors.blue;
+		background1.color = Game.color.green;
+		background2.color = Game.color.blue;
 	}
 	
 }

@@ -14,7 +14,7 @@ class SideButton extends FlxButton {
 	}
 	
 	private function changeLabelSettings(textSize:Int) {
-		label.setFormat(AssetPaths.SquareFont__ttf, textSize, Game.colors.white, FlxTextAlign.RIGHT);
+		label.setFormat(AssetPaths.SquareFont__ttf, textSize, Game.color.white, FlxTextAlign.RIGHT);
 		labelAlphas = [1, 1, 1];
 		label.offset.set(height / 2);
 		labelOffsets = [FlxPoint.get(0, 4), FlxPoint.get(0, 4), FlxPoint.get(0, 4)];

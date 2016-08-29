@@ -54,7 +54,7 @@ class ColorSwatchSelector extends FlxSpriteGroup {
 	}
 	
 	public inline function getColorName() {
-		return Game.colors.getName(getColor());
+		return Game.color.getName(getColor());
 	}
 	
 	private function assignArguments(colors:Array<FlxColor>, swatchWidth:Int, swatchHeight:Int, maxColumns:Int, spacingX:Int, spacingY:Int) {
