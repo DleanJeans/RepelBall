@@ -5,6 +5,7 @@ import states.CountdownState;
 import states.GoalState;
 import states.MenuState;
 import states.PlayState;
+import states.WarningState;
 
 class States {
 	public function new() {}
@@ -23,6 +24,10 @@ class States {
 	
 	public inline function countdown() {
 		FlxG.state.openSubState(new CountdownState());
+	}
+	
+	public inline function warning() {
+		FlxG.state.openSubState(new WarningState());
 	}
 	
 }
