@@ -36,6 +36,21 @@ class LoopSelector extends FlxSpriteGroup {
 		return arrayLoop.current();
 	}
 	
+	public function prev() {
+		var value = arrayLoop.prev();
+		showValue(value);
+	}
+	
+	public function next() {
+		var value = arrayLoop.next();
+		showValue(value);
+	}
+	
+	public function select(index:Int) {
+		arrayLoop.setIndex(index);
+		showValue(arrayLoop.current());
+	}
+	
 	private function assignArguments(width:Int, height:Int, labelText:String, labelFieldWidth:Int) {
 		_width = width;
 		_height = height;
@@ -74,26 +89,16 @@ class LoopSelector extends FlxSpriteGroup {
 		var arrowSize:Int = cast _height * 0.65;
 		
 		Game.renderer.drawArrow(prevButton, arrowSize);
-		prevButton.onUp.callback = prevValue;
+		prevButton.onUp.callback = prev;
 		prevButton.angle = -90;
 		prevButton.setCenterY(background.getCenterY());
 		prevButton.x = background.x + prevButton.y;
 		
 		Game.renderer.drawArrow(nextButton, arrowSize);
-		nextButton.onUp.callback = nextValue;
+		nextButton.onUp.callback = next;
 		nextButton.angle = 90;
 		nextButton.setCenterY(background.getCenterY());
 		nextButton.setRight(background.getRight() - nextButton.y);
-	}
-	
-	private function prevValue() {
-		var value = arrayLoop.prev();
-		showValue(value);
-	}
-	
-	private function nextValue() {
-		var value = arrayLoop.next();
-		showValue(value);
 	}
 	
 	private inline function showValue(value:Dynamic) {
