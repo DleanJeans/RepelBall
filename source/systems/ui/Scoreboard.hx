@@ -20,24 +20,10 @@ class Scoreboard extends FlxSpriteGroup {
 	public function new() {
 		super();
 		
-		background1 = new FlxSprite();
-		background2 = new FlxSprite();
-		score1 = new FlxText(0, 0, 0, "00", 30);
-		score2 = new FlxText(0, 0, 0, "00", 30);
-		
-		background1.makeGraphic(cast score1.width * 1.25, cast score1.height * 1.25);
-		background2.makeGraphic(cast score2.width * 1.25, cast score2.height * 1.25);
-		background2.setTopLeft(background1.getTopRight());
-		
-		add(background1);
-		add(background2);
-		add(score1);
-		add(score2);
-		
-		background1.color = Game.colors.green;
-		background2.color = Game.colors.blue;
-		
-		screenCenter(FlxAxes.X);
+		createStuff();
+		setupStuff();
+		addStuff();
+		moreSetup();
 	}
 	
 	public function updateScores() {
@@ -50,6 +36,33 @@ class Scoreboard extends FlxSpriteGroup {
 	private function updateTextPosition() {
 		score1.setCenter(background1.getCenter());
 		score2.setCenter(background2.getCenter());
+	}
+	
+	private function createStuff() {
+		background1 = new FlxSprite();
+		background2 = new FlxSprite();
+		score1 = new FlxText(0, 0, 0, "00", 30);
+		score2 = new FlxText(0, 0, 0, "00", 30);
+	}
+	
+	private function setupStuff() {
+		background1.makeGraphic(cast score1.width * 1.25, cast score1.height * 1.25);
+		background2.makeGraphic(cast score2.width * 1.25, cast score2.height * 1.25);
+		background2.setTopLeft(background1.getTopRight());
+	}
+	
+	private function addStuff() {
+		add(background1);
+		add(background2);
+		add(score1);
+		add(score2);
+	}
+	
+	private function moreSetup() {
+		screenCenter(FlxAxes.X);
+		
+		background1.color = Game.colors.green;
+		background2.color = Game.colors.blue;
 	}
 	
 }
