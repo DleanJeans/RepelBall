@@ -6,6 +6,7 @@ import flixel.math.FlxPoint;
 import objects.Ball;
 import objects.Paddle;
 import objects.Wall;
+import systems.ui.ColorSwatchSelector;
 using flixel.addons.util.position.FlxPosition;
 
 typedef Pool<T:FlxBasic> = FlxTypedGroup<T>;
@@ -43,6 +44,10 @@ class Pools {
 		var wall = walls.recycle(Wall);
 		wall.resetWall(x, y, width, height, facing);
 		return wall;
+	}
+	
+	public function getDefaultColorSwatch(x:Float = 0, y:Float = 0) {
+		return new ColorSwatchSelector(Game.colors.list, x, y);
 	}
 	
 }
