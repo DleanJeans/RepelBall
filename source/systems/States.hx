@@ -1,6 +1,8 @@
 package systems;
 
 import flixel.FlxG;
+import flixel.FlxState;
+import flixel.FlxSubState;
 import states.CountdownState;
 import states.GoalState;
 import states.MenuState;
@@ -8,26 +10,29 @@ import states.PlayState;
 import states.WarningState;
 
 class States {
+	public var state(default, null):FlxState;
+	public var subState(default, null):FlxSubState;
+	
 	public function new() {}
 	
 	public inline function menu() {
-		FlxG.switchState(new MenuState());
+		FlxG.switchState(state = new MenuState());
 	}
 	
 	public inline function play() {
-		FlxG.switchState(new PlayState());
+		FlxG.switchState(state = new PlayState());
 	}
 	
 	public inline function goal() {
-		FlxG.state.openSubState(new GoalState());
+		state.openSubState(subState = new GoalState());
 	}
 	
 	public inline function countdown() {
-		FlxG.state.openSubState(new CountdownState());
+		state.openSubState(subState = new CountdownState());
 	}
 	
 	public inline function warning() {
-		FlxG.state.openSubState(new WarningState());
+		state.openSubState(subState = new WarningState());
 	}
 	
 }
