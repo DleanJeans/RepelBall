@@ -6,7 +6,7 @@ abstract GetSet(Int) {
 	var GET_ONLY = 0;
 }
 
-class ArrayLoop<T> {
+class ArrayLoop<T:Dynamic> {
 	public var array(default, null):Array<T>;
 	public var i(default, null):Int = 0;
 	
@@ -24,6 +24,12 @@ class ArrayLoop<T> {
 		if (index != -1)
 			i = index;
 		return i;
+	}
+	
+	public function setIndex(index:Int) {
+		index = upperBound(index);
+		index = lowerBound(index);
+		return i = index;
 	}
 	
 	public function plus(num:Int, getSet:GetSet = GET_SET):T {

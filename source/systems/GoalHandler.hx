@@ -19,14 +19,15 @@ class GoalHandler {
 	
 	private function pause(timer:FlxTimer) {
 		Game.signals.pauseAfterGoal.dispatch();
+		multiGoalTimer.destroy();
 		multiGoalTimer = null;
 		pauseTimer = new FlxTimer().start(1, reset);
 		Game.states.goal();
 	}
 	
 	private function reset(timer:FlxTimer) {
+		Game.states.state.closeSubState();
 		Game.signals.preRoundStart.dispatch();
-		FlxG.state.closeSubState();
 	}
 	
 	public function killBall(goal:Wall, ball:Ball) {

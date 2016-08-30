@@ -32,8 +32,12 @@ class LoopSelector extends FlxSpriteGroup {
 		moreSetup(x, y);
 	}
 	
-	public function getCurrentValue() {
+	public inline function getCurrentValue() {
 		return arrayLoop.current();
+	}
+	
+	public inline function getIndex() {
+		return arrayLoop.i;
 	}
 	
 	public function prev() {

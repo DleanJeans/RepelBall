@@ -57,7 +57,6 @@ class Colors {
 			case black: "Black";
 			case white: "White";
 			case transWhite: "Transparent White";
-			default: "Unknown";
 		}
 	}
 	

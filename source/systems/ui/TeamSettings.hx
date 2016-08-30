@@ -32,7 +32,7 @@ class TeamSettings extends FlxSpriteGroup {
 		super.destroy();
 	}
 	
-	public function setupTeam(team:Team) {
+	public function apply(team:Team) {
 		team.setup(teamName.text, teamColor);
 		team.addPaddle(paddle);
 		paddle.scale.set(1, 1);
