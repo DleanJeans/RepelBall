@@ -4,6 +4,7 @@ import flixel.FlxG;
 import flixel.input.keyboard.FlxKeyList;
 import objects.Paddle;
 
+#if !FLX_NO_KEYBOARD
 class Keyboard extends Controller {
 	public function new(?paddle:Paddle) {
 		super(paddle);
@@ -19,3 +20,4 @@ class Keyboard extends Controller {
 		else Game.paddleMovement.stop(paddle);
 	}
 }
+#end
