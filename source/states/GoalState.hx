@@ -37,6 +37,10 @@ class GoalState extends FlxSubState {
 		updateRoundScoreText();
 	}
 	
+	public inline function updateRoundScoreText() {
+		roundScoreText.updateScores();
+	}
+	
 	private function restartMultiGoalTimer() {
 		if (firstGoalInRound())
 			multiGoalTimer = new FlxTimer().start(1, endRound);
@@ -51,10 +55,24 @@ class GoalState extends FlxSubState {
 	public function endRound(timer:FlxTimer) {
 		Game.signals.roundEnd.dispatch();
 		
-		timerText.visible = false;
-		updateGoalText();
+		hideTimerText();
+		showGoalText();
+		moveRoundScoreTextUp();
 		destroyMultiGoalTimer();
 		pauseGame();
+	}
+	
+	private inline function hideTimerText() {
+		timerText.visible = false;
+	}
+	
+	public inline function showGoalText() {
+		goalText.updateText();
+		goalText.visible = true;
+	}
+	
+	private function moveRoundScoreTextUp() {
+		roundScoreText.setBottom(goalText.y);
 	}
 	
 	private function destroyMultiGoalTimer() {
@@ -69,16 +87,6 @@ class GoalState extends FlxSubState {
 	
 	private function preRoundStart(timer:FlxTimer) {
 		Game.signals.preRoundStart.dispatch();
-	}
-	
-	public inline function updateRoundScoreText() {
-		roundScoreText.updateScores();
-	}
-	
-	public inline function updateGoalText() {
-		goalText.updateText();
-		goalText.visible = true;
-		roundScoreText.setBottom(goalText.y);
 	}
 	
 }
