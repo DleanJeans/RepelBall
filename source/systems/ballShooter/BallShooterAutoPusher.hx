@@ -2,7 +2,7 @@ package systems.ballShooter;
 
 import flixel.FlxG;
 import objects.Paddle;
-import systems.Match.Team;
+import systems.match.Team;
 using flixel.util.FlxArrayUtil;
 
 class BallShooterAutoPusher {
