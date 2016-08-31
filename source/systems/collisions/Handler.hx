@@ -66,10 +66,24 @@ class Ball_Paddle {
 		return paddle.facing != FlxObject.NONE && paddle.facing != oppositeFacing;
 	}
 	
-	private inline function separate() {
+	private function separate() {
 		paddle.immovable = true;
 		FlxObject.separate(ball, paddle);
 		paddle.immovable = false;
+		moveBallAbovePaddle();
+	}
+	
+	private function moveBallAbovePaddle() {
+		switch (paddle.facing) {
+			case FlxObject.UP:
+				ball.setBottom(paddle.y);
+			case FlxObject.DOWN:
+				ball.y = paddle.getBottom();
+			case FlxObject.LEFT:
+				ball.x = paddle.getRight();
+			case FlxObject.RIGHT:
+				ball.setRight(paddle.x);
+		}
 	}
 	
 	private function deflectBall() {
