@@ -36,6 +36,10 @@ class TeamSettings extends FlxSpriteGroup {
 	public function apply(team:Team) {
 		team.setup(teamName.text, teamColor);
 		team.addPaddle(paddle);
+		resetPaddleToNormal();
+	}
+	
+	private function resetPaddleToNormal() {
 		paddle.scale.set(1, 1);
 		paddle.updateHitbox();
 	}
