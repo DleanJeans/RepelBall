@@ -6,7 +6,7 @@ import flixel.util.FlxSignal.FlxTypedSignal;
 import objects.Ball;
 import objects.Paddle;
 import objects.Wall;
-import systems.Match.Team;
+import systems.match.Team;
 import systems.Signals.Signal1;
 
 typedef Signal = FlxSignal;

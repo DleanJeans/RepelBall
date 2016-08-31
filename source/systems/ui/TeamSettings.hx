@@ -1,4 +1,5 @@
 package systems.ui;
+import systems.match.Match;
 
 import flixel.FlxSprite;
 import flixel.group.FlxSpriteGroup;
@@ -6,7 +7,7 @@ import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
 import objects.Paddle;
-import systems.Match.Team;
+import systems.match.Team;
 using flixel.addons.util.position.FlxPosition;
 
 class TeamSettings extends FlxSpriteGroup {

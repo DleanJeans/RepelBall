@@ -1,9 +1,7 @@
-package systems;
-import flixel.util.FlxColor;
+package systems.match;
+
 import objects.Ball;
-import objects.Paddle;
 import objects.Wall;
-import systems.Match.Team;
 
 class Match {
 	public var team1(default, null):Team;
@@ -19,6 +17,11 @@ class Match {
 		team1 = new Team();
 		team2 = new Team();
 		teams = [team1, team2];
+	}
+	
+	public function setupTeamsPosition() {
+		team1.setupTeamPosition();
+		team2.setupTeamPosition();
 	}
 	
 	public function reset() {
@@ -79,53 +82,6 @@ class Match {
 	
 	function set_maxBalls(newMaxBalls:Int):Int {
 		return Game.ballShooter.maxBalls = newMaxBalls;
-	}
-	
-}
-
-class Team {
-	public var paddles(default, null):Array<Paddle>;
-	public var goal(default, null):Wall;
-	
-	public var name(default, null):String = "";
-	public var color(default, null):FlxColor;
-	
-	public var score(default, null):Int = 0;
-	public var roundScore(default, null):Int = 0;
-	
-	public function new() {
-		paddles = new Array<Paddle>();
-	}
-	
-	public function setup(name:String, color:FlxColor) {
-		this.name = name;
-		this.color = color;
-	}
-	
-	public function reset() {
-		paddles.splice(0, paddles.length);
-		goal = null;
-	}
-	
-	public inline function resetForRound() {
-		roundScore = 0;
-	}
-	
-	public inline function plusScore() {
-		score += 1;
-	}
-	
-	public inline function plusRoundScore() {
-		roundScore += 1;
-	}
-	
-	public inline function addPaddle(paddle:Paddle) {
-		paddles.push(paddle);
-	}
-	
-	public inline function setGoal(goal:Wall) {
-		this.goal = goal;
-		this.goal.color = color;
 	}
 	
 }

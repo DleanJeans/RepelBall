@@ -3,7 +3,7 @@ package;
 import systems.Colors;
 import systems.GoalHandler;
 import systems.Level;
-import systems.Match;
+import systems.match.Match;
 import systems.Pools;
 import systems.Positioner;
 import systems.Renderer;

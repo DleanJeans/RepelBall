@@ -1,7 +1,8 @@
 package systems.ui;
+
 import flixel.FlxG;
 import flixel.text.FlxText;
-import systems.Match.Team;
+import systems.match.Team;
 
 class GoalText extends FlxText {
 	public function new() {
