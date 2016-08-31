@@ -15,11 +15,9 @@ class PlayState extends FlxSubState {
 		add(Game.level);
 		
 		paddle = Game.match.team1.paddles[0];
-		Game.level.addPaddle(paddle);
 		Game.controllers.addNewPlayerController(paddle);
 		
 		paddle2 = Game.match.team2.paddles[0];
-		Game.level.addPaddle(paddle2);
 		Game.controllers.addNewSimpleAI(paddle2, Game.walls.topWall);
 		
 		Game.match.team1.setGoal(Game.walls.bottomWall);

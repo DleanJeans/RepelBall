@@ -47,6 +47,7 @@ class Team {
 	
 	public inline function addPaddle(paddle:Paddle) {
 		paddles.push(paddle);
+		Game.level.paddles.add(paddle);
 	}
 	
 	public inline function setGoal(goal:Wall) {
