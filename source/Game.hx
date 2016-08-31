@@ -10,6 +10,7 @@ import systems.Renderer;
 import systems.Settings;
 import systems.Signals;
 import systems.States;
+import systems.WallBuilder;
 import systems.ballShooter.BallShooter;
 import systems.ballShooter.BallShooterAutoPusher;
 import systems.collisions.Collision;
@@ -40,6 +41,7 @@ class Game {
 	public static var goalHandler(default, null):GoalHandler;
 	public static var scoreboard(default, null):Scoreboard;
 	public static var color(default, null):Colors;
+	public static var walls(default, null):WallBuilder;
 	
 	public static function init() {
 		level = new Level();
@@ -58,6 +60,7 @@ class Game {
 		goalHandler = new GoalHandler();
 		scoreboard = new Scoreboard();
 		color = new Colors();
+		walls = new WallBuilder();
 		signals = new Signals();
 	}
 	

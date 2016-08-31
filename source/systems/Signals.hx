@@ -31,6 +31,7 @@ class Signals {
 
 	public function new() {
 		matchStart.add(Game.scoreboard.updateColors);
+		matchStart.add(Game.match.setupTeamsPosition);
 		
 		ball_ball.add(Game.collision.handler.ball_ball);
 		ball_wall.add(Game.collision.handler.ball_wall);
