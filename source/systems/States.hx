@@ -10,10 +10,18 @@ import states.PlayState;
 import states.WarningState;
 
 class States {
-	public var state(default, null):FlxState;
+	public var state(default, null):FlxState = FlxG.state;
 	public var subState(default, null):FlxSubState;
 	
 	public function new() {}
+	
+	public inline function resumeState() {
+		state.persistentUpdate = true;
+	}
+	
+	public inline function pauseState() {
+		state.persistentUpdate = false;
+	}
 	
 	public inline function menu() {
 		FlxG.switchState(state = new MenuState());

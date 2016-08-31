@@ -13,7 +13,7 @@ class Match {
 	public var maxBalls(get, set):Int;
 	
 	public var winningTeam(default, null):Team;
-	public var lastScoringTeam(default, null):Team;
+	public var teamScoredLastRound(default, null):Team;
 
 	public function new() {
 		team1 = new Team();
@@ -24,18 +24,32 @@ class Match {
 	public function reset() {
 		scoreToWin = 3;
 		winningTeam = null;
-		lastScoringTeam = null;
+		teamScoredLastRound = null;
 		
 		team1.reset();
 		team2.reset();
 	}
 	
+	public function plusScore() {
+		if (team1.roundScore > team2.roundScore) {
+			team1.plusScore();
+			teamScoredLastRound = team1;
+		}
+		else if (team1.roundScore < team2.roundScore) {
+			team2.plusScore();
+			teamScoredLastRound = team2;
+		}
+		
+		team1.resetForRound();
+		team2.resetForRound();
+	}
+	
 	public function checkGoal(ball:Ball, goal:Wall) {
 		var scoringTeam = getScoringTeam(goal);
 		if (scoringTeam != null) {
-			lastScoringTeam = scoringTeam;
-			scoringTeam.plusScore();
-			Game.signals.goal.dispatch(goal, ball);
+			scoringTeam.plusRoundScore();
+			Game.signals.goalBall.dispatch(ball);
+			Game.signals.goal.dispatch();
 		}
 	}
 	
@@ -63,8 +77,7 @@ class Match {
 		return Game.ballShooter.maxBalls;
 	}
 	
-	function set_maxBalls(newMaxBalls:Int):Int 
-	{
+	function set_maxBalls(newMaxBalls:Int):Int {
 		return Game.ballShooter.maxBalls = newMaxBalls;
 	}
 	
@@ -72,11 +85,13 @@ class Match {
 
 class Team {
 	public var paddles(default, null):Array<Paddle>;
-	public var score(default, null):Int = 0;
 	public var goal(default, null):Wall;
 	
-	public var name:String = "";
-	public var color:FlxColor;
+	public var name(default, null):String = "";
+	public var color(default, null):FlxColor;
+	
+	public var score(default, null):Int = 0;
+	public var roundScore(default, null):Int = 0;
 	
 	public function new() {
 		paddles = new Array<Paddle>();
@@ -92,8 +107,16 @@ class Team {
 		goal = null;
 	}
 	
-	public inline function plusScore(points:Int = 1) {
-		score += points;
+	public inline function resetForRound() {
+		roundScore = 0;
+	}
+	
+	public inline function plusScore() {
+		score += 1;
+	}
+	
+	public inline function plusRoundScore() {
+		roundScore += 1;
 	}
 	
 	public inline function addPaddle(paddle:Paddle) {

@@ -18,7 +18,7 @@ class BallShooterAutoPusher {
 	
 	public function autoPush() {
 		teamLoop.setArray(Game.match.teams);
-		currentTeam = getFirstTeamToShoot(Game.match.lastScoringTeam);
+		currentTeam = getFirstTeamToShoot(Game.match.teamScoredLastRound);
 		teamLoop.setToIndexOf(currentTeam);
 		
 		for (i in 0...Game.ballShooter.maxBalls) {
