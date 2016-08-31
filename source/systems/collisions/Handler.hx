@@ -66,7 +66,7 @@ class Ball_Paddle {
 	
 	private function paddleNotTouchedOppositeFacingSide() {
 		facingLoop.setToIndexOf(paddle.facing);
-		var oppositeFacing = facingLoop.plus(2, GET_ONLY);
+		var oppositeFacing = facingLoop.add(2, GET_ONLY);
 		return paddle.facing != FlxObject.NONE && paddle.facing != oppositeFacing;
 	}
 	

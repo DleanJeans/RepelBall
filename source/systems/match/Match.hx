@@ -33,13 +33,13 @@ class Match {
 		team2.reset();
 	}
 	
-	public function plusScore() {
+	public function addScore() {
 		if (team1.roundScore > team2.roundScore) {
-			team1.plusScore();
+			team1.addScore();
 			teamScoredLastRound = team1;
 		}
 		else if (team1.roundScore < team2.roundScore) {
-			team2.plusScore();
+			team2.addScore();
 			teamScoredLastRound = team2;
 		}
 		
@@ -50,7 +50,7 @@ class Match {
 	public function checkGoal(ball:Ball, goal:Wall) {
 		var scoringTeam = getScoringTeam(goal);
 		if (scoringTeam != null) {
-			scoringTeam.plusRoundScore();
+			scoringTeam.addRoundScore();
 			Game.signals.goalBall.dispatch(ball);
 			Game.signals.goal.dispatch();
 		}

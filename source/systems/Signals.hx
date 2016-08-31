@@ -52,6 +52,6 @@ class Signals {
 		roundStart.add(Game.ballShooter.setElapsedToSpawnInstantly);
 		roundStart.add(Game.autoPusher.autoPush);
 		
-		roundEnd.add(Game.match.plusScore);
+		roundEnd.add(Game.match.addScore);
 	}
 }

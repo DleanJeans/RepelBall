@@ -37,11 +37,11 @@ class Team {
 		roundScore = 0;
 	}
 	
-	public inline function plusScore() {
+	public inline function addScore() {
 		score += 1;
 	}
 	
-	public inline function plusRoundScore() {
+	public inline function addRoundScore() {
 		roundScore += 1;
 	}
 	

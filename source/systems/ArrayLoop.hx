@@ -32,8 +32,8 @@ class ArrayLoop<T:Dynamic> {
 		return i = index;
 	}
 	
-	public function plus(num:Int, getSet:GetSet = GET_SET):T {
-		return array[plusIndex(num, getSet)];
+	public function add(num:Int, getSet:GetSet = GET_SET):T {
+		return array[addIndex(num, getSet)];
 	}
 	
 	public function sub(num:Int, getSet:GetSet = GET_SET):T {
@@ -60,7 +60,7 @@ class ArrayLoop<T:Dynamic> {
 		return array[i];
 	}
 	
-	public function plusIndex(num:Int, getSet:GetSet = GET_SET):Int {
+	public function addIndex(num:Int, getSet:GetSet = GET_SET):Int {
 		var i = this.i;
 		i -= num;
 		i = upperBound(i);
