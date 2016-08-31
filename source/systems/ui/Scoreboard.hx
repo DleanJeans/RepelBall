@@ -19,6 +19,7 @@ class Scoreboard extends FlxSpriteGroup {
 	public function new() {
 		super();
 		
+		Game.level.addUI(this);
 		createStuff();
 		setupStuff();
 		addStuff();
