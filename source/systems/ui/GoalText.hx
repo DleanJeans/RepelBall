@@ -6,7 +6,7 @@ import systems.match.Team;
 
 class GoalText extends FlxText {
 	public function new() {
-		super(0, 0, FlxG.width * 0.8, "", 75);
+		super(0, 0, FlxG.width * 0.85, "", 70);
 		screenCenter();
 		alignment = FlxTextAlign.CENTER;
 	}
@@ -16,11 +16,13 @@ class GoalText extends FlxText {
 		
 		if (scoringTeam != null) {
 			text = scoringTeam.name + "\nscores!";
-			color = scoringTeam.color;
+			var start = 0;
+			var end = scoringTeam.name.length;
+			addFormat(new FlxTextFormat(scoringTeam.color), start, end);
 		}
 		else {
 			text = "Round tie!";
-			color = Game.color.white;
+			clearFormats();
 		}
 	}
 	
