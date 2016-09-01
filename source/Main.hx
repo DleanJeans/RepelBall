@@ -5,7 +5,7 @@ import flixel.FlxGame;
 import flixel.FlxState;
 import openfl.Lib;
 import openfl.display.Sprite;
-import states.MenuState;
+import states.MainState;
 
 class Main extends Sprite {
 	public var gameWidth(get, never):Int;
@@ -16,7 +16,7 @@ class Main extends Sprite {
 		super();
 		// init Game before first state create()
 		FlxG.signals.preStateCreate.addOnce(function(state:FlxState) Game.init());
-		addChild(new FlxGame(gameWidth, gameHeight, MenuState, 1, 60, drawFramerate, true));
+		addChild(new FlxGame(gameWidth, gameHeight, MainState, 1, 60, drawFramerate, true));
 	}
 	
 	inline function get_gameWidth():Int {

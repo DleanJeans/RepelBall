@@ -10,7 +10,8 @@ import states.PlayState;
 import states.WarningState;
 
 class States {
-	public var state(default, null):FlxState = FlxG.state;
+	public var mainState(default, null):FlxState = FlxG.state;
+	public var state(default, null):FlxSubState;
 	public var subState(default, null):FlxSubState;
 	
 	public function new() {}
@@ -24,11 +25,11 @@ class States {
 	}
 	
 	public inline function menu() {
-		FlxG.switchState(state = new MenuState());
+		mainState.openSubState(state = new MenuState());
 	}
 	
 	public inline function play() {
-		FlxG.switchState(state = new PlayState());
+		mainState.openSubState(state = new PlayState());
 	}
 	
 	public inline function goal() {

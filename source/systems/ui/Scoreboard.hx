@@ -54,8 +54,6 @@ class Scoreboard extends FlxSpriteGroup {
 		background1.makeGraphic(cast score1.width * 1.5, cast score1.height * 1.5);
 		background2.makeGraphic(cast score2.width * 1.5, cast score2.height * 1.5);
 		background1.setTopLeft(background2.getBottomLeft());
-		background1.graphic.persist =
-		background2.graphic.persist = true;
 	}
 	
 	private function setupTexts() {

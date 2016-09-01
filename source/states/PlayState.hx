@@ -2,7 +2,7 @@ package states;
 
 import flixel.FlxG;
 import flixel.FlxObject;
-import flixel.FlxState;
+import flixel.FlxSubState;
 import flixel.system.debug.FlxDebugger.FlxDebuggerLayout;
 import flixel.system.debug.watch.Tracker.TrackerProfile;
 import flixel.util.FlxAxes;
@@ -14,7 +14,7 @@ import systems.match.Team;
 import systems.ui.Scoreboard;
 using flixel.addons.util.position.FlxPosition;
 
-class PlayState extends FlxState {
+class PlayState extends FlxSubState {
 	var paddle:Paddle;
 	var paddle2:Paddle;
 	
@@ -25,7 +25,6 @@ class PlayState extends FlxState {
 		
 		paddle = Game.match.team1.paddles[0];
 		Game.level.addPaddle(paddle);
-		
 		Game.controllers.addNewPlayerController(paddle);
 		
 		paddle2 = Game.match.team2.paddles[0];
@@ -36,7 +35,6 @@ class PlayState extends FlxState {
 		Game.match.team2.setGoal(Game.walls.topWall);
 		
 		Game.signals.matchStart.dispatch();
-		Game.signals.preRoundStart.dispatch();
 	}
 	
 	override public function destroy():Void {

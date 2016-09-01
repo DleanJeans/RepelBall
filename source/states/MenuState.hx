@@ -1,11 +1,11 @@
 package states;
 
 import flixel.FlxG;
-import flixel.FlxState;
+import flixel.FlxSubState;
 import states.group.MatchSettings;
 import states.group.TitleMenu;
 	
-class MenuState extends FlxState {
+class MenuState extends FlxSubState {
 	public var titleMenu:TitleMenu;
 	public var matchSettings:MatchSettings;
 	
