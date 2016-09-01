@@ -1,4 +1,5 @@
 package states;
+
 import flixel.FlxState;
 
 class MainState extends FlxState {
