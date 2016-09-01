@@ -39,7 +39,7 @@ class Level extends FlxGroup {
 		balls.clear();
 		balls.revive();
 		
-		paddles.forEach(Paddle.resetPaddlePosition);
+		paddles.forEach(Game.position.resetPaddlePosition);
 	}
 	
 	public inline function addWall(wall:Wall) {

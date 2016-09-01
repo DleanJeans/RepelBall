@@ -9,10 +9,6 @@ using flixel.util.FlxSpriteUtil;
 using flixel.addons.util.position.FlxPosition;
 
 class Paddle extends FlxSprite {
-	public static inline function resetPaddlePosition(paddle:Paddle) {
-		paddle.resetPosition();
-	}
-	
 	public var startingPoint(default, null):FlxPoint;
 	public var length(default, set):Int = Game.unitLength(5);
 	public var speed:Int = 500;

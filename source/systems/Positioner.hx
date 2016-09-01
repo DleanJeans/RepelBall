@@ -27,4 +27,8 @@ class Positioner {
 		paddle.facing = wall.facing;
 		paddle.allowCollisions = FlxObject.ANY ^ paddle.facing;
 	}
+	
+	public inline function resetPaddlePosition(paddle:Paddle) {
+		paddle.resetPosition();
+	}
 }
