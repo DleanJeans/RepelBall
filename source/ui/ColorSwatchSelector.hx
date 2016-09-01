@@ -39,10 +39,22 @@ class ColorSwatchSelector extends FlxSpriteGroup {
 	}
 	
 	override public function destroy():Void {
-		for (swatch in swatches) {
-			FlxMouseEventManager.remove(swatch);
-		}
+		removeMouseEvents();
 		super.destroy();
+	}
+	
+	private function removeMouseEvents() {
+		for (swatch in swatches)
+			FlxMouseEventManager.remove(swatch);
+	}
+	
+	public function selectByIndex(index:Int) {
+		if (index < 0)
+			index = 0;
+		else if (index >= swatches.members.length)
+			index %= swatches.members.length;
+		var swatch = swatches.members[index];
+		selectSwatch(swatch);
 	}
 	
 	public inline function fixSelector() {
