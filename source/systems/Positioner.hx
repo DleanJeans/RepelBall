@@ -1,5 +1,6 @@
 package systems;
 
+import flixel.FlxObject;
 import flixel.math.FlxAngle;
 import flixel.math.FlxPoint;
 import objects.Paddle;
@@ -24,5 +25,6 @@ class Positioner {
 		paddle.startingPoint.copyFrom(heightVector);
 		paddle.resetPosition();
 		paddle.facing = wall.facing;
+		paddle.allowCollisions = FlxObject.ANY ^ paddle.facing;
 	}
 }
