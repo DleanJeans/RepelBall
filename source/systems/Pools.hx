@@ -31,7 +31,7 @@ class Pools {
 	
 	public function getPaddle(?speed:Int):Paddle {
 		var paddle = new Paddle();
-		paddle.speed = speed;
+		paddle.speed = speed == null ? FlxG.width : speed;
 		return paddle;
 	}
 	
