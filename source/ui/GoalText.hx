@@ -15,14 +15,13 @@ class GoalText extends FlxText {
 		var scoringTeam = Game.match.teamScoredLastRound;
 		
 		if (scoringTeam != null) {
-			text = scoringTeam.name + "\nscores!";
+			text = scoringTeam.name + "\nscored!";
 			var start = 0;
 			var end = scoringTeam.name.length;
 			addFormat(new FlxTextFormat(scoringTeam.color), start, end);
 		}
 		else {
 			text = "Round tie!";
-			clearFormats();
 		}
 	}
 	
