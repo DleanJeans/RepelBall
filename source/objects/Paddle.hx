@@ -1,5 +1,6 @@
 package objects;
 
+import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.math.FlxAngle;
@@ -11,7 +12,7 @@ using flixel.addons.util.position.FlxPosition;
 class Paddle extends FlxSprite {
 	public var startingPoint(default, null):FlxPoint;
 	public var length(default, set):Int = Game.unitLength(5);
-	public var speed:Int = 500;
+	public var speed:Int = FlxG.width;
 	
 	public function new() {
 		super();

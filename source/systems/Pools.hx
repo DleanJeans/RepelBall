@@ -1,6 +1,7 @@
 package systems;
 
 import flixel.FlxBasic;
+import flixel.FlxG;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxPoint;
 import objects.Ball;
@@ -34,7 +35,9 @@ class Pools {
 		return ball;
 	}
 	
-	public function getPaddle(speed:Int = 500):Paddle {
+	public function getPaddle(?speed:Int):Paddle {
+		if (speed == null)
+			speed = FlxG.width;
 		var paddle = paddles.recycle(Paddle);
 		paddle.speed = speed;
 		return paddle;
