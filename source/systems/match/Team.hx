@@ -33,7 +33,7 @@ class Team {
 		goal = null;
 	}
 	
-	public inline function resetForRound() {
+	public inline function resetRoundScore() {
 		roundScore = 0;
 	}
 	

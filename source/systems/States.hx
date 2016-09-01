@@ -8,6 +8,7 @@ import states.GoalState;
 import states.MenuState;
 import states.PlayState;
 import states.WarningState;
+import states.WinState;
 
 class States {
 	public var mainState(default, null):FlxState = FlxG.state;
@@ -50,6 +51,10 @@ class States {
 	
 	public inline function warning() {
 		state.openSubState(subState = new WarningState());
+	}
+	
+	public inline function win() {
+		state.openSubState(subState = new WinState());
 	}
 	
 }

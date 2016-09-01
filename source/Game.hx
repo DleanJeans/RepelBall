@@ -3,6 +3,7 @@ package;
 import systems.Colors;
 import systems.GoalManager;
 import systems.Level;
+import systems.WinManager;
 import systems.match.Match;
 import systems.Pools;
 import systems.Positioner;
@@ -42,6 +43,7 @@ class Game {
 	public static var scoreboard(default, null):Scoreboard;
 	public static var color(default, null):Colors;
 	public static var walls(default, null):WallBuilder;
+	public static var winManager(default, null):WinManager;
 	
 	public static function init() {
 		level = new Level();
@@ -61,6 +63,7 @@ class Game {
 		scoreboard = new Scoreboard();
 		color = new Colors();
 		walls = new WallBuilder();
+		winManager = new WinManager();
 		signals = new Signals();
 	}
 	

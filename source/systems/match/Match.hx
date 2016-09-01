@@ -12,6 +12,11 @@ class Match {
 	
 	public var winningTeam(default, null):Team;
 	public var teamScoredLastRound(default, null):Team;
+	
+	public var started(default, null):Bool = false;
+	public var over(default, null):Bool = false;
+	public var roundStarted(default, null):Bool = false;
+	public var roundEnded(default, null):Bool = false;
 
 	public function new() {
 		team1 = new Team();
@@ -19,7 +24,27 @@ class Match {
 		teams = [team1, team2];
 	}
 	
-	public function setupTeamsPosition() {
+	public inline function start() {
+		started = true;
+		over = false;
+	}
+	
+	public inline function startRound() {
+		roundStarted = true;
+		roundEnded = false;
+	}
+	
+	public inline function endRound() {
+		roundStarted = false;
+		roundEnded = true;
+	}
+	
+	public inline function end() {
+		started = false;
+		over = true;
+	}
+	
+	public inline function setupTeamsPosition() {
 		team1.setupTeamPosition();
 		team2.setupTeamPosition();
 	}
@@ -42,18 +67,25 @@ class Match {
 			team2.addScore();
 			teamScoredLastRound = team2;
 		}
-		
-		team1.resetForRound();
-		team2.resetForRound();
+	}
+	
+	public function resetRoundScores() {
+		team1.resetRoundScore();
+		team2.resetRoundScore();
 	}
 	
 	public function checkGoal(ball:Ball, goal:Wall) {
 		var scoringTeam = getScoringTeam(goal);
 		if (scoringTeam != null) {
-			scoringTeam.addRoundScore();
-			Game.signals.goalBall.dispatch(ball);
 			Game.signals.goal.dispatch();
+			Game.signals.goalBall.dispatch(ball);
+			Game.signals.goalTeam.dispatch(scoringTeam);
 		}
+	}
+	
+	public function addRoundScore(scoringTeam:Team) {
+		if (scoringTeam != null)
+			scoringTeam.addRoundScore();
 	}
 	
 	private function getScoringTeam(goal:Wall):Team {
@@ -64,16 +96,22 @@ class Match {
 		else return null;
 	}
 	
-	public function checkWin(goal:Wall, ball:Ball) {
-		if (team1.goal != team2.goal)
-			return;
-		
+	public function checkWin() {
 		for (team in teams) {
-			if (team.score >= scoreToWin) {
+			if (team.score >= scoreToWin)
 				winningTeam = team;
-				Game.signals.matchOver.dispatch(winningTeam);
-			}
 		}
+	}
+	
+	public function checkMatchOver() {
+		if (winningTeam != null)
+			end();
+	}
+	
+	public function startNextRoundOrEndMatch() {
+		if (over)
+			Game.signals.matchOver.dispatch();
+		else Game.signals.preRoundStart.dispatch();
 	}
 	
 	function get_maxBalls():Int {

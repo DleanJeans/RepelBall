@@ -21,37 +21,50 @@ class Signals {
 	
 	public var goal:Signal = new Signal();
 	public var goalBall:Signal1<Ball> = new Signal1<Ball>();
+	public var goalTeam:Signal1<Team> = new Signal1<Team>();
 	
 	public var matchStart:Signal = new Signal();
-	public var matchOver:Signal1<Team> = new Signal1<Team>();
+	public var matchOver:Signal = new Signal();
 	
 	public var preRoundStart:Signal = new Signal();
 	public var roundStart:Signal = new Signal();
 	public var roundEnd:Signal = new Signal();
+	public var postRoundEnd:Signal = new Signal();
 
 	public function new() {
+		matchStart.add(Game.match.start);
 		matchStart.add(Game.scoreboard.updateColors);
+		matchStart.add(Game.scoreboard.updateScores);
 		matchStart.add(Game.match.setupTeamsPosition);
 		matchStart.add(preRoundStart.dispatch);
+		
+		preRoundStart.add(Game.states.countdown);
+		preRoundStart.add(Game.level.resetLevel);
+		
+		roundStart.add(Game.match.startRound);
+		roundStart.add(Game.ballShooter.spawnInstantly);
+		roundStart.add(Game.autoPusher.autoPush);
+		
+		roundEnd.add(Game.match.endRound);
+		roundEnd.add(Game.match.addScore);
+		roundEnd.add(Game.scoreboard.updateScores);
+		roundEnd.add(Game.match.resetRoundScores);
+		roundEnd.add(Game.match.checkWin);
+		roundEnd.add(Game.match.checkMatchOver);
+		
+		postRoundEnd.add(Game.match.startNextRoundOrEndMatch);
+		postRoundEnd.add(Game.goalManager.clearGoalStateReference);
+		
+		matchOver.add(Game.winManager.triggerWinState);
+		
+		goal.add(Game.goalManager.triggerGoalState);
+		goalBall.add(Game.goalManager.killBall);
+		goalTeam.add(Game.match.addRoundScore);
 		
 		ball_ball.add(Game.collision.handler.ball_ball);
 		ball_wall.add(Game.collision.handler.ball_wall);
 		paddle_wall.add(Game.collision.handler.paddle_wall);
 		ball_paddle.add(Game.collision.handler.ball_paddle);
 		ball_wall.add(Game.match.checkGoal);
-		
-		goal.add(Game.goalHandler.triggerGoalState);
-		goalBall.add(Game.goalHandler.killBall);
-		//goal.add(Game.match.checkWin);
-		
-		preRoundStart.add(Game.goalHandler.closeGoalState);
-		preRoundStart.add(Game.states.countdown);
-		preRoundStart.add(Game.level.resetLevel);
-		preRoundStart.add(Game.scoreboard.updateScores);
-		
-		roundStart.add(Game.ballShooter.setElapsedToSpawnInstantly);
-		roundStart.add(Game.autoPusher.autoPush);
-		
-		roundEnd.add(Game.match.addScore);
 	}
 }

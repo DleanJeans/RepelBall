@@ -21,7 +21,7 @@ class BallShooter {
 		queue = new Array<FlxPoint>();
 	}
 	
-	public inline function setElapsedToSpawnInstantly() {
+	public inline function spawnInstantly() {
 		_elapsed = interval;
 	}
 	
