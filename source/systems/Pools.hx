@@ -6,7 +6,7 @@ import flixel.math.FlxPoint;
 import objects.Ball;
 import objects.Paddle;
 import objects.Wall;
-import systems.ui.ColorSwatchSelector;
+import ui.ColorSwatchSelector;
 using flixel.addons.util.position.FlxPosition;
 
 typedef Pool<T:FlxBasic> = FlxTypedGroup<T>;

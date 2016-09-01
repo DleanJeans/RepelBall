@@ -4,9 +4,9 @@ import flixel.FlxSubState;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
-import systems.ui.GoalText;
-import systems.ui.RoundScoreText;
-import systems.ui.TimerText;
+import ui.GoalText;
+import ui.RoundScoreText;
+import ui.TimerText;
 using flixel.addons.util.position.FlxPosition;
 
 class GoalState extends FlxSubState {

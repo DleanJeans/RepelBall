@@ -1,4 +1,4 @@
-package systems.ui;
+package ui;
 
 import flixel.FlxSprite;
 import flixel.group.FlxSpriteGroup;

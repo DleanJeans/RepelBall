@@ -1,4 +1,4 @@
-package systems.ui;
+package ui;
 
 import flixel.FlxG;
 import flixel.text.FlxText;

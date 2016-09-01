@@ -1,18 +1,9 @@
 package states;
 
 import flixel.FlxG;
-import flixel.FlxObject;
 import flixel.FlxSubState;
-import flixel.system.debug.FlxDebugger.FlxDebuggerLayout;
-import flixel.system.debug.watch.Tracker.TrackerProfile;
 import flixel.util.FlxAxes;
-import objects.Ball;
 import objects.Paddle;
-import objects.Wall;
-import systems.Level;
-import systems.match.Team;
-import systems.ui.Scoreboard;
-using flixel.addons.util.position.FlxPosition;
 
 class PlayState extends FlxSubState {
 	var paddle:Paddle;

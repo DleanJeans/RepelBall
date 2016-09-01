@@ -1,4 +1,4 @@
-package systems.ui;
+package ui;
 
 import flixel.ui.FlxButton;
 import flixel.math.FlxPoint;

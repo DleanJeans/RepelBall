@@ -3,9 +3,9 @@ package states.group;
 import flixel.FlxG;
 import flixel.group.FlxSpriteGroup;
 import flixel.util.FlxSignal;
-import systems.ui.LoopSelector;
-import systems.ui.SideButton;
-import systems.ui.TeamSettings;
+import ui.LoopSelector;
+import ui.SideButton;
+import ui.TeamSettings;
 using flixel.addons.util.position.FlxPosition;
 
 class MatchSettings extends FlxSpriteGroup {

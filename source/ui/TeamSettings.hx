@@ -1,5 +1,4 @@
-package systems.ui;
-import systems.match.Match;
+package ui;
 
 import flixel.FlxSprite;
 import flixel.group.FlxSpriteGroup;

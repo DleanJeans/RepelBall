@@ -5,7 +5,7 @@ import flixel.group.FlxSpriteGroup;
 import flixel.text.FlxText;
 import flixel.util.FlxAxes;
 import flixel.util.FlxSignal;
-import systems.ui.SideButton;
+import ui.SideButton;
 using flixel.addons.util.position.FlxPosition;
 
 class TitleMenu extends FlxSpriteGroup {

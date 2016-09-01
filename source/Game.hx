@@ -16,7 +16,7 @@ import systems.ballShooter.BallShooterAutoPusher;
 import systems.collisions.Collision;
 import systems.controllers.ControllerList;
 import systems.controllers.PaddleMovement;
-import systems.ui.Scoreboard;
+import ui.Scoreboard;
 
 class Game {
 	private static inline var UNIT_LENGTH = 16;
