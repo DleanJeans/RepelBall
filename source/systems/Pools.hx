@@ -12,18 +12,12 @@ using flixel.addons.util.position.FlxPosition;
 
 typedef Pool<T:FlxBasic> = FlxTypedGroup<T>;
 typedef BallPool = Pool<Ball>;
-typedef PaddlePool = Pool<Paddle>;
-typedef WallPool = Pool<Wall>;
 
 class Pools {
 	public var balls(default, null):BallPool;
-	public var paddles(default, null):PaddlePool;
-	public var walls(default, null):WallPool;
 	
 	public function new() {
 		balls = new BallPool();
-		paddles = new PaddlePool();
-		walls = new WallPool();
 	}
 	
 	public function getBall(?position:FlxPoint, ?velocity:FlxPoint):Ball {
@@ -36,15 +30,13 @@ class Pools {
 	}
 	
 	public function getPaddle(?speed:Int):Paddle {
-		if (speed == null)
-			speed = FlxG.width;
-		var paddle = paddles.recycle(Paddle);
+		var paddle = new Paddle();
 		paddle.speed = speed;
 		return paddle;
 	}
 	
 	public function getWall(x:Float, y:Float, width:Int, height:Int, facing:Int):Wall {
-		var wall = walls.recycle(Wall);
+		var wall = new Wall();
 		wall.resetWall(x, y, width, height, facing);
 		return wall;
 	}
