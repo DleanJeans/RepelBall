@@ -6,7 +6,7 @@ import objects.Ball;
 import objects.Wall;
 import states.GoalState;
 
-class GoalHandler {
+class GoalManager {
 	public var goalState(default, null):GoalState;
 	
 	public function new() {}
@@ -18,15 +18,12 @@ class GoalHandler {
 			goalState = cast Game.states.subState;
 		}
 		else {
-			goalState.newGoal();
+			goalState.goal();
 		}
 	}
 	
-	public function closeGoalState() {
-		if (goalState != null) {
-			goalState.close();
-			goalState = null;
-		}
+	public function clearGoalStateReference() {
+		goalState = null;
 	}
 	
 	private inline function firstGoalInRound() {

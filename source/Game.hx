@@ -1,7 +1,7 @@
 package;
 
 import systems.Colors;
-import systems.GoalHandler;
+import systems.GoalManager;
 import systems.Level;
 import systems.match.Match;
 import systems.Pools;
@@ -38,7 +38,7 @@ class Game {
 	public static var pools(default, null):Pools;
 	public static var ballShooter(default, null):BallShooter;
 	public static var autoPusher(default, null):BallShooterAutoPusher;
-	public static var goalHandler(default, null):GoalHandler;
+	public static var goalManager(default, null):GoalManager;
 	public static var scoreboard(default, null):Scoreboard;
 	public static var color(default, null):Colors;
 	public static var walls(default, null):WallBuilder;
@@ -57,7 +57,7 @@ class Game {
 		pools = new Pools();
 		ballShooter = new BallShooter();
 		autoPusher = new BallShooterAutoPusher();
-		goalHandler = new GoalHandler();
+		goalManager = new GoalManager();
 		scoreboard = new Scoreboard();
 		color = new Colors();
 		walls = new WallBuilder();
