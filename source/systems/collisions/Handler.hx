@@ -80,13 +80,13 @@ class Ball_Paddle {
 	private function moveBallAbovePaddle() {
 		switch (paddle.facing) {
 			case FlxObject.UP:
-				ball.setBottom(paddle.y);
+				ball.setBottom(paddle.y) - 2;
 			case FlxObject.DOWN:
-				ball.y = paddle.getBottom();
+				ball.y = paddle.getBottom() + 2;
 			case FlxObject.LEFT:
-				ball.x = paddle.getRight();
+				ball.x = paddle.getRight() - 2;
 			case FlxObject.RIGHT:
-				ball.setRight(paddle.x);
+				ball.setRight(paddle.x) + 2;
 		}
 	}
 	
@@ -94,7 +94,7 @@ class Ball_Paddle {
 		var maxAngle = 45;
 		var normalizedAngle = getNormalizedAngle();
 		var newAngle = calculateNewAngle(maxAngle, normalizedAngle);
-		var newVelocity = FlxVelocity.velocityFromAngle(newAngle, 400);
+		var newVelocity = FlxVelocity.velocityFromAngle(newAngle, ball.speed);
 		
 		ball.velocity.copyFrom(newVelocity);
 		newVelocity.put();

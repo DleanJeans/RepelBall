@@ -2,6 +2,7 @@ package systems.ballShooter;
 
 import flixel.FlxG;
 import flixel.math.FlxPoint;
+import flixel.math.FlxVector;
 import objects.Ball;
 import objects.Paddle;
 using flixel.addons.util.position.FlxPosition;
@@ -40,11 +41,18 @@ class BallShooter {
 	}
 	
 	private function shootAroundStartingPoint(startingPoint:FlxPoint) {
-		var projectileVector = startingPoint.copyTo().subtractPoint(position);
-		projectileVector.rotate(FlxPoint.weak(), FlxG.random.int( -45, 45));
-		
-		var ball = Game.pools.getBall(position, projectileVector);
+		var projectile = getProjectileVector(startingPoint);
+		var ball = Game.pools.getBall(position, projectile);
 		Game.level.addBall(ball);
+		projectile.put();
+	}
+	
+	private inline function getProjectileVector(startingPoint:FlxPoint):FlxVector {
+		var projectile = FlxVector.get();
+		projectile.copyFrom(startingPoint.copyTo().subtractPoint(position));
+		projectile.rotate(FlxPoint.weak(), FlxG.random.int( -45, 45));
+		projectile.length = Game.settings.BALL_STARTING_SPEED;
+		return projectile;
 	}
 	
 	function set_maxBalls(newMaxBalls:Int):Int {

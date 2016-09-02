@@ -28,6 +28,7 @@ class Pools {
 	
 	public function getBall(?position:FlxPoint, ?velocity:FlxPoint):Ball {
 		var ball = balls.recycle(Ball);
+		ball.resetSpeed();
 		if (position != null)
 			ball.setCenter(position);
 		if (velocity != null)

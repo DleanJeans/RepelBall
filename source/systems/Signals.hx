@@ -71,6 +71,7 @@ class Signals {
 		ball_ball.add(Game.collision.handler.ball_ball);
 		ball_wall.add(Game.collision.handler.ball_wall);
 		paddle_wall.add(Game.collision.handler.paddle_wall);
+		ball_paddle.add(Game.ballManager.increaseBallSpeed);
 		ball_paddle.add(Game.collision.handler.ball_paddle);
 		ball_wall.add(Game.match.checkGoal);
 	}

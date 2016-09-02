@@ -5,6 +5,7 @@ import flixel.FlxObject;
 import flixel.system.FlxAssets;
 
 class Settings {
+	public var BALL_STARTING_SPEED = 200;
 	public var maxBalls(default, null):Array<Int> = [for (i in 1...9) i];
 	public var scoresToWin(default, null):Array<Int> = [3, 5, 10];
 	public var scoreToWinStrings(default, null):Array<String> = ["Casual 3", "Standard 5", "Extended 10"];

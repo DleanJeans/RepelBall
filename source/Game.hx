@@ -1,5 +1,6 @@
 package;
 
+import systems.BallManager;
 import systems.Colors;
 import systems.GoalManager;
 import systems.Level;
@@ -44,6 +45,7 @@ class Game {
 	public static var color(default, null):Colors;
 	public static var walls(default, null):WallBuilder;
 	public static var winManager(default, null):WinManager;
+	public static var ballManager(default, null):BallManager;
 	
 	public static function init() {
 		level = new Level();
@@ -64,6 +66,7 @@ class Game {
 		color = new Colors();
 		walls = new WallBuilder();
 		winManager = new WinManager();
+		ballManager = new BallManager();
 		signals = new Signals();
 	}
 	
