@@ -11,4 +11,8 @@ class BallManager {
 			ball.lastHitPaddle = paddle;
 		}
 	}
+	
+	public inline function changeBallColor(ball:Ball, paddle:Paddle) {
+		ball.color = paddle.color;
+	}
 }

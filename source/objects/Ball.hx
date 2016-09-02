@@ -16,6 +16,10 @@ class Ball extends FlxSprite {
 		drawBall();
 	}
 	
+	public inline function resetColor() {
+		color = Game.color.white;
+	}
+	
 	public inline function resetSpeed() {
 		speed = Game.settings.BALL_STARTING_SPEED;
 	}
