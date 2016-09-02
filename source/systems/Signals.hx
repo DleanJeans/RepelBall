@@ -25,6 +25,7 @@ class Signals {
 	
 	public var matchStart:Signal = new Signal();
 	public var matchOver:Signal = new Signal();
+	public var postMatchOver:Signal = new Signal();
 	
 	public var preRoundStart:Signal = new Signal();
 	public var roundStart:Signal = new Signal();
@@ -39,11 +40,11 @@ class Signals {
 		matchStart.add(preRoundStart.dispatch);
 		
 		preRoundStart.add(Game.states.countdown);
-		preRoundStart.add(Game.level.resetLevel);
+		preRoundStart.add(Game.level.resetPaddlesPosition);
 		
 		roundStart.add(Game.match.startRound);
 		roundStart.add(Game.ballShooter.spawnInstantly);
-		roundStart.add(Game.autoPusher.autoPush);
+		roundStart.add(Game.autoPusher.autoPush);		
 		
 		roundEnd.add(Game.match.endRound);
 		roundEnd.add(Game.match.addScore);
@@ -54,8 +55,14 @@ class Signals {
 		
 		postRoundEnd.add(Game.match.startNextRoundOrEndMatch);
 		postRoundEnd.add(Game.goalManager.clearGoalStateReference);
+		postRoundEnd.add(Game.level.clearBalls);
 		
 		matchOver.add(Game.winManager.triggerWinState);
+		
+		postMatchOver.add(Game.level.clearPaddles);
+		postMatchOver.add(Game.match.reset);
+		postMatchOver.add(Game.states.menu);
+		postMatchOver.add(Game.controllers.removeAll);
 		
 		goal.add(Game.goalManager.triggerGoalState);
 		goalBall.add(Game.goalManager.killBall);

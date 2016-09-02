@@ -25,6 +25,11 @@ class Paddle extends FlxSprite {
 		super.destroy();
 	}
 	
+	override public function kill():Void {
+		setPosition();
+		super.kill();
+	}
+	
 	public function resetPosition() {
 		this.setCenter(startingPoint);
 	}

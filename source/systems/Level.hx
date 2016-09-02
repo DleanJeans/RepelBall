@@ -34,12 +34,24 @@ class Level extends FlxGroup {
 		add(uis);
 	}
 	
-	public function resetLevel() {
+	override public function destroy():Void {
+		super.destroy();
+	}
+	
+	public function resetPaddlesPosition() {
+		paddles.forEach(Game.position.resetPaddlePosition);
+	}
+	
+	public function clearBalls() {
 		balls.kill();
 		balls.clear();
 		balls.revive();
-		
-		paddles.forEach(Game.position.resetPaddlePosition);
+	}
+	
+	public  function clearPaddles() {
+		paddles.kill();
+		paddles.clear();
+		paddles.revive();
 	}
 	
 	public inline function addWall(wall:Wall) {

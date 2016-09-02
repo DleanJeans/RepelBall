@@ -22,7 +22,7 @@ class WinState extends FlxSubState {
 	
 	override public function update(elapsed:Float):Void {
 		super.update(elapsed);
-		Game.states.closeOnAnyInput(this, Game.states.menu);
+		Game.states.closeOnAnyInput(this, Game.signals.postMatchOver.dispatch);
 	}
 	
 }

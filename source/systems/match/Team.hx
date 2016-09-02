@@ -31,6 +31,8 @@ class Team {
 	public function reset() {
 		paddles.splice(0, paddles.length);
 		goal = null;
+		resetRoundScore();
+		score = 0;
 	}
 	
 	public inline function resetRoundScore() {

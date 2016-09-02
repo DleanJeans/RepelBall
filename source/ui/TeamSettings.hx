@@ -16,8 +16,6 @@ class TeamSettings extends FlxSpriteGroup {
 	public var paddle(default, null):Paddle;
 	public var teamColor(get, never):FlxColor;
 	
-	public var controlSettingsButton:FlxButton;
-	
 	public function new(x:Float = 0, y:Float = 0) {
 		super();
 		
@@ -54,7 +52,6 @@ class TeamSettings extends FlxSpriteGroup {
 		colorSwatch = Game.pools.getDefaultColorSwatch();
 		paddleBack = new FlxSprite();
 		paddle = Game.pools.getPaddle();
-		//controlSettingsButton = new FlxButton();
 	}
 	
 	private function setupStuff() {
@@ -74,7 +71,6 @@ class TeamSettings extends FlxSpriteGroup {
 		paddle.scale.set(1.5, 1.5);
 		paddle.updateHitbox();
 		paddle.setCenter(paddleBack.getCenter());
-		paddle.graphic.persist = true;
 	}
 	
 	private function addStuff() {
