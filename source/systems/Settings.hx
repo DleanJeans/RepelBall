@@ -5,6 +5,7 @@ import flixel.FlxObject;
 import flixel.system.FlxAssets;
 
 class Settings {
+	public var MULTI_GOAL_THRESHOLD:Int = 1;
 	public var BALL_STARTING_SPEED = 200;
 	public var maxBalls(default, null):Array<Int> = [for (i in 1...9) i];
 	public var scoresToWin(default, null):Array<Int> = [3, 5, 10];

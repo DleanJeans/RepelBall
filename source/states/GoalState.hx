@@ -11,8 +11,6 @@ import ui.TimerText;
 using flixel.addons.util.position.FlxPosition;
 
 class GoalState extends FlxSubState {
-	public static var MULTI_GOAL_THRESHOLD:Int = 1;
-	
 	public var goalText(default, null):GoalText;
 	public var roundScoreText(default, null):RoundScoreText;
 	public var timerText(default, null):TimerText;
@@ -55,7 +53,7 @@ class GoalState extends FlxSubState {
 	
 	private function restartMultiGoalTimer() {
 		if (firstGoalInRound())
-			multiGoalTimer = new FlxTimer().start(MULTI_GOAL_THRESHOLD, endRound);
+			multiGoalTimer = new FlxTimer().start(Game.settings.MULTI_GOAL_THRESHOLD, endRound);
 		else multiGoalTimer.reset();
 		timerText.timer = multiGoalTimer;
 	}
