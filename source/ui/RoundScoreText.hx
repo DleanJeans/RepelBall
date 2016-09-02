@@ -13,10 +13,15 @@ class RoundScoreText extends FlxText {
 	}
 	
 	public function updateScores() {
-		var score1 = Game.match.team1.roundScore;
-		var score2 = Game.match.team2.roundScore;
+		var team1 = Game.match.team1;
+		var team2 = Game.match.team2;
+		var score1 = team1.roundScore;
+		var score2 = team2.roundScore;
 		
 		text = '$score1 - $score2';
+		clearFormats();
+		addFormat(new FlxTextFormat(team1.color), 0, 2);
+		addFormat(new FlxTextFormat(team2.color), 4);
 	}
 	
 }
