@@ -7,12 +7,20 @@ import flixel.system.FlxAssets;
 class Settings {
 	public var maxBalls(default, null):Array<Int> = [for (i in 1...9) i];
 	public var scoresToWin(default, null):Array<Int> = [3, 5, 10];
-	public var scoreToWinStrings(default, null):Array<String> = ["Casual: 3", "Standard: 5", "Extended: 10"];
+	public var scoreToWinStrings(default, null):Array<String> = ["Casual 3", "Standard 5", "Extended 10"];
 	
 	public function new() {
+		addTestScoreSettingsOnDebug();
 		setSeparateBias();
 		setDefaultFont();
 		disableFlixelMouseOnJs();
+	}
+	
+	private function addTestScoreSettingsOnDebug() {
+		#if debug
+		scoresToWin.unshift(1);
+		scoreToWinStrings.unshift("Test 1");
+		#end
 	}
 	
 	private inline function setSeparateBias() {
