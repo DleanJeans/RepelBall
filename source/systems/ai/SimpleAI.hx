@@ -12,6 +12,9 @@ using flixel.addons.util.position.FlxPosition;
 class SimpleAI extends Controller {
 	public var goal:Wall;
 	
+	private var skipEveryFrames:Int = 3;
+	private var frame:Int = 0;
+	
 	public function new(?paddle:Paddle, ?goal:Wall) {
 		super(paddle);
 		this.goal = goal;
@@ -19,9 +22,19 @@ class SimpleAI extends Controller {
 	
 	override public function update() {
 		if (Game.anyNull([Game.level, paddle, goal])) return;
+		if (skip()) return;
 		
 		var nearestBall = getNearestBall();
 		controlPaddle(nearestBall);
+	}
+	
+	private function skip() {
+		frame++;
+		if (frame >= skipEveryFrames) {
+			frame = 0;
+			return true;
+		}
+		else return false;
 	}
 	
 	private function getNearestBall() {
