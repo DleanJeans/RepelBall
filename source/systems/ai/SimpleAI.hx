@@ -21,11 +21,19 @@ class SimpleAI extends Controller {
 	}
 	
 	override public function update() {
-		if (Game.anyNull([Game.level, paddle, goal])) return;
+		if (anyNull([Game.level, paddle, goal])) return;
 		if (skip()) return;
 		
 		var nearestBall = getNearestBall();
 		controlPaddle(nearestBall);
+	}
+	
+	private function anyNull(objects:Array<Dynamic>) {
+		for (o in objects) {
+            if (o == null)
+                return true;
+        }
+        return false;
 	}
 	
 	private function skip() {

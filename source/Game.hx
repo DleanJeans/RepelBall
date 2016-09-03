@@ -73,11 +73,4 @@ class Game {
 		framerateCounter = new FramerateCounter();
 	}
 	
-	public static function anyNull(objects:Array<Dynamic>) {
-		for (o in objects) {
-            if (o == null)
-                return true;
-        }
-        return false;
-	}
 }
