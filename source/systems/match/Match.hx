@@ -77,9 +77,9 @@ class Match {
 	public function checkGoal(ball:Ball, goal:Wall) {
 		var scoringTeam = getScoringTeam(goal);
 		if (scoringTeam != null) {
+			Game.signals.goalTeam.dispatch(scoringTeam);
 			Game.signals.goal.dispatch();
 			Game.signals.goalBall.dispatch(ball);
-			Game.signals.goalTeam.dispatch(scoringTeam);
 		}
 	}
 	

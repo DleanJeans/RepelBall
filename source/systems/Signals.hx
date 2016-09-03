@@ -64,9 +64,9 @@ class Signals {
 		postMatchOver.add(Game.states.menu);
 		postMatchOver.add(Game.controllers.removeAll);
 		
+		goalTeam.add(Game.match.addRoundScore);
 		goal.add(Game.goalManager.triggerGoalState);
 		goalBall.add(Game.goalManager.killBall);
-		goalTeam.add(Game.match.addRoundScore);
 		
 		ball_ball.add(Game.collision.handler.ball_ball);
 		ball_wall.add(Game.collision.handler.ball_wall);
