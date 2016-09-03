@@ -92,7 +92,7 @@ class SimpleAI extends Controller {
 		var paddleCenterParallel = paddle.get1Axis(paddle.getCenter());
 		
 		if (nearestBall == null) {
-			var startingAxis = paddle.get1Axis(paddle.startingPoint);
+			var startingAxis = paddle.get1Axis(paddle.startingPosition);
 			dest = startingAxis;
 		}
 		else {

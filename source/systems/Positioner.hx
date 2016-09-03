@@ -22,7 +22,7 @@ class Positioner {
 		heightVector.rotate(FlxPoint.weak(), facingAngle + 90);
 		heightVector.addPoint(wallCenter);
 		
-		paddle.startingPoint.copyFrom(heightVector);
+		paddle.startingPosition.copyFrom(heightVector);
 		paddle.resetPosition();
 		paddle.facing = wall.facing;
 		paddle.allowCollisions = FlxObject.ANY ^ paddle.facing;

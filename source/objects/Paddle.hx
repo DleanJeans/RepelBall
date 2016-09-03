@@ -10,18 +10,18 @@ using flixel.util.FlxSpriteUtil;
 using flixel.addons.util.position.FlxPosition;
 
 class Paddle extends FlxSprite {
-	public var startingPoint(default, null):FlxPoint;
+	public var startingPosition(default, null):FlxPoint;
 	public var length(default, set):Int = Game.unitLength(5);
 	public var speed:Int = FlxG.width;
 	
 	public function new() {
 		super();
-		startingPoint = FlxPoint.get();
+		startingPosition = FlxPoint.get();
 		facing = FlxObject.UP;
 	}
 	
 	override public function destroy():Void {
-		startingPoint.put();
+		startingPosition.put();
 		super.destroy();
 	}
 	
@@ -32,7 +32,7 @@ class Paddle extends FlxSprite {
 	}
 	
 	public function resetPosition() {
-		this.setCenter(startingPoint);
+		this.setCenter(startingPosition);
 	}
 	
 	public function get1Axis(point:FlxPoint, parallel:Bool = true):Float {

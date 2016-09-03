@@ -27,7 +27,7 @@ class BallShooter {
 	}
 	
 	public function push(paddle:Paddle) {
-		queue.push(paddle.startingPoint);
+		queue.push(paddle.startingPosition);
 	}
 	
 	public function update() {
