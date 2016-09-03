@@ -4,6 +4,7 @@ import systems.BallManager;
 import systems.Colors;
 import systems.FramerateCounter;
 import systems.GoalManager;
+import systems.Hoverer;
 import systems.Level;
 import systems.WinManager;
 import systems.match.Match;
@@ -47,6 +48,7 @@ class Game {
 	public static var walls(default, null):WallBuilder;
 	public static var winManager(default, null):WinManager;
 	public static var ballManager(default, null):BallManager;
+	public static var hoverer(default, null):Hoverer;
 	public static var framerateCounter(default, null):FramerateCounter;
 	
 	public static function init() {
@@ -68,7 +70,9 @@ class Game {
 		color = new Colors();
 		walls = new WallBuilder();
 		winManager = new WinManager();
+		hoverer = new Hoverer();
 		ballManager = new BallManager();
+		
 		signals = new Signals();
 		framerateCounter = new FramerateCounter();
 	}

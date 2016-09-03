@@ -39,6 +39,7 @@ class TeamSettings extends FlxSpriteGroup {
 	private function resetPaddleToNormal() {
 		paddle.scale.set(1, 1);
 		paddle.updateHitbox();
+		Game.hoverer.stopHovering(paddle);
 	}
 	
 	private function updateTeamName(colorSwatch:ColorSwatchSelector) {
@@ -84,6 +85,7 @@ class TeamSettings extends FlxSpriteGroup {
 		setPosition(x, y);
 		updateTeamName(colorSwatch);
 		colorSwatch.fixSelector();
+		Game.hoverer.startHovering(paddle, 15);
 	}
 	
 	inline function get_teamColor():FlxColor {
