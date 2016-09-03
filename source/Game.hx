@@ -2,6 +2,7 @@ package;
 
 import systems.BallManager;
 import systems.Colors;
+import systems.FramerateCounter;
 import systems.GoalManager;
 import systems.Level;
 import systems.WinManager;
@@ -46,6 +47,7 @@ class Game {
 	public static var walls(default, null):WallBuilder;
 	public static var winManager(default, null):WinManager;
 	public static var ballManager(default, null):BallManager;
+	public static var framerateCounter(default, null):FramerateCounter;
 	
 	public static function init() {
 		level = new Level();
@@ -68,6 +70,7 @@ class Game {
 		winManager = new WinManager();
 		ballManager = new BallManager();
 		signals = new Signals();
+		framerateCounter = new FramerateCounter();
 	}
 	
 	public static function anyNull(objects:Array<Dynamic>) {
