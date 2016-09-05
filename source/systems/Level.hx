@@ -1,5 +1,6 @@
 package systems;
 
+import flixel.FlxBasic;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup;
 import flixel.group.FlxSpriteGroup;
@@ -7,15 +8,20 @@ import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 import objects.Ball;
 import objects.Paddle;
 import objects.Wall;
+import objects.personality.Face;
+import systems.Level.FaceGroup;
 
 typedef Group<T:FlxSprite> = FlxTypedSpriteGroup<T>;
 typedef WallGroup = Group<Wall>;
 typedef PaddleGroup = Group<Paddle>;
+typedef FaceGroup = Group<Face>;
 typedef BallGroup = Group<Ball>;
 
 class Level extends FlxGroup {
+	public var systems(default, null):FlxGroup;
 	public var walls(default, null):WallGroup;
 	public var paddles(default, null):PaddleGroup;
+	public var faces(default, null):FaceGroup;
 	public var balls(default, null):BallGroup;
 	
 	public var uis(default, null):FlxSpriteGroup;
@@ -23,19 +29,19 @@ class Level extends FlxGroup {
 	public function new() {
 		super();
 		
+		systems = new FlxGroup();
 		walls = new WallGroup();
 		paddles = new PaddleGroup();
+		faces = new FaceGroup();
 		balls = new BallGroup();
 		uis = new FlxSpriteGroup();
 		
+		add(systems);
 		add(walls);
 		add(paddles);
+		add(faces);
 		add(balls);
 		add(uis);
-	}
-	
-	override public function destroy():Void {
-		super.destroy();
 	}
 	
 	public function resetPaddlesPosition() {
@@ -48,10 +54,8 @@ class Level extends FlxGroup {
 		balls.revive();
 	}
 	
-	public  function clearPaddles() {
-		paddles.kill();
-		paddles.clear();
-		paddles.revive();
+	public inline function addSystem(system:FlxBasic) {
+		systems.add(system);
 	}
 	
 	public inline function addWall(wall:Wall) {
@@ -60,6 +64,10 @@ class Level extends FlxGroup {
 	
 	public inline function addPaddle(paddle:Paddle) {
 		paddles.add(paddle);
+	}
+	
+	public inline function addFace(face:Face) {
+		faces.add(face);
 	}
 	
 	public inline function addBall(ball:Ball) {

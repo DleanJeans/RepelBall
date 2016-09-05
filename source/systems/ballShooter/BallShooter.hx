@@ -1,28 +1,30 @@
 package systems.ballShooter;
 
 import flixel.FlxG;
+import flixel.FlxObject;
 import flixel.math.FlxPoint;
 import flixel.math.FlxVector;
 import objects.Ball;
 import objects.Paddle;
 using flixel.addons.util.position.FlxPosition;
 
-class BallShooter {
+class BallShooter extends FlxObject {
 	public var maxBalls(default, set):Int = 1;
 	public var interval(default, null):Float = 0.5;
-	public var position(default, null):FlxPoint;
+	public var position(get, null):FlxPoint;
 	public var queue(default, null):Array<FlxPoint>;
 	
 	private var _elapsed:Float = 0;
 
 	public function new() {
-		FlxG.signals.postUpdate.add(update);
-		
-		position = FlxPoint.get(FlxG.width / 2, FlxG.height / 2);
+		super();
+		Game.level.addSystem(this);
+		setPosition(FlxG.width / 2, FlxG.height / 2);
 		queue = new Array<FlxPoint>();
+		kill();
 	}
 	
-	public inline function spawnInstantly() {
+	public inline function shootInstantly() {
 		_elapsed = interval;
 	}
 	
@@ -30,14 +32,25 @@ class BallShooter {
 		queue.push(paddle.startingPosition);
 	}
 	
-	public function update() {
+	override public function update(elapsed:Float):Void {
+		super.update(elapsed);
+		if (tick())
+			shoot();
+	}
+	
+	private function tick():Bool {
 		if (queue.length > 0) {
 			_elapsed += FlxG.elapsed;
 			if (_elapsed >= interval) {
 				_elapsed = 0;
-				shootAroundStartingPoint(queue.shift());
+				return true;
 			}
 		}
+		return false;
+	}
+	
+	private inline function shoot() {
+		shootAroundStartingPoint(queue.shift());
 	}
 	
 	private function shootAroundStartingPoint(startingPoint:FlxPoint) {
@@ -59,6 +72,10 @@ class BallShooter {
 		if (maxBalls <= 0)
 			maxBalls = 1;
 		return maxBalls = newMaxBalls;
+	}
+	
+	function get_position():FlxPoint {
+		return FlxPoint.weak(x, y);
 	}
 	
 }

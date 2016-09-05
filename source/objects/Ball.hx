@@ -3,6 +3,7 @@ package objects;
 import flixel.FlxSprite;
 import flixel.math.FlxVelocity;
 import flixel.util.FlxColor;
+import objects.Paddle;
 using flixel.util.FlxSpriteUtil;
 
 class Ball extends FlxSprite {

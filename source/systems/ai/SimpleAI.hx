@@ -10,19 +10,12 @@ import systems.controllers.Controller;
 using flixel.addons.util.position.FlxPosition;
 
 class SimpleAI extends Controller {
-	public var goal:Wall;
-	
-	private var skipEveryFrames:Int = 3;
-	private var frame:Int = 0;
-	
-	public function new(?paddle:Paddle, ?goal:Wall) {
+	public function new(?paddle:Paddle) {
 		super(paddle);
-		this.goal = goal;
 	}
 	
-	override public function update() {
-		if (anyNull([Game.level, paddle, goal])) return;
-		if (skip()) return;
+	override public function update(elapsed:Float):Void {
+		if (anyNull([Game.level, paddle])) return;
 		
 		var nearestBall = getNearestBall();
 		controlPaddle(nearestBall);
@@ -36,38 +29,8 @@ class SimpleAI extends Controller {
         return false;
 	}
 	
-	private function skip() {
-		frame++;
-		if (frame >= skipEveryFrames) {
-			frame = 0;
-			return true;
-		}
-		else return false;
-	}
-	
 	private function getNearestBall() {
-		var nearest:Ball = null;
-		var nearestTime:Float = Math.POSITIVE_INFINITY;
-		
-		var ballToPaddle = FlxPoint.get();
-		var time:Float;
-		
-		for (ball in Game.level.balls) {
-			ballToPaddle.copyFrom(paddle.getCenter().subtractPoint(ball.getCenter()));
-			
-			if (paddle.movesHorizontally())
-				time = ballToPaddle.y / ball.velocity.y;
-			else time = ballToPaddle.x / ball.velocity.x;
-			
-			if (time > 0 && time < nearestTime) {
-				nearestTime = time;
-				nearest = ball;
-			}
-		}
-		
-		ballToPaddle.put();
-		
-		return nearest;
+		return Game.ballManager.findNearestBall(paddle);
 	}
 	
 	public var distanceThreshold = 480;

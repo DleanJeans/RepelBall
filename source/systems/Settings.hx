@@ -7,7 +7,9 @@ import flixel.system.FlxAssets;
 class Settings {
 	public var MULTI_GOAL_THRESHOLD:Int = 1;
 	public var BALL_STARTING_SPEED = 200;
-	public var maxBalls(default, null):Array<Int> = [for (i in 1...9) i];
+	public var COLOR_CHANGED_TWEEN_DURATION = 0.5;
+	
+	public var maxBalls(default, null):Array<Int> = [for (i in 1...5) i];
 	public var scoresToWin(default, null):Array<Int> = [3, 5, 10];
 	public var scoreToWinStrings(default, null):Array<String> = ["Casual 3", "Standard 5", "Extended 10"];
 	

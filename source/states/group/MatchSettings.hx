@@ -59,7 +59,7 @@ class MatchSettings extends FlxSpriteGroup {
 	private function setupStuff() {
 		startButton.flip();
 		startButton.setRight(FlxG.width);
-		maxBallsLoop.select(2);
+		maxBallsLoop.select(1);
 		selectRandomColorOnSwatches();
 	}
 	

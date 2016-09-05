@@ -14,14 +14,16 @@ class PlayState extends FlxSubState {
 		
 		add(Game.level);
 		
-		paddle = Game.match.team1.paddles[0];
-		Game.controllers.addNewPlayerController(paddle);
-		
-		paddle2 = Game.match.team2.paddles[0];
-		Game.controllers.addNewSimpleAI(paddle2, Game.walls.topWall);
-		
 		Game.match.team1.setGoal(Game.walls.bottomWall);
 		Game.match.team2.setGoal(Game.walls.topWall);
+		
+		paddle = Game.match.team1.firstPaddle;
+		Game.controllers.addNewKeyboard(paddle);
+		Game.controllers.addNewExpressionAI(paddle);
+		
+		paddle2 = Game.match.team2.firstPaddle;
+		Game.controllers.addNewSimpleAI(paddle2);
+		Game.controllers.addNewExpressionAI(paddle2);
 		
 		Game.signals.matchStart.dispatch();
 	}

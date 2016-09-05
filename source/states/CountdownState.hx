@@ -5,8 +5,8 @@ import flixel.text.FlxText;
 import flixel.util.FlxTimer;
 
 class CountdownState extends FlxSubState {
-	private var text:FlxText;
-	private var timer:FlxTimer;
+	public var text(default, null):FlxText;
+	public var timer(default, null):FlxTimer;
 	
 	override public function create():Void {
 		text = new FlxText(0, 0, 0, "3", 100);

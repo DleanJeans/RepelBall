@@ -6,6 +6,8 @@ import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
 import objects.Paddle;
+import objects.PaddleWrapper;
+import objects.personality.EyePair;
 import systems.match.Team;
 using flixel.addons.util.position.FlxPosition;
 
@@ -13,7 +15,8 @@ class TeamSettings extends FlxSpriteGroup {
 	public var teamName(default, null):FlxText;
 	public var colorSwatch(default, null):ColorSwatchSelector;
 	public var paddleBack(default, null):FlxSprite;
-	public var paddle(default, null):Paddle;
+	public var paddleWrapper(default, null):PaddleWrapper;
+	public var paddle(get, null):Paddle;
 	public var teamColor(get, never):FlxColor;
 	
 	public function new(x:Float = 0, y:Float = 0) {
@@ -26,33 +29,32 @@ class TeamSettings extends FlxSpriteGroup {
 	}
 	
 	override public function destroy():Void {
-		remove(paddle);
+		remove(paddleWrapper);
 		super.destroy();
 	}
 	
 	public function apply(team:Team) {
 		team.setup(teamName.text, teamColor);
-		team.addPaddle(paddle);
+		team.addPaddle(paddleWrapper);
 		resetPaddleToNormal();
 	}
 	
 	private function resetPaddleToNormal() {
-		paddle.scale.set(1, 1);
-		paddle.updateHitbox();
 		Game.hoverer.stopHovering(paddle);
+		paddleWrapper.face.eyes.targetting = BALL;
 	}
 	
 	private function updateTeamName(colorSwatch:ColorSwatchSelector) {
 		teamName.text = "Team " + colorSwatch.getColorName();
 		teamName.color = colorSwatch.getColor();
-		paddle.color = colorSwatch.getColor();
+		paddleWrapper.color = colorSwatch.getColor();
 	}
 	
 	private function createStuff() {
 		teamName = new FlxText();
 		colorSwatch = Game.pools.getDefaultColorSwatch();
 		paddleBack = new FlxSprite();
-		paddle = Game.pools.getPaddle();
+		paddleWrapper = Game.pools.getPaddle();
 	}
 	
 	private function setupStuff() {
@@ -69,16 +71,15 @@ class TeamSettings extends FlxSpriteGroup {
 		paddleBack.setMidTop(colorSwatch.getMidBottom());
 		paddleBack.y += 30;
 		
-		paddle.scale.set(1.5, 1.5);
-		paddle.updateHitbox();
-		paddle.setCenter(paddleBack.getCenter());
+		paddleWrapper.setCenter(paddleBack.getCenter());
+		paddleWrapper.face.eyes.targetting = POINTER;
 	}
 	
 	private function addStuff() {
 		add(teamName);
 		add(colorSwatch);
 		add(paddleBack);
-		add(paddle);
+		add(paddleWrapper);
 	}
 	
 	private function moreSetup(x:Float, y:Float) {
@@ -90,6 +91,10 @@ class TeamSettings extends FlxSpriteGroup {
 	
 	inline function get_teamColor():FlxColor {
 		return teamName.color;
+	}
+	
+	function get_paddle():Paddle {
+		return paddleWrapper.paddle;
 	}
 	
 }

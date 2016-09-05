@@ -6,13 +6,15 @@ import flixel.FlxSprite;
 import flixel.math.FlxAngle;
 import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
+import objects.personality.EyePair;
 using flixel.util.FlxSpriteUtil;
 using flixel.addons.util.position.FlxPosition;
 
 class Paddle extends FlxSprite {
 	public var startingPosition(default, null):FlxPoint;
-	public var length(default, set):Int = Game.unitLength(5);
 	public var speed:Int = FlxG.width;
+	public var length(default, set):Int = Game.unitLength(5 * 1.5);
+	public var wrapper:PaddleWrapper;
 	
 	public function new() {
 		super();
@@ -31,7 +33,7 @@ class Paddle extends FlxSprite {
 		super.revive();
 	}
 	
-	public function resetPosition() {
+	public function resetToStartingPosition() {
 		this.setCenter(startingPosition);
 	}
 	

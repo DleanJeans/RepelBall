@@ -10,7 +10,7 @@ class Keyboard extends Controller {
 		super(paddle);
 	}
 	
-	override public function update() {
+	override public function update(elapsed:Float):Void {
 		if (paddle == null) return;
 		
 		if (FlxG.keys.anyPressed([A, LEFT]))

@@ -8,7 +8,7 @@ class Touch extends Controller {
 		super(paddle);
 	}
 	
-	override public function update() {
+	override public function update(elapsed:Float):Void {
 		if (!FlxG.mouse.pressed || paddle == null) {
 			Game.paddleMovement.stop(paddle);
 			return;

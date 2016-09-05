@@ -37,15 +37,19 @@ class Signals {
 		matchStart.add(Game.scoreboard.updateColors);
 		matchStart.add(Game.scoreboard.updateScores);
 		matchStart.add(Game.match.setupTeamsPosition);
+		matchStart.add(Game.personality.updateFacing);
 		matchStart.add(Game.hoverer.startHoveringAllPaddles);
 		matchStart.add(preRoundStart.dispatch);
 		
+		preRoundStart.add(Game.states.resumeState);
 		preRoundStart.add(Game.states.countdown);
 		preRoundStart.add(Game.level.resetPaddlesPosition);
 		preRoundStart.add(Game.hoverer.resumeAllHovering);
 		
 		roundStart.add(Game.match.startRound);
-		roundStart.add(Game.ballShooter.spawnInstantly);
+		roundStart.add(Game.controllers.revive);
+		roundStart.add(Game.ballShooter.shootInstantly);
+		roundStart.add(Game.ballShooter.revive);
 		roundStart.add(Game.autoPusher.autoPush);
 		
 		roundEnd.add(Game.match.endRound);
@@ -55,6 +59,8 @@ class Signals {
 		roundEnd.add(Game.match.checkWin);
 		roundEnd.add(Game.match.checkMatchOver);
 		roundEnd.add(Game.hoverer.pauseAllHovering);
+		roundEnd.add(Game.controllers.kill);
+		roundEnd.add(Game.ballShooter.kill);
 		
 		postRoundEnd.add(Game.match.startNextRoundOrEndMatch);
 		postRoundEnd.add(Game.goalManager.clearGoalStateReference);
@@ -62,11 +68,11 @@ class Signals {
 		
 		matchOver.add(Game.winManager.triggerWinState);
 		
-		postMatchOver.add(Game.level.clearPaddles);
 		postMatchOver.add(Game.match.reset);
 		postMatchOver.add(Game.states.menu);
-		postMatchOver.add(Game.controllers.removeAll);
-		postMatchOver.add(Game.hoverer.startHoveringAllPaddles);
+		postMatchOver.add(Game.controllers.clear);
+		postMatchOver.add(Game.hoverer.stopHoveringAllPaddles);
+		postMatchOver.add(Game.level.paddles.clear);
 		
 		goalTeam.add(Game.match.addRoundScore);
 		goal.add(Game.goalManager.triggerGoalState);
@@ -75,6 +81,7 @@ class Signals {
 		ball_ball.add(Game.collision.handler.ball_ball);
 		ball_wall.add(Game.collision.handler.ball_wall);
 		paddle_wall.add(Game.collision.handler.paddle_wall);
+		paddle_wall.add(Game.personality.reattachFace);
 		ball_paddle.add(Game.ballManager.changeBallColor);
 		ball_paddle.add(Game.ballManager.increaseBallSpeed);
 		ball_paddle.add(Game.collision.handler.ball_paddle);

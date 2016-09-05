@@ -42,7 +42,7 @@ class BallShooterAutoPusher {
 	
 	private function getRandomFromTeam(team:Team, excludes:Array<Paddle>):Paddle {
 		var paddle:Paddle = null;
-		do paddle = FlxG.random.getObject(team.paddles)
+		do paddle = FlxG.random.getObject(team.paddles).paddle
 		while (excludes.contains(paddle));
 		return paddle;
 	}

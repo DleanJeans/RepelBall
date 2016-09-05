@@ -48,7 +48,7 @@ class Hoverer {
 			tween.cancel();
 			tweenMap.remove(paddle);
 			if (resetPosition)
-				paddle.resetPosition();
+				paddle.resetToStartingPosition();
 		}
 	}
 }

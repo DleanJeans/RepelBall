@@ -5,25 +5,19 @@ import flixel.FlxG;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxPoint;
 import objects.Ball;
-import objects.Paddle;
+import objects.PaddleWrapper;
 import objects.Wall;
 import ui.ColorSwatchSelector;
 using flixel.addons.util.position.FlxPosition;
 
 typedef Pool<T:FlxBasic> = FlxTypedGroup<T>;
 typedef BallPool = Pool<Ball>;
-typedef PaddlePool = Pool<Paddle>;
-typedef WallPool = Pool<Wall>;
 
 class Pools {
 	public var balls(default, null):BallPool;
-	public var paddles(default, null):PaddlePool;
-	public var walls(default, null):WallPool;
 	
 	public function new() {
 		balls = new BallPool();
-		paddles = new PaddlePool();
-		walls = new WallPool();
 	}
 	
 	public function getBall(?position:FlxPoint, ?velocity:FlxPoint):Ball {
@@ -37,14 +31,13 @@ class Pools {
 		return ball;
 	}
 	
-	public function getPaddle(?speed:Int):Paddle {
-		var paddle = paddles.recycle(Paddle);
-		paddle.speed = speed == null ? FlxG.width : speed;
+	public function getPaddle():PaddleWrapper {
+		var paddle = new PaddleWrapper();
 		return paddle;
 	}
 	
 	public function getWall(x:Float, y:Float, width:Int, height:Int, facing:Int):Wall {
-		var wall = walls.recycle(Wall);
+		var wall = new Wall();
 		wall.resetWall(x, y, width, height, facing);
 		return wall;
 	}

@@ -23,12 +23,12 @@ class Positioner {
 		heightVector.addPoint(wallCenter);
 		
 		paddle.startingPosition.copyFrom(heightVector);
-		paddle.resetPosition();
+		paddle.resetToStartingPosition();
 		paddle.facing = wall.facing;
 		paddle.allowCollisions = FlxObject.ANY ^ paddle.facing;
 	}
 	
 	public inline function resetPaddlePosition(paddle:Paddle) {
-		paddle.resetPosition();
+		paddle.resetToStartingPosition();
 	}
 }

@@ -2,6 +2,7 @@ package states;
 
 import flixel.FlxG;
 import flixel.FlxSubState;
+import objects.PaddleWrapper;
 import states.group.MatchSettings;
 import states.group.TitleMenu;
 	
