@@ -4,6 +4,6 @@ import flixel.FlxState;
 
 class MainState extends FlxState {
 	override public function create():Void {
-		Game.states.menu();
+		Game.states.splash();
 	}
 }

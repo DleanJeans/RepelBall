@@ -9,6 +9,7 @@ import systems.Hoverer;
 import systems.Level;
 import systems.PaddleExpression;
 import systems.Personality;
+import systems.SFX;
 import systems.WinManager;
 import systems.match.Match;
 import systems.Pools;
@@ -56,6 +57,7 @@ class Game {
 	public static var camera(default, null):Camera;
 	public static var personality(default, null):Personality;
 	public static var paddleExpression(default, null):PaddleExpression;
+	public static var sfx(default, null):SFX;
 	
 	public static function init() {
 		level = new Level();
@@ -81,6 +83,7 @@ class Game {
 		camera = new Camera();
 		personality = new Personality();
 		paddleExpression = new PaddleExpression();
+		sfx = new SFX();
 		
 		signals = new Signals();
 		framerateCounter = new FramerateCounter();

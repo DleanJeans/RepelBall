@@ -2,9 +2,9 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 	
-	<app title="RepelBall" file="RepelBall" main="Main" version="0.0.1" company="Dlean Jeans" />
+	<app title="RepelBall" file="RepelBall" main="Main" version="1.0.0" company="Dlean Jeans" />
 	
-	<meta title="RepelBall" description="" package="com.bluebirdaward.repelball" version="0.0.1" company="Repellium Games" />
+	<meta title="RepelBall" description="" package="com.bluebirdaward.repelball" version="1.0.0" company="Dlean Jeans" />
 	
 	<!--The flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a html file
 		or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"-->
@@ -34,6 +34,8 @@
 	<set name="BUILD_DIR" value="export" />
 	<classpath name="source" />
 	<assets path="assets" />
+	<assets path="assets" exclude="*.ogg" if="flash"/>
+	<assets path="assets" exclude="*.mp3" unless="flash"/>
 	
 	<!-- _______________________________ Libraries ______________________________ -->
 
@@ -83,4 +85,6 @@
 	<!-- _________________________________ Custom _______________________________ -->
 	
 	<!--Place custom nodes like icons here (higher priority to override the HaxeFlixel icon)-->
+	
+	<icon path="assets/png/icon.png" />
 </project>

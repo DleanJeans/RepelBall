@@ -110,7 +110,7 @@ class EyePair extends FlxSpriteGroup {
 		var distance:Float;
 		#if mobile
 		pointer = findNearestTouch();
-		distance = FlxMath.distanceToTouch(paddle, pointer);
+		distance = FlxMath.distanceToTouch(paddle, cast pointer);
 		#else
 		pointer = FlxG.mouse;
 		distance = FlxMath.distanceToMouse(paddle);

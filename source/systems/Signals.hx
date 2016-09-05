@@ -80,11 +80,13 @@ class Signals {
 		
 		ball_ball.add(Game.collision.handler.ball_ball);
 		ball_wall.add(Game.collision.handler.ball_wall);
+		ball_wall.add(Game.sfx.playBallHitSound);
 		paddle_wall.add(Game.collision.handler.paddle_wall);
 		paddle_wall.add(Game.personality.reattachFace);
 		ball_paddle.add(Game.ballManager.changeBallColor);
 		ball_paddle.add(Game.ballManager.increaseBallSpeed);
 		ball_paddle.add(Game.collision.handler.ball_paddle);
+		ball_paddle.add(Game.sfx.playBallHitSound);
 		ball_wall.add(Game.match.checkGoal);
 	}
 }

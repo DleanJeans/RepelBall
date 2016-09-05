@@ -3,6 +3,7 @@ package systems;
 import flixel.FlxG;
 import flixel.FlxState;
 import flixel.FlxSubState;
+import states.BluebirdSplash;
 import states.CountdownState;
 import states.GoalState;
 import states.MenuState;
@@ -31,6 +32,10 @@ class States {
 	
 	public inline function pauseState() {
 		state.persistentUpdate = false;
+	}
+	
+	public inline function splash() {
+		mainState.openSubState(state = new BluebirdSplash());
 	}
 	
 	public inline function menu() {

@@ -4,20 +4,21 @@ import flixel.FlxG;
 import flixel.FlxSubState;
 import objects.PaddleWrapper;
 import states.group.MatchSettings;
+import states.group.MinimalTitleScreen;
 import states.group.TitleMenu;
 	
 class MenuState extends FlxSubState {
-	public var titleMenu:TitleMenu;
+	public var titleMenu:MinimalTitleScreen;
 	public var matchSettings:MatchSettings;
 	
 	override public function create() {
 		bgColor = 0xFF212121;
 		camera.antialiasing = true;
 		
-		titleMenu = new TitleMenu();
+		titleMenu = new MinimalTitleScreen();
 		matchSettings = new MatchSettings();
 		
-		titleMenu.newMatch.add(switchToMatchSettings);
+		titleMenu.anyInput.add(switchToMatchSettings);
 		matchSettings.back.add(switchToTitleMenu);
 		matchSettings.start.add(startMatch);
 		
