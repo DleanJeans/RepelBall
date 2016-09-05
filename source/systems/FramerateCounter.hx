@@ -12,6 +12,7 @@ class FramerateCounter {
 	}
 	
 	public function checkInputForToggling() {
+		#if !FLX_NO_KEYBOARD
 		if (FlxG.keys.justPressed.GRAVEACCENT) {
 			if (counter == null) {
 				counter = new FPS(12, -2, 0xFFFFFF);
@@ -19,6 +20,7 @@ class FramerateCounter {
 			}
 			toggleVisible();
 		}
+		#end
 	}
 	
 	public function toggleVisible() {

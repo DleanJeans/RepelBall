@@ -33,10 +33,14 @@ class ControllerList extends ControllerGroup {
 		else addNewKeyboard(paddle);
 	}
 	
+	
 	public inline function addNewKeyboard(?paddle:Paddle) {
+		#if !FLX_NO_KEYBOARD
 		var keyboard = new Keyboard(paddle);
 		add(keyboard);
+		#end
 	}
+
 	
 	public inline function addNewTouch(?paddle:Paddle) {
 		var touch = new Touch(paddle);
