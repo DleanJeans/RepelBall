@@ -122,6 +122,7 @@ class EyePair extends FlxSpriteGroup {
 		rightEye.pointerTarget = pointer;
 	}
 	
+	#if mobile
 	private function findNearestTouch():FlxTouch {
 		var nearest:FlxTouch = null;
 		var nearestDistance:Float = Math.POSITIVE_INFINITY;
@@ -137,6 +138,7 @@ class EyePair extends FlxSpriteGroup {
 		
 		return nearest;
 	}
+	#end
 	
 	function set_targetting(newTargetting:Targetting):Targetting {
 		if (newTargetting == null)

@@ -1,7 +1,6 @@
 package;
 
 import systems.BallManager;
-import systems.Camera;
 import systems.Colors;
 import systems.FramerateCounter;
 import systems.GoalManager;
@@ -54,7 +53,6 @@ class Game {
 	public static var ballManager(default, null):BallManager;
 	public static var hoverer(default, null):Hoverer;
 	public static var framerateCounter(default, null):FramerateCounter;
-	public static var camera(default, null):Camera;
 	public static var personality(default, null):Personality;
 	public static var paddleExpression(default, null):PaddleExpression;
 	public static var sfx(default, null):SFX;
@@ -80,7 +78,6 @@ class Game {
 		winManager = new WinManager();
 		hoverer = new Hoverer();
 		ballManager = new BallManager();
-		camera = new Camera();
 		personality = new Personality();
 		paddleExpression = new PaddleExpression();
 		sfx = new SFX();

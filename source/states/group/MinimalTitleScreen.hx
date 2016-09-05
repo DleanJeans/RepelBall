@@ -46,7 +46,7 @@ class MinimalTitleScreen extends FlxSpriteGroup {
 	
 	override public function update(elapsed:Float):Void {
 		super.update(elapsed);
-		if (FlxG.mouse.justPressed || FlxG.keys.justPressed.ANY)
+		if (FlxG.mouse.justPressed)
 			anyInput.dispatch();
 	}
 	
