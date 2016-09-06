@@ -15,6 +15,8 @@
 	
 	<android minimum-sdk-version="16" target-sdk-version="19" />
 	<certificate path="./repelball.keystore" password="anythingball" alias="repelballKey" alias-password="anythingball" />
+	
+	<template path="AndroidManifest.xml" if="android"/>
 
 	<!-- ____________________________ Window Settings ___________________________ -->
 	
