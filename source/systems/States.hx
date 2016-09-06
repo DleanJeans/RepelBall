@@ -18,14 +18,6 @@ class States {
 	
 	public function new() {}
 	
-	public inline function closeOnAnyInput(state:FlxSubState, ?callback:Void->Void) {
-		if (FlxG.mouse.justPressed) {
-			state.close();
-			if (callback != null)
-				callback();
-		}
-	}
-	
 	public inline function resumeState() {
 		state.persistentUpdate = true;
 	}

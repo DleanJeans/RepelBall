@@ -18,7 +18,7 @@ class PlayState extends FlxSubState {
 		Game.match.team2.setGoal(Game.walls.topWall);
 		
 		paddle = Game.match.team1.firstPaddle;
-		Game.controllers.addNewKeyboard(paddle);
+		Game.controllers.addNewPlayerController(paddle);
 		Game.controllers.addNewExpressionAI(paddle);
 		
 		paddle2 = Game.match.team2.firstPaddle;

@@ -1,6 +1,7 @@
 package systems.controllers;
 
 import flixel.FlxG;
+import flixel.math.FlxPoint;
 import objects.Paddle;
 
 class Touch extends Controller {
@@ -9,20 +10,23 @@ class Touch extends Controller {
 	}
 	
 	override public function update(elapsed:Float):Void {
-		if (!FlxG.mouse.pressed || paddle == null) {
-			Game.paddleMovement.stop(paddle);
-			return;
-		}
+		if (paddle == null) return;
 		
-		var mousePosition = FlxG.mouse.getScreenPosition();
-		var halfScreenWidth = FlxG.width / 2;
+		var action:Paddle->Void = null;
+		var pointerPosition:FlxPoint = null;
 		
-		if (mousePosition.x < halfScreenWidth)
-			Game.paddleMovement.moveLeft(paddle);
-		else if (mousePosition.x > halfScreenWidth)
-			Game.paddleMovement.moveRight(paddle);
+		pointerPosition = FlxG.mouse.getScreenPosition();
 		
-		mousePosition.put();
+		if (!FlxG.mouse.pressed)
+			action = Game.paddleMovement.stop;
+		else if (pointerPosition.x < FlxG.width / 2)
+			action = Game.paddleMovement.moveLeft;
+		else if (pointerPosition.x > FlxG.width / 2)
+			action = Game.paddleMovement.moveRight;
+		else action = Game.paddleMovement.stop;
+		
+		action(paddle);
+		pointerPosition.put();
 	}
 	
 }

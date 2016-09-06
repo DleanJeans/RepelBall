@@ -13,7 +13,7 @@ class FramerateCounter {
 	
 	public function checkInputForToggling() {
 		#if !FLX_NO_KEYBOARD
-		if (FlxG.keys.justPressed.GRAVEACCENT) {
+		if (FlxG.keys.justPressed.TAB) {
 			if (counter == null) {
 				counter = new FPS(12, -2, 0xFFFFFF);
 				FlxG.addChildBelowMouse(counter);

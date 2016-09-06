@@ -21,7 +21,7 @@ class WarningState extends FlxSubState {
 	}
 	
 	override public function update(elapsed:Float):Void {
-		Game.states.closeOnAnyInput(this);
 		super.update(elapsed);
+		Game.anyInput.listen([close]);
 	}
 }

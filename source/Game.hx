@@ -1,5 +1,6 @@
 package;
 
+import systems.AnyInput;
 import systems.BallManager;
 import systems.Colors;
 import systems.FramerateCounter;
@@ -56,6 +57,7 @@ class Game {
 	public static var personality(default, null):Personality;
 	public static var paddleExpression(default, null):PaddleExpression;
 	public static var sfx(default, null):SFX;
+	public static var anyInput(default, null):AnyInput;
 	
 	public static function init() {
 		level = new Level();
@@ -81,6 +83,7 @@ class Game {
 		personality = new Personality();
 		paddleExpression = new PaddleExpression();
 		sfx = new SFX();
+		anyInput = new AnyInput();
 		
 		signals = new Signals();
 		framerateCounter = new FramerateCounter();

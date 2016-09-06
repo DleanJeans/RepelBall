@@ -18,7 +18,7 @@ class MenuState extends FlxSubState {
 		titleMenu = new MinimalTitleScreen();
 		matchSettings = new MatchSettings();
 		
-		titleMenu.anyInput.add(switchToMatchSettings);
+		titleMenu.start.add(switchToMatchSettings);
 		matchSettings.back.add(switchToTitleMenu);
 		matchSettings.start.add(startMatch);
 		

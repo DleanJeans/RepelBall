@@ -42,8 +42,9 @@ class GoalState extends FlxSubState {
 	}
 	
 	private function closeOnAnyInputIfRoundEnded() {
-		if (Game.match.roundEnded)
-			Game.states.closeOnAnyInput(this, Game.signals.postRoundEnd.dispatch);
+		if (Game.match.roundEnded) {
+			Game.anyInput.listen([close, Game.signals.postRoundEnd.dispatch]);
+		}
 	}
 	
 	public function goal() {

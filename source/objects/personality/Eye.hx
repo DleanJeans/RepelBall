@@ -5,7 +5,6 @@ import flixel.FlxSprite;
 import flixel.group.FlxSpriteGroup;
 import flixel.input.FlxPointer;
 import flixel.input.mouse.FlxMouse;
-import flixel.input.touch.FlxTouch;
 import flixel.math.FlxAngle;
 import flixel.util.FlxColor;
 import objects.Ball;
@@ -43,7 +42,7 @@ class Eye extends FlxSpriteGroup {
 		switch (Type.getClass(_target)) {
 			case Ball:
 				lookAtBall();
-			case FlxMouse, FlxTouch:
+			case FlxMouse:
 				lookAtPointer();
 			default:
 				idle();
@@ -78,15 +77,8 @@ class Eye extends FlxSpriteGroup {
 		setEyeAngle(angle);
 	}
 	
-	private inline function getPointerAngle():Float {
-		var angle:Float = 0;
-		
-		if (Std.is(pointerTarget, FlxMouse))
-			angle = FlxAngle.angleBetweenMouse(this, true);
-		else if (Std.is(pointerTarget, FlxTouch))
-			angle = FlxAngle.angleBetweenTouch(this, cast pointerTarget, true);
-		
-		return angle;
+	private function getPointerAngle():Float {
+		return FlxAngle.angleBetweenMouse(this, true);
 	}
 	
 	private function setEyeAngle(angle:Float) {

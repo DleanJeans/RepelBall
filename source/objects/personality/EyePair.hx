@@ -3,7 +3,6 @@ package objects.personality;
 import flixel.FlxG;
 import flixel.group.FlxSpriteGroup;
 import flixel.input.FlxPointer;
-import flixel.input.touch.FlxTouch;
 import flixel.math.FlxMath;
 import objects.Ball;
 import objects.Paddle;
@@ -73,8 +72,11 @@ class EyePair extends FlxSpriteGroup {
 				clearTarget();
 			case BALL:
 				targetNearestBall();
+			#if !mobile
 			case POINTER:
 				targetPointer();
+			#end
+			default:
 		}
 	}
 	
@@ -106,39 +108,14 @@ class EyePair extends FlxSpriteGroup {
 	}
 	
 	private function targetPointer() {
-		var pointer:FlxPointer;
-		var distance:Float;
-		#if mobile
-		pointer = findNearestTouch();
-		distance = FlxMath.distanceToTouch(paddle, cast pointer);
-		#else
-		pointer = FlxG.mouse;
-		distance = FlxMath.distanceToMouse(paddle);
-		#end
+		var pointer:FlxPointer = FlxG.mouse;
+		var distance = FlxMath.distanceToMouse(paddle);
 		if (distance > eyeRangeForPointer)
 			pointer = null;
 		
 		leftEye.pointerTarget = pointer;
 		rightEye.pointerTarget = pointer;
 	}
-	
-	#if mobile
-	private function findNearestTouch():FlxTouch {
-		var nearest:FlxTouch = null;
-		var nearestDistance:Float = Math.POSITIVE_INFINITY;
-		var distance:Float = 0;
-		
-		for (touch in FlxG.touches.justStarted()) {
-			distance = FlxMath.distanceToTouch(paddle, touch);
-			if (distance < nearestDistance) {
-				nearest = touch;
-				nearestDistance = distance;
-			}
-		}
-		
-		return nearest;
-	}
-	#end
 	
 	function set_targetting(newTargetting:Targetting):Targetting {
 		if (newTargetting == null)
