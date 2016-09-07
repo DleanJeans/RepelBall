@@ -22,8 +22,8 @@ class Handler {
 		ball_paddle_collision.update(ball, paddle);
 	}
 	
-	public inline function ball_ball(ball:Ball, ball:Ball) {
-		FlxObject.separate(ball, ball);
+	public inline function ball_ball(ball1:Ball, ball2:Ball) {
+		FlxObject.separate(ball1, ball2);
 	}
 	
 	public inline function ball_wall(ball:Ball, wall:Wall) {
