@@ -1,27 +1,45 @@
 package ui;
 
 import flixel.FlxG;
+import flixel.group.FlxSpriteGroup;
 import flixel.text.FlxText;
+using flixel.addons.util.position.FlxPosition;
 
-class RoundScoreText extends FlxText {
+class RoundScoreText extends FlxSpriteGroup {
+	public var score1(default, null):FlxText;
+	public var dash(default, null):FlxText;
+	public var score2(default, null):FlxText;
+	
 	public function new() {
-		super(0, 0, FlxG.width, "0 - 0", 60);
+		super();
 		
-		alignment = FlxTextAlign.CENTER;
+		score1 = new FlxText(0, 0, 0, "0", 60);
+		dash = new FlxText(0, 0, 0, Game.messages.dashSeparator, 60);
+		score2 = new FlxText(0, 0, 0, "0", 60);
+		
+		updatePosition();
+		
+		add(score1);
+		add(score2);
+		add(dash);
+		
 		Game.level.addUI(this);
 		screenCenter();
 	}
 	
+	private function updatePosition() {
+		dash.x = score1.getRight();
+		score2.x = dash.getRight();
+	}
+	
 	public function updateScores() {
-		var team1 = Game.match.team1;
-		var team2 = Game.match.team2;
-		var score1 = team1.roundScore;
-		var score2 = team2.roundScore;
+		score1.text = Game.messages.teamRoundScore1;
+		score2.text = Game.messages.teamRoundScore2;
+		score1.color = Game.color.team1;
+		score2.color = Game.color.team2;
 		
-		text = '$score1 - $score2';
-		clearFormats();
-		addFormat(new FlxTextFormat(team1.color), 0, 2);
-		addFormat(new FlxTextFormat(team2.color), 4);
+		updatePosition();
+		screenCenter();
 	}
 	
 }

@@ -14,8 +14,6 @@ class WinState extends FlxSubState {
 		winText = new WinText();
 		anyInputText = new AnyInputText();
 		
-		winText.updateText();
-		
 		add(winText);
 		add(anyInputText);
 	}

@@ -1,27 +1,40 @@
 package ui;
 
 import flixel.FlxG;
+import flixel.group.FlxSpriteGroup;
 import flixel.text.FlxText;
 import systems.match.Team;
+using flixel.addons.util.position.FlxPosition;
 
-class GoalText extends FlxText {
+class GoalText extends FlxSpriteGroup {
+	public var scoringTeam(default, null):FlxText;
+	public var scored(default, null):FlxText;
+	
 	public function new() {
-		super(0, 0, FlxG.width * 0.85, "", 70);
+		super();
+		
+		scoringTeam = new FlxText(0, 0, Game.settings.MESSAGES_FIELD_WIDTH, "", 70);
+		Game.settings.alignCenter(scoringTeam);
+		
+		scored = new FlxText(0, 0, Game.settings.MESSAGES_FIELD_WIDTH, "", 60);
+		scored.setMidTop(scoringTeam.getMidBottom());
+		Game.settings.alignCenter(scored);
+		
+		add(scoringTeam);
+		add(scored);
+		
 		screenCenter();
-		alignment = FlxTextAlign.CENTER;
 	}
 	
 	public function updateText() {
-		var scoringTeam = Game.match.teamScoredLastRound;
-		
 		if (scoringTeam != null) {
-			text = scoringTeam.name + "\nscored!";
-			var start = 0;
-			var end = scoringTeam.name.length;
-			addFormat(new FlxTextFormat(scoringTeam.color), start, end);
+			scoringTeam.text = Game.messages.scoringTeam;
+			scored.text = Game.messages.scored;
+			
+			scoringTeam.color = Game.color.scoringTeam;
 		}
 		else {
-			text = "Round tie!";
+			scoringTeam.text = Game.messages.roundTie;
 		}
 	}
 	

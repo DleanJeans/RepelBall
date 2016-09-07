@@ -4,7 +4,7 @@ import flixel.FlxG;
 import flixel.system.FlxAssets;
 import objects.Ball;
 
-class SFX {
+class SoundFX {
 	public function new() {
 		FlxG.signals.gameStarted.add(playMusic);
 	}

@@ -7,9 +7,10 @@ import systems.FramerateCounter;
 import systems.GoalManager;
 import systems.Hoverer;
 import systems.Level;
+import systems.Messages;
 import systems.PaddleExpression;
 import systems.Personality;
-import systems.SFX;
+import systems.SoundFX;
 import systems.WinManager;
 import systems.match.Match;
 import systems.Pools;
@@ -56,8 +57,9 @@ class Game {
 	public static var framerateCounter(default, null):FramerateCounter;
 	public static var personality(default, null):Personality;
 	public static var paddleExpression(default, null):PaddleExpression;
-	public static var sfx(default, null):SFX;
+	public static var sfx(default, null):SoundFX;
 	public static var anyInput(default, null):AnyInput;
+	public static var messages(default, null):Messages;
 	
 	public static function init() {
 		level = new Level();
@@ -82,8 +84,9 @@ class Game {
 		ballManager = new BallManager();
 		personality = new Personality();
 		paddleExpression = new PaddleExpression();
-		sfx = new SFX();
+		sfx = new SoundFX();
 		anyInput = new AnyInput();
+		messages = new Messages();
 		
 		signals = new Signals();
 		framerateCounter = new FramerateCounter();

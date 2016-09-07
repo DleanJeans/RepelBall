@@ -19,6 +19,11 @@ class Colors {
 	public var gray(get, never):FlxColor;
 	public var transWhite(get, never):FlxColor;
 	
+	public var winningTeam(get, null):FlxColor;
+	public var scoringTeam(get, null):FlxColor;
+	public var team1(get, null):FlxColor;
+	public var team2(get, null):FlxColor;
+	
 	function get_list():Array<FlxColor> {
 		if (list == null)
 			list = [red, pink, purple, blue, green, lime, yellow, orange];
@@ -61,5 +66,10 @@ class Colors {
 	}
 	
 	public function new() {}
+	
+	inline function get_winningTeam():FlxColor return Game.match.winningTeam.color;
+	inline function get_scoringTeam():FlxColor return Game.match.lastScoringTeam.color;
+	inline function get_team1():FlxColor return Game.match.team1.color;
+	inline function get_team2():FlxColor return Game.match.team2.color;
 	
 }

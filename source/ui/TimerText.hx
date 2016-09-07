@@ -23,8 +23,8 @@ class TimerText extends FlxText {
 			var timeLeft = timer.timeLeft - 0.4;
 			
 			if (timeLeft < 0)
-				text = "0.000";
-			else text = Std.string(FlxMath.roundDecimal(timeLeft, 3));
+				text = Game.messages._0_000;
+			else text = roundTimeLeft(timeLeft);
 			
 		}
 		else text =
@@ -33,6 +33,18 @@ class TimerText extends FlxText {
 		#else
 		"";
 		#end
+	}
+	
+	private function roundTimeLeft(timeLeft:Float) {
+		var timeLeft = FlxMath.roundDecimal(timeLeft, 3);
+		var timeLeftString = Std.string(timeLeft);
+		
+		while (timeLeftString.length < Game.messages._0_000.length) {
+			if (timeLeftString.length == 1)
+				timeLeftString += ".";
+			timeLeftString += "0";
+		}
+		return timeLeftString;
 	}
 	
 }
