@@ -11,7 +11,7 @@ class Match {
 	public var maxBalls(get, set):Int;
 	
 	public var winningTeam(default, null):Team;
-	public var teamScoredLastRound(default, null):Team;
+	public var lastScoringTeam(default, null):Team;
 	
 	public var started(default, null):Bool = false;
 	public var over(default, null):Bool = false;
@@ -52,7 +52,7 @@ class Match {
 	public function reset() {
 		scoreToWin = 3;
 		winningTeam = null;
-		teamScoredLastRound = null;
+		lastScoringTeam = null;
 		
 		team1.reset();
 		team2.reset();
@@ -61,11 +61,11 @@ class Match {
 	public function addScore() {
 		if (team1.roundScore > team2.roundScore) {
 			team1.addScore();
-			teamScoredLastRound = team1;
+			lastScoringTeam = team1;
 		}
 		else if (team1.roundScore < team2.roundScore) {
 			team2.addScore();
-			teamScoredLastRound = team2;
+			lastScoringTeam = team2;
 		}
 	}
 	
