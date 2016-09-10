@@ -16,6 +16,7 @@ class Settings {
 	public var scoreToWinStrings(default, null):Array<String> = ["Casual 3", "Standard 5", "Extended 10"];
 	
 	public function new() {
+		FlxG.camera.antialiasing = true;
 		addTestScoreSettingsOnDebug();
 		setSeparateBias();
 		setDefaultFont();
