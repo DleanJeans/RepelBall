@@ -80,13 +80,13 @@ class Ball_Paddle {
 	private function moveBallAbovePaddle() {
 		switch (paddle.facing) {
 			case FlxObject.UP:
-				ball.setBottom(paddle.y);
+				ball.setBottom(paddle.y) - 1;
 			case FlxObject.DOWN:
-				ball.y = paddle.getBottom();
+				ball.y = paddle.getBottom() + 1;
 			case FlxObject.LEFT:
-				ball.x = paddle.getRight();
+				ball.x = paddle.getRight() - 1;
 			case FlxObject.RIGHT:
-				ball.setRight(paddle.x);
+				ball.setRight(paddle.x) + 1;
 		}
 	}
 	
