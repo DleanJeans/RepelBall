@@ -78,8 +78,11 @@ class Signals {
 		goalBall.add(Game.goalManager.killBall);
 		
 		ball_ball.add(Game.collision.handler.ball_ball);
+		ball_ball.add(Game.sfx.playBallHitSound);
+		
 		ball_wall.add(Game.collision.handler.ball_wall);
 		ball_wall.add(Game.sfx.playBallHitSound);
+		ball_wall.add(Game.match.checkGoal);
 		
 		paddle_wall.add(Game.collision.handler.paddle_wall);
 		paddle_wall.add(Game.personality.reattachFace);
@@ -88,7 +91,5 @@ class Signals {
 		ball_paddle.add(Game.ballManager.increaseBallSpeed);
 		ball_paddle.add(Game.collision.handler.ball_paddle);
 		ball_paddle.add(Game.sfx.playBallHitSound);
-		
-		ball_wall.add(Game.match.checkGoal);
 	}
 }

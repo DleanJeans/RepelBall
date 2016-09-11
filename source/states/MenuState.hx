@@ -13,6 +13,7 @@ class MenuState extends FlxSubState {
 	
 	override public function create() {
 		bgColor = 0xFF212121;
+		Game.sfx.fadeInTheme();
 		
 		titleMenu = new MinimalTitleScreen();
 		matchSettings = new MatchSettings();
@@ -43,6 +44,7 @@ class MenuState extends FlxSubState {
 			return;
 		}
 		
+		Game.sfx.fadeOutTheme();
 		matchSettings.apply();
 		Game.states.play();
 	}
