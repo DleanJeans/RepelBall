@@ -3,15 +3,15 @@ package systems;
 import flixel.FlxBasic;
 import flixel.FlxSprite;
 import flixel.group.FlxGroup;
+import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.group.FlxSpriteGroup;
-import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
 import objects.Ball;
 import objects.Paddle;
 import objects.Wall;
 import objects.personality.Face;
 import systems.Level.FaceGroup;
 
-typedef Group<T:FlxSprite> = FlxTypedSpriteGroup<T>;
+typedef Group<T:FlxSprite> = FlxTypedGroup<T>;
 typedef WallGroup = Group<Wall>;
 typedef PaddleGroup = Group<Paddle>;
 typedef FaceGroup = Group<Face>;
