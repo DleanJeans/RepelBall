@@ -13,7 +13,7 @@ using flixel.addons.util.position.FlxPosition;
 class Paddle extends FlxSprite {
 	public var startingPosition(default, null):FlxPoint;
 	public var speed:Int = FlxG.width;
-	public var length(default, set):Int = Game.unitLength(5 * 1.5);
+	public var length(default, set):Int = Game.unitLength(5);
 	public var wrapper:PaddleWrapper;
 	
 	public function new() {

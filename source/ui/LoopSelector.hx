@@ -85,7 +85,7 @@ class LoopSelector extends FlxSpriteGroup {
 	}
 	
 	private function setupBackground() {
-		Game.renderer.drawRoundRect(background, _width, _height);
+		Game.renderer.drawRoundRect(background, _width, _height, _height, Game.color.transWhite);
 		background.x = label.getRight() + 20;
 	}
 	

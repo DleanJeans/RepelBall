@@ -16,7 +16,7 @@ class Hoverer {
 	
 	public function startHoveringAllPaddles() {
 		for (paddle in Game.level.paddles)
-			startHovering(paddle);
+			startHovering(paddle, Game.unitLength(0.75));
 	}
 	
 	public function stopHoveringAllPaddles() {

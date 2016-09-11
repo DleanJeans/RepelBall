@@ -30,6 +30,6 @@ class Ball extends FlxSprite {
 	}
 	
 	private inline function drawBall() {
-		Game.renderer.drawUnitRoundRect(this, 1, 1);
+		Game.renderer.drawBall(this);
 	}
 }

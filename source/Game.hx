@@ -28,7 +28,7 @@ import systems.controllers.PaddleMovement;
 import ui.Scoreboard;
 
 class Game {
-	private static inline var UNIT_LENGTH = 16;
+	private static inline var UNIT_LENGTH = 24;
 	public static inline function unitLength(times:Float = 1):Int {
 		return Std.int(UNIT_LENGTH * times);
 	}
