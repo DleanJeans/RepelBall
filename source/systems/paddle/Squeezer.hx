@@ -1,4 +1,4 @@
-package systems;
+package systems.paddle;
 
 import flixel.FlxBasic;
 import flixel.FlxG;

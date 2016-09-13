@@ -1,4 +1,4 @@
-package systems;
+package systems.paddle;
 
 import objects.Paddle;
 import objects.Wall;

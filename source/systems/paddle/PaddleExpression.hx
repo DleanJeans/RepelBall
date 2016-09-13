@@ -1,4 +1,4 @@
-package systems;
+package systems.paddle;
 
 import flixel.util.FlxTimer;
 import objects.Paddle;
