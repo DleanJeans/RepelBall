@@ -49,19 +49,26 @@ class EyePair extends FlxSpriteGroup {
 		}
 	}
 	
+	public function scaleEyeSeparation(scaleX:Float) {
+		var eyeOffset = paddle.length * (scaleX - 1) / 2;
+		leftEye.offset.x = eyeOffset;
+		rightEye.offset.x = -eyeOffset;
+	}
+	
 	public function updateFacing() {
 		leftEye.facing = rightEye.facing = paddle.facing;
 	}
 	
-	private function resetEyeSeparation() {
-		rightEye.setMidLeft(leftEye.getMidRight());
-		rightEye.x += eyeSeparation;
-	}
-	
 	override public function update(elapsed:Float):Void {
 		look();
-		offset.copyFrom(paddle.offset);
+		copyHoveringOffset();
 		super.update(elapsed);
+	}
+	
+	private function copyHoveringOffset() {
+		if (paddle.movesHorizontally())
+			leftEye.offset.y = rightEye.offset.y = paddle.offset.y;
+		else leftEye.offset.x = rightEye.offset.x = paddle.offset.x;
 	}
 	
 	private function look() {

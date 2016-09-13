@@ -67,11 +67,12 @@ class Signals {
 		
 		matchOver.add(Game.winManager.triggerWinState);
 		
-		postMatchOver.add(Game.match.reset);
+		postMatchOver.add(Game.squeezer.stopAllTweens);
 		postMatchOver.add(Game.states.menu);
 		postMatchOver.add(Game.controllers.clear);
 		postMatchOver.add(Game.hoverer.stopHoveringAllPaddles);
 		postMatchOver.add(Game.level.paddles.clear);
+		postMatchOver.add(Game.match.reset);
 		
 		goalTeam.add(Game.match.addRoundScore);
 		goal.add(Game.goalManager.triggerGoalState);

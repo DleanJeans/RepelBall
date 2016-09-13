@@ -11,6 +11,7 @@ import systems.Messages;
 import systems.PaddleExpression;
 import systems.Personality;
 import systems.SoundFX;
+import systems.Squeezer;
 import systems.WinManager;
 import systems.match.Match;
 import systems.Pools;
@@ -60,6 +61,7 @@ class Game {
 	public static var sfx(default, null):SoundFX;
 	public static var anyInput(default, null):AnyInput;
 	public static var messages(default, null):Messages;
+	public static var squeezer(default, null):Squeezer;
 	
 	public static function init() {
 		level = new Level();
@@ -87,6 +89,7 @@ class Game {
 		sfx = new SoundFX();
 		anyInput = new AnyInput();
 		messages = new Messages();
+		squeezer = new Squeezer();
 		
 		signals = new Signals();
 		framerateCounter = new FramerateCounter();
