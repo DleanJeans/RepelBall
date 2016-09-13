@@ -1,4 +1,4 @@
-package systems;
+package systems.ball;
 
 import flixel.FlxG;
 import flixel.math.FlxPoint;

@@ -1,4 +1,4 @@
-package systems.ballShooter;
+package systems.ball;
 
 import flixel.FlxG;
 import flixel.FlxObject;

@@ -1,7 +1,7 @@
 package;
 
 import systems.AnyInput;
-import systems.BallManager;
+import systems.ball.BallManager;
 import systems.Colors;
 import systems.FramerateCounter;
 import systems.GoalManager;
@@ -21,8 +21,8 @@ import systems.Settings;
 import systems.Signals;
 import systems.States;
 import systems.WallBuilder;
-import systems.ballShooter.BallShooter;
-import systems.ballShooter.BallShooterAutoPusher;
+import systems.ball.BallShooter;
+import systems.ball.BallShooterAutoPusher;
 import systems.collisions.Collision;
 import systems.controllers.ControllerList;
 import systems.controllers.PaddleMovement;
