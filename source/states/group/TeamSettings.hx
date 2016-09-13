@@ -1,4 +1,4 @@
-package ui;
+package states.group;
 
 import flixel.FlxSprite;
 import flixel.group.FlxSpriteGroup;
@@ -9,6 +9,7 @@ import objects.Paddle;
 import objects.PaddleWrapper;
 import objects.personality.EyePair;
 import systems.match.Team;
+import ui.ColorSwatchSelector;
 using flixel.addons.util.position.FlxPosition;
 
 class TeamSettings extends FlxSpriteGroup {

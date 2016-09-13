@@ -5,7 +5,7 @@ import flixel.group.FlxSpriteGroup;
 import flixel.util.FlxSignal;
 import ui.LoopSelector;
 import ui.SideButton;
-import ui.TeamSettings;
+import states.group.TeamSettings;
 using flixel.addons.util.position.FlxPosition;
 
 class MatchSettings extends FlxSpriteGroup {
