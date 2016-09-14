@@ -67,6 +67,7 @@ class Match {
 			team2.addScore();
 			lastScoringTeam = team2;
 		}
+		else lastScoringTeam = null;
 	}
 	
 	public function resetRoundScores() {

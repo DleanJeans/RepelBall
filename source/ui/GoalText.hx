@@ -27,7 +27,7 @@ class GoalText extends FlxSpriteGroup {
 	}
 	
 	public function updateText() {
-		if (scoringTeam != null) {
+		if (Game.messages.scoringTeam != "") {
 			scoringTeam.text = Game.messages.scoringTeam;
 			scored.text = Game.messages.scored;
 			
