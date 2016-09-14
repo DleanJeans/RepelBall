@@ -41,7 +41,7 @@ class TeamSettings extends FlxSpriteGroup {
 	}
 	
 	private function resetPaddleToNormal() {
-		Game.hoverer.stopHovering(paddle);
+		Game.paddle.hoverer.stopHovering(paddle);
 		paddleWrapper.face.eyes.targetting = BALL;
 	}
 	
@@ -87,7 +87,7 @@ class TeamSettings extends FlxSpriteGroup {
 		setPosition(x, y);
 		updateTeamName(colorSwatch);
 		colorSwatch.fixSelector();
-		Game.hoverer.startHovering(paddle, Game.unitLength(0.75));
+		Game.paddle.hoverer.startHovering(paddle, Game.unitLength(0.75));
 	}
 	
 	inline function get_teamColor():FlxColor {

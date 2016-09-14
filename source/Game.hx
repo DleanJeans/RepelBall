@@ -1,17 +1,13 @@
 package;
 
 import systems.AnyInput;
-import systems.ball.BallManager;
 import systems.Colors;
 import systems.FramerateCounter;
 import systems.GoalManager;
-import systems.paddle.Hoverer;
+import systems.ball.BallSystems;
 import systems.Level;
 import systems.Messages;
-import systems.paddle.PaddleExpression;
-import systems.paddle.Personality;
 import systems.SoundFX;
-import systems.paddle.Squeezer;
 import systems.WinManager;
 import systems.match.Match;
 import systems.Pools;
@@ -21,11 +17,10 @@ import systems.Settings;
 import systems.Signals;
 import systems.States;
 import systems.WallBuilder;
-import systems.ball.BallShooter;
-import systems.ball.BallShooterAutoPusher;
 import systems.collisions.Collision;
 import systems.controllers.ControllerList;
 import systems.controllers.PaddleMovement;
+import systems.paddle.PaddleSystems;
 import ui.Scoreboard;
 
 class Game {
@@ -46,22 +41,17 @@ class Game {
 	public static var controllers(default, null):ControllerList;
 	public static var position(default, null):Positioner;
 	public static var pools(default, null):Pools;
-	public static var ballShooter(default, null):BallShooter;
-	public static var autoPusher(default, null):BallShooterAutoPusher;
 	public static var goalManager(default, null):GoalManager;
 	public static var scoreboard(default, null):Scoreboard;
 	public static var color(default, null):Colors;
 	public static var walls(default, null):WallBuilder;
 	public static var winManager(default, null):WinManager;
-	public static var ballManager(default, null):BallManager;
-	public static var hoverer(default, null):Hoverer;
 	public static var framerateCounter(default, null):FramerateCounter;
-	public static var personality(default, null):Personality;
-	public static var paddleExpression(default, null):PaddleExpression;
 	public static var sfx(default, null):SoundFX;
 	public static var anyInput(default, null):AnyInput;
 	public static var messages(default, null):Messages;
-	public static var squeezer(default, null):Squeezer;
+	public static var ball(default, null):BallSystems;
+	public static var paddle(default, null):PaddleSystems;
 	
 	public static function init() {
 		level = new Level();
@@ -75,21 +65,16 @@ class Game {
 		controllers = new ControllerList();
 		position = new Positioner();
 		pools = new Pools();
-		ballShooter = new BallShooter();
-		autoPusher = new BallShooterAutoPusher();
 		goalManager = new GoalManager();
 		scoreboard = new Scoreboard();
 		color = new Colors();
 		walls = new WallBuilder();
 		winManager = new WinManager();
-		hoverer = new Hoverer();
-		ballManager = new BallManager();
-		personality = new Personality();
-		paddleExpression = new PaddleExpression();
 		sfx = new SoundFX();
 		anyInput = new AnyInput();
 		messages = new Messages();
-		squeezer = new Squeezer();
+		ball = new BallSystems();
+		paddle = new PaddleSystems();
 		
 		signals = new Signals();
 		framerateCounter = new FramerateCounter();

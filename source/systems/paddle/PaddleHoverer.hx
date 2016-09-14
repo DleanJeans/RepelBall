@@ -7,7 +7,7 @@ import objects.Paddle;
 
 typedef TweenMap = Map<Paddle, FlxTween>;
 
-class Hoverer {
+class PaddleHoverer {
 	public var tweenMap(default, null):TweenMap;
 	
 	public function new() {

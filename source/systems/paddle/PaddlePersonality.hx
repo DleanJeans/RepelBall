@@ -3,7 +3,7 @@ package systems.paddle;
 import objects.Paddle;
 import objects.Wall;
 
-class Personality {
+class PaddlePersonality {
 	public function new() {}
 	
 	public function reattachFace(paddle:Paddle, wall:Wall) {

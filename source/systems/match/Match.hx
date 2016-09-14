@@ -116,11 +116,11 @@ class Match {
 	}
 	
 	function get_maxBalls():Int {
-		return Game.ballShooter.maxBalls;
+		return Game.ball.shooter.maxBalls;
 	}
 	
 	function set_maxBalls(newMaxBalls:Int):Int {
-		return Game.ballShooter.maxBalls = newMaxBalls;
+		return Game.ball.shooter.maxBalls = newMaxBalls;
 	}
 	
 }

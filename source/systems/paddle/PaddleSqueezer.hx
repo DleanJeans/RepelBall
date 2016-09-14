@@ -8,7 +8,7 @@ import objects.Paddle;
 
 typedef SqueezerTweenMap = Map<Paddle, FlxTween>;
 
-class Squeezer extends FlxBasic {
+class PaddleSqueezer extends FlxBasic {
 	private var tweenMap:SqueezerTweenMap;
 	
 	public function new() {

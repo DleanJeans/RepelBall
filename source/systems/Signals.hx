@@ -36,20 +36,20 @@ class Signals {
 		matchStart.add(Game.scoreboard.updateColors);
 		matchStart.add(Game.scoreboard.updateScores);
 		matchStart.add(Game.match.setupTeamsPosition);
-		matchStart.add(Game.personality.updateFacing);
-		matchStart.add(Game.hoverer.startHoveringAllPaddles);
+		matchStart.add(Game.paddle.personality.updateFacing);
+		matchStart.add(Game.paddle.hoverer.startHoveringAllPaddles);
 		matchStart.add(preRoundStart.dispatch);
 		
 		preRoundStart.add(Game.states.resumeState);
 		preRoundStart.add(Game.states.countdown);
 		preRoundStart.add(Game.level.resetPaddlesPosition);
-		preRoundStart.add(Game.hoverer.resumeAllHovering);
+		preRoundStart.add(Game.paddle.hoverer.resumeAllHovering);
 		
 		roundStart.add(Game.match.startRound);
 		roundStart.add(Game.controllers.revive);
-		roundStart.add(Game.ballShooter.shootInstantly);
-		roundStart.add(Game.ballShooter.revive);
-		roundStart.add(Game.autoPusher.autoPush);
+		roundStart.add(Game.ball.shooter.shootInstantly);
+		roundStart.add(Game.ball.shooter.revive);
+		roundStart.add(Game.ball.pusher.autoPush);
 		
 		roundEnd.add(Game.match.endRound);
 		roundEnd.add(Game.match.addScore);
@@ -57,9 +57,9 @@ class Signals {
 		roundEnd.add(Game.match.resetRoundScores);
 		roundEnd.add(Game.match.checkWin);
 		roundEnd.add(Game.match.checkMatchOver);
-		roundEnd.add(Game.hoverer.pauseAllHovering);
+		roundEnd.add(Game.paddle.hoverer.pauseAllHovering);
 		roundEnd.add(Game.controllers.kill);
-		roundEnd.add(Game.ballShooter.kill);
+		roundEnd.add(Game.ball.shooter.kill);
 		
 		postRoundEnd.add(Game.match.startNextRoundOrEndMatch);
 		postRoundEnd.add(Game.goalManager.clearGoalStateReference);
@@ -67,10 +67,10 @@ class Signals {
 		
 		matchOver.add(Game.winManager.triggerWinState);
 		
-		postMatchOver.add(Game.squeezer.stopAllTweens);
+		postMatchOver.add(Game.paddle.squeezer.stopAllTweens);
 		postMatchOver.add(Game.states.menu);
 		postMatchOver.add(Game.controllers.clear);
-		postMatchOver.add(Game.hoverer.stopHoveringAllPaddles);
+		postMatchOver.add(Game.paddle.hoverer.stopHoveringAllPaddles);
 		postMatchOver.add(Game.level.paddles.clear);
 		postMatchOver.add(Game.match.reset);
 		
@@ -86,10 +86,10 @@ class Signals {
 		ball_wall.add(Game.match.checkGoal);
 		
 		paddle_wall.add(Game.collision.handler.paddle_wall);
-		paddle_wall.add(Game.personality.reattachFace);
+		paddle_wall.add(Game.paddle.personality.reattachFace);
 		
-		ball_paddle.add(Game.ballManager.changeBallColor);
-		ball_paddle.add(Game.ballManager.increaseBallSpeed);
+		ball_paddle.add(Game.ball.manager.changeBallColor);
+		ball_paddle.add(Game.ball.manager.increaseBallSpeed);
 		ball_paddle.add(Game.collision.handler.ball_paddle);
 		ball_paddle.add(Game.sfx.playBallHitSound);
 	}

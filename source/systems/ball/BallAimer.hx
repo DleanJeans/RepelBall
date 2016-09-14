@@ -5,7 +5,7 @@ import objects.Paddle;
 import systems.match.Team;
 using flixel.util.FlxArrayUtil;
 
-class BallShooterAutoPusher {
+class BallAimer {
 	private var paddle:Paddle;
 	private var currentTeam:Team;
 	private var pushedPaddles:Array<Paddle>;
@@ -21,9 +21,9 @@ class BallShooterAutoPusher {
 		currentTeam = getFirstTeamToShoot(Game.match.lastScoringTeam);
 		teamLoop.setToIndexOf(currentTeam);
 		
-		for (i in 0...Game.ballShooter.maxBalls) {
+		for (i in 0...Game.ball.shooter.maxBalls) {
 			paddle = getRandomFromTeam(currentTeam, pushedPaddles);
-			Game.ballShooter.push(paddle);
+			Game.ball.shooter.push(paddle);
 			pushedPaddles.push(paddle);
 			currentTeam = teamLoop.next();
 			

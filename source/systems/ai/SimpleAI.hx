@@ -30,7 +30,7 @@ class SimpleAI extends Controller {
 	}
 	
 	private function getNearestBall() {
-		return Game.ballManager.findNearestBall(paddle);
+		return Game.ball.manager.findNearestBall(paddle);
 	}
 	
 	public var distanceThreshold = 480;

@@ -24,13 +24,13 @@ class ExpressionAI extends Controller {
 	}
 	
 	private function getNearestBall() {
-		return Game.ballManager.findNearestBall(paddle);
+		return Game.ball.manager.findNearestBall(paddle);
 	}
 	
 	private function controlExpression(nearestBall:Ball) {
-		var expression = Game.paddleExpression.smile;
+		var expression = Game.paddle.expression.smile;
 		if (notTooFaraway(nearestBall) && notReachable(nearestBall))
-			expression = Game.paddleExpression.frown;
+			expression = Game.paddle.expression.frown;
 		
 		expression(paddle);
 	}
