@@ -7,7 +7,7 @@ import flixel.text.FlxText;
 
 class Settings {
 	public var MULTI_GOAL_THRESHOLD:Int = 1;
-	public var BALL_STARTING_SPEED = 200;
+	public var BALL_STARTING_SPEED:Int = cast FlxG.height / 4;
 	public var COLOR_CHANGED_TWEEN_DURATION = 0.5;
 	public var MESSAGES_FIELD_WIDTH = FlxG.width * 0.85;
 	
