@@ -23,7 +23,6 @@ class RoundScoreText extends FlxSpriteGroup {
 		add(score2);
 		add(dash);
 		
-		Game.level.addUI(this);
 		screenCenter();
 	}
 	
