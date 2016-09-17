@@ -46,7 +46,7 @@ class TeamSettings extends FlxSpriteGroup {
 	}
 	
 	private function updateTeamName(colorSwatch:ColorSwatchSelector) {
-		teamName.text = "Team " + colorSwatch.getColorName();
+		teamName.text = colorSwatch.getColorName();
 		teamName.color = colorSwatch.getColor();
 		paddleWrapper.color = colorSwatch.getColor();
 	}
