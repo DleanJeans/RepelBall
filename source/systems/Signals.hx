@@ -36,7 +36,7 @@ class Signals {
 		matchStart.add(Game.scoreboard.updateColors);
 		matchStart.add(Game.scoreboard.updateScores);
 		matchStart.add(Game.match.setupTeamsPosition);
-		matchStart.add(Game.paddle.personality.updateFacing);
+		matchStart.add(Game.paddle.expression.updateFacing);
 		matchStart.add(Game.paddle.hoverer.startHoveringAllPaddles);
 		matchStart.add(preRoundStart.dispatch);
 		
@@ -88,7 +88,7 @@ class Signals {
 		ball_wall.add(Game.match.checkGoal);
 		
 		paddle_wall.add(Game.collision.handler.paddle_wall);
-		paddle_wall.add(Game.paddle.personality.reattachFace);
+		paddle_wall.add(Game.paddle.expression.reattachFace);
 		
 		ball_paddle.add(Game.ball.manager.changeBallColor);
 		ball_paddle.add(Game.ball.manager.increaseBallSpeed);

@@ -2,10 +2,20 @@ package systems.paddle;
 
 import flixel.util.FlxTimer;
 import objects.Paddle;
+import objects.Wall;
 import objects.personality.EyePair;
 
 class PaddleExpression {
 	public function new() {}
+	
+	public function reattachFace(paddle:Paddle, wall:Wall) {
+		paddle.wrapper.reattachFace();
+	}
+	
+	public function updateFacing() {
+		for (face in Game.level.faces)
+			face.eyes.updateFacing();
+	}
 	
 	public inline function smile(paddle:Paddle) {
 		var face = paddle.wrapper.face;
