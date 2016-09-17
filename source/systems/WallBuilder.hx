@@ -17,12 +17,11 @@ class WallBuilder {
 	
 	public function buildWalls() {
 		var wallWidth = Game.unitLength();
-		var halfWidth = wallWidth / 2;
 		
-		rightWall = Game.pools.getWall(FlxG.width - halfWidth, 0, wallWidth, FlxG.height, FlxObject.LEFT);
-		leftWall = Game.pools.getWall(-halfWidth, 0, wallWidth, FlxG.height, FlxObject.RIGHT);
-		topWall = Game.pools.getWall(0, -halfWidth, FlxG.width, wallWidth, FlxObject.DOWN);
-		bottomWall = Game.pools.getWall(0, FlxG.height - halfWidth, FlxG.width, wallWidth, FlxObject.UP);
+		rightWall = Game.pools.getWall(FlxG.width, 0, wallWidth, FlxG.height, FlxObject.LEFT);
+		leftWall = Game.pools.getWall(-wallWidth, 0, wallWidth, FlxG.height, FlxObject.RIGHT);
+		topWall = Game.pools.getWall(0, 0, FlxG.width, wallWidth, FlxObject.DOWN);
+		bottomWall = Game.pools.getWall(0, FlxG.height - wallWidth, FlxG.width, wallWidth, FlxObject.UP);
 	}
 	
 	public function addWallsToLevel() {

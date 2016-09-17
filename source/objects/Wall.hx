@@ -13,7 +13,7 @@ class Wall extends FlxSprite {
 		setSize(width, height);
 		this.facing = facing;
 		drawWall();
-		graphic.persist = true;
+		alpha = 0.75;
 	}
 	
 	public inline function drawWall() {

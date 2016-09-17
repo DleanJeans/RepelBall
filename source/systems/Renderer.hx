@@ -31,7 +31,7 @@ class Renderer {
 	}
 	
 	public function drawWall(wall:Wall) {
-		drawRoundRect(wall, cast wall.width, cast wall.height, Game.unitLength());
+		drawRoundRect(wall, cast wall.width, cast wall.height, 0);
 	}
 	
 	public function drawEyeWhite(sprite:FlxSprite) {
