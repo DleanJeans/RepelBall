@@ -28,7 +28,7 @@ class ColorSwatchSelector extends FlxSpriteGroup {
 	private var selectorTween:FlxTween;
 	private var selectedSwatch:FlxSprite;
 
-	public function new(colors:Array<FlxColor>, x:Float = 0, y:Float = 0, swatchWidth:Int = 30, swatchHeight:Int = 30, maxColumns:Int = 4, spacingX:Int = 2, spacingY:Int = 2) {
+	public function new(colors:Array<FlxColor>, x:Float = 0, y:Float = 0, swatchWidth:Int = 50, swatchHeight:Int = 50, maxColumns:Int = 4, spacingX:Int = 2, spacingY:Int = 2) {
 		super();
 		
 		assignArguments(colors, swatchWidth, swatchHeight, maxColumns, spacingX, spacingY);
@@ -49,12 +49,17 @@ class ColorSwatchSelector extends FlxSpriteGroup {
 	}
 	
 	public function selectByIndex(index:Int) {
+		index = boundSwatchIndex(index);
+		var swatch = swatches.members[index];
+		selectSwatch(swatch);
+	}
+	
+	private function boundSwatchIndex(index:Int):Int {
 		if (index < 0)
 			index = 0;
 		else if (index >= swatches.members.length)
 			index %= swatches.members.length;
-		var swatch = swatches.members[index];
-		selectSwatch(swatch);
+		return index;
 	}
 	
 	public inline function fixSelector() {
@@ -79,7 +84,7 @@ class ColorSwatchSelector extends FlxSpriteGroup {
 	}
 	
 	private function createStuff() {
-		label = new FlxText(0, 0, (swatchWidth + spacingX) * maxColumns, "Color", 20);
+		label = new FlxText(0, 0, (swatchWidth + spacingX) * maxColumns, "Color", Game.settings.COLOR_SWATCH_LABEL_SIZE);
 		label.alignment = FlxTextAlign.CENTER;
 		swatches = new FlxSpriteGroup();
 		selector = new FlxSprite();
@@ -97,13 +102,13 @@ class ColorSwatchSelector extends FlxSpriteGroup {
 			swatch.makeGraphic(swatchWidth, swatchHeight);
 			swatch.color = color;
 			swatches.add(swatch);
-			FlxMouseEventManager.add(swatch, selectSwatch);
+			FlxMouseEventManager.add(swatch, selectSwatch.bind(_, false));
 		}
 	}
 	
 	private function setupSelector() {
 		selector.makeGraphic(swatchWidth + 2, swatchHeight + 2, 0x0);
-		selector.drawRect(0, 0, selector.width, selector.height, 0x0, { thickness:6, color:Game.color.white });
+		selector.drawRect(0, 0, selector.width, selector.height, 0x0, { thickness:Game.settings.COLOR_SWATCH_SELECTOR_WIDTH, color:Game.color.white });
 		selector.setSize(0, 0);
 		selector.centerOffsets();
 	}
@@ -117,24 +122,26 @@ class ColorSwatchSelector extends FlxSpriteGroup {
 	private function moreSetup() {
 		setPosition(x, y);
 		updateLayout();
-		selectSwatch(firstSwatch);
+		selectFirstSwatchInstantly();
 	}
 	
-	private inline function selectSwatch(swatch:FlxSprite) {
+	private inline function selectFirstSwatchInstantly() {
+		selectSwatch(firstSwatch, true);
+	}
+	
+	private inline function selectSwatch(swatch:FlxSprite, instantly:Bool = false) {
 		selectedSwatch = swatch;
-		moveSelectorTo(swatch);
+		moveSelectorTo(swatch, instantly);
 		callback();
 	}
 	
 	private function moveSelectorTo(swatch:FlxSprite, instantly:Bool = false) {
-		if (instantly) {
-			selector.setPosition(firstSwatch.getCenterX(), firstSwatch.getCenterY());
-		}
-		else {
-			if (selectorTween != null && !selectorTween.finished)
-				selectorTween.cancel();
-			selectorTween = FlxTween.tween(selector, { x:swatch.getCenterX(), y:swatch.getCenterY()}, 0.25, { ease:FlxEase.quartOut});
-		}
+		if (selectorTween != null && !selectorTween.finished)
+			selectorTween.cancel();
+			
+		if (instantly)
+			selector.setPosition(swatch.getCenterX(), swatch.getCenterY());
+		else selectorTween = FlxTween.tween(selector, { x:swatch.getCenterX(), y:swatch.getCenterY()}, 0.25, { ease:FlxEase.quartOut});
 	}
 	
 	private function callback() {

@@ -2,6 +2,7 @@ package states.group;
 
 import flixel.FlxG;
 import flixel.group.FlxSpriteGroup;
+import flixel.util.FlxAxes;
 import flixel.util.FlxSignal;
 import ui.LoopSelector;
 import ui.SideButton;
@@ -16,6 +17,7 @@ class MatchSettings extends FlxSpriteGroup {
 	public var maxBallsLoop(default, null):LoopSelector;
 	public var scoresLoop(default, null):LoopSelector;
 	
+	public var teamSettingsGroup(default, null):FlxSpriteGroup;
 	public var teamSettings1(default, null):TeamSettings;
 	public var teamSettings2(default, null):TeamSettings;
 	
@@ -35,7 +37,7 @@ class MatchSettings extends FlxSpriteGroup {
 	}
 	
 	public function apply() {
-		Game.match.scoreToWin = Game.settings.scoresToWin[scoresLoop.getIndex()];
+		Game.match.scoreToWin = cast scoresLoop.getCurrentValue();
 		Game.match.maxBalls = cast maxBallsLoop.getCurrentValue();
 		teamSettings1.apply(Game.match.team1);
 		teamSettings2.apply(Game.match.team2);
@@ -49,17 +51,29 @@ class MatchSettings extends FlxSpriteGroup {
 		backButton = new SideButton(0, FlxG.height - 75, 240, 50, "Back", 35, back.dispatch);
 		startButton = new SideButton(0, FlxG.height - 75, 240, 50, "Start", 35, start.dispatch);
 		
-		maxBallsLoop = new LoopSelector(50, 125, 300, 30, "Max Balls", Game.settings.maxBalls, 175);
-		scoresLoop = new LoopSelector(50, 175, 300, 30, "Scores", Game.settings.scoreToWinStrings, 175);
+		maxBallsLoop = Game.pools.getLoopSelector("Max Balls", Game.settings.maxBalls, 175);
+		scoresLoop = Game.pools.getLoopSelector("Scores", Game.settings.scoresToWin, 175);
 		
-		teamSettings1 = new TeamSettings(50, 300);
-		teamSettings2 = new TeamSettings(325, 300);
+		teamSettingsGroup = new FlxSpriteGroup();
+		teamSettings1 = new TeamSettings(0, 300);
+		teamSettings2 = new TeamSettings(0, 300);
 	}
 	
 	private function setupStuff() {
 		startButton.flip();
 		startButton.setRight(FlxG.width);
+		
+		maxBallsLoop.screenCenter(FlxAxes.X);
+		scoresLoop.screenCenter(FlxAxes.X);
+		scoresLoop.y = maxBallsLoop.getBottom() + Game.settings.LOOP_SELECTOR_SPACE_Y;
+		
+		teamSettingsGroup.add(teamSettings1);
+		teamSettingsGroup.add(teamSettings2);
+		teamSettings2.x = teamSettings1.getRight() + Game.settings.TEAM_SETTINGS_SPACE_X;
+		teamSettingsGroup.screenCenter(FlxAxes.X);
+		
 		maxBallsLoop.select(1);
+		
 		selectRandomColorOnSwatches();
 	}
 	

@@ -22,7 +22,7 @@ class LoopSelector extends FlxSpriteGroup {
 	private var _width:Int;
 	private var _height:Int;
 	
-	public function new<T>(x:Float, y:Float, width:Int = 300, height:Int = 30, labelText:String, values:Array<T>, labelFieldWidth:Int = 200) {
+	public function new<T>(x:Float, y:Float, width:Int = 300, height:Int = 60, labelText:String, values:Array<T>, labelFieldWidth:Int = 200) {
 		super();
 		
 		assignArguments(width, height, labelText, labelFieldWidth);
@@ -76,10 +76,11 @@ class LoopSelector extends FlxSpriteGroup {
 		setupBackground();
 		setupPrevAndNextButton();
 		setupMidText();
+		label.setCenterY(background.getCenterY());
 	}
 	
 	private function setupLabel() {
-		label.size = 25;
+		label.size = Game.settings.LOOP_SELECTOR_TEXT_SIZE;
 		label.text = _labelText;
 		label.fieldWidth = _labelFieldWidth;
 	}
@@ -110,7 +111,7 @@ class LoopSelector extends FlxSpriteGroup {
 	}
 	
 	private function setupMidText() {
-		midText.size = 25;
+		midText.size = Game.settings.LOOP_SELECTOR_TEXT_SIZE;
 		midText.fieldWidth = _width;
 		midText.alignment = FlxTextAlign.CENTER;
 		midText.setCenter(background.getCenter());

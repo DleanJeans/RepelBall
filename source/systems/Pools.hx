@@ -8,6 +8,7 @@ import objects.Ball;
 import objects.PaddleWrapper;
 import objects.Wall;
 import ui.ColorSwatchSelector;
+import ui.LoopSelector;
 using flixel.addons.util.position.FlxPosition;
 
 typedef Pool<T:FlxBasic> = FlxTypedGroup<T>;
@@ -31,19 +32,23 @@ class Pools {
 		return ball;
 	}
 	
-	public function getPaddle():PaddleWrapper {
+	public inline function getPaddle():PaddleWrapper {
 		var paddle = new PaddleWrapper();
 		return paddle;
 	}
 	
-	public function getWall(x:Float, y:Float, width:Int, height:Int, facing:Int):Wall {
+	public inline function getWall(x:Float, y:Float, width:Int, height:Int, facing:Int):Wall {
 		var wall = new Wall();
 		wall.resetWall(x, y, width, height, facing);
 		return wall;
 	}
 	
-	public function getDefaultColorSwatch(x:Float = 0, y:Float = 0) {
-		return new ColorSwatchSelector(Game.color.list, x, y);
+	public inline function getDefaultColorSwatch(x:Float = 0, y:Float = 0):ColorSwatchSelector {
+		return new ColorSwatchSelector(Game.color.list, x, y, Game.settings.COLOR_SWATCH_SIZE, Game.settings.COLOR_SWATCH_SIZE);
+	}
+	
+	public inline function getLoopSelector(label:String, values:Array<Dynamic>, labelFieldWidth:Int = 175):LoopSelector {
+		return new LoopSelector(0, 0, 300, Game.settings.LOOP_SELECTOR_HEIGHT, label, values, labelFieldWidth);
 	}
 	
 }

@@ -59,15 +59,15 @@ class TeamSettings extends FlxSpriteGroup {
 	}
 	
 	private function setupStuff() {
-		teamName.size = 30;
-		teamName.fieldWidth = colorSwatch.width * 1.75;
+		teamName.size = Game.settings.TEAM_SETTINGS_TEAM_NAME_SIZE;
+		teamName.fieldWidth = colorSwatch.width * 1.5;
 		teamName.alignment = FlxTextAlign.CENTER;
 		
 		colorSwatch.colorChangedCallback = updateTeamName;
 		colorSwatch.setMidTop(teamName.getMidBottom());
 		colorSwatch.y += 20;
 		
-		paddleBack.makeGraphic(150, 150);
+		Game.renderer.drawPaddleBack(paddleBack);
 		paddleBack.alpha = 0.25;
 		paddleBack.setMidTop(colorSwatch.getMidBottom());
 		paddleBack.y += 30;

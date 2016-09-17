@@ -6,6 +6,18 @@ import flixel.system.FlxAssets;
 import flixel.text.FlxText;
 
 class Settings {
+	public var COLOR_SWATCH_LABEL_SIZE:Int;
+	public var COLOR_SWATCH_SELECTOR_WIDTH:Int;
+	public var COLOR_SWATCH_SIZE:Int;
+	
+	public var LOOP_SELECTOR_TEXT_SIZE:Int;
+	public var LOOP_SELECTOR_HEIGHT:Int;
+	public var LOOP_SELECTOR_SPACE_Y:Int;
+	
+	public var TEAM_SETTINGS_TEAM_NAME_SIZE:Int;
+	public var TEAM_SETTINGS_PADDLE_BACK_SIZE:Int;
+	public var TEAM_SETTINGS_SPACE_X:Int;
+	
 	public var MULTI_GOAL_THRESHOLD:Int = 1;
 	public var BALL_STARTING_SPEED:Int = cast FlxG.height / 4;
 	public var COLOR_CHANGED_TWEEN_DURATION = 0.5;
@@ -13,20 +25,51 @@ class Settings {
 	
 	public var maxBalls(default, null):Array<Int> = [for (i in 1...5) i];
 	public var scoresToWin(default, null):Array<Int> = [3, 5, 10];
-	public var scoreToWinStrings(default, null):Array<String> = ["Casual 3", "Standard 5", "Extended 10"];
 	
 	public function new() {
 		FlxG.camera.antialiasing = true;
+		setupUISettings();
 		addTestScoreSettingsOnDebug();
 		setSeparateBias();
 		setDefaultFont();
 		disableFlixelMouseOnJs();
 	}
 	
+	private function setupUISettings() {
+		#if mobile
+		
+		COLOR_SWATCH_LABEL_SIZE = 30;
+		COLOR_SWATCH_SELECTOR_WIDTH = 6;
+		COLOR_SWATCH_SIZE = 50;
+		
+		TEAM_SETTINGS_TEAM_NAME_SIZE = 40;
+		TEAM_SETTINGS_PADDLE_BACK_SIZE = 150;
+		TEAM_SETTINGS_SPACE_X = -20;
+		
+		LOOP_SELECTOR_HEIGHT = 60;
+		LOOP_SELECTOR_TEXT_SIZE = 35;
+		LOOP_SELECTOR_SPACE_Y = 0;
+		
+		#else
+		
+		COLOR_SWATCH_LABEL_SIZE = 20;
+		COLOR_SWATCH_SELECTOR_WIDTH = 6;
+		COLOR_SWATCH_SIZE = 30;
+		
+		TEAM_SETTINGS_TEAM_NAME_SIZE = 30;
+		TEAM_SETTINGS_PADDLE_BACK_SIZE = 150;
+		TEAM_SETTINGS_SPACE_X = 20;
+		
+		LOOP_SELECTOR_HEIGHT = 30;
+		LOOP_SELECTOR_TEXT_SIZE = 25;
+		LOOP_SELECTOR_SPACE_Y = 20;
+		
+		#end
+	}
+	
 	private function addTestScoreSettingsOnDebug() {
 		#if debug
 		scoresToWin.unshift(1);
-		scoreToWinStrings.unshift("Test 1");
 		#end
 	}
 	
