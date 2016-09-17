@@ -22,7 +22,7 @@ class Controller extends FlxBasic {
 	
 	override public function kill():Void {
 		super.kill();
-		Game.paddleMovement.stop(paddle);
+		Game.paddle.movement.stop(paddle);
 	}
 	
 }

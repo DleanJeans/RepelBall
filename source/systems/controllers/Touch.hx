@@ -20,12 +20,12 @@ class Touch extends Controller {
 		var difference = pointerPosition - paddleCenter;
 		
 		if (!FlxG.mouse.pressed)
-			action = Game.paddleMovement.stop;
+			action = Game.paddle.movement.stop;
 		else if (pass(difference) && difference < 0)
-			action = Game.paddleMovement.moveLeft;
+			action = Game.paddle.movement.moveLeft;
 		else if (pass(difference) && difference > 0)
-			action = Game.paddleMovement.moveRight;
-		else action = Game.paddleMovement.stop;
+			action = Game.paddle.movement.moveRight;
+		else action = Game.paddle.movement.stop;
 		
 		action(paddle);
 	}

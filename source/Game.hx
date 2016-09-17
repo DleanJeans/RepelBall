@@ -19,7 +19,7 @@ import systems.States;
 import systems.WallBuilder;
 import systems.collisions.Collision;
 import systems.controllers.ControllerList;
-import systems.controllers.PaddleMovement;
+import systems.paddle.PaddleMovement;
 import systems.paddle.PaddleSystems;
 import ui.Scoreboard;
 
@@ -37,7 +37,6 @@ class Game {
 	public static var states(default, null):States;
 	public static var renderer(default, null):Renderer;
 	public static var collision(default, null):Collision;
-	public static var paddleMovement(default, null):PaddleMovement;
 	public static var controllers(default, null):ControllerList;
 	public static var position(default, null):Positioner;
 	public static var pools(default, null):Pools;
@@ -61,7 +60,6 @@ class Game {
 		states = new States();
 		renderer = new Renderer();
 		collision = new Collision();
-		paddleMovement = new PaddleMovement();
 		controllers = new ControllerList();
 		position = new Positioner();
 		pools = new Pools();

@@ -14,10 +14,10 @@ class Keyboard extends Controller {
 		if (paddle == null) return;
 		
 		if (FlxG.keys.anyPressed([A, LEFT]))
-			Game.paddleMovement.moveLeft(paddle);
+			Game.paddle.movement.moveLeft(paddle);
 		else if (FlxG.keys.anyPressed([D, RIGHT]))
-			Game.paddleMovement.moveRight(paddle);
-		else Game.paddleMovement.stop(paddle);
+			Game.paddle.movement.moveRight(paddle);
+		else Game.paddle.movement.stop(paddle);
 	}
 }
 #end

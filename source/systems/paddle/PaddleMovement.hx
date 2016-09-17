@@ -1,4 +1,4 @@
-package systems.controllers;
+package systems.paddle;
 
 import flixel.math.FlxAngle;
 import flixel.math.FlxPoint;

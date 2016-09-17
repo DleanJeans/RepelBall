@@ -40,17 +40,17 @@ class SimpleAI extends Controller {
 		var paddleVelocity = paddle.get1Axis(paddle.velocity);
 		
 		if (distanceTooCloseToMove(dist, paddle.speed)) {
-			Game.paddleMovement.stop(paddle);
+			Game.paddle.movement.stop(paddle);
 		}
 		else if (paddle.facing == FlxObject.UP || paddle.facing == FlxObject.RIGHT) {
 			if (dist < 0)
-				Game.paddleMovement.moveLeft(paddle);
-			else Game.paddleMovement.moveRight(paddle);
+				Game.paddle.movement.moveLeft(paddle);
+			else Game.paddle.movement.moveRight(paddle);
 		}
 		else if (paddle.facing == FlxObject.DOWN || paddle.facing == FlxObject.LEFT) {
 			if (dist < 0)
-				Game.paddleMovement.moveRight(paddle);
-			else Game.paddleMovement.moveLeft(paddle);
+				Game.paddle.movement.moveRight(paddle);
+			else Game.paddle.movement.moveLeft(paddle);
 		}
 	}
 	
