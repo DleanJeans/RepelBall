@@ -50,6 +50,7 @@ class Signals {
 		roundStart.add(Game.ball.shooter.shootInstantly);
 		roundStart.add(Game.ball.shooter.revive);
 		roundStart.add(Game.ball.pusher.autoPush);
+		roundStart.add(Game.sfx.playThemeInGame);
 		
 		roundEnd.add(Game.match.endRound);
 		roundEnd.add(Game.match.addScore);
@@ -60,6 +61,7 @@ class Signals {
 		roundEnd.add(Game.paddle.hoverer.pauseAllHovering);
 		roundEnd.add(Game.controllers.kill);
 		roundEnd.add(Game.ball.shooter.kill);
+		roundEnd.add(Game.sfx.fadeOutTheme);
 		
 		postRoundEnd.add(Game.match.startNextRoundOrEndMatch);
 		postRoundEnd.add(Game.goalManager.clearGoalStateReference);

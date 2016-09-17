@@ -51,8 +51,8 @@ class MatchSettings extends FlxSpriteGroup {
 		backButton = new SideButton(0, FlxG.height - 75, 240, 50, "Back", 35, back.dispatch);
 		startButton = new SideButton(0, FlxG.height - 75, 240, 50, "Start", 35, start.dispatch);
 		
-		maxBallsLoop = Game.pools.getLoopSelector("Max Balls", Game.settings.maxBalls, 175);
-		scoresLoop = Game.pools.getLoopSelector("Scores", Game.settings.scoresToWin, 175);
+		maxBallsLoop = Game.pools.getLoopSelector("Max Balls", Game.settings.maxBalls);
+		scoresLoop = Game.pools.getLoopSelector("Scores", Game.settings.scoresToWin);
 		
 		teamSettingsGroup = new FlxSpriteGroup();
 		teamSettings1 = new TeamSettings(0, 300);
@@ -63,6 +63,7 @@ class MatchSettings extends FlxSpriteGroup {
 		startButton.flip();
 		startButton.setRight(FlxG.width);
 		
+		maxBallsLoop.y = newMatchHeader.getBottom() + 50;
 		maxBallsLoop.screenCenter(FlxAxes.X);
 		scoresLoop.screenCenter(FlxAxes.X);
 		scoresLoop.y = maxBallsLoop.getBottom() + Game.settings.LOOP_SELECTOR_SPACE_Y;
