@@ -3,6 +3,7 @@ package systems.paddle;
 import flixel.FlxBasic;
 import flixel.FlxG;
 import flixel.math.FlxPoint;
+import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import objects.Paddle;
 
@@ -45,25 +46,27 @@ class PaddleSqueezer extends FlxBasic {
 	}
 	
 	public inline function squeezePaddle(paddle:Paddle) {
-		var tween = getTween(paddle);
-		if (tween != null)
-			tween.cancel();
-		tween = FlxTween.tween(paddle.wrapper.scale, { x:1.25, y:0.75 }, 0.05, 
-		{ onUpdate:updateEyeSeparation.bind(paddle), onComplete: removeTween.bind(paddle) });
+		var tween = getAndStopTween(paddle);
+		tween = FlxTween.tween(paddle.wrapper.scale, { x:1.25, y:0.75 }, 0.5, tweenOptions(paddle));
 		tweenMap.set(paddle, tween);
 	}
 	
 	public inline function unsqueezePaddle(paddle:Paddle) {
+		var tween = getAndStopTween(paddle);
+		tween = FlxTween.tween(paddle.wrapper.scale, { x:1, y:1 }, 0.5, tweenOptions(paddle));
+		tweenMap.set(paddle, tween);
+	}
+	
+	private inline function getAndStopTween(paddle:Paddle) {
 		var tween = getTween(paddle);
 		if (tween != null)
 			tween.cancel();
-		tween = FlxTween.tween(paddle.wrapper.scale, { x:1, y:1 }, 0.05, 
-		{ onUpdate:updateEyeSeparation.bind(paddle), onComplete: removeTween.bind(paddle) });
-		tweenMap.set(paddle, tween);
+		return tween;
 	}
 	
 	private inline function updateEyeSeparation(paddle:Paddle, tween:FlxTween) {
 		paddle.wrapper.face.eyes.scaleEyeSeparation(paddle.wrapper.scale.x);
+		//FlxG.watch.addQuick("paddle.scale", paddle.scale);
 	}
 	
 	private inline function removeTween(paddle:Paddle, tween:FlxTween) {
@@ -72,5 +75,9 @@ class PaddleSqueezer extends FlxBasic {
 	
 	private inline function getTween(paddle:Paddle):FlxTween {
 		return tweenMap.get(paddle);
+	}
+	
+	function tweenOptions(paddle:Paddle):TweenOptions {
+		return { onUpdate:updateEyeSeparation.bind(paddle), onComplete: removeTween.bind(paddle), ease:FlxEase.backOut };
 	}
 }

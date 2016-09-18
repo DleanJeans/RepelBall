@@ -1,9 +1,13 @@
 package systems.paddle;
 
+import flixel.tweens.FlxTween;
 import flixel.util.FlxTimer;
 import objects.Paddle;
+import objects.PaddleWrapper;
 import objects.Wall;
 import objects.personality.EyePair;
+import objects.personality.Face;
+import objects.personality.Mouth;
 
 class PaddleExpression {
 	public function new() {}
@@ -17,41 +21,48 @@ class PaddleExpression {
 			face.eyes.updateFacing();
 	}
 	
+	public function tweenUpdateEyeSeparation(paddle:Paddle, tween:FlxTween) {
+		updateEyeSeparation(paddle);
+	}
+	
+	public inline function updateEyeSeparation(paddle:Paddle) {
+		eyes(paddle).scaleEyeSeparation(wrapper(paddle).scale.x);
+	}
+	
 	public inline function smile(paddle:Paddle) {
-		var face = paddle.wrapper.face;
-		face.mouth.smile();
+		mouth(paddle).smile();
 	}
 	
 	public inline function frown(paddle:Paddle) {
-		var face = paddle.wrapper.face;
-		face.mouth.frown();
+		mouth(paddle).frown();
 	}
 	
 	public inline function shut(paddle:Paddle) {
-		var face = paddle.wrapper.face;
-		face.mouth.shut();
+		mouth(paddle).shut();
 	}
 	
 	public inline function lookAtBall(paddle:Paddle) {
-		var face = paddle.wrapper.face;
-		face.eyes.targetting = BALL;
+		eyes(paddle).targetting = BALL;
 	}
 	
 	public inline function lookAtPointer(paddle:Paddle) {
-		var face = paddle.wrapper.face;
-		face.eyes.targetting = POINTER;
+		eyes(paddle).targetting = POINTER;
 	}
 	
 	public inline function oohWhenColorChanged(paddle:Paddle) {
-		var face = paddle.wrapper.face;
-		face.mouth.ooh();
-		face.eyes.targetting = NONE;
-		new FlxTimer().start(Game.settings.COLOR_CHANGED_TWEEN_DURATION, resetFromOoh.bind(paddle));
+		mouth(paddle).ooh();
+		eyes(paddle).targetting = NONE;
+		new FlxTimer().start(Game.settings.COLOR_CHANGING_TWEEN_DURATION, resetFromOoh.bind(paddle));
 	}
 	
 	public inline function resetFromOoh(paddle:Paddle, timer:FlxTimer) {
-		shut(paddle);
+		smile(paddle);
 		lookAtPointer(paddle);
 	}
+	
+	public inline function wrapper(paddle:Paddle):PaddleWrapper return paddle.wrapper;
+	public inline function face(paddle:Paddle):Face return paddle.wrapper.face;
+	public inline function eyes(paddle:Paddle):EyePair return paddle.wrapper.face.eyes;
+	public inline function mouth(paddle:Paddle):Mouth return paddle.wrapper.face.mouth;
 	
 }

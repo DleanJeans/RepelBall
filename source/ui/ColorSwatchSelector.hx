@@ -8,6 +8,7 @@ import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
+import flixel.util.FlxTimer;
 using flixel.util.FlxSpriteUtil;
 using flixel.addons.util.position.FlxPosition;
 
@@ -24,9 +25,10 @@ class ColorSwatchSelector extends FlxSpriteGroup {
 	public var spacingY:Int;
 	public var colorChangedCallback:ColorSwatchSelector->Void;
 	
-	private var firstSwatch(get, null):FlxSprite;
+	private var firstSwatch(get, never):FlxSprite;
 	private var selectorTween:FlxTween;
 	private var selectedSwatch:FlxSprite;
+	private var coolDownTimer:FlxTimer;
 
 	public function new(colors:Array<FlxColor>, x:Float = 0, y:Float = 0, swatchWidth:Int = 50, swatchHeight:Int = 50, maxColumns:Int = 4, spacingX:Int = 2, spacingY:Int = 2) {
 		super();
@@ -88,11 +90,13 @@ class ColorSwatchSelector extends FlxSpriteGroup {
 		label.alignment = FlxTextAlign.CENTER;
 		swatches = new FlxSpriteGroup();
 		selector = new FlxSprite();
+		coolDownTimer = new FlxTimer();
 	}
 	
 	private function setupStuff() {
 		createSwatches();
 		setupSelector();
+		coolDownTimer.finished = true;
 	}
 	
 	private function createSwatches() {
@@ -102,7 +106,7 @@ class ColorSwatchSelector extends FlxSpriteGroup {
 			swatch.makeGraphic(swatchWidth, swatchHeight);
 			swatch.color = color;
 			swatches.add(swatch);
-			FlxMouseEventManager.add(swatch, selectSwatch.bind(_, false));
+			FlxMouseEventManager.add(swatch, selectSwatchIfCooledDown);
 		}
 	}
 	
@@ -127,6 +131,13 @@ class ColorSwatchSelector extends FlxSpriteGroup {
 	
 	private inline function selectFirstSwatchInstantly() {
 		selectSwatch(firstSwatch, true);
+	}
+	
+	private function selectSwatchIfCooledDown(swatch:FlxSprite) {
+		if (coolDownTimer.finished) {
+			coolDownTimer.start(Game.settings.COLOR_CHANGING_TWEEN_DURATION);
+			selectSwatch(swatch);
+		}
 	}
 	
 	private inline function selectSwatch(swatch:FlxSprite, instantly:Bool = false) {

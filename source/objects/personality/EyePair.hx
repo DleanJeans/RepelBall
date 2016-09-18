@@ -50,7 +50,7 @@ class EyePair extends FlxSpriteGroup {
 	}
 	
 	public function scaleEyeSeparation(scaleX:Float) {
-		var eyeOffset = paddle.length * (scaleX - 1) / 2;
+		var eyeOffset = paddle.length * (scaleX - 1) / 2 * 0.8;
 		leftEye.offset.x = eyeOffset;
 		rightEye.offset.x = -eyeOffset;
 	}

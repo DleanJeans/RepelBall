@@ -63,7 +63,7 @@ class Mouth extends FlxSprite {
 		stopTween();
 		changeFrame(SMILE);
 		
-		tweenScale(null, 0.1);
+		tweenScale(1, 0.1);
 	}
 	
 	public function frown() {
@@ -79,8 +79,7 @@ class Mouth extends FlxSprite {
 		_currentExpression = OOH_ING;
 		stopTween();
 		changeFrame(OOH);
-		scale.set(1, 1);
-		tweenScale(0.2, 0.2);
+		scale.set(0.5, 0.5);
 	}
 	
 	private inline function tweenScale(?x:Float, ?y:Float) {
@@ -90,7 +89,7 @@ class Mouth extends FlxSprite {
 			values.x = x;
 		if (y != null)
 			values.y = y;
-		tween = FlxTween.tween(this.scale, values, 0.25);
+		tween = FlxTween.tween(this.scale, values, 0.1);
 	}
 	
 	private inline function stopTween() {

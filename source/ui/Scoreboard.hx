@@ -61,8 +61,6 @@ class Scoreboard extends FlxSpriteGroup {
 		score2.fieldWidth = background2.height;
 		score1.alignment =
 		score2.alignment = FlxTextAlign.CENTER;
-		score1.graphic.persist =
-		score2.graphic.persist = true;
 	}
 	
 	private function updateTextPosition() {
