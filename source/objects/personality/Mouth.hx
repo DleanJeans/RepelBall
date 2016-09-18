@@ -3,7 +3,12 @@ package objects.personality;
 import flixel.FlxSprite;
 import flixel.math.FlxPoint;
 import flixel.tweens.FlxTween;
+import format.SVG;
 import objects.Paddle;
+import openfl.Assets;
+import openfl.display.BitmapData;
+import openfl.display.Graphics;
+import openfl.display.Sprite;
 using flixel.addons.util.position.FlxPosition;
 
 @:enum
@@ -28,9 +33,20 @@ class Mouth extends FlxSprite {
 	
 	public function new() {
 		super(0, 0);
-		loadGraphic(AssetPaths.Mouths__png, true, 24, 12);
+		loadGraphic(drawMouthFromSvg(), true, 24, 12);
 		solid = false;
 		smile();
+	}
+	
+	private function drawMouthFromSvg():BitmapData {
+		var svg = new SVG(Assets.getText(AssetPaths.Mouths__svg));
+		var sprite = new Sprite();
+		var bitmapData = new BitmapData(24, 12 * 3, true, 0x0);
+		
+		svg.render(sprite.graphics);
+		bitmapData.draw(sprite);
+		
+		return bitmapData;
 	}
 	
 	public function attachToPaddle(paddle:Paddle) {
