@@ -19,14 +19,13 @@ import systems.States;
 import systems.WallBuilder;
 import systems.collisions.Collision;
 import systems.controllers.ControllerList;
-import systems.paddle.PaddleMovement;
 import systems.paddle.PaddleSystems;
 import ui.Scoreboard;
 
 class Game {
 	private static inline var UNIT_LENGTH = 24;
 	public static inline function unitLength(times:Float = 1):Int {
-		return Std.int(UNIT_LENGTH * times);
+		return cast UNIT_LENGTH * times;
 	}
 	
 	public static var level(default, null):Level;

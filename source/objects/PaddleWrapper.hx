@@ -17,10 +17,8 @@ class PaddleWrapper extends FlxSpriteGroup {
 		
 		facing = FlxObject.UP;
 		
-		paddle = new Paddle();
+		paddle = new Paddle(this);
 		face = new Face(paddle);
-		
-		paddle.wrapper = this;
 		
 		add(paddle);
 		add(face);

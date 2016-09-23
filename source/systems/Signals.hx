@@ -93,6 +93,7 @@ class Signals {
 		ball_paddle.add(Game.ball.manager.changeBallColor);
 		ball_paddle.add(Game.ball.manager.increaseBallSpeed);
 		ball_paddle.add(Game.collision.handler.ball_paddle);
+		ball_paddle.add(Game.paddle.hoverer.knockBackBallSpeed);
 		ball_paddle.add(Game.sfx.playBallHitSound);
 	}
 }

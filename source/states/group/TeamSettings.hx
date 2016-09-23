@@ -83,7 +83,7 @@ class TeamSettings extends FlxSpriteGroup {
 		setPosition(x, y);
 		updateTeamName(colorSwatch);
 		colorSwatch.fixSelector();
-		Game.paddle.hoverer.startHovering(paddle, Game.unitLength(0.75));
+		Game.paddle.hoverer.startHovering(paddle);
 	}
 	
 	private function updateTeamName(colorSwatch:ColorSwatchSelector) {
