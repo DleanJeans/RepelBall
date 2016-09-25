@@ -1,4 +1,5 @@
 package systems.ball;
+import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
 import objects.Ball;
 import objects.Paddle;
@@ -20,11 +21,11 @@ class BallEffect {
 	
 	public inline function pop(ball:Ball) {
 		ball.scale.set(2, 2);
-		FlxTween.tween(ball.scale, { x:1, y:1 }, Game.settings.BALL_FX_DURATION);
+		Game.tween.ballScale(ball, 1, 1);
 	}
 	
 	public inline function tweenColor(ball:Ball, newColor:FlxColor) {
-		FlxTween.color(ball, Game.settings.BALL_FX_DURATION, ball.color, newColor);
+		Game.tween.ballColor(ball, newColor);
 	}
 	
 }

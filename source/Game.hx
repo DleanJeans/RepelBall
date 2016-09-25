@@ -5,6 +5,7 @@ import systems.Colors;
 import systems.FramerateCounter;
 import systems.GoalManager;
 import systems.SlowMotion;
+import systems.Tweens;
 import systems.ball.BallSystems;
 import systems.Level;
 import systems.Messages;
@@ -51,6 +52,7 @@ class Game {
 	public static var messages(default, null):Messages;
 	public static var ball(default, null):BallSystems;
 	public static var paddle(default, null):PaddleSystems;
+	public static var tween(default, null):Tweens;
 	public static var slowMo(default, null):SlowMotion;
 	
 	public static function init() {
@@ -74,6 +76,7 @@ class Game {
 		messages = new Messages();
 		ball = new BallSystems();
 		paddle = new PaddleSystems();
+		tween = new Tweens();
 		slowMo = new SlowMotion();
 		
 		signals = new Signals();

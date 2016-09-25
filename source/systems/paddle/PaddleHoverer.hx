@@ -61,6 +61,7 @@ class PaddleHoverer {
 			tween.hoveringTween.cancel();
 			tween.hoveringOffset.set();
 			tweenMap.remove(paddle);
+			paddle.offset.set();
 			if (resetPosition)
 				paddle.resetToStartingPosition();
 		}
@@ -92,11 +93,17 @@ class HoveringTween {
 	
 	public function startTween(range:Float) {
 		var down = downVector(range);
-		var delay = FlxG.random.float(0, 0.5);
 		
 		hoveringOffset.set(-down.x / 2, -down.y / 2);
-		hoveringTween = FlxTween.tween(hoveringOffset, { x:hoveringOffset.x + down.x, y:hoveringOffset.y + down.y }, 0.5,
-		{ type:FlxTween.PINGPONG, ease:FlxEase.sineInOut, startDelay:delay, onUpdate:updateTween });
+		hoveringTween = Game.tween.hovering(hoveringOffset, down, updateOffset);
+	}
+	
+	private inline function downVector(range:Float):FlxPoint {
+		return FlxPoint.get(range).rotate(FlxPoint.weak(), FlxAngle.angleFromFacing(paddle.facing, true)).round();
+	}
+	
+	private inline function updateOffset(tween:FlxTween) {
+		copyOffset();
 	}
 	
 	public function knockBack(range:Float) {
@@ -104,21 +111,12 @@ class HoveringTween {
 		var down = downVector(range);
 		
 		stopKnockbackTween();
-		knockBackTween = FlxTween.tween(knockBackOffset, { x:down.x, y:down.y }, 0.25)
-		.then(FlxTween.tween(knockBackOffset, { x:0, y:0 }, 0.25));
+		knockBackTween = Game.tween.knockBack(knockBackOffset, down);
 	}
 	
 	private function stopKnockbackTween() {
 		if (knockBackTween != null && !knockBackTween.finished)
 			knockBackTween.cancel();
-	}
-	
-	private inline function downVector(range:Float):FlxPoint {
-		return FlxPoint.get(range).rotate(FlxPoint.weak(), FlxAngle.angleFromFacing(paddle.facing, true)).round();
-	}
-	
-	private inline function updateTween(tween:FlxTween) {
-		copyOffset();
 	}
 	
 	inline function get_hoveringOffset():FlxPoint {

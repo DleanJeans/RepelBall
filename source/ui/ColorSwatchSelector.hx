@@ -152,7 +152,7 @@ class ColorSwatchSelector extends FlxSpriteGroup {
 			
 		if (instantly)
 			selector.setPosition(swatch.getCenterX(), swatch.getCenterY());
-		else selectorTween = FlxTween.tween(selector, { x:swatch.getCenterX(), y:swatch.getCenterY()}, 0.25, { ease:FlxEase.quartOut});
+		else selectorTween = Game.tween.colorSwatchSelector(selector, swatch.getCenterX(), swatch.getCenterY());
 	}
 	
 	private function callback() {
