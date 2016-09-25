@@ -22,6 +22,7 @@ class Settings {
 	public var BALL_STARTING_SPEED:Int = cast FlxG.height / 4;
 	public var COLOR_CHANGING_TWEEN_DURATION = 0.5;
 	public var MESSAGES_FIELD_WIDTH = FlxG.width * 0.85;
+	public var BALL_FX_DURATION = 0.1;
 	
 	public var maxBalls(default, null):Array<Int> = [for (i in 1...5) i];
 	public var scoresToWin(default, null):Array<Int> = [3, 5, 10];

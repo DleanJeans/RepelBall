@@ -28,10 +28,6 @@ class BallManager {
 		}
 	}
 	
-	public inline function changeBallColor(ball:Ball, paddle:Paddle) {
-		ball.color = paddle.color;
-	}
-	
 	public function findNearestBall(paddle:Paddle) {
 		var nearest:Ball = null;
 		var nearestTime:Float = Math.POSITIVE_INFINITY;

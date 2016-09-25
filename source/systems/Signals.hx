@@ -82,15 +82,18 @@ class Signals {
 		
 		ball_ball.add(Game.collision.handler.ball_ball);
 		ball_ball.add(Game.sfx.playBallHitSound);
+		ball_ball.add(Game.ball.fx.popOnCollision);
 		
 		ball_wall.add(Game.collision.handler.ball_wall);
 		ball_wall.add(Game.sfx.playBallHitSound);
 		ball_wall.add(Game.match.checkGoal);
+		ball_wall.add(Game.ball.fx.popOnCollision);
 		
 		paddle_wall.add(Game.collision.handler.paddle_wall);
 		paddle_wall.add(Game.paddle.expression.reattachFace);
 		
-		ball_paddle.add(Game.ball.manager.changeBallColor);
+		ball_paddle.add(Game.ball.fx.popOnCollision);
+		ball_paddle.add(Game.ball.fx.tweenColorOnHittingPaddle);
 		ball_paddle.add(Game.ball.manager.increaseBallSpeed);
 		ball_paddle.add(Game.collision.handler.ball_paddle);
 		ball_paddle.add(Game.paddle.hoverer.knockBackBallSpeed);
