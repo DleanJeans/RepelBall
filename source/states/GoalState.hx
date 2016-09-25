@@ -1,8 +1,6 @@
 package states;
 
 import flixel.FlxSubState;
-import flixel.text.FlxText;
-import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import ui.AnyInputText;
 import ui.GoalText;

@@ -1,10 +1,8 @@
 package systems.ball;
-import flixel.math.FlxPoint;
+
 import flixel.util.FlxColor;
 import objects.Ball;
 import objects.Paddle;
-
-import flixel.tweens.FlxTween;
 
 class BallEffect {
 	public function new() {}

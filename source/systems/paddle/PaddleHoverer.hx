@@ -1,9 +1,7 @@
 package systems.paddle;
 
-import flixel.FlxG;
 import flixel.math.FlxAngle;
 import flixel.math.FlxPoint;
-import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import objects.Ball;
 import objects.Paddle;
