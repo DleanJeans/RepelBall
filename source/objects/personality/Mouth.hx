@@ -30,9 +30,11 @@ class Mouth extends FlxSprite {
 	public var paddle:Paddle;
 	
 	private var _currentExpression:MouthExpression;
+	private var _scale:FlxPoint;
 	
 	public function new() {
 		super(0, 0);
+		_scale = FlxPoint.get(1, 1);
 		loadGraphic(drawMouthFromSvg(), true, 24, 12);
 		solid = false;
 		smile();
@@ -49,15 +51,25 @@ class Mouth extends FlxSprite {
 		return bitmapData;
 	}
 	
+	override public function update(elapsed:Float):Void {
+		super.update(elapsed);
+		updateOffset();
+		multiplyScale();
+	}
+	
+	private inline function multiplyScale() {
+		scale.x *= _scale.x;
+		scale.y *= _scale.y;
+	}
+	
+	private inline function updateOffset() {
+		offset.copyFrom(paddle.offset);
+	}
+	
 	public function attachToPaddle(paddle:Paddle) {
 		this.paddle = paddle;
 		setMidBottom(paddle.getMidBottom());
 		y -= 3;
-	}
-	
-	override public function update(elapsed:Float):Void {
-		offset.copyFrom(paddle.offset);
-		super.update(elapsed);
 	}
 	
 	public function changeFrame(expression:MouthFrame) {
@@ -105,7 +117,7 @@ class Mouth extends FlxSprite {
 			values.x = x;
 		if (y != null)
 			values.y = y;
-		tween = FlxTween.tween(this.scale, values, 0.1);
+		tween = FlxTween.tween(_scale, values, 0.25);
 	}
 	
 	private inline function stopTween() {
