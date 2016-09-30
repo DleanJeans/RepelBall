@@ -19,8 +19,7 @@ class ExpressionAI extends Controller {
 		if (paddle == null) return;
 		
 		var nearestBall = getNearestBall();
-		if (nearestBall != null)
-			controlExpression(nearestBall);
+		controlExpression(nearestBall);
 	}
 	
 	private function getNearestBall() {
@@ -29,7 +28,9 @@ class ExpressionAI extends Controller {
 	
 	private function controlExpression(nearestBall:Ball) {
 		var expression = Game.paddle.expression.smile;
-		if (notTooFaraway(nearestBall) && notReachable(nearestBall))
+		if (nearestBall == null)
+			expression = Game.paddle.expression.shut;
+		else if (notTooFaraway(nearestBall) && notReachable(nearestBall))
 			expression = Game.paddle.expression.frown;
 		
 		expression(paddle);

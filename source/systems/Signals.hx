@@ -36,7 +36,7 @@ class Signals {
 		matchStart.add(Game.scoreboard.updateColors);
 		matchStart.add(Game.scoreboard.updateScores);
 		matchStart.add(Game.match.setupTeamsPosition);
-		matchStart.add(Game.paddle.expression.updateFacing);
+		matchStart.add(Game.paddle.expression.updateEyesFacing);
 		matchStart.add(Game.paddle.hoverer.startHoveringAllPaddles);
 		matchStart.add(preRoundStart.dispatch);
 		
@@ -66,6 +66,7 @@ class Signals {
 		postRoundEnd.add(Game.match.startNextRoundOrEndMatch);
 		postRoundEnd.add(Game.goalManager.clearGoalStateReference);
 		postRoundEnd.add(Game.level.clearBalls);
+		postRoundEnd.add(Game.paddle.expression.closeAll);
 		
 		matchOver.add(Game.winManager.triggerWinState);
 		

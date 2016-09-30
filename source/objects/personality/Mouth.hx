@@ -21,8 +21,8 @@ abstract MouthFrame(Int) {
 enum MouthExpression {
 	SMILING;
 	FROWNING;
-	OOH_ING;
-	SHUTTING;
+	OOH;
+	CLOSED;
 }
 
 class Mouth extends FlxSprite {
@@ -85,9 +85,9 @@ class Mouth extends FlxSprite {
 		_currentExpression = SMILING;
 	}
 	
-	public function shut() {
-		if (_currentExpression == SHUTTING) return;
-		_currentExpression = SHUTTING;
+	public function close() {
+		if (_currentExpression == CLOSED) return;
+		_currentExpression = CLOSED;
 		stopTween();
 		changeFrame(SMILE);
 		
@@ -103,8 +103,8 @@ class Mouth extends FlxSprite {
 	}
 	
 	public function ooh() {
-		if (_currentExpression == OOH_ING) return;
-		_currentExpression = OOH_ING;
+		if (_currentExpression == OOH) return;
+		_currentExpression = OOH;
 		stopTween();
 		changeFrame(OOH);
 		scale.set(0.5, 0.5);
