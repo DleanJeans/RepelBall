@@ -25,8 +25,8 @@ class Settings {
 	public var SLOW_MO_TIME_SCALE = 0.2;
 	public var BALL_FX_DURATION = 0.1;
 	
-	public var MIN_HOVERING_DURATION = 0.25;
-	public var MAX_HOVERING_DURATION = 0.75;
+	public var MIN_HOVERING_DURATION = 0.4;
+	public var MAX_HOVERING_DURATION = 0.6;
 	public var MAX_HOVERING_DELAY = 0.25;
 	public var KNOCK_BACK_DURATION = 0.5;
 	
