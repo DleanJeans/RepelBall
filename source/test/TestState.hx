@@ -1,4 +1,4 @@
-package states.test;
+package test;
 
 import flixel.FlxG;
 import flixel.FlxSprite;
