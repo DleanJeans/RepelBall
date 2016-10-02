@@ -9,6 +9,7 @@ import flixel.util.FlxSpriteUtil;
 import flixel.math.FlxPoint;
 import flixel.math.FlxVector;
 import flixel.util.FlxColor;
+import openfl.display.GraphicsPathWinding;
 
 class CometTrail extends FlxSprite {
 	public var trailMap(default, null):TrailMap;
@@ -268,7 +269,7 @@ class CometTrail extends FlxSprite {
 		var trail:Trail;
 		var nodes:Nodes;
 		
-		var outlineNodes = new Array<FlxPoint>();
+		var outlinePoints = new Array<FlxPoint>();
 		var outline2 = new Array<FlxPoint>();
 		var outline1 = new Array<FlxPoint>();
 		
@@ -297,22 +298,31 @@ class CometTrail extends FlxSprite {
 			}
 			
 			outline1.reverse();
-			outlineNodes = outlineNodes.concat(outline1);
-			outlineNodes.push(lastNode.point);
-			outlineNodes = outlineNodes.concat(outline2);
+			outlinePoints = outlinePoints.concat(outline1);
+			outlinePoints.push(lastNode.point);
+			outlinePoints = outlinePoints.concat(outline2);
 			
 			nodes.unshift(lastNode);
 			var firstPoint = lastNode.point.copyTo();
 			
-			FlxSpriteUtil.drawPolygon(this, outlineNodes, trail.color);
+			drawTrailNonZero(trail.color, outlinePoints);
 			
-			while (outlineNodes.length > 0)
-				outlineNodes.pop().put();
+			while (outlinePoints.length > 0)
+				outlinePoints.pop().put();
 			outline2.splice(0, outline2.length);
 			outline1.splice(0, outline1.length);
 			
 			nodes[0].point = firstPoint;
 		}
+	}
+	
+	private function drawTrailNonZero(color:FlxColor, outlinePoints:Array<FlxPoint>) {
+		FlxSpriteUtil.beginDraw(color);
+			FlxSpriteUtil.flashGfx.drawPath(
+			[ for (i in 0...outlinePoints.length) i == 0 ? 1 : 2 ],
+			[ for (node in outlinePoints) for (i in 0...2) i == 0 ? node.x : node.y],
+			GraphicsPathWinding.NON_ZERO);
+			FlxSpriteUtil.endDraw(this);
 	}
 	
 }
