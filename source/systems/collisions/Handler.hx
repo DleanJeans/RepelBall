@@ -27,7 +27,9 @@ class Handler {
 	}
 	
 	public inline function ball_wall(ball:Ball, wall:Wall) {
-		FlxObject.separate(ball, wall);
+		if (Game.match.wallIsGoal(wall))
+			ball.setHitGoal(true);
+		else FlxObject.separate(ball, wall);
 	}
 	
 	public inline function paddle_wall(paddle:Paddle, wall:Wall) {

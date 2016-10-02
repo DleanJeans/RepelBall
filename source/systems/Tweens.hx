@@ -24,7 +24,7 @@ class Tweens {
 	}
 	
 	public inline function ballColor(ball:Ball, newColor:FlxColor):ColorTween {
-		return FlxTween.color(ball, Game.settings.BALL_FX_DURATION, ball.color, newColor);
+		return FlxTween.color(ball, Game.settings.BALL_FX_DURATION, Game.color.white, newColor);
 	}
 	
 	public inline function trailColor(trail:Trail, newColor:FlxColor):ColorTween {

@@ -30,9 +30,4 @@ class GoalManager {
 		return goalState == null;
 	}
 	
-	public function killBall(ball:Ball) {
-		ball.kill();
-		Game.level.removeBall(ball);
-	}
-	
 }

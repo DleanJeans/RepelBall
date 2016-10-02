@@ -75,7 +75,13 @@ class Match {
 		team2.resetRoundScore();
 	}
 	
+	public inline function wallIsGoal(wall:Wall):Bool {
+		return team1.goal == wall || team2.goal == wall;
+	}
+	
 	public function checkGoal(ball:Ball, goal:Wall) {
+		if (ball.hitGoal) return;
+		
 		var scoringTeam = getScoringTeam(goal);
 		if (scoringTeam != null) {
 			Game.signals.goalTeam.dispatch(scoringTeam);

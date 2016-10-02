@@ -13,17 +13,18 @@ class BallEffect {
 			pop(cast object);
 	}
 	
-	public inline function tweenColorOnHittingPaddle(ball:Ball, paddle:Paddle) {
-		tweenColor(ball, paddle.color);
+	public inline function tweenColor(ball:Ball, object:Dynamic) {
+		var newColor = Std.is(object, Paddle) ? paddleColor(object) : ball.color;
+		Game.tween.ballColor(ball, newColor);
+	}
+	
+	private function paddleColor(paddle:Paddle) {
+		return paddle.color;
 	}
 	
 	public inline function pop(ball:Ball) {
 		ball.scale.set(2, 2);
 		Game.tween.ballScale(ball, 1, 1);
-	}
-	
-	public inline function tweenColor(ball:Ball, newColor:FlxColor) {
-		Game.tween.ballColor(ball, newColor);
 	}
 	
 }
