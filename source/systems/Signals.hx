@@ -6,6 +6,7 @@ import flixel.util.FlxSignal.FlxTypedSignal;
 import objects.Ball;
 import objects.Paddle;
 import objects.Wall;
+import systems.Signals.Signal1;
 import systems.match.Team;
 
 typedef Signal = FlxSignal;
@@ -13,10 +14,13 @@ typedef Signal1<T> = FlxTypedSignal<T->Void>;
 typedef Signal2<T1, T2> = FlxTypedSignal<T1->T2->Void>;
 
 class Signals {
+	public var ball_hit:Signal2<Ball, Dynamic> = new Signal2<Ball, Dynamic>();
 	public var ball_ball:Signal2<Ball, Ball> = new Signal2<Ball, Ball>();
 	public var ball_wall:Signal2<Ball, Wall> = new Signal2<Ball, Wall>();
 	public var ball_paddle:Signal2<Ball, Paddle> = new Signal2<Ball, Paddle>();
 	public var paddle_wall:Signal2<Paddle, Wall> = new Signal2<Paddle, Wall>();
+	
+	public var ballShot:Signal1<Ball> = new Signal1<Ball>();
 	
 	public var goal:Signal = new Signal();
 	public var goalBall:Signal1<Ball> = new Signal1<Ball>();
@@ -51,6 +55,7 @@ class Signals {
 		roundStart.add(Game.ball.shooter.revive);
 		roundStart.add(Game.ball.pusher.autoPush);
 		roundStart.add(Game.sfx.playThemeInGame);
+		roundStart.add(Game.cometTrail.enable);
 		
 		roundEnd.add(Game.match.endRound);
 		roundEnd.add(Game.match.addScore);
@@ -67,6 +72,8 @@ class Signals {
 		postRoundEnd.add(Game.goalManager.clearGoalStateReference);
 		postRoundEnd.add(Game.level.clearBalls);
 		postRoundEnd.add(Game.paddle.expression.closeAll);
+		postRoundEnd.add(Game.cometTrail.removeAll);
+		postRoundEnd.add(Game.cometTrail.disable);
 		
 		matchOver.add(Game.winManager.triggerWinState);
 		
@@ -76,6 +83,8 @@ class Signals {
 		postMatchOver.add(Game.paddle.hoverer.stopHoveringAllPaddles);
 		postMatchOver.add(Game.level.paddles.clear);
 		postMatchOver.add(Game.match.reset);
+		
+		ballShot.add(Game.cometTrail.addBall);
 		
 		goalTeam.add(Game.match.addRoundScore);
 		goal.add(Game.goalManager.triggerGoalState);

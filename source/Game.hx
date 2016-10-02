@@ -22,6 +22,7 @@ import systems.WallBuilder;
 import systems.collisions.Collision;
 import systems.controllers.ControllerList;
 import systems.paddle.PaddleSystems;
+import systems.trail.CometTrailWrapper;
 import ui.Scoreboard;
 
 class Game {
@@ -54,6 +55,7 @@ class Game {
 	public static var paddle(default, null):PaddleSystems;
 	public static var tween(default, null):Tweens;
 	public static var slowMo(default, null):SlowMotion;
+	public static var cometTrail(default, null):CometTrailWrapper;
 	
 	public static function init() {
 		level = new Level();
@@ -78,6 +80,7 @@ class Game {
 		paddle = new PaddleSystems();
 		tween = new Tweens();
 		slowMo = new SlowMotion();
+		cometTrail = new CometTrailWrapper();
 		
 		signals = new Signals();
 		framerateCounter = new FramerateCounter();

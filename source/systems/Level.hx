@@ -22,6 +22,7 @@ class Level extends FlxGroup {
 	public var walls(default, null):WallGroup;
 	public var paddles(default, null):PaddleGroup;
 	public var faces(default, null):FaceGroup;
+	public var particles(default, null):FlxSpriteGroup;
 	public var balls(default, null):BallGroup;
 	
 	public var uis(default, null):FlxSpriteGroup;
@@ -33,12 +34,14 @@ class Level extends FlxGroup {
 		walls = new WallGroup();
 		paddles = new PaddleGroup();
 		faces = new FaceGroup();
+		particles = new FlxSpriteGroup();
 		balls = new BallGroup();
 		uis = new FlxSpriteGroup();
 		
 		add(systems);
 		add(walls);
 		add(paddles);
+		add(particles);
 		add(faces);
 		add(balls);
 		add(uis);
@@ -68,6 +71,10 @@ class Level extends FlxGroup {
 	
 	public inline function addFace(face:Face) {
 		faces.add(face);
+	}
+	
+	public inline function addParticle(particle:FlxSprite) {
+		particles.add(particle);
 	}
 	
 	public inline function addBall(ball:Ball) {

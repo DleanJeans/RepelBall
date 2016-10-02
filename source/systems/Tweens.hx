@@ -10,6 +10,7 @@ import flixel.tweens.misc.VarTween;
 import flixel.util.FlxColor;
 import objects.Ball;
 import objects.PaddleWrapper;
+import systems.trail.CometTrail.Trail;
 
 class Tweens {
 	public function new() {}
@@ -24,6 +25,11 @@ class Tweens {
 	
 	public inline function ballColor(ball:Ball, newColor:FlxColor):ColorTween {
 		return FlxTween.color(ball, Game.settings.BALL_FX_DURATION, ball.color, newColor);
+	}
+	
+	public inline function trailColor(trail:Trail, newColor:FlxColor):ColorTween {
+		return FlxTween.color(null, Game.settings.BALL_FX_DURATION, Game.color.white, newColor,
+		{ onUpdate: function (t:FlxTween) trail.color = cast(t, ColorTween).color });
 	}
 	
 	public inline function paddleScaleUpAndDown(wrapper:PaddleWrapper) {
