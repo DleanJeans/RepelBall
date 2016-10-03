@@ -10,16 +10,11 @@ class Ball extends FlxSprite {
 	public var speed(default, null):Int;
 	
 	public var lastHitPaddle:Paddle;
-	public var hitGoal:Bool = false;
 	
 	public function new() {
 		super();
 		elasticity = 1;
 		drawBall();
-	}
-	
-	public inline function setHitGoal(bool:Bool) {
-		return hitGoal = bool;
 	}
 	
 	public inline function resetColor() {

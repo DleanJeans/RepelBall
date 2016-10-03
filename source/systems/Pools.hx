@@ -25,7 +25,7 @@ class Pools {
 		var ball = balls.recycle(Ball);
 		ball.resetSpeed();
 		ball.resetColor();
-		ball.setHitGoal(false);
+		ball.solid = true;
 		if (position != null)
 			ball.setCenter(position);
 		if (velocity != null)

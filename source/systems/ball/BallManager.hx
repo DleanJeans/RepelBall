@@ -4,6 +4,7 @@ import flixel.FlxG;
 import flixel.math.FlxPoint;
 import objects.Ball;
 import objects.Paddle;
+import objects.Wall;
 using flixel.addons.util.position.FlxPosition;
 
 typedef BallMap = Map<Paddle, Ball>;
@@ -19,6 +20,11 @@ class BallManager {
 	private inline function clearBallMap() {
 		for (paddle in ballMap.keys())
 			ballMap.remove(paddle);
+	}
+	
+	public inline function disableBallSolid(ball:Ball, wall:Wall) {
+		if (Game.match.wallIsGoal(wall))
+			ball.solid = false;
 	}
 	
 	public function increaseBallSpeed(ball:Ball, paddle:Paddle) {

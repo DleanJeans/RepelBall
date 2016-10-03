@@ -80,8 +80,6 @@ class Match {
 	}
 	
 	public function checkGoal(ball:Ball, goal:Wall) {
-		if (ball.hitGoal) return;
-		
 		var scoringTeam = getScoringTeam(goal);
 		if (scoringTeam != null) {
 			Game.signals.goalTeam.dispatch(scoringTeam);
