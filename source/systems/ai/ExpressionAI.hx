@@ -40,14 +40,15 @@ class ExpressionAI extends Controller {
 		var paddleCenter = paddle.get1Axis(paddle.getCenter(), false);
 		var ballCenter = paddle.get1Axis(nearestBall.getCenter(), false);
 		var distance = Math.abs(paddleCenter - ballCenter);
-		return  distance <= DISTANCE_THRESHOLD;
+		return  distance <= Game.settings.EXPRESSION_BALL_DETECTION_RADIUS;
 	}
 	
 	private inline function notReachable(ball:Ball) {
+		var reach = Game.settings.EXPRESSION_FROWN_BALL_OUT_REACH;
 		return
 		if (paddle.movesHorizontally())
-			ball.getRight() < paddle.x - OUT_RANGE || ball.x > paddle.getRight() + OUT_RANGE
-		else ball.getBottom() < paddle.y - OUT_RANGE || ball.y > paddle.getBottom() + OUT_RANGE;
+			ball.getRight() < paddle.x - reach || ball.x > paddle.getRight() + reach
+		else ball.getBottom() < paddle.y - reach || ball.y > paddle.getBottom() + reach;
 	}
 	
 }

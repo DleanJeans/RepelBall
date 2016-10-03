@@ -24,6 +24,16 @@ class Settings {
 	public var MESSAGES_FIELD_WIDTH = FlxG.width * 0.85;
 	public var SLOW_MO_TIME_SCALE = 0.2;
 	public var BALL_FX_DURATION = 0.1;
+	public var TRAIL_NODE_LIMIT = 20;
+	
+	/**
+	 * Mouth will frown when ball is outside of this distance
+	 */
+	public var EXPRESSION_FROWN_BALL_OUT_REACH = 25;
+	/**
+	 * Eyes will look at the nearest ball in this radius
+	 */
+	public var EXPRESSION_BALL_DETECTION_RADIUS = FlxG.height / 3;
 	
 	public var MIN_HOVERING_DURATION = 0.4;
 	public var MAX_HOVERING_DURATION = 0.6;
