@@ -14,11 +14,12 @@ class BallEffect {
 	}
 	
 	public inline function tweenColor(ball:Ball, object:Dynamic) {
-		var newColor = Std.is(object, Paddle) ? paddleColor(object) : ball.color;
-		Game.tween.ballColor(ball, newColor);
+		if (Std.is(object, Paddle))
+			ball.originalColor = paddleColor(object);
+		Game.tween.ballColor(ball, ball.originalColor);
 	}
 	
-	private function paddleColor(paddle:Paddle) {
+	private inline function paddleColor(paddle:Paddle) {
 		return paddle.color;
 	}
 	

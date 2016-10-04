@@ -10,11 +10,13 @@ class Ball extends FlxSprite {
 	public var speed(default, null):Int;
 	
 	public var lastHitPaddle:Paddle;
+	public var originalColor:FlxColor;
 	
 	public function new() {
 		super();
 		elasticity = 1;
 		drawBall();
+		originalColor = color;
 	}
 	
 	public inline function resetColor() {
