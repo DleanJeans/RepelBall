@@ -38,10 +38,10 @@ class Handler {
 class Ball_Paddle {
 	private var ball:Ball;
 	private var paddle:Paddle;
-	private var facingLoop:ArrayLoop<Int>;
+	private var facingLoop:TypedArrayLoop<Int>;
 	
 	public function new() {
-		facingLoop = new ArrayLoop<Int>([FlxObject.LEFT, FlxObject.UP, FlxObject.RIGHT, FlxObject.DOWN]);
+		facingLoop = new TypedArrayLoop<Int>([FlxObject.LEFT, FlxObject.UP, FlxObject.RIGHT, FlxObject.DOWN]);
 	}
 	
 	private inline function setReferences(ball:Ball, paddle:Paddle) {
