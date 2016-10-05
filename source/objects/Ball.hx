@@ -16,11 +16,10 @@ class Ball extends FlxSprite {
 		super();
 		elasticity = 1;
 		drawBall();
-		originalColor = color;
 	}
 	
 	public inline function resetColor() {
-		color = Game.color.white;
+		originalColor = color = Game.color.white;
 	}
 	
 	public inline function resetSpeed() {
