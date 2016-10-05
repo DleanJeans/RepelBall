@@ -9,7 +9,7 @@ import openfl.Assets;
 import openfl.display.BitmapData;
 import openfl.display.Graphics;
 import openfl.display.Sprite;
-using flixel.addons.util.position.FlxPosition;
+using Positioner;
 
 @:enum
 abstract MouthFrame(Int) {

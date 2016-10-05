@@ -6,7 +6,7 @@ import ui.AnyInputText;
 import ui.GoalText;
 import ui.RoundScoreText;
 import ui.TimerText;
-using flixel.addons.util.position.FlxPosition;
+using Positioner;
 
 class GoalState extends FlxSubState {
 	public var goalText(default, null):GoalText;

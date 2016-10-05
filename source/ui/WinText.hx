@@ -4,7 +4,7 @@ import flixel.FlxG;
 import flixel.group.FlxSpriteGroup;
 import flixel.text.FlxText;
 import systems.match.Team;
-using flixel.addons.util.position.FlxPosition;
+using Positioner;
 
 class WinText extends FlxSpriteGroup {	
 	public var winner(default, null):FlxText;

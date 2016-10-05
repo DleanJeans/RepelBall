@@ -6,7 +6,7 @@ import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import systems.ArrayLoop;
 using flixel.util.FlxSpriteUtil;
-using flixel.addons.util.position.FlxPosition;
+using Positioner;
 
 class LoopSelector extends FlxSpriteGroup {
 	public var label(default, null):FlxText;

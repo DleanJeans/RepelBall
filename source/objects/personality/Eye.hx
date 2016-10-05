@@ -8,7 +8,7 @@ import flixel.input.mouse.FlxMouse;
 import flixel.math.FlxAngle;
 import flixel.util.FlxColor;
 import objects.Ball;
-using flixel.addons.util.position.FlxPosition;
+using Positioner;
 
 class Eye extends FlxSpriteGroup {
 	public var eyeWhite(default, null):FlxSprite;

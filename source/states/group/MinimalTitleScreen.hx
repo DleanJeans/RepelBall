@@ -7,7 +7,7 @@ import flixel.text.FlxText;
 import flixel.util.FlxAxes;
 import flixel.util.FlxSignal;
 import ui.AnyInputText;
-using flixel.addons.util.position.FlxPosition;
+using Positioner;
 
 class MinimalTitleScreen extends FlxSpriteGroup {
 	public var titleText(default, null):FlxText;
@@ -36,7 +36,7 @@ class MinimalTitleScreen extends FlxSpriteGroup {
 	
 	private function setupStuff() {
 		titleText.screenCenter(FlxAxes.X);
-		creditText.setMidBottom(FlxPosition.screenMidBottom);
+		creditText.setMidBottom(Positioner.screenMidBottom);
 		creditText.y -= 10;
 		creditText.alignment = FlxTextAlign.CENTER;
 		icon.screenCenter();

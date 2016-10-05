@@ -6,7 +6,7 @@ import flixel.math.FlxPoint;
 import flixel.math.FlxVector;
 import objects.Ball;
 import objects.Paddle;
-using flixel.addons.util.position.FlxPosition;
+using Positioner;
 
 class BallShooter extends FlxObject {
 	public var maxBalls(default, set):Int = 1;

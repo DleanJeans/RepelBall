@@ -9,7 +9,7 @@ import objects.Ball;
 import objects.Paddle;
 import objects.Wall;
 import systems.ArrayLoop;
-using flixel.addons.util.position.FlxPosition;
+using Positioner;
 
 class Handler {
 	public var ball_paddle_collision(default, null):Ball_Paddle;

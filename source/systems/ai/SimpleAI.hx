@@ -7,7 +7,7 @@ import objects.Ball;
 import objects.Paddle;
 import objects.Wall;
 import systems.controllers.Controller;
-using flixel.addons.util.position.FlxPosition;
+using Positioner;
 
 class SimpleAI extends Controller {
 	public function new(?paddle:Paddle) {

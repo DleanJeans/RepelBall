@@ -5,7 +5,7 @@ import flixel.math.FlxPoint;
 import objects.Ball;
 import objects.Paddle;
 import objects.Wall;
-using flixel.addons.util.position.FlxPosition;
+using Positioner;
 
 typedef BallMap = Map<Paddle, Ball>;
 

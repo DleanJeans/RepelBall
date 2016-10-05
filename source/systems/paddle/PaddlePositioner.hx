@@ -5,7 +5,7 @@ import flixel.math.FlxAngle;
 import flixel.math.FlxPoint;
 import objects.Paddle;
 import objects.Wall;
-using flixel.addons.util.position.FlxPosition;
+using Positioner;
 
 class PaddlePositioner {
 	public function new() {}
