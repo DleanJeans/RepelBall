@@ -24,7 +24,7 @@ class Settings {
 	public var MESSAGES_FIELD_WIDTH = FlxG.width * 0.85;
 	public var SLOW_MO_TIME_SCALE = 0.2;
 	public var BALL_FX_DURATION = 0.1;
-	public var TRAIL_NODE_LIMIT = 20;
+	public var TRAIL_NODE_LIMIT = 25;
 	
 	/**
 	 * Mouth will frown when ball is outside of this distance

@@ -93,7 +93,6 @@ class Signals {
 		ball_hit.add(Game.sfx.playBallHitSound);
 		ball_hit.add(Game.ball.fx.popOnCollision);
 		ball_hit.add(Game.ball.fx.tweenColor);
-		ball_hit.add(Game.cometTrail.updateTrailColor);
 		
 		ball_ball.add(Game.collision.handler.ball_ball);
 		

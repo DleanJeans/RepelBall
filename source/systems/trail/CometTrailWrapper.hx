@@ -1,10 +1,10 @@
 package systems.trail;
 
+import flixel.tweens.FlxTween;
 import flixel.tweens.misc.ColorTween;
 import flixel.util.FlxColor;
 import objects.Ball;
 import objects.Paddle;
-import systems.trail.CometTrail.Trail;
 
 class CometTrailWrapper {
 	public var trail(default, null):CometTrail;
@@ -33,28 +33,21 @@ class CometTrailWrapper {
 		trail.add(ball);
 	}
 	
-	public function updateTrailColor(ball:Ball, object:Dynamic) {
+	public function updateTrailColor(ball:Ball, tween:FlxTween) {
 		var trail = trail.getTrail(ball);
-		var newColor = Std.is(object, Paddle) ? paddleToTrailColor(object) : trail.color;
-		if (tweenFinished())
-			tween = Game.tween.trailColor(trail, newColor);
+		trail.color = ball.color.getLightened(0.5);
+		trail.color.alphaFloat = 0.5;
 	}
 	
 	private inline function paddleToTrailColor(paddle:Paddle):FlxColor {
 		var color = paddle.color;
 		color.alphaFloat = 0.5;
+		color = color.getLightened(0.5);
 		return color;
 	}
 	
 	private inline function tweenFinished() {
 		return tween == null || tween.finished;
-	}
-	
-	private inline function cancelTween(trail:Trail) {
-		if (tween != null && !tween.finished) {
-			tween.cancel();
-			trail.color = cast Reflect.getProperty(tween, "endColor");
-		}
 	}
 	
 }

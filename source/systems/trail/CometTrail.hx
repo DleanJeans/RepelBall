@@ -4,23 +4,21 @@ import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.math.FlxAngle;
 import flixel.math.FlxMath;
-import flixel.math.FlxVelocity;
-import flixel.util.FlxSpriteUtil;
 import flixel.math.FlxPoint;
 import flixel.math.FlxVector;
+import flixel.math.FlxVelocity;
 import flixel.util.FlxColor;
+import flixel.util.FlxSpriteUtil;
 import openfl.display.GraphicsPathWinding;
+import systems.trail.CometTrail.Trail;
 
 class CometTrail extends FlxSprite {
 	public var trailMap(default, null):TrailMap;
-	public var maxLength:Float;
 	
-	public function new(x:Float = 0, y:Float = 0, width:Int = 0, height:Int = 0, maxLength:Float = 200) {
+	public function new(x:Float = 0, y:Float = 0, width:Int = 0, height:Int = 0) {
 		super(x, y);
 		
 		makeGraphic(width == 0 ? FlxG.width : width, height == 0 ? FlxG.height : height, FlxColor.TRANSPARENT);
-		this.maxLength = maxLength;
-		
 		trailMap = new TrailMap();
 	}
 	
@@ -47,22 +45,33 @@ class CometTrail extends FlxSprite {
 		super.update(elapsed);
 		
 		addNodes();
-		mergeSegmentsIfParallel();
-		truncateTrails();
+		calculateTrailsLength();
 	}
 	
 	private function addNodes() {
 		var nodes:Nodes;
 		var spriteCenter:FlxPoint;
+		var newNode:Node;
+		
 		for (sprite in trailMap.keys()) {
 			nodes = getNodes(sprite);
-			spriteCenter = getSpriteCenter(sprite);
-			nodes.push(newNode(spriteCenter));
+			spriteCenter = sprite.getMidpoint();
+			
+			if (nodes.length >= Game.settings.TRAIL_NODE_LIMIT) {
+				newNode = nodes.shift();
+				newNode.point.copyFrom(spriteCenter);
+				spriteCenter.put();
+			}
+			else {
+				newNode = createNewNode(spriteCenter);
+			}
+			nodes.push(newNode);
+			newNode = null;
 		}
 	}
 	
-	private inline function newNode(point:FlxPoint) {
-		var node:Node = { 
+	private inline function createNewNode(point:FlxPoint) {
+		var node:Node = {
 			point: point,
 		};
 		return node;
@@ -73,54 +82,35 @@ class CometTrail extends FlxSprite {
 	}
 	
 	public inline function getTrail(sprite:FlxSprite):Trail {
-		return trailMap.get(sprite);
+		return trailMap[sprite];
 	}
 	
-	private inline function getSpriteCenter(sprite:FlxSprite):FlxPoint {
-		return sprite.getMidpoint();
-	}
-	
-	private function mergeSegmentsIfParallel() {
+	private function calculateTrailsLength() {
+		var trail:Trail;
 		var nodes:Nodes;
-		var lastSegment = FlxVector.get();
-		var secondLastSegment = FlxVector.get();
-		
-		var lastPointCopy = FlxPoint.get();
-		var secondLastPointCopy = FlxPoint.get();
-		var thirdLastPoint:FlxPoint;
-		
-		var lastPoint:FlxPoint;
-		var secondLastPoint:FlxPoint;
+		var segment = FlxVector.get();
+		var lastNode:Node = null;
+		var thisNode:Node = null;
 		
 		for (sprite in trailMap.keys()) {
-			nodes = getNodes(sprite);
+			trail = getTrail(sprite);
+			nodes = trail.nodes;
+			trail.length = 0;
 			
-			// needless to merge if under 2 segments (3 nodes)
-			if (nodes.length < 3) continue;
-			
-			lastPoint = getNLastPoint(nodes, 1);
-			secondLastPoint = getNLastPoint(nodes, 2);
-			thirdLastPoint = getNLastPoint(nodes, 3);
-			
-			// use copies so original points won't change when subtractPoint()
-			lastPointCopy.copyFrom(lastPoint);
-			secondLastPointCopy.copyFrom(secondLastPoint);
-			
-			setSegment(lastSegment, lastPointCopy, secondLastPoint);
-			setSegment(secondLastSegment, secondLastPointCopy, thirdLastPoint);
-			
-			if (lastSegment.isParallel(secondLastSegment)) {
-				secondLastPoint.copyFrom(lastPoint);
-				nodes.remove(getNLastNode(nodes));
-				lastPoint.put();
+			for (node in nodes) {
+				thisNode = node;
+				if (lastNode != null && thisNode != null) {
+					segment.copyFrom(lastNode.point.copyTo().subtractPoint(thisNode.point));
+					trail.length += segment.length;
+				}
+				lastNode = thisNode;
 			}
+			
+			lastNode = null;
+			thisNode = null;
 		}
 		
-		lastPointCopy.put();
-		secondLastPointCopy.put();
-		
-		lastSegment.put();
-		secondLastSegment.put();
+		segment.put();
 	}
 	
 	private inline function getNLastPoint(nodes:Nodes, n:Int = 1):FlxPoint {
@@ -137,57 +127,6 @@ class CometTrail extends FlxSprite {
 	
 	private inline function getSegment(p2:FlxPoint, p1:FlxPoint):FlxPoint {
 		return p2.subtractPoint(p1);
-	}
-	
-	private function truncateTrails() {
-		var lengthLeft:Float = 0;
-		var trail:Trail;
-		var nodes:Nodes;
-		var segment:FlxVector = FlxVector.get();
-		var p1 = FlxPoint.get();
-		var p2 = FlxPoint.get();
-		var thisNode:Node;
-		var nextNode:Node;
-		var splicedNodes:Nodes;
-		var segmentLength:Float;
-		
-		for (sprite in trailMap.keys()) {
-			trail = getTrail(sprite);
-			nodes = trail.nodes;
-			var i = nodes.length;
-			lengthLeft = maxLength;
-			
-			while (i --> 0) {
-				thisNode = nodes[i];
-				nextNode = nodes[i - 1];
-				
-				if (thisNode == null || nextNode == null) continue;
-				
-				p1.copyFrom(thisNode.point);
-				p2.copyFrom(nextNode.point);
-				segment.copyFrom(p2.subtractPoint(p1));
-				segmentLength = segment.length;
-				
-				if (lengthLeft < 0) {
-					splicedNodes = nodes.splice(0, 1);
-					
-					for (node in splicedNodes)
-						node.point.put();
-					splicedNodes = null;
-				}
-				else if (lengthLeft - segmentLength < 0) {
-					segment.length = lengthLeft;
-					nextNode.point.copyFrom(segment.addPoint(p1));
-				}
-				lengthLeft -= segmentLength;
-			}
-			
-			trail.length = maxLength - lengthLeft;
-		}
-		
-		p1.put();
-		p2.put();
-		segment.put();
 	}
 	
 	override public function draw():Void {

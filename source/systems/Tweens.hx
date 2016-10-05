@@ -68,7 +68,8 @@ class Tweens {
 	public function ballColor(ball:Ball, newColor:FlxColor):ColorTween {
 		var tween = restartTween(ballColors, ball, NO_RESTART);
 		if (tween == null) {
-			tween = FlxTween.color(ball, Game.settings.BALL_FX_DURATION, Game.color.white, newColor, { type:FlxTween.PERSIST });
+			tween = FlxTween.color(ball, Game.settings.BALL_FX_DURATION, Game.color.white, newColor, 
+			{ type:FlxTween.PERSIST, onUpdate:Game.cometTrail.updateTrailColor.bind(ball) });
 			ballColors[ball] = tween;
 		}
 		else {
