@@ -13,7 +13,7 @@ import systems.SoundFX;
 import systems.WinManager;
 import systems.match.Match;
 import systems.Pools;
-import systems.Positioner;
+import systems.paddle.PaddlePositioner;
 import systems.Renderer;
 import systems.Settings;
 import systems.Signals;
@@ -40,7 +40,6 @@ class Game {
 	public static var renderer(default, null):Renderer;
 	public static var collision(default, null):Collision;
 	public static var controllers(default, null):ControllerList;
-	public static var position(default, null):Positioner;
 	public static var pools(default, null):Pools;
 	public static var goalManager(default, null):GoalManager;
 	public static var scoreboard(default, null):Scoreboard;
@@ -66,7 +65,6 @@ class Game {
 		renderer = new Renderer();
 		collision = new Collision();
 		controllers = new ControllerList();
-		position = new Positioner();
 		pools = new Pools();
 		goalManager = new GoalManager();
 		scoreboard = new Scoreboard();

@@ -1,4 +1,4 @@
-package systems;
+package systems.paddle;
 
 import flixel.FlxObject;
 import flixel.math.FlxAngle;
@@ -7,10 +7,10 @@ import objects.Paddle;
 import objects.Wall;
 using flixel.addons.util.position.FlxPosition;
 
-class Positioner {
+class PaddlePositioner {
 	public function new() {}
 	
-	public function putPaddleOnGoal(paddle:Paddle, wall:Wall, ?unitHeight:Int) {
+	public function putAboveGoal(paddle:Paddle, wall:Wall, ?unitHeight:Int) {
 		if (unitHeight == null)
 			unitHeight = 3;
 		
@@ -28,7 +28,7 @@ class Positioner {
 		paddle.allowCollisions = FlxObject.ANY ^ paddle.facing;
 	}
 	
-	public inline function resetPaddlePosition(paddle:Paddle) {
+	public inline function resetPosition(paddle:Paddle) {
 		paddle.resetToStartingPosition();
 	}
 }

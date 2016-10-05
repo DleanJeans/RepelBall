@@ -48,7 +48,7 @@ class Level extends FlxGroup {
 	}
 	
 	public function resetPaddlesPosition() {
-		paddles.forEach(Game.position.resetPaddlePosition);
+		paddles.forEach(Game.paddle.position.resetPosition);
 	}
 	
 	public function clearBalls() {
