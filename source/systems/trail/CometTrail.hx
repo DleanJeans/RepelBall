@@ -15,6 +15,8 @@ import systems.trail.CometTrail.Trail;
 class CometTrail extends FlxSprite {
 	public var trailMap(default, null):TrailMap;
 	
+	private var _elapsed:Float = 0;
+	
 	public function new(x:Float = 0, y:Float = 0, width:Int = 0, height:Int = 0) {
 		super(x, y);
 		
@@ -41,11 +43,23 @@ class CometTrail extends FlxSprite {
 		trailMap.set(sprite, { nodes: new Nodes(), color:trailColor, size: trailSize });
 	}
 	
-	override public function update(elapsed:Float) {
+	override public function update(elapsed:Float):Void {
 		super.update(elapsed);
+		_elapsed += elapsed;
+	}
+	
+	override public function draw() {
+		super.draw();
 		
-		addNodes();
-		calculateTrailsLength();
+		if (_elapsed >= Game.settings.TRAIL_COOLDOWN) {
+			_elapsed = 0;
+			addNodes();
+			calculateTrailsLength();
+		}
+		
+		clearCanvas();
+		calculateTrailsAttribute();
+		drawTrail();
 	}
 	
 	private function addNodes() {
@@ -127,14 +141,6 @@ class CometTrail extends FlxSprite {
 	
 	private inline function getSegment(p2:FlxPoint, p1:FlxPoint):FlxPoint {
 		return p2.subtractPoint(p1);
-	}
-	
-	override public function draw():Void {
-		clearCanvas();
-		calculateTrailsAttribute();
-		drawTrail();
-		
-		super.draw();
 	}
 	
 	private inline function clearCanvas() {
