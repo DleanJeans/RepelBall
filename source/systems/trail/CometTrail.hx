@@ -1,5 +1,6 @@
 package systems.trail;
 
+import flash.display.Graphics;
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.math.FlxAngle;
@@ -230,8 +231,10 @@ class CometTrail extends FlxSprite {
 			
 			if (nodes.length == 0) return;
 			
-			var lastNode = nodes.shift();
+			var oldestNode = nodes[0];
 			for (node in nodes) {
+				if (node == oldestNode) continue;
+				
 				thisNode = node;
 				toRadius = FlxVelocity.velocityFromAngle(thisNode.angle, thisNode.radius);
 				
@@ -244,30 +247,33 @@ class CometTrail extends FlxSprite {
 			
 			outline1.reverse();
 			outlinePoints = outlinePoints.concat(outline1);
-			outlinePoints.push(lastNode.point);
+			outlinePoints.push(oldestNode.point.copyTo());
 			outlinePoints = outlinePoints.concat(outline2);
-			
-			nodes.unshift(lastNode);
-			var firstPoint = lastNode.point.copyTo();
 			
 			drawTrailNonZero(trail.color, outlinePoints);
 			
+			// put all copies to pool
+			// and remove all references
 			while (outlinePoints.length > 0)
 				outlinePoints.pop().put();
-			outline2.splice(0, outline2.length);
 			outline1.splice(0, outline1.length);
-			
-			nodes[0].point = firstPoint;
+			outline2.splice(0, outline2.length);
 		}
 	}
 	
 	private function drawTrailNonZero(color:FlxColor, outlinePoints:Array<FlxPoint>) {
 		FlxSpriteUtil.beginDraw(color);
-			FlxSpriteUtil.flashGfx.drawPath(
-			[ for (i in 0...outlinePoints.length) i == 0 ? 1 : 2 ],
-			[ for (node in outlinePoints) for (i in 0...2) i == 0 ? node.x : node.y],
+		FlxSpriteUtil.flashGfx.drawPath(
+			getCommands(outlinePoints.length),
+			[ for (point in outlinePoints) for (i in 0...2) i == 0 ? point.x : point.y],
 			GraphicsPathWinding.NON_ZERO);
-			FlxSpriteUtil.endDraw(this);
+		FlxSpriteUtil.endDraw(this);
+	}
+	
+	private function getCommands(length:Int):Array<Int> {
+		var commands = [ for (i in 1...length) 2];
+		commands.unshift(1);
+		return commands;
 	}
 	
 }
