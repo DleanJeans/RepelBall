@@ -99,6 +99,7 @@ class Signals {
 		ball_wall.add(Game.match.checkGoal);
 		ball_wall.add(Game.ball.manager.disableBallSolid);
 		ball_wall.add(Game.collision.handler.ball_wall);
+		ball_wall.add(Game.screen.shake.ball);
 		
 		paddle_wall.add(Game.collision.handler.paddle_wall);
 		paddle_wall.add(Game.paddle.expression.reattachFace);

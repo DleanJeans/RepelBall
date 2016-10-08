@@ -26,6 +26,7 @@ class Settings {
 	public var BALL_FX_DURATION = 0.1;
 	public var TRAIL_NODE_LIMIT = 25;
 	public var TRAIL_COOLDOWN = 0.02 ;
+	public var SCREEN_SHAKE_DURATION = 0.1;
 	
 	/**
 	 * Mouth will frown when ball is outside of this distance

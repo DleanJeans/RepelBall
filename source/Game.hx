@@ -6,6 +6,7 @@ import systems.Colors;
 import systems.FramerateCounter;
 import systems.GoalManager;
 import systems.SlowMotion;
+import systems.Speed;
 import systems.Tweens;
 import systems.ball.BallSystems;
 import systems.Level;
@@ -23,6 +24,7 @@ import systems.WallBuilder;
 import systems.collisions.Collision;
 import systems.controllers.ControllerList;
 import systems.paddle.PaddleSystems;
+import systems.screen.ScreenSystems;
 import systems.trail.CometTrailWrapper;
 import ui.Scoreboard;
 
@@ -56,6 +58,8 @@ class Game {
 	public static var tween(default, null):Tweens;
 	public static var slowMo(default, null):SlowMotion;
 	public static var cometTrail(default, null):CometTrailWrapper;
+	public static var screen(default, null):ScreenSystems;
+	public static var speed(default, null):Speed;
 	
 	#if mobile
 	public static var ads(default, null):Ads;
@@ -84,6 +88,8 @@ class Game {
 		tween = new Tweens();
 		slowMo = new SlowMotion();
 		cometTrail = new CometTrailWrapper();
+		screen = new ScreenSystems();
+		speed = new Speed();
 		
 		signals = new Signals();
 		framerateCounter = new FramerateCounter();
