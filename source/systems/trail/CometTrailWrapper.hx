@@ -1,5 +1,6 @@
 package systems.trail;
 
+import flixel.math.FlxMath;
 import flixel.tweens.FlxTween;
 import flixel.tweens.misc.ColorTween;
 import flixel.util.FlxColor;
@@ -36,7 +37,7 @@ class CometTrailWrapper {
 	public function updateTrailColor(ball:Ball, tween:FlxTween) {
 		var trail = trail.getTrail(ball);
 		trail.color = ball.color.getLightened(0.5);
-		trail.color.alphaFloat = 0.5;
+		trail.color.alphaFloat = FlxMath.lerp(1, 0.5, tween.percent);
 	}
 	
 	private inline function paddleToTrailColor(paddle:Paddle):FlxColor {
