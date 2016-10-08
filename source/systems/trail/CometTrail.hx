@@ -144,7 +144,7 @@ class CometTrail extends FlxSprite {
 		return p2.subtractPoint(p1);
 	}
 	
-	private inline function clearCanvas() {
+	public function clearCanvas() {
 		FlxSpriteUtil.fill(this, FlxColor.TRANSPARENT);
 	}
 	
