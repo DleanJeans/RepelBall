@@ -12,6 +12,10 @@ class PlayState extends FlxSubState {
 	override public function create() {
 		bgColor = Game.color.gray;
 		
+		#if mobile
+		Game.ads.hideBanner();
+		#end
+		
 		add(Game.level);
 		
 		Game.match.team1.setGoal(Game.walls.bottomWall);

@@ -4,6 +4,8 @@
 	
 	<uses-sdk android:minSdkVersion="16" android:targetSdkVersion="19"/>
 	
+	<uses-permission android:name="android.permission.INTERNET" />
+	
 	<application android:debuggable="false" android:icon="@drawable/icon" android:label="RepelBall">
 		
 		<activity android:configChanges="keyboard|keyboardHidden|orientation|screenSize" android:label="RepelBall" android:launchMode="singleTask" android:name="com.bluebirdaward.repelball.MainActivity" android:screenOrientation="sensorPortrait">

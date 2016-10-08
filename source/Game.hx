@@ -1,5 +1,6 @@
 package;
 
+import systems.Ads;
 import systems.AnyInput;
 import systems.Colors;
 import systems.FramerateCounter;
@@ -56,6 +57,10 @@ class Game {
 	public static var slowMo(default, null):SlowMotion;
 	public static var cometTrail(default, null):CometTrailWrapper;
 	
+	#if mobile
+	public static var ads(default, null):Ads;
+	#end
+	
 	public static function init() {
 		level = new Level();
 		match = new Match();
@@ -82,6 +87,10 @@ class Game {
 		
 		signals = new Signals();
 		framerateCounter = new FramerateCounter();
+		
+		#if mobile
+		ads = new Ads();
+		#end
 	}
 	
 }

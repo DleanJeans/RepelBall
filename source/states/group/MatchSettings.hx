@@ -48,8 +48,8 @@ class MatchSettings extends FlxSpriteGroup {
 		start = new FlxSignal();
 		
 		newMatchHeader = new SideButton(0, 50, cast FlxG.width / 2, 50, "New Match", 40);
-		backButton = new SideButton(0, FlxG.height - 75, 240, 50, "Back", 35, back.dispatch);
-		startButton = new SideButton(0, FlxG.height - 75, 240, 50, "Start", 35, start.dispatch);
+		backButton = new SideButton(0, FlxG.height - 150, 240, 50, "Back", 35, back.dispatch);
+		startButton = new SideButton(0, FlxG.height - 150, 240, 50, "Start", 35, start.dispatch);
 		
 		maxBallsLoop = Game.pools.getLoopSelector("Max Balls", Game.settings.maxBalls);
 		scoresLoop = Game.pools.getLoopSelector("Scores", Game.settings.scoresToWin);
