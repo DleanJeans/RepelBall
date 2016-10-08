@@ -55,9 +55,12 @@ class CometTrail extends FlxSprite {
 		if (_elapsed >= Game.settings.TRAIL_COOLDOWN) {
 			_elapsed = 0;
 			addNodes();
-			calculateTrailsLength();
+		}
+		else {
+			updateYoungestNodes();
 		}
 		
+		calculateTrailsLength();
 		clearCanvas();
 		calculateTrailsAttribute();
 		drawTrail();
@@ -82,6 +85,21 @@ class CometTrail extends FlxSprite {
 			}
 			nodes.push(newNode);
 			newNode = null;
+		}
+	}
+	
+	private function updateYoungestNodes() {
+		var nodes:Nodes;
+		var spriteCenter:FlxPoint;
+		
+		for (sprite in trailMap.keys()) {
+			nodes = getNodes(sprite);
+			if (nodes.length == 0) return;
+			
+			spriteCenter = sprite.getMidpoint();
+			
+			nodes[nodes.length - 1].point.copyFrom(spriteCenter);
+			spriteCenter.put();
 		}
 	}
 	
