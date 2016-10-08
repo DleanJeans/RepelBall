@@ -10,7 +10,7 @@ class PlayState extends FlxSubState {
 	var paddle2:Paddle;
 	
 	override public function create() {
-		bgColor = Game.color.gray;
+		bgColor = Game.color.background;
 		
 		#if mobile
 		Game.ads.hideBanner();

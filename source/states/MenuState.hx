@@ -16,7 +16,7 @@ class MenuState extends FlxSubState {
 		Game.ads.showBanner();
 		#end
 		
-		bgColor = 0xFF212121;
+		bgColor = Game.color.background;
 		Game.sfx.playThemeInMenu();
 		
 		titleMenu = new MinimalTitleScreen();

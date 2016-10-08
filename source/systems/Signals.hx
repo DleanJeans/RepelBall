@@ -89,6 +89,7 @@ class Signals {
 		
 		goalTeam.add(Game.match.addRoundScore);
 		goal.add(Game.goalManager.triggerGoalState);
+		goal.add(Game.screen.glitch.run);
 		
 		ball_hit.add(Game.collision.detector.routeSignals);
 		ball_hit.add(Game.sfx.playBallHitSound);
