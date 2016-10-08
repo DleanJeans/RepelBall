@@ -16,7 +16,7 @@ class ScreenShake {
 	public function ball(ball:Ball, wall:Wall) {
 		if (Game.match.wallIsGoal(wall))
 			return;
-		shake( -ball.velocity.x * power, -ball.velocity.y * power);
+		shake(ball.velocity.x * power, -ball.velocity.y * power);
 	}
 	
 	public function shake(powerX:Float, powerY:Float) {
