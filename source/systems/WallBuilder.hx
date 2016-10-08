@@ -29,8 +29,10 @@ class WallBuilder {
 		
 		rightWall = Game.pools.getWall(FlxG.width, 0, wallWidth, FlxG.height, FlxObject.LEFT);
 		leftWall = Game.pools.getWall(-wallWidth, 0, wallWidth, FlxG.height, FlxObject.RIGHT);
-		topWall = Game.pools.getWall(0, topWallY, FlxG.width, wallWidth, FlxObject.DOWN);
-		bottomWall = Game.pools.getWall(0, bottomWallY, FlxG.width, wallWidth, FlxObject.UP);
+		topWall = Game.pools.getWall(-wallWidth, topWallY, FlxG.width + wallWidth, wallWidth, FlxObject.DOWN);
+		bottomWall = Game.pools.getWall(-wallWidth, bottomWallY, FlxG.width + wallWidth, wallWidth, FlxObject.UP);
+		
+		rightWall.visible = leftWall.visible = false;
 	}
 	
 	public function addWallsToLevel() {
