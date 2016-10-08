@@ -7,11 +7,15 @@ import flixel.system.FlxSoundGroup;
 import flixel.tweens.FlxTween;
 import objects.Ball;
 
+typedef BallSoundMap = Map<Ball, FlxSound>;
+
 class SoundFX {
 	public var theme(default, null):FlxSound;
+	public var ballSoundMap:BallSoundMap;
 	
 	public function new() {
 		loadTheme();
+		ballSoundMap = new BallSoundMap();
 	}
 	
 	private function loadTheme() {
@@ -20,7 +24,10 @@ class SoundFX {
 	}
 	
 	public function playBallHitSound(ball:Ball, object:Dynamic) {
-		FlxG.sound.play(FlxAssets.getSound('assets/music/ball-hit'));
+		var sound = ballSoundMap[ball];
+		if (sound == null)
+			sound = FlxG.sound.load(FlxAssets.getSound('assets/music/ball-hit'));
+		sound.play();
 	}
 	
 	public function playThemeInMenu() {
@@ -30,14 +37,11 @@ class SoundFX {
 	
 	public function playThemeInGame() {
 		theme.play(true, theme.loopTime);
-		theme.fadeIn(3, 0, 0.25);
+		theme.fadeIn(3, 0, 0.5);
 	}
 	
 	public function fadeOutTheme() {
-		theme.fadeOut(1, 0, stopTheme);
+		theme.fadeOut(1, 0.1);
 	}
 	
-	private function stopTheme(tween:FlxTween) {
-		theme.stop();
-	}
 }
