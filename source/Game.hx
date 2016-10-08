@@ -5,6 +5,7 @@ import systems.AnyInput;
 import systems.Colors;
 import systems.FramerateCounter;
 import systems.GoalManager;
+import systems.Save;
 import systems.SlowMotion;
 import systems.Speed;
 import systems.Tweens;
@@ -60,6 +61,7 @@ class Game {
 	public static var cometTrail(default, null):CometTrailWrapper;
 	public static var screen(default, null):ScreenSystems;
 	public static var speed(default, null):Speed;
+	public static var save(default, null):Save;
 	
 	#if mobile
 	public static var ads(default, null):Ads;
@@ -90,6 +92,7 @@ class Game {
 		cometTrail = new CometTrailWrapper();
 		screen = new ScreenSystems();
 		speed = new Speed();
+		save = new Save();
 		
 		signals = new Signals();
 		framerateCounter = new FramerateCounter();

@@ -30,6 +30,13 @@ class MatchSettings extends FlxSpriteGroup {
 		createStuff();
 		setupStuff();
 		addStuff();
+		
+		start.addOnce(saveSettings);
+	}
+	
+	public function saveSettings() {
+		Game.save.saveMatchSettings(maxBallsLoop.getIndex(), scoresLoop.getIndex(),
+		teamSettings1.colorSwatch.index, teamSettings2.colorSwatch.index);
 	}
 	
 	public inline function sameTeamColor() {
@@ -73,18 +80,23 @@ class MatchSettings extends FlxSpriteGroup {
 		teamSettings2.x = teamSettings1.getRight() + Game.settings.TEAM_SETTINGS_SPACE_X;
 		teamSettingsGroup.screenCenter(FlxAxes.X);
 		
-		maxBallsLoop.select(1);
+		maxBallsLoop.select(Game.save.maxBallsIndex);
+		scoresLoop.select(Game.save.scoresIndex);
 		
 		selectRandomColorOnSwatches();
 	}
 	
 	private inline function selectRandomColorOnSwatches() {
 		var maxIndex = Game.color.list.length - 1;
-		var index1 = FlxG.random.int(0, maxIndex);
-		var index2 = FlxG.random.int(0, maxIndex, [index1]);
 		
-		teamSettings1.colorSwatch.selectByIndex(index1);
-		teamSettings2.colorSwatch.selectByIndex(index2);
+		if (Game.save.colorsNotSet()) {
+			Game.save.color1Index = teamSettings1.colorSwatch.selectRandom();
+			Game.save.color2Index = teamSettings2.colorSwatch.selectRandom(Game.save.color1Index);
+		}
+		else {
+			teamSettings1.colorSwatch.selectByIndex(Game.save.color1Index);
+			teamSettings2.colorSwatch.selectByIndex(Game.save.color2Index);
+		}
 	}
 	
 	private function addStuff() {
