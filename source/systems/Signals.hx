@@ -20,7 +20,7 @@ class Signals {
 	public var ball_paddle:Signal2<Ball, Paddle> = new Signal2<Ball, Paddle>();
 	public var paddle_wall:Signal2<Paddle, Wall> = new Signal2<Paddle, Wall>();
 	
-	public var ballShot:Signal1<Ball> = new Signal1<Ball>();
+	public var ballSpawned:Signal1<Ball> = new Signal1<Ball>();
 	
 	public var goal:Signal = new Signal();
 	public var goalBall:Signal1<Ball> = new Signal1<Ball>();
@@ -85,7 +85,7 @@ class Signals {
 		postMatchOver.add(Game.level.paddles.clear);
 		postMatchOver.add(Game.match.reset);
 		
-		ballShot.add(Game.cometTrail.addBall);
+		ballSpawned.add(Game.cometTrail.addBall);
 		
 		goalTeam.add(Game.match.addRoundScore);
 		goal.add(Game.goalManager.triggerGoalState);
