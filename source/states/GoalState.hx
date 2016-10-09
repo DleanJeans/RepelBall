@@ -46,6 +46,7 @@ class GoalState extends FlxSubState {
 	}
 	
 	public function goal() {
+		if (!_created) return;
 		restartMultiGoalTimer();
 		updateRoundScoreText();
 	}
