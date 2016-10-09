@@ -10,6 +10,7 @@ class Ball extends FlxSprite {
 	public var speed(default, null):Int;
 	
 	public var lastHitPaddle:Paddle;
+	public var originalColor:FlxColor;
 	
 	public function new() {
 		super();
@@ -18,7 +19,7 @@ class Ball extends FlxSprite {
 	}
 	
 	public inline function resetColor() {
-		color = Game.color.white;
+		originalColor = color = Game.color.white;
 	}
 	
 	public inline function resetSpeed() {

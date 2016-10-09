@@ -22,6 +22,26 @@ class Settings {
 	public var BALL_STARTING_SPEED:Int = cast FlxG.height / 4;
 	public var COLOR_CHANGING_TWEEN_DURATION = 0.5;
 	public var MESSAGES_FIELD_WIDTH = FlxG.width * 0.85;
+	public var SLOW_MO_TIME_SCALE = 0.2;
+	public var BALL_FX_DURATION = 0.1;
+	public var TRAIL_NODE_LIMIT = 25;
+	public var TRAIL_COOLDOWN = 0.02 ;
+	public var SCREEN_SHAKE_DURATION = 0.1;
+	public var GLITCH_DURATION = 0.05;
+	
+	/**
+	 * Mouth will frown when ball is outside of this distance
+	 */
+	public var EXPRESSION_FROWN_BALL_OUT_REACH = 25;
+	/**
+	 * Eyes will look at the nearest ball in this radius
+	 */
+	public var EXPRESSION_BALL_DETECTION_RADIUS = FlxG.height / 3;
+	
+	public var MIN_HOVERING_DURATION = 0.4;
+	public var MAX_HOVERING_DURATION = 0.6;
+	public var MAX_HOVERING_DELAY = 0.25;
+	public var KNOCK_BACK_DURATION = 0.5;
 	
 	public var maxBalls(default, null):Array<Int> = [for (i in 1...5) i];
 	public var scoresToWin(default, null):Array<Int> = [3, 5, 10];

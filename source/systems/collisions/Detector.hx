@@ -1,6 +1,9 @@
 package systems.collisions;
 
 import flixel.FlxG;
+import objects.Ball;
+import objects.Paddle;
+import objects.Wall;
 import systems.Level.BallGroup;
 import systems.Level.PaddleGroup;
 import systems.Level.WallGroup;
@@ -20,10 +23,21 @@ class Detector {
 			detect();
 	}
 	
+	public function routeSignals(ball:Ball, object:Dynamic) {
+		switch (Type.getClass(object)) {
+			case Ball:
+				Game.signals.ball_ball.dispatch(ball, object);
+			case Wall:
+				Game.signals.ball_wall.dispatch(ball, object);
+			case Paddle:
+				Game.signals.ball_paddle.dispatch(ball, object);
+		}
+	}
+	
 	function detect() {
-		FlxG.overlap(balls, balls, Game.signals.ball_ball.dispatch);
-		FlxG.overlap(balls, walls, Game.signals.ball_wall.dispatch);
-		FlxG.overlap(balls, paddles, Game.signals.ball_paddle.dispatch);
+		FlxG.overlap(balls, balls, Game.signals.ball_hit.dispatch);
+		FlxG.overlap(balls, walls, Game.signals.ball_hit.dispatch);
+		FlxG.overlap(balls, paddles, Game.signals.ball_hit.dispatch);
 		FlxG.overlap(paddles, walls, Game.signals.paddle_wall.dispatch);
 	}
 	

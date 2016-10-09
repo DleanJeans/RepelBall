@@ -6,7 +6,9 @@ abstract GetSet(Int) {
 	var GET_ONLY = 0;
 }
 
-class ArrayLoop<T:Dynamic> {
+typedef ArrayLoop = TypedArrayLoop<Dynamic>;
+
+class TypedArrayLoop<T:Dynamic> {
 	public var array(default, null):Array<T>;
 	public var i(default, null):Int = 0;
 	

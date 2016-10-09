@@ -6,6 +6,7 @@ import flixel.util.FlxSignal.FlxTypedSignal;
 import objects.Ball;
 import objects.Paddle;
 import objects.Wall;
+import systems.Signals.Signal1;
 import systems.match.Team;
 
 typedef Signal = FlxSignal;
@@ -13,10 +14,13 @@ typedef Signal1<T> = FlxTypedSignal<T->Void>;
 typedef Signal2<T1, T2> = FlxTypedSignal<T1->T2->Void>;
 
 class Signals {
+	public var ball_hit:Signal2<Ball, Dynamic> = new Signal2<Ball, Dynamic>();
 	public var ball_ball:Signal2<Ball, Ball> = new Signal2<Ball, Ball>();
 	public var ball_wall:Signal2<Ball, Wall> = new Signal2<Ball, Wall>();
 	public var ball_paddle:Signal2<Ball, Paddle> = new Signal2<Ball, Paddle>();
 	public var paddle_wall:Signal2<Paddle, Wall> = new Signal2<Paddle, Wall>();
+	
+	public var ballSpawned:Signal1<Ball> = new Signal1<Ball>();
 	
 	public var goal:Signal = new Signal();
 	public var goalBall:Signal1<Ball> = new Signal1<Ball>();
@@ -36,7 +40,7 @@ class Signals {
 		matchStart.add(Game.scoreboard.updateColors);
 		matchStart.add(Game.scoreboard.updateScores);
 		matchStart.add(Game.match.setupTeamsPosition);
-		matchStart.add(Game.paddle.expression.updateFacing);
+		matchStart.add(Game.paddle.expression.updateEyesFacing);
 		matchStart.add(Game.paddle.hoverer.startHoveringAllPaddles);
 		matchStart.add(preRoundStart.dispatch);
 		
@@ -44,6 +48,7 @@ class Signals {
 		preRoundStart.add(Game.states.countdown);
 		preRoundStart.add(Game.level.resetPaddlesPosition);
 		preRoundStart.add(Game.paddle.hoverer.resumeAllHovering);
+		preRoundStart.add(Game.cometTrail.trail.clearCanvas);
 		
 		roundStart.add(Game.match.startRound);
 		roundStart.add(Game.controllers.revive);
@@ -51,6 +56,7 @@ class Signals {
 		roundStart.add(Game.ball.shooter.revive);
 		roundStart.add(Game.ball.pusher.autoPush);
 		roundStart.add(Game.sfx.playThemeInGame);
+		roundStart.add(Game.cometTrail.enable);
 		
 		roundEnd.add(Game.match.endRound);
 		roundEnd.add(Game.match.addScore);
@@ -66,6 +72,9 @@ class Signals {
 		postRoundEnd.add(Game.match.startNextRoundOrEndMatch);
 		postRoundEnd.add(Game.goalManager.clearGoalStateReference);
 		postRoundEnd.add(Game.level.clearBalls);
+		postRoundEnd.add(Game.paddle.expression.closeAll);
+		postRoundEnd.add(Game.cometTrail.removeAll);
+		postRoundEnd.add(Game.cometTrail.disable);
 		
 		matchOver.add(Game.winManager.triggerWinState);
 		
@@ -76,23 +85,29 @@ class Signals {
 		postMatchOver.add(Game.level.paddles.clear);
 		postMatchOver.add(Game.match.reset);
 		
+		ballSpawned.add(Game.cometTrail.addBall);
+		
 		goalTeam.add(Game.match.addRoundScore);
 		goal.add(Game.goalManager.triggerGoalState);
-		goalBall.add(Game.goalManager.killBall);
+		goal.add(Game.screen.glitch.run);
+		
+		ball_hit.add(Game.collision.detector.routeSignals);
+		ball_hit.add(Game.sfx.playBallHitSound);
+		ball_hit.add(Game.ball.fx.popOnCollision);
+		ball_hit.add(Game.ball.fx.tweenColor);
 		
 		ball_ball.add(Game.collision.handler.ball_ball);
-		ball_ball.add(Game.sfx.playBallHitSound);
 		
-		ball_wall.add(Game.collision.handler.ball_wall);
-		ball_wall.add(Game.sfx.playBallHitSound);
 		ball_wall.add(Game.match.checkGoal);
+		ball_wall.add(Game.ball.manager.disableBallSolid);
+		ball_wall.add(Game.collision.handler.ball_wall);
+		ball_wall.add(Game.screen.shake.ball);
 		
 		paddle_wall.add(Game.collision.handler.paddle_wall);
 		paddle_wall.add(Game.paddle.expression.reattachFace);
 		
-		ball_paddle.add(Game.ball.manager.changeBallColor);
-		ball_paddle.add(Game.ball.manager.increaseBallSpeed);
 		ball_paddle.add(Game.collision.handler.ball_paddle);
-		ball_paddle.add(Game.sfx.playBallHitSound);
+		ball_paddle.add(Game.ball.manager.increaseBallSpeed);
+		ball_paddle.add(Game.paddle.hoverer.knockBackBallSpeed);
 	}
 }

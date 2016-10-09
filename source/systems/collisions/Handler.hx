@@ -9,7 +9,7 @@ import objects.Ball;
 import objects.Paddle;
 import objects.Wall;
 import systems.ArrayLoop;
-using flixel.addons.util.position.FlxPosition;
+using Positioner;
 
 class Handler {
 	public var ball_paddle_collision(default, null):Ball_Paddle;
@@ -38,10 +38,10 @@ class Handler {
 class Ball_Paddle {
 	private var ball:Ball;
 	private var paddle:Paddle;
-	private var facingLoop:ArrayLoop<Int>;
+	private var facingLoop:TypedArrayLoop<Int>;
 	
 	public function new() {
-		facingLoop = new ArrayLoop<Int>([FlxObject.LEFT, FlxObject.UP, FlxObject.RIGHT, FlxObject.DOWN]);
+		facingLoop = new TypedArrayLoop<Int>([FlxObject.LEFT, FlxObject.UP, FlxObject.RIGHT, FlxObject.DOWN]);
 	}
 	
 	private inline function setReferences(ball:Ball, paddle:Paddle) {

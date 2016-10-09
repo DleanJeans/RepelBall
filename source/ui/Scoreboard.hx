@@ -7,7 +7,7 @@ import flixel.util.FlxColor;
 import objects.Ball;
 import objects.Wall;
 
-using flixel.addons.util.position.FlxPosition;
+using Positioner;
 
 class Scoreboard extends FlxSpriteGroup {
 	public var background1(default, null):FlxSprite;
@@ -76,7 +76,7 @@ class Scoreboard extends FlxSpriteGroup {
 	}
 	
 	private function moreSetup() {
-		setMidLeft(FlxPosition.screenMidLeft);
+		setMidLeft(Positioner.screenMidLeft);
 	}
 	
 }

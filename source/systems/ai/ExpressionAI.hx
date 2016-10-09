@@ -5,7 +5,7 @@ import flixel.math.FlxMath;
 import objects.Ball;
 import objects.Paddle;
 import systems.controllers.Controller;
-using flixel.addons.util.position.FlxPosition;
+using Positioner;
 
 class ExpressionAI extends Controller {
 	public static var DISTANCE_THRESHOLD = 400;
@@ -19,8 +19,7 @@ class ExpressionAI extends Controller {
 		if (paddle == null) return;
 		
 		var nearestBall = getNearestBall();
-		if (nearestBall != null)
-			controlExpression(nearestBall);
+		controlExpression(nearestBall);
 	}
 	
 	private function getNearestBall() {
@@ -29,7 +28,9 @@ class ExpressionAI extends Controller {
 	
 	private function controlExpression(nearestBall:Ball) {
 		var expression = Game.paddle.expression.smile;
-		if (notTooFaraway(nearestBall) && notReachable(nearestBall))
+		if (nearestBall == null)
+			expression = Game.paddle.expression.shut;
+		else if (notTooFaraway(nearestBall) && notReachable(nearestBall))
 			expression = Game.paddle.expression.frown;
 		
 		expression(paddle);
@@ -39,14 +40,15 @@ class ExpressionAI extends Controller {
 		var paddleCenter = paddle.get1Axis(paddle.getCenter(), false);
 		var ballCenter = paddle.get1Axis(nearestBall.getCenter(), false);
 		var distance = Math.abs(paddleCenter - ballCenter);
-		return  distance <= DISTANCE_THRESHOLD;
+		return  distance <= Game.settings.EXPRESSION_BALL_DETECTION_RADIUS;
 	}
 	
 	private inline function notReachable(ball:Ball) {
+		var reach = Game.settings.EXPRESSION_FROWN_BALL_OUT_REACH;
 		return
 		if (paddle.movesHorizontally())
-			ball.getRight() < paddle.x - OUT_RANGE || ball.x > paddle.getRight() + OUT_RANGE
-		else ball.getBottom() < paddle.y - OUT_RANGE || ball.y > paddle.getBottom() + OUT_RANGE;
+			ball.getRight() < paddle.x - reach || ball.x > paddle.getRight() + reach
+		else ball.getBottom() < paddle.y - reach || ball.y > paddle.getBottom() + reach;
 	}
 	
 }

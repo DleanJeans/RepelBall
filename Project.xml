@@ -2,9 +2,9 @@
 <project>
 	<!-- _________________________ Application Settings _________________________ -->
 	
-	<app title="RepelBall" file="RepelBall" main="Main" version="1.0.2" company="Dlean Jeans" />
+	<app title="RepelBall" file="RepelBall" main="Main" version="1.1.0" company="Dlean Jeans" />
 	
-	<meta title="RepelBall" description="" package="com.bluebirdaward.repelball" version="1.0.2" company="Dlean Jeans" />
+	<meta title="RepelBall" description="" package="com.bluebirdaward.repelball" version="1.1.0" company="Dlean Jeans" />
 	
 	<!--The flixel preloader is not accurate in Chrome. You can use it regularly if you embed the swf into a html file
 		or you can set the actual size of your file manually at "FlxPreloaderBase-onUpdate-bytesTotal"-->
@@ -13,7 +13,7 @@
 	<!--Minimum without FLX_NO_GAMEPAD: 11.8, without FLX_NO_NATIVE_CURSOR: 11.2-->
 	<set name="SWF_VERSION" value="11.8" />
 	
-	<android minimum-sdk-version="16" target-sdk-version="19" />
+	<android minimum-sdk-version="16" target-sdk-version="19" if="android" />
 	<certificate path="./repelball.keystore" password="anythingball" alias="repelballKey" alias-password="anythingball" />
 	
 	<template path="AndroidManifest.xml" if="android"/>
@@ -51,9 +51,10 @@
 
 	<haxelib name="flixel" />
 	<haxelib name="svg" />
+	<haxelib name="extension-admob" />
 	
 	<!--In case you want to use the addons package-->
-	<haxelib name="flixel-addons" />
+	<!--haxelib name="flixel-addons" /-->
 	
 	<!--In case you want to use the ui package-->
 	<!--<haxelib name="flixel-ui"/>-->

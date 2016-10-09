@@ -14,6 +14,7 @@ class Colors {
 	public var yellow(get, never):FlxColor;
 	public var orange(get, never):FlxColor;
 	
+	public var background(get, never):FlxColor;
 	public var black(get, never):FlxColor;
 	public var white(get, never):FlxColor;
 	public var gray(get, never):FlxColor;
@@ -39,6 +40,7 @@ class Colors {
 	inline function get_yellow():FlxColor return 0xFFFFEB3B;
 	inline function get_orange():FlxColor return 0xFFFF9800;
 	
+	inline function get_background():FlxColor return gray;
 	inline function get_black():FlxColor return 0xFF000000;
 	inline function get_white():FlxColor return 0xFFFFFFFF;
 	inline function get_gray():FlxColor return 0xFF212121;

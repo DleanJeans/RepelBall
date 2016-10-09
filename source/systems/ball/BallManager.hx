@@ -4,7 +4,8 @@ import flixel.FlxG;
 import flixel.math.FlxPoint;
 import objects.Ball;
 import objects.Paddle;
-using flixel.addons.util.position.FlxPosition;
+import objects.Wall;
+using Positioner;
 
 typedef BallMap = Map<Paddle, Ball>;
 
@@ -21,15 +22,16 @@ class BallManager {
 			ballMap.remove(paddle);
 	}
 	
+	public inline function disableBallSolid(ball:Ball, wall:Wall) {
+		if (Game.match.wallIsGoal(wall))
+			ball.solid = false;
+	}
+	
 	public function increaseBallSpeed(ball:Ball, paddle:Paddle) {
 		if (ball.lastHitPaddle != paddle) {
 			ball.increaseSpeed();
 			ball.lastHitPaddle = paddle;
 		}
-	}
-	
-	public inline function changeBallColor(ball:Ball, paddle:Paddle) {
-		ball.color = paddle.color;
 	}
 	
 	public function findNearestBall(paddle:Paddle) {

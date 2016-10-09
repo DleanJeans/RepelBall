@@ -5,7 +5,7 @@ import flixel.FlxSprite;
 import flixel.FlxSubState;
 import flixel.util.FlxSignal;
 import flixel.util.FlxTimer;
-using flixel.addons.util.position.FlxPosition;
+using Positioner;
 
 class BluebirdSplash extends FlxSubState {
 	public var logo(default, null):FlxSprite;
@@ -17,7 +17,7 @@ class BluebirdSplash extends FlxSubState {
 		logo = new FlxSprite(0, 0, AssetPaths.bluebird_logo__9__png);
 		logo.setGraphicSize(cast FlxG.width * 0.8);
 		logo.updateHitbox();
-		logo.setCenter(FlxPosition.screenCenter);
+		logo.setCenter(Positioner.screenCenter);
 		add(logo);
 		
 		done = new FlxSignal();

@@ -3,7 +3,7 @@ package ui;
 import flixel.FlxG;
 import flixel.group.FlxSpriteGroup;
 import flixel.text.FlxText;
-using flixel.addons.util.position.FlxPosition;
+using Positioner;
 
 class RoundScoreText extends FlxSpriteGroup {
 	public var score1(default, null):FlxText;

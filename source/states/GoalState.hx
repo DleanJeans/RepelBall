@@ -1,14 +1,12 @@
 package states;
 
 import flixel.FlxSubState;
-import flixel.text.FlxText;
-import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import ui.AnyInputText;
 import ui.GoalText;
 import ui.RoundScoreText;
 import ui.TimerText;
-using flixel.addons.util.position.FlxPosition;
+using Positioner;
 
 class GoalState extends FlxSubState {
 	public var goalText(default, null):GoalText;
@@ -48,6 +46,7 @@ class GoalState extends FlxSubState {
 	}
 	
 	public function goal() {
+		if (!_created) return;
 		restartMultiGoalTimer();
 		updateRoundScoreText();
 	}

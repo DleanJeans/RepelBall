@@ -6,7 +6,7 @@ import flixel.text.FlxText;
 import flixel.ui.FlxButton;
 import systems.ArrayLoop;
 using flixel.util.FlxSpriteUtil;
-using flixel.addons.util.position.FlxPosition;
+using Positioner;
 
 class LoopSelector extends FlxSpriteGroup {
 	public var label(default, null):FlxText;
@@ -15,7 +15,7 @@ class LoopSelector extends FlxSpriteGroup {
 	public var nextButton(default, null):FlxButton;
 	public var midText(default, null):FlxText;
 	
-	private var arrayLoop:ArrayLoop<Dynamic>;
+	private var arrayLoop:TypedArrayLoop<Dynamic>;
 	
 	private var _labelText:String;
 	private var _labelFieldWidth:Int;
@@ -63,7 +63,7 @@ class LoopSelector extends FlxSpriteGroup {
 	}
 	
 	private function createStuff<T>(values:Array<T>) {
-		arrayLoop = new ArrayLoop<T>(values);
+		arrayLoop = new TypedArrayLoop<T>(values);
 		label = new FlxText();
 		background = new FlxSprite();
 		prevButton = new FlxButton();

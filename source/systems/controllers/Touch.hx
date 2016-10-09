@@ -4,7 +4,7 @@ import flixel.FlxG;
 import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
 import objects.Paddle;
-using flixel.addons.util.position.FlxPosition;
+using Positioner;
 
 class Touch extends Controller {
 	public function new(?paddle:Paddle) {

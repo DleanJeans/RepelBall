@@ -46,14 +46,17 @@ class PaddleSqueezer extends FlxBasic {
 	}
 	
 	public inline function squeezePaddle(paddle:Paddle) {
-		var tween = getAndStopTween(paddle);
-		tween = FlxTween.tween(paddle.wrapper.scale, { x:1.25, y:0.75 }, 0.5, tweenOptions(paddle));
-		tweenMap.set(paddle, tween);
+		tweenScale(paddle, { x:1.25, y:0.75 });
 	}
 	
 	public inline function unsqueezePaddle(paddle:Paddle) {
+		tweenScale(paddle, { x:1, y:1 });
+	}
+	
+	private function tweenScale(paddle:Paddle, scaleProperties:Dynamic) {
+		var options:TweenOptions = { onUpdate:updateEyeSeparation.bind(paddle), onComplete: removeTween.bind(paddle), ease:FlxEase.backOut }
 		var tween = getAndStopTween(paddle);
-		tween = FlxTween.tween(paddle.wrapper.scale, { x:1, y:1 }, 0.5, tweenOptions(paddle));
+		tween = FlxTween.tween(paddle.wrapper.scale, scaleProperties, 0.5, options);
 		tweenMap.set(paddle, tween);
 	}
 	
@@ -66,7 +69,6 @@ class PaddleSqueezer extends FlxBasic {
 	
 	private inline function updateEyeSeparation(paddle:Paddle, tween:FlxTween) {
 		paddle.wrapper.face.eyes.scaleEyeSeparation(paddle.wrapper.scale.x);
-		//FlxG.watch.addQuick("paddle.scale", paddle.scale);
 	}
 	
 	private inline function removeTween(paddle:Paddle, tween:FlxTween) {
@@ -75,9 +77,5 @@ class PaddleSqueezer extends FlxBasic {
 	
 	private inline function getTween(paddle:Paddle):FlxTween {
 		return tweenMap.get(paddle);
-	}
-	
-	function tweenOptions(paddle:Paddle):TweenOptions {
-		return { onUpdate:updateEyeSeparation.bind(paddle), onComplete: removeTween.bind(paddle), ease:FlxEase.backOut };
 	}
 }

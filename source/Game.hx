@@ -1,9 +1,14 @@
 package;
 
+import systems.Ads;
 import systems.AnyInput;
 import systems.Colors;
 import systems.FramerateCounter;
 import systems.GoalManager;
+import systems.Save;
+import systems.SlowMotion;
+import systems.Speed;
+import systems.Tweens;
 import systems.ball.BallSystems;
 import systems.Level;
 import systems.Messages;
@@ -11,7 +16,7 @@ import systems.SoundFX;
 import systems.WinManager;
 import systems.match.Match;
 import systems.Pools;
-import systems.Positioner;
+import systems.paddle.PaddlePositioner;
 import systems.Renderer;
 import systems.Settings;
 import systems.Signals;
@@ -19,14 +24,15 @@ import systems.States;
 import systems.WallBuilder;
 import systems.collisions.Collision;
 import systems.controllers.ControllerList;
-import systems.paddle.PaddleMovement;
 import systems.paddle.PaddleSystems;
+import systems.screen.ScreenSystems;
+import systems.trail.CometTrailWrapper;
 import ui.Scoreboard;
 
 class Game {
 	private static inline var UNIT_LENGTH = 24;
 	public static inline function unitLength(times:Float = 1):Int {
-		return Std.int(UNIT_LENGTH * times);
+		return cast UNIT_LENGTH * times;
 	}
 	
 	public static var level(default, null):Level;
@@ -38,7 +44,6 @@ class Game {
 	public static var renderer(default, null):Renderer;
 	public static var collision(default, null):Collision;
 	public static var controllers(default, null):ControllerList;
-	public static var position(default, null):Positioner;
 	public static var pools(default, null):Pools;
 	public static var goalManager(default, null):GoalManager;
 	public static var scoreboard(default, null):Scoreboard;
@@ -51,6 +56,16 @@ class Game {
 	public static var messages(default, null):Messages;
 	public static var ball(default, null):BallSystems;
 	public static var paddle(default, null):PaddleSystems;
+	public static var tween(default, null):Tweens;
+	public static var slowMo(default, null):SlowMotion;
+	public static var cometTrail(default, null):CometTrailWrapper;
+	public static var screen(default, null):ScreenSystems;
+	public static var speed(default, null):Speed;
+	public static var save(default, null):Save;
+	
+	#if mobile
+	public static var ads(default, null):Ads;
+	#end
 	
 	public static function init() {
 		level = new Level();
@@ -61,7 +76,6 @@ class Game {
 		renderer = new Renderer();
 		collision = new Collision();
 		controllers = new ControllerList();
-		position = new Positioner();
 		pools = new Pools();
 		goalManager = new GoalManager();
 		scoreboard = new Scoreboard();
@@ -73,9 +87,19 @@ class Game {
 		messages = new Messages();
 		ball = new BallSystems();
 		paddle = new PaddleSystems();
+		tween = new Tweens();
+		slowMo = new SlowMotion();
+		cometTrail = new CometTrailWrapper();
+		screen = new ScreenSystems();
+		speed = new Speed();
+		save = new Save();
 		
 		signals = new Signals();
 		framerateCounter = new FramerateCounter();
+		
+		#if mobile
+		ads = new Ads();
+		#end
 	}
 	
 }

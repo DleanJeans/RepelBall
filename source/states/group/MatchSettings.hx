@@ -7,7 +7,7 @@ import flixel.util.FlxSignal;
 import ui.LoopSelector;
 import ui.SideButton;
 import states.group.TeamSettings;
-using flixel.addons.util.position.FlxPosition;
+using Positioner;
 
 class MatchSettings extends FlxSpriteGroup {
 	public var newMatchHeader(default, null):SideButton;
@@ -30,6 +30,13 @@ class MatchSettings extends FlxSpriteGroup {
 		createStuff();
 		setupStuff();
 		addStuff();
+		
+		start.addOnce(saveSettings);
+	}
+	
+	public function saveSettings() {
+		Game.save.saveMatchSettings(maxBallsLoop.getIndex(), scoresLoop.getIndex(),
+		teamSettings1.colorSwatch.index, teamSettings2.colorSwatch.index);
 	}
 	
 	public inline function sameTeamColor() {
@@ -48,8 +55,8 @@ class MatchSettings extends FlxSpriteGroup {
 		start = new FlxSignal();
 		
 		newMatchHeader = new SideButton(0, 50, cast FlxG.width / 2, 50, "New Match", 40);
-		backButton = new SideButton(0, FlxG.height - 75, 240, 50, "Back", 35, back.dispatch);
-		startButton = new SideButton(0, FlxG.height - 75, 240, 50, "Start", 35, start.dispatch);
+		backButton = new SideButton(0, FlxG.height - 150, 240, 50, "Back", 35, back.dispatch);
+		startButton = new SideButton(0, FlxG.height - 150, 240, 50, "Start", 35, start.dispatch);
 		
 		maxBallsLoop = Game.pools.getLoopSelector("Max Balls", Game.settings.maxBalls);
 		scoresLoop = Game.pools.getLoopSelector("Scores", Game.settings.scoresToWin);
@@ -73,18 +80,23 @@ class MatchSettings extends FlxSpriteGroup {
 		teamSettings2.x = teamSettings1.getRight() + Game.settings.TEAM_SETTINGS_SPACE_X;
 		teamSettingsGroup.screenCenter(FlxAxes.X);
 		
-		maxBallsLoop.select(1);
+		maxBallsLoop.select(Game.save.maxBallsIndex);
+		scoresLoop.select(Game.save.scoresIndex);
 		
 		selectRandomColorOnSwatches();
 	}
 	
 	private inline function selectRandomColorOnSwatches() {
 		var maxIndex = Game.color.list.length - 1;
-		var index1 = FlxG.random.int(0, maxIndex);
-		var index2 = FlxG.random.int(0, maxIndex, [index1]);
 		
-		teamSettings1.colorSwatch.selectByIndex(index1);
-		teamSettings2.colorSwatch.selectByIndex(index2);
+		if (Game.save.colorsNotSet()) {
+			Game.save.color1Index = teamSettings1.colorSwatch.selectRandom();
+			Game.save.color2Index = teamSettings2.colorSwatch.selectRandom(Game.save.color1Index);
+		}
+		else {
+			teamSettings1.colorSwatch.selectByIndex(Game.save.color1Index);
+			teamSettings2.colorSwatch.selectByIndex(Game.save.color2Index);
+		}
 	}
 	
 	private function addStuff() {

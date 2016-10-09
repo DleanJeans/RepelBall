@@ -28,7 +28,7 @@ class Team {
 	
 	public function setupTeamPosition() {
 		for (paddle in paddles)
-			Game.position.putPaddleOnGoal(paddle.paddle, goal);
+			Game.paddle.position.putAboveGoal(paddle.paddle, goal);
 	}
 	
 	public function reset() {

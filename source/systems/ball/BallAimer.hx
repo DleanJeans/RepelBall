@@ -2,6 +2,7 @@ package systems.ball;
 
 import flixel.FlxG;
 import objects.Paddle;
+import systems.ArrayLoop.TypedArrayLoop;
 import systems.match.Team;
 using flixel.util.FlxArrayUtil;
 
@@ -9,11 +10,11 @@ class BallAimer {
 	private var paddle:Paddle;
 	private var currentTeam:Team;
 	private var pushedPaddles:Array<Paddle>;
-	private var teamLoop:ArrayLoop<Team>;
+	private var teamLoop:TypedArrayLoop<Team>;
 	
 	public function new() {
 		pushedPaddles = new Array<Paddle>();
-		teamLoop = new ArrayLoop<Team>();
+		teamLoop = new TypedArrayLoop<Team>();
 	}
 	
 	public function autoPush() {

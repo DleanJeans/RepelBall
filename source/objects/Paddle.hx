@@ -8,16 +8,17 @@ import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
 import objects.personality.EyePair;
 using flixel.util.FlxSpriteUtil;
-using flixel.addons.util.position.FlxPosition;
+using Positioner;
 
 class Paddle extends FlxSprite {
 	public var startingPosition(default, null):FlxPoint;
 	public var speed:Int = FlxG.width;
 	public var length(default, set):Int = Game.unitLength(5);
-	public var wrapper:PaddleWrapper;
+	public var wrapper(default, null):PaddleWrapper;
 	
-	public function new() {
+	public function new(wrapper:PaddleWrapper) {
 		super();
+		this.wrapper = wrapper;
 		startingPosition = FlxPoint.get();
 		facing = FlxObject.UP;
 	}

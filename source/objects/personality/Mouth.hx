@@ -9,7 +9,7 @@ import openfl.Assets;
 import openfl.display.BitmapData;
 import openfl.display.Graphics;
 import openfl.display.Sprite;
-using flixel.addons.util.position.FlxPosition;
+using Positioner;
 
 @:enum
 abstract MouthFrame(Int) {
@@ -21,8 +21,8 @@ abstract MouthFrame(Int) {
 enum MouthExpression {
 	SMILING;
 	FROWNING;
-	OOH_ING;
-	SHUTTING;
+	OOH;
+	CLOSED;
 }
 
 class Mouth extends FlxSprite {
@@ -30,9 +30,11 @@ class Mouth extends FlxSprite {
 	public var paddle:Paddle;
 	
 	private var _currentExpression:MouthExpression;
+	private var _scale:FlxPoint;
 	
 	public function new() {
 		super(0, 0);
+		_scale = FlxPoint.get(1, 1);
 		loadGraphic(drawMouthFromSvg(), true, 24, 12);
 		solid = false;
 		smile();
@@ -49,15 +51,25 @@ class Mouth extends FlxSprite {
 		return bitmapData;
 	}
 	
+	override public function update(elapsed:Float):Void {
+		super.update(elapsed);
+		updateOffset();
+		multiplyScale();
+	}
+	
+	private inline function multiplyScale() {
+		scale.x *= _scale.x;
+		scale.y *= _scale.y;
+	}
+	
+	private inline function updateOffset() {
+		offset.copyFrom(paddle.offset);
+	}
+	
 	public function attachToPaddle(paddle:Paddle) {
 		this.paddle = paddle;
 		setMidBottom(paddle.getMidBottom());
 		y -= 3;
-	}
-	
-	override public function update(elapsed:Float):Void {
-		offset.copyFrom(paddle.offset);
-		super.update(elapsed);
 	}
 	
 	public function changeFrame(expression:MouthFrame) {
@@ -73,9 +85,9 @@ class Mouth extends FlxSprite {
 		_currentExpression = SMILING;
 	}
 	
-	public function shut() {
-		if (_currentExpression == SHUTTING) return;
-		_currentExpression = SHUTTING;
+	public function close() {
+		if (_currentExpression == CLOSED) return;
+		_currentExpression = CLOSED;
 		stopTween();
 		changeFrame(SMILE);
 		
@@ -91,8 +103,8 @@ class Mouth extends FlxSprite {
 	}
 	
 	public function ooh() {
-		if (_currentExpression == OOH_ING) return;
-		_currentExpression = OOH_ING;
+		if (_currentExpression == OOH) return;
+		_currentExpression = OOH;
 		stopTween();
 		changeFrame(OOH);
 		scale.set(0.5, 0.5);
@@ -105,7 +117,7 @@ class Mouth extends FlxSprite {
 			values.x = x;
 		if (y != null)
 			values.y = y;
-		tween = FlxTween.tween(this.scale, values, 0.1);
+		tween = FlxTween.tween(_scale, values, 0.25);
 	}
 	
 	private inline function stopTween() {

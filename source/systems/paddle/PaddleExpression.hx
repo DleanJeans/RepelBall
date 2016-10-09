@@ -16,7 +16,12 @@ class PaddleExpression {
 		paddle.wrapper.reattachFace();
 	}
 	
-	public function updateFacing() {
+	public function closeAll() {
+		for (face in Game.level.faces)
+			face.mouth.close();
+	}
+	
+	public function updateEyesFacing() {
 		for (face in Game.level.faces)
 			face.eyes.updateFacing();
 	}
@@ -38,7 +43,7 @@ class PaddleExpression {
 	}
 	
 	public inline function shut(paddle:Paddle) {
-		mouth(paddle).shut();
+		mouth(paddle).close();
 	}
 	
 	public inline function lookAtBall(paddle:Paddle) {

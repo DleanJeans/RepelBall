@@ -18,10 +18,21 @@ class WallBuilder {
 	public function buildWalls() {
 		var wallWidth = Game.unitLength();
 		
+		var topWallY = 0;
+		var bottomWallY = FlxG.height - wallWidth;
+		
+		if (FlxG.onMobile) {
+			var emptyHeight = FlxG.height * 0.1;
+			topWallY += cast emptyHeight / 2;
+			bottomWallY -= cast emptyHeight / 2;
+		}
+		
 		rightWall = Game.pools.getWall(FlxG.width, 0, wallWidth, FlxG.height, FlxObject.LEFT);
 		leftWall = Game.pools.getWall(-wallWidth, 0, wallWidth, FlxG.height, FlxObject.RIGHT);
-		topWall = Game.pools.getWall(0, 0, FlxG.width, wallWidth, FlxObject.DOWN);
-		bottomWall = Game.pools.getWall(0, FlxG.height - wallWidth, FlxG.width, wallWidth, FlxObject.UP);
+		topWall = Game.pools.getWall(-wallWidth, topWallY, FlxG.width + wallWidth, wallWidth, FlxObject.DOWN);
+		bottomWall = Game.pools.getWall(-wallWidth, bottomWallY, FlxG.width + wallWidth, wallWidth, FlxObject.UP);
+		
+		rightWall.visible = leftWall.visible = false;
 	}
 	
 	public function addWallsToLevel() {

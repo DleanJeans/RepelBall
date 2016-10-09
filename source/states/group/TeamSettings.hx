@@ -3,16 +3,12 @@ package states.group;
 import flixel.FlxSprite;
 import flixel.group.FlxSpriteGroup;
 import flixel.text.FlxText;
-import flixel.tweens.FlxEase;
-import flixel.tweens.FlxTween;
-import flixel.ui.FlxButton;
 import flixel.util.FlxColor;
 import objects.Paddle;
 import objects.PaddleWrapper;
-import objects.personality.EyePair;
 import systems.match.Team;
 import ui.ColorSwatchSelector;
-using flixel.addons.util.position.FlxPosition;
+using Positioner;
 
 class TeamSettings extends FlxSpriteGroup {
 	public var teamName(default, null):FlxText;
@@ -83,7 +79,7 @@ class TeamSettings extends FlxSpriteGroup {
 		setPosition(x, y);
 		updateTeamName(colorSwatch);
 		colorSwatch.fixSelector();
-		Game.paddle.hoverer.startHovering(paddle, Game.unitLength(0.75));
+		Game.paddle.hoverer.startHovering(paddle);
 	}
 	
 	private function updateTeamName(colorSwatch:ColorSwatchSelector) {
@@ -96,13 +92,8 @@ class TeamSettings extends FlxSpriteGroup {
 	}
 	
 	private function tweenPaddleWrapper() {
-		var colorTweenOptions:TweenOptions = { onUpdate:function(t:FlxTween) paddleWrapper.color.alphaFloat = 1 };
-		var scaleTweenOptions:TweenOptions = { onUpdate:Game.paddle.expression.tweenUpdateEyeSeparation.bind(paddle), ease:FlxEase.sineOut };
-		
-		var tweenDuration = Game.settings.COLOR_CHANGING_TWEEN_DURATION;
-		FlxTween.color(paddleWrapper, tweenDuration, paddleWrapper.color, colorSwatch.getColor(), colorTweenOptions);
-		FlxTween.tween(paddleWrapper.scale, { x:2, y:2 }, tweenDuration / 2, scaleTweenOptions)
-		.then(FlxTween.tween(paddleWrapper.scale, { x:1, y:1 }, tweenDuration / 2, scaleTweenOptions));
+		Game.tween.paddleColor(paddleWrapper, colorSwatch.getColor());
+		Game.tween.paddleScaleUpAndDown(paddleWrapper);
 	}
 	
 	inline function get_teamColor():FlxColor {

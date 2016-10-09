@@ -2,7 +2,7 @@ package objects.personality;
 
 import flixel.group.FlxSpriteGroup;
 import objects.Paddle;
-using flixel.addons.util.position.FlxPosition;
+using Positioner;
 
 class Face extends FlxSpriteGroup {
 	public var eyes(default, null):EyePair;

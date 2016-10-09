@@ -9,7 +9,7 @@ import objects.PaddleWrapper;
 import objects.Wall;
 import ui.ColorSwatchSelector;
 import ui.LoopSelector;
-using flixel.addons.util.position.FlxPosition;
+using Positioner;
 
 typedef Pool<T:FlxBasic> = FlxTypedGroup<T>;
 typedef BallPool = Pool<Ball>;
@@ -25,6 +25,7 @@ class Pools {
 		var ball = balls.recycle(Ball);
 		ball.resetSpeed();
 		ball.resetColor();
+		ball.solid = true;
 		if (position != null)
 			ball.setCenter(position);
 		if (velocity != null)

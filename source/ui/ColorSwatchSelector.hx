@@ -1,5 +1,6 @@
 package ui;
 
+import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.group.FlxSpriteGroup;
@@ -10,13 +11,14 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 using flixel.util.FlxSpriteUtil;
-using flixel.addons.util.position.FlxPosition;
+using Positioner;
 
 class ColorSwatchSelector extends FlxSpriteGroup {
 	public var label(default, null):FlxText;
 	public var swatches(default, null):FlxSpriteGroup;
 	public var selector(default, null):FlxSprite;
 	public var colors(default, null):Array<FlxColor>;
+	public var index(default, null):Int = 0;
 	
 	public var maxColumns:Int;
 	public var swatchWidth:Int;
@@ -50,9 +52,15 @@ class ColorSwatchSelector extends FlxSpriteGroup {
 			FlxMouseEventManager.remove(swatch);
 	}
 	
+	public function selectRandom(excludeIndex:Int = -1):Int {
+		var index = FlxG.random.int(0, Game.color.list.length - 1, [excludeIndex]);
+		selectByIndex(index);
+		return this.index = index;
+	}
+	
 	public function selectByIndex(index:Int) {
-		index = boundSwatchIndex(index);
-		var swatch = swatches.members[index];
+		this.index = boundSwatchIndex(index);
+		var swatch = swatches.members[this.index];
 		selectSwatch(swatch);
 	}
 	
@@ -143,6 +151,7 @@ class ColorSwatchSelector extends FlxSpriteGroup {
 	private inline function selectSwatch(swatch:FlxSprite, instantly:Bool = false) {
 		selectedSwatch = swatch;
 		moveSelectorTo(swatch, instantly);
+		index = swatches.members.indexOf(swatch);
 		callback();
 	}
 	
@@ -152,7 +161,7 @@ class ColorSwatchSelector extends FlxSpriteGroup {
 			
 		if (instantly)
 			selector.setPosition(swatch.getCenterX(), swatch.getCenterY());
-		else selectorTween = FlxTween.tween(selector, { x:swatch.getCenterX(), y:swatch.getCenterY()}, 0.25, { ease:FlxEase.quartOut});
+		else selectorTween = Game.tween.colorSwatchSelector(selector, swatch.getCenterX(), swatch.getCenterY());
 	}
 	
 	private function callback() {
