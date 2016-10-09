@@ -40,15 +40,4 @@ class CometTrailWrapper {
 		trail.color.alphaFloat = FlxMath.lerp(1, 0.5, tween.percent);
 	}
 	
-	private inline function paddleToTrailColor(paddle:Paddle):FlxColor {
-		var color = paddle.color;
-		color.alphaFloat = 0.5;
-		color = color.getLightened(0.5);
-		return color;
-	}
-	
-	private inline function tweenFinished() {
-		return tween == null || tween.finished;
-	}
-	
 }
