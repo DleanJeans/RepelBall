@@ -8,7 +8,6 @@ import objects.Paddle;
 import objects.PaddleWrapper;
 import systems.match.Team;
 import ui.ColorSwatchSelector;
-using Positioner;
 
 class TeamSettings extends FlxSpriteGroup {
 	public var teamName(default, null):FlxText;

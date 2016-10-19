@@ -4,7 +4,6 @@ import flixel.FlxObject;
 import objects.Ball;
 import objects.Paddle;
 import objects.Wall;
-using Positioner;
 
 class Handler {
 	public var ball_paddle_collision(default, null):Ball_Paddle;

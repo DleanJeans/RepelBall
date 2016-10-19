@@ -1,9 +1,12 @@
 package systems.collisions;
 
 import flixel.FlxObject;
+import flixel.math.FlxAngle;
+import flixel.math.FlxVelocity;
 import objects.Ball;
 import objects.Paddle;
 import systems.ArrayLoop.TypedArrayLoop;
+using Positioner;
 
 class Ball_Paddle {
 	private var ball:Ball;

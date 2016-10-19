@@ -10,7 +10,6 @@ import objects.Wall;
 import objects.Powerup;
 import ui.ColorSwatchSelector;
 import ui.LoopSelector;
-using Positioner;
 
 typedef Pool<T:FlxBasic> = FlxTypedGroup<T>;
 typedef BallPool = Pool<Ball>;

@@ -5,7 +5,6 @@ import flixel.math.FlxVelocity;
 import flixel.util.FlxColor;
 import objects.Paddle;
 using flixel.util.FlxSpriteUtil;
-using Positioner;
 
 class Ball extends FlxSprite {
 	public var speed(default, null):Int;

@@ -7,7 +7,6 @@ import flixel.util.FlxColor;
 import objects.Ball;
 import objects.Wall;
 
-using Positioner;
 
 class Scoreboard extends FlxSpriteGroup {
 	public var background1(default, null):FlxSprite;

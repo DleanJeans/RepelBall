@@ -9,7 +9,6 @@ import openfl.Assets;
 import openfl.display.BitmapData;
 import openfl.display.Graphics;
 import openfl.display.Sprite;
-using Positioner;
 
 @:enum
 abstract MouthFrame(Int) {

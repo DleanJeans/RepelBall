@@ -4,7 +4,6 @@ import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.math.FlxPoint;
 
-using Positioner;
 
 class Positioner {
 	public static var screenCenter(get, null):FlxPoint;

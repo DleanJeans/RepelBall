@@ -7,7 +7,6 @@ import flixel.util.FlxSignal;
 import ui.LoopSelector;
 import ui.SideButton;
 import states.group.TeamSettings;
-using Positioner;
 
 class MatchSettings extends FlxSpriteGroup {
 	public var newMatchHeader(default, null):SideButton;

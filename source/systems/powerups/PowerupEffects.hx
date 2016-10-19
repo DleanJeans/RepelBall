@@ -5,7 +5,6 @@ import flixel.FlxObject;
 import flixel.math.FlxAngle;
 import flixel.math.FlxPoint;
 import objects.Ball;
-using Positioner;
 
 class PowerupEffects {
 	public var powerups:Array<Ball->Void>;

@@ -8,7 +8,6 @@ import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
 import objects.personality.EyePair;
 using flixel.util.FlxSpriteUtil;
-using Positioner;
 
 class Paddle extends FlxSprite {
 	public var startingPosition(default, null):FlxPoint;
