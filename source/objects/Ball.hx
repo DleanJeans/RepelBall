@@ -5,6 +5,7 @@ import flixel.math.FlxVelocity;
 import flixel.util.FlxColor;
 import objects.Paddle;
 using flixel.util.FlxSpriteUtil;
+using Positioner;
 
 class Ball extends FlxSprite {
 	public var speed(default, null):Int;
@@ -18,8 +19,25 @@ class Ball extends FlxSprite {
 		drawBall();
 	}
 	
-	public inline function resetColor() {
-		originalColor = color = Game.color.white;
+	public function cloneBall():Ball {
+		var clone = Game.pools.getBall(this.getCenter(), velocity);
+		clone.setColor(originalColor);
+		clone.speed = speed;
+		return clone;
+	}
+	
+	public inline function setColor(newColor:FlxColor) {
+		originalColor = color = newColor;
+	}
+	
+	public inline function resetBall() {
+		resetColor();
+		resetSpeed();
+		solid = true;
+	}
+	
+	public function resetColor() {
+		setColor(Game.color.white);
 	}
 	
 	public inline function resetSpeed() {

@@ -28,6 +28,16 @@ class Settings {
 	public var TRAIL_COOLDOWN = 0.02 ;
 	public var SCREEN_SHAKE_DURATION = 0.1;
 	public var GLITCH_DURATION = 0.05;
+	public var POWERUP_POPPING_DURATION = 0.5;
+	
+	public var POWERUP_AREA_WIDTH:Int = cast FlxG.width * 0.8;
+	public var POWERUP_AREA_HEIGHT:Int = cast FlxG.height * 0.5;
+	public var POWERUP_MIN_X:Int;
+	public var POWERUP_MAX_X:Int;
+	public var POWERUP_MIN_Y:Int;
+	public var POWERUP_MAX_Y:Int;
+	
+	public var POWERUP_LIFETIME = 6;
 	
 	/**
 	 * Mouth will frown when ball is outside of this distance
@@ -48,11 +58,19 @@ class Settings {
 	
 	public function new() {
 		FlxG.camera.antialiasing = true;
+		setupPowerupArea();
 		setupUISettings();
 		addTestScoreSettingsOnDebug();
 		setSeparateBias();
 		setDefaultFont();
 		disableFlixelMouseOnJs();
+	}
+	
+	private function setupPowerupArea() {
+		POWERUP_MIN_X = cast (FlxG.width - POWERUP_AREA_WIDTH) / 2;
+		POWERUP_MAX_X = cast POWERUP_MIN_X + POWERUP_AREA_WIDTH;
+		POWERUP_MIN_Y = cast (FlxG.height - POWERUP_AREA_HEIGHT) / 2;
+		POWERUP_MAX_Y = cast POWERUP_MIN_Y + POWERUP_AREA_HEIGHT;
 	}
 	
 	private function setupUISettings() {

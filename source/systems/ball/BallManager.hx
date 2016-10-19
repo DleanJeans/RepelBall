@@ -22,6 +22,10 @@ class BallManager {
 			ballMap.remove(paddle);
 	}
 	
+	public inline function addBallToLevel(ball:Ball) {
+		Game.signals.ballSpawned.dispatch(ball);
+	}
+	
 	public inline function disableBallSolid(ball:Ball, wall:Wall) {
 		if (Game.match.wallIsGoal(wall))
 			ball.solid = false;

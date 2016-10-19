@@ -56,8 +56,7 @@ class BallShooter extends FlxObject {
 	private function shootAroundStartingPoint(startingPoint:FlxPoint) {
 		var projectile = getProjectileVector(startingPoint);
 		var ball = Game.pools.getBall(position, projectile);
-		Game.level.addBall(ball);
-		Game.signals.ballSpawned.dispatch(ball);
+		Game.ball.manager.addBallToLevel(ball);
 		projectile.put();
 	}
 	

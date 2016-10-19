@@ -11,6 +11,8 @@ import flixel.util.FlxColor;
 import objects.Ball;
 import objects.Paddle;
 import objects.PaddleWrapper;
+import systems.Tweens.PowerupTweenMap;
+import objects.Powerup;
 import systems.trail.CometTrail.Trail;
 
 typedef TypedPaddleTweenMap<T:FlxTween> = Map<Paddle, T>;
@@ -18,6 +20,8 @@ typedef PaddleTweenMap = TypedPaddleTweenMap<FlxTween>;
 
 typedef TypedBallTweenMap<T:FlxTween> = Map<Ball, T>;
 typedef BallTweenMap = TypedBallTweenMap<FlxTween>;
+
+typedef PowerupTweenMap = Map<Powerup, FlxTween>;
 
 enum Restart {
 	DO_RESTART;
@@ -29,12 +33,14 @@ class Tweens {
 	public var squeezers(default, null):PaddleTweenMap;
 	public var ballColors(default, null):TypedBallTweenMap<ColorTween>;
 	public var ballScales(default, null):BallTweenMap;
+	public var powerups(default, null):PowerupTweenMap;
 	
 	public function new() {
-		hoverers = new PaddleTweenMap();
-		squeezers = new PaddleTweenMap();
+		//hoverers = new PaddleTweenMap();
+		//squeezers = new PaddleTweenMap();
 		ballColors = new TypedBallTweenMap<ColorTween>();
 		ballScales = new BallTweenMap();
+		powerups = new PowerupTweenMap();
 	}
 	
 	private function cancelTween<T1:FlxSprite, T2:FlxTween>(map:Map<T1, T2>, sprite:FlxSprite):T2 {
@@ -49,6 +55,14 @@ class Tweens {
 		var tween = map[cast sprite];
 		if (tween != null && restart == DO_RESTART)
 			tween.start();
+		return tween;
+	}
+	
+	public inline function powerupScale(powerup:Powerup, newScaleX:Float, newScaleY:Float, ?onComplete:TweenCallback) {
+		var tween = cancelTween(powerups, powerup);
+		tween = FlxTween.tween(powerup.scale, { x:newScaleX, y:newScaleY }, Game.settings.POWERUP_POPPING_DURATION,
+		{ type:FlxTween.PERSIST, ease:FlxEase.backOut, onComplete:onComplete });
+		powerups.set(powerup, tween);
 		return tween;
 	}
 	

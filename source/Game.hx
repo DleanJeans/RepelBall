@@ -62,6 +62,7 @@ class Game {
 	public static var screen(default, null):ScreenSystems;
 	public static var speed(default, null):Speed;
 	public static var save(default, null):Save;
+	public static var powerups(default, null):PowerupSystems;
 	
 	#if mobile
 	public static var ads(default, null):Ads;
@@ -93,6 +94,7 @@ class Game {
 		screen = new ScreenSystems();
 		speed = new Speed();
 		save = new Save();
+		powerups = new PowerupSystems();
 		
 		signals = new Signals();
 		framerateCounter = new FramerateCounter();
