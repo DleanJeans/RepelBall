@@ -10,14 +10,14 @@ class FramerateCounter {
 	public function new() {
 		FlxG.signals.postUpdate.add(checkInputForToggling);
 		counter = new FPS(12, -2, 0xFFFFFF);
+		FlxG.addChildBelowMouse(counter);
+		counter.visible = false;
 	}
 	
 	public function checkInputForToggling() {
 		#if !FLX_NO_KEYBOARD
-		if (FlxG.keys.justPressed.TAB) {
-			FlxG.addChildBelowMouse(counter);
+		if (FlxG.keys.justPressed.TAB)
 			toggleVisible();
-		}
 		#end
 	}
 	

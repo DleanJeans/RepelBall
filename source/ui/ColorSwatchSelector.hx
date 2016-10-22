@@ -11,7 +11,6 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 using flixel.util.FlxSpriteUtil;
-using Positioner;
 
 class ColorSwatchSelector extends FlxSpriteGroup {
 	public var label(default, null):FlxText;

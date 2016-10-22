@@ -1,6 +1,7 @@
 package systems.screen;
 
 import flixel.FlxG;
+import flixel.FlxObject;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
 import objects.Ball;
@@ -13,9 +14,7 @@ class ScreenShake {
 	
 	public function new() {}
 	
-	public function ball(ball:Ball, wall:Wall) {
-		if (Game.match.wallIsGoal(wall))
-			return;
+	public function ball(ball:Ball, object:FlxObject) {
 		shake(ball.velocity.x * power, -ball.velocity.y * power);
 	}
 	

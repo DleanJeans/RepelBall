@@ -9,7 +9,6 @@ import openfl.Assets;
 import openfl.display.BitmapData;
 import openfl.display.Graphics;
 import openfl.display.Sprite;
-using Positioner;
 
 @:enum
 abstract MouthFrame(Int) {
@@ -26,6 +25,8 @@ enum MouthExpression {
 }
 
 class Mouth extends FlxSprite {
+	public static inline var SVG_PATH = AssetPaths.Mouths__svg;
+	
 	public var tween(default, null):FlxTween;
 	public var paddle:Paddle;
 	
@@ -35,7 +36,7 @@ class Mouth extends FlxSprite {
 	public function new() {
 		super(0, 0);
 		_scale = FlxPoint.get(1, 1);
-		loadGraphic(drawMouthFromSvg(), true, 24, 12);
+		loadGraphic(Game.renderer.getSvg(SVG_PATH), true, 24, 12);
 		solid = false;
 		smile();
 	}

@@ -5,7 +5,6 @@ import flixel.math.FlxMath;
 import objects.Ball;
 import objects.Paddle;
 import systems.controllers.Controller;
-using Positioner;
 
 class ExpressionAI extends Controller {
 	public static var DISTANCE_THRESHOLD = 400;

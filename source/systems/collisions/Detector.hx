@@ -1,11 +1,14 @@
 package systems.collisions;
 
 import flixel.FlxG;
+import flixel.FlxObject;
 import objects.Ball;
 import objects.Paddle;
+import objects.Powerup;
 import objects.Wall;
 import systems.Level.BallGroup;
 import systems.Level.PaddleGroup;
+import systems.Level.PowerupGroup;
 import systems.Level.WallGroup;
 
 class Detector {
@@ -13,6 +16,7 @@ class Detector {
 	public var walls(get, never):WallGroup;
 	public var paddles(get, never):PaddleGroup;
 	public var balls(get, never):BallGroup;
+	public var powerups(get, never):PowerupGroup;
 	
 	public function new() {
 		FlxG.signals.postUpdate.add(update);
@@ -23,14 +27,16 @@ class Detector {
 			detect();
 	}
 	
-	public function routeSignals(ball:Ball, object:Dynamic) {
+	public function routeSignals(ball:Ball, object:FlxObject) {
 		switch (Type.getClass(object)) {
 			case Ball:
-				Game.signals.ball_ball.dispatch(ball, object);
+				Game.signals.ball_ball.dispatch(ball, cast object);
 			case Wall:
-				Game.signals.ball_wall.dispatch(ball, object);
+				Game.signals.ball_wall.dispatch(ball, cast object);
 			case Paddle:
-				Game.signals.ball_paddle.dispatch(ball, object);
+				Game.signals.ball_paddle.dispatch(ball, cast object);
+			case Powerup:
+				Game.signals.ball_powerup.dispatch(ball, cast object);
 		}
 	}
 	
@@ -38,6 +44,7 @@ class Detector {
 		FlxG.overlap(balls, balls, Game.signals.ball_hit.dispatch);
 		FlxG.overlap(balls, walls, Game.signals.ball_hit.dispatch);
 		FlxG.overlap(balls, paddles, Game.signals.ball_hit.dispatch);
+		FlxG.overlap(balls, powerups, Game.signals.ball_hit.dispatch);
 		FlxG.overlap(paddles, walls, Game.signals.paddle_wall.dispatch);
 	}
 	
@@ -55,6 +62,10 @@ class Detector {
 	
 	inline function get_balls():BallGroup {
 		return level.balls;
+	}
+	
+	inline function get_powerups():PowerupGroup {
+		return level.powerups;
 	}
 	
 }

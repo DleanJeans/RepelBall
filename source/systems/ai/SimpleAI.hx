@@ -7,7 +7,6 @@ import objects.Ball;
 import objects.Paddle;
 import objects.Wall;
 import systems.controllers.Controller;
-using Positioner;
 
 class SimpleAI extends Controller {
 	public function new(?paddle:Paddle) {

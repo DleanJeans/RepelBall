@@ -5,26 +5,26 @@ import systems.AnyInput;
 import systems.Colors;
 import systems.FramerateCounter;
 import systems.GoalManager;
-import systems.Save;
-import systems.SlowMotion;
-import systems.Speed;
-import systems.Tweens;
-import systems.ball.BallSystems;
 import systems.Level;
 import systems.Messages;
-import systems.SoundFX;
-import systems.WinManager;
-import systems.match.Match;
 import systems.Pools;
-import systems.paddle.PaddlePositioner;
 import systems.Renderer;
+import systems.Save;
 import systems.Settings;
 import systems.Signals;
+import systems.SlowMotion;
+import systems.SoundFX;
+import systems.Speed;
 import systems.States;
+import systems.Tweens;
 import systems.WallBuilder;
+import systems.WinManager;
+import systems.ball.BallSystems;
 import systems.collisions.Collision;
 import systems.controllers.ControllerList;
+import systems.match.Match;
 import systems.paddle.PaddleSystems;
+import systems.powerups.PowerupSystems;
 import systems.screen.ScreenSystems;
 import systems.trail.CometTrailWrapper;
 import ui.Scoreboard;
@@ -62,6 +62,7 @@ class Game {
 	public static var screen(default, null):ScreenSystems;
 	public static var speed(default, null):Speed;
 	public static var save(default, null):Save;
+	public static var powerups(default, null):PowerupSystems;
 	
 	#if mobile
 	public static var ads(default, null):Ads;
@@ -93,6 +94,7 @@ class Game {
 		screen = new ScreenSystems();
 		speed = new Speed();
 		save = new Save();
+		powerups = new PowerupSystems();
 		
 		signals = new Signals();
 		framerateCounter = new FramerateCounter();

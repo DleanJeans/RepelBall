@@ -5,6 +5,7 @@ import flixel.util.FlxSignal;
 import flixel.util.FlxSignal.FlxTypedSignal;
 import objects.Ball;
 import objects.Paddle;
+import objects.Powerup;
 import objects.Wall;
 import systems.Signals.Signal1;
 import systems.match.Team;
@@ -18,6 +19,7 @@ class Signals {
 	public var ball_ball:Signal2<Ball, Ball> = new Signal2<Ball, Ball>();
 	public var ball_wall:Signal2<Ball, Wall> = new Signal2<Ball, Wall>();
 	public var ball_paddle:Signal2<Ball, Paddle> = new Signal2<Ball, Paddle>();
+	public var ball_powerup:Signal2<Ball, Powerup> = new Signal2<Ball, Powerup>();
 	public var paddle_wall:Signal2<Paddle, Wall> = new Signal2<Paddle, Wall>();
 	
 	public var ballSpawned:Signal1<Ball> = new Signal1<Ball>();
@@ -57,6 +59,7 @@ class Signals {
 		roundStart.add(Game.ball.pusher.autoPush);
 		roundStart.add(Game.sfx.playThemeInGame);
 		roundStart.add(Game.cometTrail.enable);
+		roundStart.add(Game.powerups.spawner.startSpawning);
 		
 		roundEnd.add(Game.match.endRound);
 		roundEnd.add(Game.match.addScore);
@@ -68,10 +71,12 @@ class Signals {
 		roundEnd.add(Game.controllers.kill);
 		roundEnd.add(Game.ball.shooter.kill);
 		roundEnd.add(Game.sfx.fadeOutTheme);
+		roundEnd.add(Game.powerups.spawner.stopSpawning);
 		
 		postRoundEnd.add(Game.match.startNextRoundOrEndMatch);
 		postRoundEnd.add(Game.goalManager.clearGoalStateReference);
 		postRoundEnd.add(Game.level.clearBalls);
+		postRoundEnd.add(Game.level.clearPowerups);
 		postRoundEnd.add(Game.paddle.expression.closeAll);
 		postRoundEnd.add(Game.cometTrail.removeAll);
 		postRoundEnd.add(Game.cometTrail.disable);
@@ -86,6 +91,7 @@ class Signals {
 		postMatchOver.add(Game.match.reset);
 		
 		ballSpawned.add(Game.cometTrail.addBall);
+		ballSpawned.add(Game.level.addBall);
 		
 		goalTeam.add(Game.match.addRoundScore);
 		goal.add(Game.goalManager.triggerGoalState);
@@ -109,5 +115,10 @@ class Signals {
 		ball_paddle.add(Game.collision.handler.ball_paddle);
 		ball_paddle.add(Game.ball.manager.increaseBallSpeed);
 		ball_paddle.add(Game.paddle.hoverer.knockBackBallSpeed);
+		
+		ball_powerup.add(Game.powerups.manager.activate);
+		ball_powerup.add(Game.powerups.manager.popOut);
+		ball_powerup.add(Game.powerups.manager.glitch);
+		ball_powerup.add(Game.screen.shake.ball);
 	}
 }

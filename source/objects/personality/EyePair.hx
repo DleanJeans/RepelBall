@@ -6,7 +6,6 @@ import flixel.input.FlxPointer;
 import flixel.math.FlxMath;
 import objects.Ball;
 import objects.Paddle;
-using Positioner;
 
 enum Targetting {
 	NONE;

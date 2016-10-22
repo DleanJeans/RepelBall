@@ -41,8 +41,7 @@
 	
 	<assets path="assets/png" />
 	
-	<assets path="assets/svg" exclude="*.svg" />
-	<assets path="assets/svg" include="Mouths.svg" />
+	<assets path="assets/svg" />
 	
 	<assets path="assets/music" exclude="*.ogg" if="flash" />
 	<assets path="assets/music" exclude="*.mp3" unless="flash" />

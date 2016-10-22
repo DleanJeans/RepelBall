@@ -5,7 +5,6 @@ import flixel.math.FlxPoint;
 import objects.Ball;
 import objects.Paddle;
 import objects.Wall;
-using Positioner;
 
 typedef BallMap = Map<Paddle, Ball>;
 
@@ -20,6 +19,10 @@ class BallManager {
 	private inline function clearBallMap() {
 		for (paddle in ballMap.keys())
 			ballMap.remove(paddle);
+	}
+	
+	public inline function addBallToLevel(ball:Ball) {
+		Game.signals.ballSpawned.dispatch(ball);
 	}
 	
 	public inline function disableBallSolid(ball:Ball, wall:Wall) {

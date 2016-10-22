@@ -5,7 +5,6 @@ import flixel.FlxSprite;
 import flixel.FlxSubState;
 import flixel.util.FlxSignal;
 import flixel.util.FlxTimer;
-using Positioner;
 
 class BluebirdSplash extends FlxSubState {
 	public var logo(default, null):FlxSprite;

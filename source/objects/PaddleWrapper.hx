@@ -6,7 +6,6 @@ import flixel.group.FlxSpriteGroup;
 import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
 import objects.personality.Face;
-using Positioner;
 
 class PaddleWrapper extends FlxSpriteGroup {
 	public var paddle(default, null):Paddle;

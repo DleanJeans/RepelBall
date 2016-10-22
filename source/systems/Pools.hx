@@ -7,30 +7,46 @@ import flixel.math.FlxPoint;
 import objects.Ball;
 import objects.PaddleWrapper;
 import objects.Wall;
+import objects.Powerup;
 import ui.ColorSwatchSelector;
 import ui.LoopSelector;
-using Positioner;
 
 typedef Pool<T:FlxBasic> = FlxTypedGroup<T>;
 typedef BallPool = Pool<Ball>;
+typedef PowerupPool = Pool<Powerup>;
 
 class Pools {
 	public var balls(default, null):BallPool;
+	public var powerups(default, null):PowerupPool;
 	
 	public function new() {
 		balls = new BallPool();
+		powerups = new PowerupPool();
+	}
+	
+	public inline function cloneBall(ball:Ball):Ball {
+		return ball.cloneBall();
 	}
 	
 	public function getBall(?position:FlxPoint, ?velocity:FlxPoint):Ball {
 		var ball = balls.recycle(Ball);
-		ball.resetSpeed();
-		ball.resetColor();
-		ball.solid = true;
+		ball.resetBall();
 		if (position != null)
 			ball.setCenter(position);
 		if (velocity != null)
 			ball.velocity.copyFrom(velocity);
 		return ball;
+	}
+	
+	public function getPowerup(type:Int, ?position:FlxPoint):Powerup {
+		var powerup = powerups.recycle(Powerup);
+		powerup.setType(type);
+		if (position != null) {
+			powerup.setCenter(position);
+			position.putWeak();
+		}
+		powerup.startLifeTimer();
+		return powerup;
 	}
 	
 	public inline function getPaddle():PaddleWrapper {

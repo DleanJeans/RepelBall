@@ -7,7 +7,6 @@ import flixel.text.FlxText;
 import flixel.util.FlxAxes;
 import flixel.util.FlxSignal;
 import ui.AnyInputText;
-using Positioner;
 
 class MinimalTitleScreen extends FlxSpriteGroup {
 	public var titleText(default, null):FlxText;

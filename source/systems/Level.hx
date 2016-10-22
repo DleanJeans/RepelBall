@@ -10,12 +10,14 @@ import objects.Paddle;
 import objects.Wall;
 import objects.personality.Face;
 import systems.Level.FaceGroup;
+import objects.Powerup;
 
 typedef Group<T:FlxSprite> = FlxTypedGroup<T>;
 typedef WallGroup = Group<Wall>;
 typedef PaddleGroup = Group<Paddle>;
 typedef FaceGroup = Group<Face>;
 typedef BallGroup = Group<Ball>;
+typedef PowerupGroup = Group<Powerup>;
 
 class Level extends FlxGroup {
 	public var systems(default, null):FlxGroup;
@@ -24,6 +26,7 @@ class Level extends FlxGroup {
 	public var faces(default, null):FaceGroup;
 	public var particles(default, null):FlxSpriteGroup;
 	public var balls(default, null):BallGroup;
+	public var powerups(default, null):PowerupGroup;
 	
 	public var uis(default, null):FlxSpriteGroup;
 
@@ -36,6 +39,8 @@ class Level extends FlxGroup {
 		faces = new FaceGroup();
 		particles = new FlxSpriteGroup();
 		balls = new BallGroup();
+		powerups = new PowerupGroup();
+		
 		uis = new FlxSpriteGroup();
 		
 		add(systems);
@@ -44,6 +49,8 @@ class Level extends FlxGroup {
 		add(particles);
 		add(faces);
 		add(balls);
+		add(powerups);
+		
 		add(uis);
 	}
 	
@@ -52,9 +59,17 @@ class Level extends FlxGroup {
 	}
 	
 	public function clearBalls() {
-		balls.kill();
-		balls.clear();
-		balls.revive();
+		clearGroup(cast balls);
+	}
+	
+	public function clearPowerups() {
+		clearGroup(cast powerups);
+	}
+	
+	private inline function clearGroup(group:FlxGroup) {
+		group.kill();
+		group.clear();
+		group.revive();
 	}
 	
 	public inline function addSystem(system:FlxBasic) {
@@ -83,6 +98,14 @@ class Level extends FlxGroup {
 	
 	public inline function removeBall(ball:Ball) {
 		balls.remove(ball);
+	}
+	
+	public inline function addPowerup(powerup:Powerup) {
+		powerups.add(powerup);
+	}
+	
+	public inline function removePowerup(powerup:Powerup) {
+		powerups.remove(powerup);
 	}
 	
 	public inline function addUI(ui:FlxSprite) {

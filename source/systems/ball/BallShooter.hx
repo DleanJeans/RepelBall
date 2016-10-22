@@ -6,7 +6,6 @@ import flixel.math.FlxPoint;
 import flixel.math.FlxVector;
 import objects.Ball;
 import objects.Paddle;
-using Positioner;
 
 class BallShooter extends FlxObject {
 	public var maxBalls(default, set):Int = 1;
@@ -56,8 +55,7 @@ class BallShooter extends FlxObject {
 	private function shootAroundStartingPoint(startingPoint:FlxPoint) {
 		var projectile = getProjectileVector(startingPoint);
 		var ball = Game.pools.getBall(position, projectile);
-		Game.level.addBall(ball);
-		Game.signals.ballSpawned.dispatch(ball);
+		Game.ball.manager.addBallToLevel(ball);
 		projectile.put();
 	}
 	
