@@ -7,10 +7,10 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.group.FlxSpriteGroup;
 import objects.Ball;
 import objects.Paddle;
+import objects.Powerup;
 import objects.Wall;
 import objects.personality.Face;
 import systems.Level.FaceGroup;
-import objects.Powerup;
 
 typedef Group<T:FlxSprite> = FlxTypedGroup<T>;
 typedef WallGroup = Group<Wall>;
@@ -24,7 +24,7 @@ class Level extends FlxGroup {
 	public var walls(default, null):WallGroup;
 	public var paddles(default, null):PaddleGroup;
 	public var faces(default, null):FaceGroup;
-	public var particles(default, null):FlxSpriteGroup;
+	public var particles(default, null):FlxGroup;
 	public var balls(default, null):BallGroup;
 	public var powerups(default, null):PowerupGroup;
 	
@@ -37,7 +37,7 @@ class Level extends FlxGroup {
 		walls = new WallGroup();
 		paddles = new PaddleGroup();
 		faces = new FaceGroup();
-		particles = new FlxSpriteGroup();
+		particles = new FlxGroup();
 		balls = new BallGroup();
 		powerups = new PowerupGroup();
 		
@@ -88,7 +88,7 @@ class Level extends FlxGroup {
 		faces.add(face);
 	}
 	
-	public inline function addParticle(particle:FlxSprite) {
+	public inline function addParticle(particle:FlxBasic) {
 		particles.add(particle);
 	}
 	

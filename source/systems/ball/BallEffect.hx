@@ -1,6 +1,5 @@
 package systems.ball;
 
-import flixel.util.FlxColor;
 import objects.Ball;
 import objects.Paddle;
 
