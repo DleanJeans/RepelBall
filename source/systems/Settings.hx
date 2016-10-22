@@ -18,6 +18,7 @@ class Settings {
 	public var TEAM_SETTINGS_PADDLE_BACK_SIZE:Int;
 	public var TEAM_SETTINGS_SPACE_X:Int;
 	
+	public var PRE_ROUND_COUNTDOWN:Int = 3;
 	public var MULTI_GOAL_THRESHOLD:Int = 1;
 	public var BALL_STARTING_SPEED:Int = cast FlxG.height / 4;
 	public var COLOR_CHANGING_TWEEN_DURATION = 0.5;
@@ -61,12 +62,19 @@ class Settings {
 	
 	public function new() {
 		FlxG.camera.antialiasing = true;
+		setupPreRoundCountdown();
 		setupPowerupArea();
 		setupUISettings();
 		addTestScoreSettingsOnDebug();
 		setSeparateBias();
 		setDefaultFont();
 		disableFlixelMouseOnJs();
+	}
+	
+	private function setupPreRoundCountdown() {
+		#if (debug || testing)
+		PRE_ROUND_COUNTDOWN = 1;
+		#end
 	}
 	
 	private function setupPowerupArea() {
