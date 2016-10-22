@@ -3,11 +3,11 @@ package systems;
 import flixel.FlxG;
 import flixel.FlxState;
 import flixel.FlxSubState;
-import states.BluebirdSplash;
 import states.CountdownState;
 import states.GoalState;
 import states.MenuState;
 import states.PlayState;
+import states.SplashState;
 import states.WarningState;
 import states.WinState;
 
@@ -27,7 +27,7 @@ class States {
 	}
 	
 	public inline function splash() {
-		mainState.openSubState(state = new BluebirdSplash());
+		mainState.openSubState(state = new SplashState());
 	}
 	
 	public inline function menu() {

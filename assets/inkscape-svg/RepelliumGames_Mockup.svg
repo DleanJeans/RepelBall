@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="800"
+   height="800"
+   viewBox="0 0 800 800"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="RepelliumGames_Mockup.svg">
+  <defs
+     id="defs4">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient4276">
+      <stop
+         style="stop-color:#03a9f4;stop-opacity:1;"
+         offset="0"
+         id="stop4278" />
+      <stop
+         id="stop4284"
+         offset="0.5"
+         style="stop-color:#4fc3f7;stop-opacity:1" />
+      <stop
+         style="stop-color:#29b6f6;stop-opacity:1"
+         offset="1"
+         id="stop4280" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4276"
+       id="linearGradient4282"
+       x1="-479.8718"
+       y1="682.11145"
+       x2="-479.8718"
+       y2="701.96143"
+       gradientUnits="userSpaceOnUse" />
+    <filter
+       inkscape:collect="always"
+       style="color-interpolation-filters:sRGB"
+       id="filter4536"
+       x="-0.0612"
+       width="1.1224"
+       y="-3.06"
+       height="7.12">
+      <feGaussianBlur
+         inkscape:collect="always"
+         stdDeviation="12.75"
+         id="feGaussianBlur4538" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.7875"
+     inkscape:cx="391.63626"
+     inkscape:cy="461.164"
+     inkscape:document-units="px"
+     inkscape:current-layer="g4174"
+     showgrid="false"
+     units="px"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     showguides="true"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(632.38098,-101.88596)">
+    <g
+       id="g4174">
+      <rect
+         y="101.88596"
+         x="-632.38098"
+         height="800"
+         width="800"
+         id="rect4162"
+         style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:0;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <text
+         transform="scale(1.0003156,0.99968449)"
+         sodipodi:linespacing="125%"
+         id="text3333"
+         y="502.04425"
+         x="-458.37994"
+         style="font-style:normal;font-weight:normal;font-size:57.16089249px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#29b6f6;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           id="tspan3337"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:57.16089249px;font-family:'RR Beaver';-inkscape-font-specification:'RR Beaver';fill:#29b6f6;fill-opacity:1"
+           y="502.04425"
+           x="-458.37994"
+           sodipodi:role="line">Repellium Games</tspan></text>
+      <ellipse
+         style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:0;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;filter:url(#filter4536)"
+         id="path4244"
+         cx="-232.38098"
+         cy="556.88599"
+         rx="250"
+         ry="5" />
+      <path
+         sodipodi:nodetypes="ccccc"
+         inkscape:connector-curvature="0"
+         id="rect3341"
+         d="m -482.38098,511.886 500.000001,0 -19.9999996,20 -460.0000014,0 z"
+         style="opacity:1;fill:#29b6f6;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:0;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    </g>
+  </g>
+</svg>

@@ -16,6 +16,8 @@ class MenuState extends FlxSubState {
 		Game.ads.showBanner();
 		#end
 		
+		camera.stopFX();
+		
 		bgColor = Game.color.background;
 		Game.sfx.playThemeInMenu();
 		
