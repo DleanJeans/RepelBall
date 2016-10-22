@@ -36,7 +36,7 @@ class MinimalTitleScreen extends FlxSpriteGroup {
 	private function setupStuff() {
 		titleText.screenCenter(FlxAxes.X);
 		creditText.setMidBottom(Positioner.screenMidBottom);
-		creditText.y -= 100;
+		creditText.y -= 10;
 		creditText.alignment = FlxTextAlign.CENTER;
 		icon.screenCenter();
 	}

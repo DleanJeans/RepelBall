@@ -76,6 +76,9 @@ class Settings {
 		POWERUP_MAX_Y = cast POWERUP_MIN_Y + POWERUP_AREA_HEIGHT;
 	}
 	
+	/**
+	 * Setup bigger Match Settings for mobile targets
+	 */
 	private function setupUISettings() {
 		#if mobile
 		
