@@ -23,15 +23,10 @@ class Powerup extends FlxSprite {
 	}
 	
 	public function startLifeTimer() {
-		_lifeTimer.start(Game.settings.POWERUP_LIFETIME, dieOut);
+		_lifeTimer.start(Game.settings.POWERUP_LIFETIME, function(_) popOutThenKill());
 	}
 	
-	private function dieOut(timer:FlxTimer) {
-		popOutThenKill();
-	}
-	
-	public function setType(?type:Int) {
-		if (type == null) return;
+	public function setType(type:Int) {
 		loadFrame(type);
 		activate = Game.powerups.effects.powerups[type];
 	}
@@ -43,15 +38,17 @@ class Powerup extends FlxSprite {
 	
 	public function popUp() {
 		scale.set();
-		Game.tween.powerupScale(this, 1, 1, enableSolid);
+		var maxScale = Game.settings.MAX_POWERUP_HOVERING_SCALE;
+		Game.tween.powerupScale(this, maxScale, maxScale, startHovering);
 	}
 	
-	private inline function enableSolid(?tween:FlxTween) {
+	private function startHovering(tween:FlxTween) {
+		Game.tween.powerupHovering(this);
 		solid = true;
 	}
 	
 	public function popOutThenKill() {
-		popOut(killAndRemoveSelf);
+		popOut(killAndRemove);
 	}
 	
 	private function popOut(?onComplete:TweenCallback) {
@@ -59,7 +56,7 @@ class Powerup extends FlxSprite {
 		solid = false;
 	}
 	
-	private function killAndRemoveSelf(?tween:FlxTween) {
+	private function killAndRemove(?tween:FlxTween) {
 		kill();
 		Game.level.removePowerup(this);
 	}
