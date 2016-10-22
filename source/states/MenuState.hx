@@ -12,10 +12,6 @@ class MenuState extends FlxSubState {
 	public var matchSettings:MatchSettings;
 	
 	override public function create() {
-		#if mobile
-		Game.ads.showBanner();
-		#end
-		
 		camera.stopFX();
 		
 		bgColor = Game.color.background;

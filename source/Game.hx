@@ -64,10 +64,6 @@ class Game {
 	public static var save(default, null):Save;
 	public static var powerups(default, null):PowerupSystems;
 	
-	#if mobile
-	public static var ads(default, null):Ads;
-	#end
-	
 	public static function init() {
 		level = new Level();
 		match = new Match();
@@ -98,10 +94,6 @@ class Game {
 		
 		signals = new Signals();
 		framerateCounter = new FramerateCounter();
-		
-		#if mobile
-		ads = new Ads();
-		#end
 	}
 	
 }
