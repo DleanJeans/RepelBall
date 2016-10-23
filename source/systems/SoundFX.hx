@@ -19,8 +19,7 @@ class SoundFX {
 	}
 	
 	private function loadTheme() {
-		theme = FlxG.sound.load(FlxAssets.getSound("assets/music/RhinocerosTheme"), 0, true);
-		theme.loopTime = 45 * 1000;
+		
 	}
 	
 	public function playBallHitSound(ball:Ball, object:Dynamic) {
@@ -31,17 +30,15 @@ class SoundFX {
 	}
 	
 	public function playThemeInMenu() {
-		theme.play(true);
-		theme.fadeIn(3);
+		
 	}
 	
 	public function playThemeInGame() {
-		theme.play(true, theme.loopTime);
-		theme.fadeIn(3, 0, 0.5);
+		
 	}
 	
 	public function fadeOutTheme() {
-		theme.fadeOut(1, 0.1);
+		
 	}
 	
 }
