@@ -30,7 +30,7 @@ class MinimalTitleScreen extends FlxSpriteGroup {
 		titleText = new FlxText(0, 50, 0, "RepelBall", 75);
 		anyInputText = new AnyInputText();
 		creditText = new FlxText(0, 0, FlxG.width * 0.9, "Developed by Dlean Jeans\nPowered by HaxeFlixel", 25);
-		icon = new FlxSprite(0, 0, AssetPaths.logo__png);
+		icon = new FlxSprite(0, 0, Game.renderer.getSvg(AssetPaths.Icon__svg));
 	}
 	
 	private function setupStuff() {
