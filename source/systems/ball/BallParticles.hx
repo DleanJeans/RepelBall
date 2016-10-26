@@ -16,7 +16,7 @@ class BallParticles {
 		emitter.speed.set(100, 200);
 		emitter.scale.set(1, 1, 1, 1, 0, 0, 0, 0);
 		
-		Game.level.addParticle(emitter);
+		Game.stage.addParticle(emitter);
 	}
 	
 	public function emit(ball:Ball, object:FlxObject) {

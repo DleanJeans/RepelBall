@@ -48,7 +48,7 @@ class Signals {
 		
 		preRoundStart.add(Game.states.resumeState);
 		preRoundStart.add(Game.states.countdown);
-		preRoundStart.add(Game.level.resetPaddlesPosition);
+		preRoundStart.add(Game.stage.resetPaddlesPosition);
 		preRoundStart.add(Game.paddle.hoverer.resumeAllHovering);
 		preRoundStart.add(Game.cometTrail.trail.clearCanvas);
 		
@@ -75,8 +75,8 @@ class Signals {
 		
 		postRoundEnd.add(Game.match.startNextRoundOrEndMatch);
 		postRoundEnd.add(Game.goalManager.clearGoalStateReference);
-		postRoundEnd.add(Game.level.clearBalls);
-		postRoundEnd.add(Game.level.clearPowerups);
+		postRoundEnd.add(Game.stage.clearBalls);
+		postRoundEnd.add(Game.stage.clearPowerups);
 		postRoundEnd.add(Game.paddle.expression.closeAll);
 		postRoundEnd.add(Game.cometTrail.removeAll);
 		postRoundEnd.add(Game.cometTrail.disable);
@@ -87,11 +87,11 @@ class Signals {
 		postMatchOver.add(Game.states.menu);
 		postMatchOver.add(Game.controllers.clear);
 		postMatchOver.add(Game.paddle.hoverer.stopHoveringAllPaddles);
-		postMatchOver.add(Game.level.paddles.clear);
+		postMatchOver.add(Game.stage.paddles.clear);
 		postMatchOver.add(Game.match.reset);
 		
 		ballSpawned.add(Game.cometTrail.addBall);
-		ballSpawned.add(Game.level.addBall);
+		ballSpawned.add(Game.stage.addBall);
 		
 		goalTeam.add(Game.match.addRoundScore);
 		goal.add(Game.goalManager.triggerGoalState);

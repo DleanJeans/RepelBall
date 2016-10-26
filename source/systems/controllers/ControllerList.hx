@@ -13,7 +13,7 @@ typedef ControllerGroup = FlxTypedGroup<Controller>;
 class ControllerList extends ControllerGroup {
 	public function new() {
 		super();
-		Game.level.addSystem(this);
+		Game.stage.addSystem(this);
 		kill();
 	}
 	

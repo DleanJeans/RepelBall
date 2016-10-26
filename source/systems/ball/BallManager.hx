@@ -44,7 +44,7 @@ class BallManager {
 		var ballToPaddle = FlxPoint.get();
 		var time:Float;
 		
-		for (ball in Game.level.balls) {
+		for (ball in Game.stage.balls) {
 			ballToPaddle.copyFrom(paddle.getCenter().subtractPoint(ball.getCenter()));
 			
 			if (paddle.movesHorizontally())

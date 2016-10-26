@@ -17,12 +17,12 @@ class PaddleExpression {
 	}
 	
 	public function closeAll() {
-		for (face in Game.level.faces)
+		for (face in Game.stage.faces)
 			face.mouth.close();
 	}
 	
 	public function updateEyesFacing() {
-		for (face in Game.level.faces)
+		for (face in Game.stage.faces)
 			face.eyes.updateFacing();
 	}
 	

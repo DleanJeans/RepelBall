@@ -39,10 +39,10 @@ class WallBuilder {
 	}
 	
 	public function addWallsToLevel() {
-		Game.level.addWall(topWall);
-		Game.level.addWall(bottomWall);
-		Game.level.addWall(leftWall);
-		Game.level.addWall(rightWall);
+		Game.stage.addWall(topWall);
+		Game.stage.addWall(bottomWall);
+		Game.stage.addWall(leftWall);
+		Game.stage.addWall(rightWall);
 	}
 	
 }

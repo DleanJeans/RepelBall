@@ -13,7 +13,7 @@ class CometTrailWrapper {
 	
 	public function new() {
 		trail = new CometTrail();
-		Game.level.addParticle(trail);
+		Game.stage.addParticle(trail);
 	}
 	
 	public inline function enable() {

@@ -4,7 +4,7 @@ import systems.AnyInput;
 import systems.Colors;
 import systems.FramerateCounter;
 import systems.GoalManager;
-import systems.Level;
+import systems.Stage;
 import systems.Messages;
 import systems.Pools;
 import systems.Renderer;
@@ -33,7 +33,7 @@ class Game {
 		return cast UNIT_LENGTH * times;
 	}
 	
-	public static var level(default, null):Level;
+	public static var stage(default, null):Stage;
 	public static var match(default, null):Match;
 	
 	public static var signals(default, null):Signals;
@@ -64,7 +64,7 @@ class Game {
 	public static function init() {
 		Settings.apply();
 		
-		level = new Level();
+		stage = new Stage();
 		match = new Match();
 		
 		states = new States();

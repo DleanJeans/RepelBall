@@ -12,7 +12,7 @@ class PlayState extends FlxSubState {
 	override public function create() {
 		bgColor = Game.color.background;
 		
-		add(Game.level);
+		add(Game.stage);
 		
 		Game.match.team1.setGoal(Game.walls.bottomWall);
 		Game.match.team2.setGoal(Game.walls.topWall);
@@ -29,7 +29,7 @@ class PlayState extends FlxSubState {
 	}
 	
 	override public function destroy():Void {
-		remove(Game.level);
+		remove(Game.stage);
 		super.destroy();
 	}
 }

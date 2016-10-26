@@ -6,13 +6,13 @@ import objects.Ball;
 import objects.Paddle;
 import objects.Powerup;
 import objects.Wall;
-import systems.Level.BallGroup;
-import systems.Level.PaddleGroup;
-import systems.Level.PowerupGroup;
-import systems.Level.WallGroup;
+import systems.Stage.BallGroup;
+import systems.Stage.PaddleGroup;
+import systems.Stage.PowerupGroup;
+import systems.Stage.WallGroup;
 
 class Detector {
-	public var level(get, never):Level;
+	public var level(get, never):Stage;
 	public var walls(get, never):WallGroup;
 	public var paddles(get, never):PaddleGroup;
 	public var balls(get, never):BallGroup;
@@ -48,8 +48,8 @@ class Detector {
 		FlxG.overlap(paddles, walls, Game.signals.paddle_wall.dispatch);
 	}
 	
-	inline function get_level():Level {
-		return Game.level;
+	inline function get_level():Stage {
+		return Game.stage;
 	}
 	
 	inline function get_walls():WallGroup {

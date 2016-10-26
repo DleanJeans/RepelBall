@@ -58,7 +58,7 @@ class Powerup extends FlxSprite {
 	
 	private function killAndRemove(?tween:FlxTween) {
 		kill();
-		Game.level.removePowerup(this);
+		Game.stage.removePowerup(this);
 	}
 	
 }

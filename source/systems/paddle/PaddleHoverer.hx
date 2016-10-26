@@ -17,12 +17,12 @@ class PaddleHoverer {
 	}
 	
 	public function startHoveringAllPaddles() {
-		for (paddle in Game.level.paddles)
+		for (paddle in Game.stage.paddles)
 			startHovering(paddle, Game.unitLength(0.5));
 	}
 	
 	public function stopHoveringAllPaddles() {
-		for (paddle in Game.level.paddles)
+		for (paddle in Game.stage.paddles)
 			stopHovering(paddle);
 	}
 	

@@ -20,7 +20,7 @@ class PaddleSqueezer extends FlxBasic {
 	
 	public function stopAllTweens() {
 		var tween:FlxTween = null;
-		for (paddle in Game.level.paddles) {
+		for (paddle in Game.stage.paddles) {
 			tween = getTween(paddle);
 			if (tween != null) {
 				tween.cancel();
@@ -35,7 +35,7 @@ class PaddleSqueezer extends FlxBasic {
 	}
 	
 	public function squeezeAllPaddles() {
-		for (paddle in Game.level.paddles)
+		for (paddle in Game.stage.paddles)
 			squeezePaddleIfMoving(paddle);
 	}
 	

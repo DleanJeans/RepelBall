@@ -10,7 +10,7 @@ import objects.Paddle;
 import objects.Powerup;
 import objects.Wall;
 import objects.personality.Face;
-import systems.Level.FaceGroup;
+import systems.Stage.FaceGroup;
 
 typedef Group<T:FlxSprite> = FlxTypedGroup<T>;
 typedef WallGroup = Group<Wall>;
@@ -19,7 +19,7 @@ typedef FaceGroup = Group<Face>;
 typedef BallGroup = Group<Ball>;
 typedef PowerupGroup = Group<Powerup>;
 
-class Level extends FlxGroup {
+class Stage extends FlxGroup {
 	public var systems(default, null):FlxGroup;
 	public var walls(default, null):WallGroup;
 	public var paddles(default, null):PaddleGroup;

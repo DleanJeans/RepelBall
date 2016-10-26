@@ -102,7 +102,7 @@ class EyePair extends FlxSpriteGroup {
 		var nearestDistance:Float = Math.POSITIVE_INFINITY;
 		var distance:Float = 0;
 		
-		for (ball in Game.level.balls) {
+		for (ball in Game.stage.balls) {
 			distance = FlxMath.distanceBetween(paddle, ball);
 			if (distance < nearestDistance) {
 				nearest = ball;

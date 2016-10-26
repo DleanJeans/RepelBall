@@ -17,7 +17,7 @@ class BallShooter extends FlxObject {
 
 	public function new() {
 		super();
-		Game.level.addSystem(this);
+		Game.stage.addSystem(this);
 		setPosition(FlxG.width / 2, FlxG.height / 2);
 		queue = new Array<FlxPoint>();
 		kill();

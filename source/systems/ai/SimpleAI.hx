@@ -14,7 +14,7 @@ class SimpleAI extends Controller {
 	}
 	
 	override public function update(elapsed:Float):Void {
-		if (anyNull([Game.level, paddle])) return;
+		if (anyNull([Game.stage, paddle])) return;
 		
 		var nearestBall = getNearestBall();
 		controlPaddle(nearestBall);

@@ -57,7 +57,7 @@ class PowerupSpawner {
 	public function spawn(type:Int) {
 		var randomPoint = getRandomPoint();
 		var powerup = Game.pools.getPowerup(type, randomPoint);
-		Game.level.addPowerup(powerup);
+		Game.stage.addPowerup(powerup);
 		powerup.popUp();
 	}
 	
