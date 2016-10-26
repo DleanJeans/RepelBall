@@ -72,7 +72,7 @@ class Settings {
 	}
 	
 	private function setupPreRoundCountdown() {
-		#if (debug || testing)
+		#if testing
 		PRE_ROUND_COUNTDOWN = 1;
 		#end
 	}
