@@ -51,6 +51,11 @@ class Signals {
 		preRoundStart.add(Game.stage.resetPaddlesPosition);
 		preRoundStart.add(Game.paddle.hoverer.resumeAllHovering);
 		preRoundStart.add(Game.cometTrail.trail.clearCanvas);
+		preRoundStart.add(Game.stage.clearBalls);
+		preRoundStart.add(Game.stage.clearPowerups);
+		preRoundStart.add(Game.cometTrail.removeAll);
+		preRoundStart.add(Game.cometTrail.disable);
+		preRoundStart.add(Game.ball.particles.killAll);
 		
 		roundStart.add(Game.match.startRound);
 		roundStart.add(Game.controllers.revive);
@@ -75,11 +80,6 @@ class Signals {
 		
 		postRoundEnd.add(Game.match.startNextRoundOrEndMatch);
 		postRoundEnd.add(Game.goalManager.clearGoalStateReference);
-		postRoundEnd.add(Game.stage.clearBalls);
-		postRoundEnd.add(Game.stage.clearPowerups);
-		postRoundEnd.add(Game.paddle.expression.closeAll);
-		postRoundEnd.add(Game.cometTrail.removeAll);
-		postRoundEnd.add(Game.cometTrail.disable);
 		
 		matchOver.add(Game.winManager.triggerWinState);
 		

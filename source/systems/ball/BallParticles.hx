@@ -10,8 +10,8 @@ class BallParticles {
 
 	public function new() {
 		emitter = new FlxEmitter();
-		emitter.solid = false;
 		emitter.makeParticles(16, 16, Game.color.white);
+		emitter.solid = false;
 		emitter.lifespan.set(0.25, 0.5);
 		emitter.speed.set(100, 200);
 		emitter.scale.set(1, 1, 1, 1, 0, 0, 0, 0);
@@ -26,9 +26,13 @@ class BallParticles {
 		emitter.speed.set(speed * 0.25, speed * 0.75);
 		emitter.launchAngle.set(angle - 30, angle + 30);
 		
-		emitter.setPosition(ball.getCenterX(), ball.getCenterY());
+		emitter.focusOn(ball);
 		emitter.color.set(ball.originalColor);
 		emitter.start(true, 0, 5);
+	}
+	
+	public function killAll() {
+		emitter.kill();
 	}
 	
 }

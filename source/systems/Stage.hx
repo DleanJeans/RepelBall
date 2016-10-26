@@ -58,11 +58,11 @@ class Stage extends FlxGroup {
 		paddles.forEach(Game.paddle.position.resetPosition);
 	}
 	
-	public function clearBalls() {
+	public inline function clearBalls() {
 		clearGroup(cast balls);
 	}
 	
-	public function clearPowerups() {
+	public inline function clearPowerups() {
 		clearGroup(cast powerups);
 	}
 	
