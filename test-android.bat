@@ -1,4 +1,4 @@
-lime build android -release
+lime test android -release
 adb install -r export/android/bin/bin/RepelBall-release.apk
 adb shell am start -n com.bluebirdaward.repelball/com.bluebirdaward.repelball.MainActivity
 pause
