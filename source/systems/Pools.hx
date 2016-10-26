@@ -61,11 +61,11 @@ class Pools {
 	}
 	
 	public inline function getDefaultColorSwatch(x:Float = 0, y:Float = 0):ColorSwatchSelector {
-		return new ColorSwatchSelector(Game.color.list, x, y, Game.settings.COLOR_SWATCH_SIZE, Game.settings.COLOR_SWATCH_SIZE);
+		return new ColorSwatchSelector(Game.color.list, x, y, Settings.COLOR_SWATCH_SIZE, Settings.COLOR_SWATCH_SIZE);
 	}
 	
 	public inline function getLoopSelector(label:String, values:Array<Dynamic>, labelFieldWidth:Int = 175):LoopSelector {
-		return new LoopSelector(0, 0, 300, Game.settings.LOOP_SELECTOR_HEIGHT, label, values, labelFieldWidth);
+		return new LoopSelector(0, 0, 300, Settings.LOOP_SELECTOR_HEIGHT, label, values, labelFieldWidth);
 	}
 	
 }

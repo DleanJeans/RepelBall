@@ -90,7 +90,7 @@ class Renderer {
 	}
 	
 	public inline function drawPaddleBack(paddleBack:FlxSprite) {
-		paddleBack.makeGraphic(Game.settings.TEAM_SETTINGS_PADDLE_BACK_SIZE, Game.settings.TEAM_SETTINGS_PADDLE_BACK_SIZE);
+		paddleBack.makeGraphic(Settings.TEAM_SETTINGS_PADDLE_BACK_SIZE, Settings.TEAM_SETTINGS_PADDLE_BACK_SIZE);
 	}
 	
 	private inline function newKey(key:String):Bool {

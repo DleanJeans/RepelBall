@@ -17,7 +17,7 @@ class ScreenGlitch  {
 	}
 	
 	private function runTimer() {
-		_timer.start(Game.settings.GLITCH_DURATION, resetBackgroundColor);
+		_timer.start(Settings.GLITCH_DURATION, resetBackgroundColor);
 	}
 	
 	private function resetBackgroundColor(timer:FlxTimer) {

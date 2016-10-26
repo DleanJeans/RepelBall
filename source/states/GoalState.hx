@@ -52,7 +52,7 @@ class GoalState extends FlxSubState {
 	
 	private function restartMultiGoalTimer() {
 		if (firstGoalInRound())
-			multiGoalTimer = new FlxTimer().start(Game.settings.MULTI_GOAL_THRESHOLD, endRound);
+			multiGoalTimer = new FlxTimer().start(Settings.MULTI_GOAL_THRESHOLD, endRound);
 		else multiGoalTimer.reset();
 		timerText.timer = multiGoalTimer;
 	}

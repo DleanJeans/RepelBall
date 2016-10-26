@@ -52,7 +52,7 @@ class CometTrail extends FlxSprite {
 	override public function draw() {
 		super.draw();
 		
-		if (_elapsed >= Game.settings.TRAIL_COOLDOWN) {
+		if (_elapsed >= Settings.TRAIL_COOLDOWN) {
 			_elapsed = 0;
 			addNodes();
 		}
@@ -75,7 +75,7 @@ class CometTrail extends FlxSprite {
 			nodes = getNodes(sprite);
 			spriteCenter = sprite.getMidpoint();
 			
-			if (nodes.length >= Game.settings.TRAIL_NODE_LIMIT) {
+			if (nodes.length >= Settings.TRAIL_NODE_LIMIT) {
 				newNode = nodes.shift();
 				newNode.point.copyFrom(spriteCenter);
 				spriteCenter.put();

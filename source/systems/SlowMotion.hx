@@ -12,7 +12,7 @@ class SlowMotion {
 	public function enableOnShiftKeyPressed() {
 		#if !FLX_NO_KEYBOARD
 		if (FlxG.keys.pressed.SHIFT)
-			Game.speed.slowMo = Game.settings.SLOW_MO_TIME_SCALE;
+			Game.speed.slowMo = Settings.SLOW_MO_TIME_SCALE;
 		else Game.speed.slowMo = 1;
 		#end
 	}

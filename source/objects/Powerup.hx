@@ -23,7 +23,7 @@ class Powerup extends FlxSprite {
 	}
 	
 	public function startLifeTimer() {
-		_lifeTimer.start(Game.settings.POWERUP_LIFETIME, function(_) popOutThenKill());
+		_lifeTimer.start(Settings.POWERUP_LIFETIME, function(_) popOutThenKill());
 	}
 	
 	public function setType(type:Int) {
@@ -38,7 +38,7 @@ class Powerup extends FlxSprite {
 	
 	public function popUp() {
 		scale.set();
-		var maxScale = Game.settings.MAX_POWERUP_HOVERING_SCALE;
+		var maxScale = Settings.MAX_POWERUP_HOVERING_SCALE;
 		Game.tween.powerupScale(this, maxScale, maxScale, startHovering);
 	}
 	

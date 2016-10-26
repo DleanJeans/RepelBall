@@ -50,7 +50,7 @@ class TeamSettings extends FlxSpriteGroup {
 	}
 	
 	private function setupStuff() {
-		teamName.size = Game.settings.TEAM_SETTINGS_TEAM_NAME_SIZE;
+		teamName.size = Settings.TEAM_SETTINGS_TEAM_NAME_SIZE;
 		teamName.fieldWidth = colorSwatch.width * 1.5;
 		teamName.alignment = FlxTextAlign.CENTER;
 		

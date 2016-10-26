@@ -45,8 +45,8 @@ class Tweens {
 	
 	
 	public function powerupHovering(powerup:Powerup) {
-		var minScale = Game.settings.MIN_POWERUP_HOVERING_SCALE;
-		var duration = FlxG.random.float(Game.settings.MIN_HOVERING_DURATION, Game.settings.MAX_HOVERING_DURATION);
+		var minScale = Settings.MIN_POWERUP_HOVERING_SCALE;
+		var duration = FlxG.random.float(Settings.MIN_HOVERING_DURATION, Settings.MAX_HOVERING_DURATION);
 		var values = { x:minScale, y:minScale };
 		var tween:FlxTween = cancelTween(powerups, powerup);
 		
@@ -57,7 +57,7 @@ class Tweens {
 	
 	public inline function powerupScale(powerup:Powerup, newScaleX:Float, newScaleY:Float, ?onComplete:TweenCallback) {
 		var tween = cancelTween(powerups, powerup);
-		tween = FlxTween.tween(powerup.scale, { x:newScaleX, y:newScaleY }, Game.settings.POWERUP_POPPING_DURATION,
+		tween = FlxTween.tween(powerup.scale, { x:newScaleX, y:newScaleY }, Settings.POWERUP_POPPING_DURATION,
 		{ type:FlxTween.PERSIST, ease:FlxEase.backOut, onComplete:onComplete });
 		powerups.set(powerup, tween);
 		return tween;
@@ -74,12 +74,12 @@ class Tweens {
 	public function ballColor(ball:Ball, newColor:FlxColor):ColorTween {
 		var tween = restartTween(ballColors, ball, NO_RESTART);
 		if (tween == null) {
-			tween = FlxTween.color(ball, Game.settings.BALL_FX_DURATION, Game.color.white, newColor, 
+			tween = FlxTween.color(ball, Settings.BALL_FX_DURATION, Game.color.white, newColor, 
 			{ type:FlxTween.PERSIST, onUpdate:Game.cometTrail.updateTrailColor.bind(ball) });
 			ballColors[ball] = tween;
 		}
 		else {
-			tween.tween(Game.settings.BALL_FX_DURATION, Game.color.white, newColor, ball);
+			tween.tween(Settings.BALL_FX_DURATION, Game.color.white, newColor, ball);
 		}
 		return tween;
 	}
@@ -87,7 +87,7 @@ class Tweens {
 	public function ballScale(ball:Ball, newScaleX:Float, newScaleY:Float) {
 		var tween = restartTween(ballScales, ball);
 		if (tween == null) {
-			tween = FlxTween.tween(ball.scale, { x:newScaleX, y:newScaleY }, Game.settings.BALL_FX_DURATION, { type:FlxTween.PERSIST });
+			tween = FlxTween.tween(ball.scale, { x:newScaleX, y:newScaleY }, Settings.BALL_FX_DURATION, { type:FlxTween.PERSIST });
 			ballScales[ball] = tween;
 		}
 		return tween;
@@ -95,14 +95,14 @@ class Tweens {
 	
 	
 	public inline function trailColor(trail:Trail, newColor:FlxColor):ColorTween {
-		return FlxTween.color(null, Game.settings.BALL_FX_DURATION, Game.color.white, newColor,
+		return FlxTween.color(null, Settings.BALL_FX_DURATION, Game.color.white, newColor,
 		{ onUpdate: function (t:FlxTween) trail.color = cast(t, ColorTween).color });
 	}
 	
 	
 	public inline function hovering(hoveringOffset:FlxPoint, down:FlxPoint, ?onUpdate:TweenCallback):VarTween {
-		var duration = FlxG.random.float(Game.settings.MIN_HOVERING_DURATION, Game.settings.MAX_HOVERING_DURATION);
-		var delay = FlxG.random.float(0, Game.settings.MAX_HOVERING_DELAY);
+		var duration = FlxG.random.float(Settings.MIN_HOVERING_DURATION, Settings.MAX_HOVERING_DURATION);
+		var delay = FlxG.random.float(0, Settings.MAX_HOVERING_DELAY);
 		var values = { x:hoveringOffset.x + down.x, y:hoveringOffset.y + down.y };
 		
 		return FlxTween.tween(hoveringOffset, values , duration,
@@ -110,7 +110,7 @@ class Tweens {
 	}
 	
 	public inline function knockBack(knockBackOffset:FlxPoint, down:FlxPoint) {
-		var halfDuration = Game.settings.KNOCK_BACK_DURATION / 2;
+		var halfDuration = Settings.KNOCK_BACK_DURATION / 2;
 		
 		return FlxTween.tween(knockBackOffset, { x:down.x, y:down.y }, halfDuration)
 		.then(FlxTween.tween(knockBackOffset, { x:0, y:0 }, halfDuration));
@@ -123,14 +123,14 @@ class Tweens {
 	
 	public inline function paddleScale(wrapper:PaddleWrapper, newScaleX:Float, newScaleY:Float):VarTween {
 		var options = { onUpdate:Game.paddle.expression.tweenUpdateEyeSeparation.bind(wrapper.paddle), ease:FlxEase.sineOut };
-		var duration = Game.settings.COLOR_CHANGING_TWEEN_DURATION;
+		var duration = Settings.COLOR_CHANGING_TWEEN_DURATION;
 		
 		return FlxTween.tween(wrapper.scale, { x:newScaleX, y:newScaleY }, duration / 2, options);
 	}
 	
 	public inline function paddleColor(wrapper:PaddleWrapper, newColor:FlxColor):ColorTween {
 		var options = { onUpdate:lockPaddleWrapperAlphaTo1.bind(wrapper) };
-		var duration = Game.settings.COLOR_CHANGING_TWEEN_DURATION;
+		var duration = Settings.COLOR_CHANGING_TWEEN_DURATION;
 		
 		return FlxTween.color(wrapper, duration, wrapper.color, newColor, options);
 	}

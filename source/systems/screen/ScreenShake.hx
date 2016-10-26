@@ -25,7 +25,7 @@ class ScreenShake {
 	}
 	
 	private function tweenCameraScroll(toX:Float, toY:Float):FlxTween {
-		return FlxTween.tween(FlxG.camera.scroll, { x:toX, y:toY }, Game.settings.SCREEN_SHAKE_DURATION);
+		return FlxTween.tween(FlxG.camera.scroll, { x:toX, y:toY }, Settings.SCREEN_SHAKE_DURATION);
 	}
 	
 	private function runFor1Loop(tween:FlxTween) {

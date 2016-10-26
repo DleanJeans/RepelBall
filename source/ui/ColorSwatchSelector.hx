@@ -93,7 +93,7 @@ class ColorSwatchSelector extends FlxSpriteGroup {
 	}
 	
 	private function createStuff() {
-		label = new FlxText(0, 0, (swatchWidth + spacingX) * maxColumns, "Color", Game.settings.COLOR_SWATCH_LABEL_SIZE);
+		label = new FlxText(0, 0, (swatchWidth + spacingX) * maxColumns, "Color", Settings.COLOR_SWATCH_LABEL_SIZE);
 		label.alignment = FlxTextAlign.CENTER;
 		swatches = new FlxSpriteGroup();
 		selector = new FlxSprite();
@@ -119,7 +119,7 @@ class ColorSwatchSelector extends FlxSpriteGroup {
 	
 	private function setupSelector() {
 		selector.makeGraphic(swatchWidth + 2, swatchHeight + 2, 0x0);
-		selector.drawRect(0, 0, selector.width, selector.height, 0x0, { thickness:Game.settings.COLOR_SWATCH_SELECTOR_WIDTH, color:Game.color.white });
+		selector.drawRect(0, 0, selector.width, selector.height, 0x0, { thickness:Settings.COLOR_SWATCH_SELECTOR_WIDTH, color:Game.color.white });
 		selector.setSize(0, 0);
 		selector.centerOffsets();
 	}
@@ -142,7 +142,7 @@ class ColorSwatchSelector extends FlxSpriteGroup {
 	
 	private function selectSwatchIfCooledDown(swatch:FlxSprite) {
 		if (coolDownTimer.finished) {
-			coolDownTimer.start(Game.settings.COLOR_CHANGING_TWEEN_DURATION);
+			coolDownTimer.start(Settings.COLOR_CHANGING_TWEEN_DURATION);
 			selectSwatch(swatch);
 		}
 	}

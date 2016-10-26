@@ -63,8 +63,8 @@ class PowerupSpawner {
 	
 	private inline function getRandomPoint():FlxPoint {
 		return FlxPoint.weak(
-		FlxG.random.float(Game.settings.POWERUP_MIN_X, Game.settings.POWERUP_MAX_X),
-		FlxG.random.float(Game.settings.POWERUP_MIN_Y, Game.settings.POWERUP_MAX_Y)
+		FlxG.random.float(Settings.POWERUP_MIN_X, Settings.POWERUP_MAX_X),
+		FlxG.random.float(Settings.POWERUP_MIN_Y, Settings.POWERUP_MAX_Y)
 		);
 	}
 	

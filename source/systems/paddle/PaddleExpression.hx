@@ -57,7 +57,7 @@ class PaddleExpression {
 	public inline function oohWhenColorChanged(paddle:Paddle) {
 		mouth(paddle).ooh();
 		eyes(paddle).targetting = NONE;
-		new FlxTimer().start(Game.settings.COLOR_CHANGING_TWEEN_DURATION, resetFromOoh.bind(paddle));
+		new FlxTimer().start(Settings.COLOR_CHANGING_TWEEN_DURATION, resetFromOoh.bind(paddle));
 	}
 	
 	public inline function resetFromOoh(paddle:Paddle, timer:FlxTimer) {

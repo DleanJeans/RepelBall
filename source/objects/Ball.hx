@@ -40,7 +40,7 @@ class Ball extends FlxSprite {
 	}
 	
 	public inline function resetSpeed() {
-		speed = Game.settings.BALL_STARTING_SPEED;
+		speed = Settings.BALL_STARTING_SPEED;
 	}
 	
 	public inline function increaseSpeed(increment:Int = 50) {
