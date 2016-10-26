@@ -36,6 +36,7 @@ class CometTrailWrapper {
 	
 	public function updateTrailColor(ball:Ball, tween:FlxTween) {
 		var trail = trail.getTrail(ball);
+		if (trail == null) return;
 		trail.color = ball.color.getLightened(0.25);
 		if (tween != null)
 			trail.color.alphaFloat = FlxMath.lerp(1, 0.5, tween.percent);

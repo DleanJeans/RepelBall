@@ -21,7 +21,7 @@ class CometTrail extends FlxSprite {
 	public function new(x:Float = 0, y:Float = 0, width:Int = 0, height:Int = 0) {
 		super(x, y);
 		
-		makeGraphic(width == 0 ? FlxG.width : width, height == 0 ? FlxG.height : height, FlxColor.TRANSPARENT);
+		makeGraphic(width <= 0 ? FlxG.width : width, height <= 0 ? FlxG.height : height, FlxColor.TRANSPARENT);
 		trailMap = new TrailMap();
 	}
 	
