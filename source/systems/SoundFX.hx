@@ -19,7 +19,7 @@ class SoundFX {
 	}
 	
 	private function loadTheme() {
-		
+		theme = FlxG.sound.load(FlxAssets.getSound("assets/music/theme"), 0, true);
 	}
 	
 	public function playBallHitSound(ball:Ball, object:Dynamic) {
@@ -30,15 +30,18 @@ class SoundFX {
 	}
 	
 	public function playThemeInMenu() {
-		
+		theme.play();
+		theme.fadeIn(3);
 	}
 	
 	public function playThemeInGame() {
-		
+		theme.play();
+		theme.fadeIn(3, 0, 0.8);
 	}
 	
 	public function fadeOutTheme() {
-		
+		theme.play();
+		theme.fadeOut(1, 0.05);
 	}
 	
 }
