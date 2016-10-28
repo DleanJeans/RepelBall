@@ -19,7 +19,7 @@ class Powerup extends FlxSprite {
 		super();
 		solid = false;
 		_lifeTimer = new FlxTimer();
-		setType(type);
+		loadGraphic(Game.renderer.getSvg(SVG_PATH), true, 48, 48);
 	}
 	
 	public function startLifeTimer() {
@@ -32,7 +32,6 @@ class Powerup extends FlxSprite {
 	}
 	
 	private function loadFrame(frame:Int) {
-		loadGraphic(Game.renderer.getSvg(SVG_PATH), true, 48, 48);
 		animation.frameIndex = frame;
 	}
 	
