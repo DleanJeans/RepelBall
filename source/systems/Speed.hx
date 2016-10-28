@@ -1,5 +1,7 @@
 package systems;
+
 import flixel.FlxG;
+import flixel.math.FlxMath;
 
 class Speed {
 	public var slowMo:Float = 1;
@@ -11,12 +13,16 @@ class Speed {
 	
 	public function update() {
 		var fps = Game.framerateCounter.fps;
-		if (fps >= 25)
-			auto = FlxG.drawFramerate / fps;
-		if (auto < 1)
-			auto = 1;
+		auto = FlxG.drawFramerate / fps;
+		auto = FlxMath.bound(auto, 1, 2);
 		
 		FlxG.timeScale = auto * slowMo;
+	}
+	
+	public function toggleSlowMo() {
+		#if !FLX_NO_KEYBOARD
+		Game.speed.slowMo = Game.speed.slowMo == 1 ? Settings.SLOW_MO_TIME_SCALE: 1;
+		#end
 	}
 	
 }

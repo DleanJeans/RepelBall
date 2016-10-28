@@ -10,10 +10,10 @@ import systems.Pools;
 import systems.Renderer;
 import systems.Save;
 import systems.Signals;
-import systems.SlowMotion;
 import systems.SoundFX;
 import systems.Speed;
 import systems.States;
+import systems.TestingShortcuts;
 import systems.Tweens;
 import systems.WallBuilder;
 import systems.WinManager;
@@ -54,12 +54,12 @@ class Game {
 	public static var ball(default, null):BallSystems;
 	public static var paddle(default, null):PaddleSystems;
 	public static var tween(default, null):Tweens;
-	public static var slowMo(default, null):SlowMotion;
 	public static var cometTrail(default, null):CometTrailWrapper;
 	public static var screen(default, null):ScreenSystems;
 	public static var speed(default, null):Speed;
 	public static var save(default, null):Save;
 	public static var powerups(default, null):PowerupSystems;
+	public static var shortcuts(default, null):TestingShortcuts;
 	
 	public static function init() {
 		Settings.apply();
@@ -83,12 +83,12 @@ class Game {
 		ball = new BallSystems();
 		paddle = new PaddleSystems();
 		tween = new Tweens();
-		slowMo = new SlowMotion();
 		cometTrail = new CometTrailWrapper();
 		screen = new ScreenSystems();
 		speed = new Speed();
 		save = new Save();
 		powerups = new PowerupSystems();
+		shortcuts = new TestingShortcuts();
 		
 		signals = new Signals();
 		framerateCounter = new FramerateCounter();
