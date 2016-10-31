@@ -13,7 +13,7 @@ class WinState extends FlxSubState {
 		add(winText);
 		
 		Game.notifier.notify(Game.messages.askForAnyInput, Game.notifier.fadeInOut.bind(1));
-		closeCallback = function() Game.notifier.stopFadingInOut();
+		closeCallback = Game.notifier.stopFadingInOut;
 	}
 	
 	override public function update(elapsed:Float):Void {

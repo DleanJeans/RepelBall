@@ -91,6 +91,7 @@ class GoalState extends FlxSubState {
 	
 	private inline function askForAnyInput() {
 		Game.notifier.notify(Game.messages.askForAnyInput, Game.notifier.fadeInOut.bind(1));
+		closeCallback = Game.notifier.stopFadingInOut;
 	}
 	
 	private inline function pauseGame() {
