@@ -1,7 +1,10 @@
 package systems.collisions;
 
+import flixel.FlxBasic;
 import flixel.FlxG;
 import flixel.FlxObject;
+import flixel.FlxSprite;
+import flixel.math.FlxMath;
 import objects.Ball;
 import objects.Paddle;
 import objects.Powerup;
@@ -11,20 +14,21 @@ import systems.Stage.PaddleGroup;
 import systems.Stage.PowerupGroup;
 import systems.Stage.WallGroup;
 
-class Detector {
-	public var level(get, never):Stage;
+class Detector extends FlxBasic {
+	public var stage(get, never):Stage;
 	public var walls(get, never):WallGroup;
 	public var paddles(get, never):PaddleGroup;
 	public var balls(get, never):BallGroup;
 	public var powerups(get, never):PowerupGroup;
 	
 	public function new() {
-		FlxG.signals.postUpdate.add(update);
+		super();
+		visible = false;
+		Game.stage.addSystem(this);
 	}
 	
-	public function update() {
-		if (level != null)
-			detect();
+	override public function update(elapsed:Float) {
+		detect();
 	}
 	
 	public function routeSignals(ball:Ball, object:FlxObject) {
@@ -41,31 +45,35 @@ class Detector {
 	}
 	
 	function detect() {
-		FlxG.overlap(balls, balls, Game.signals.ball_hit.dispatch);
+		FlxG.overlap(balls, balls, Game.signals.ball_hit.dispatch, circleToCircle);
 		FlxG.overlap(balls, walls, Game.signals.ball_hit.dispatch);
 		FlxG.overlap(balls, paddles, Game.signals.ball_hit.dispatch);
 		FlxG.overlap(balls, powerups, Game.signals.ball_hit.dispatch);
 		FlxG.overlap(paddles, walls, Game.signals.paddle_wall.dispatch);
 	}
 	
-	inline function get_level():Stage {
+	private inline function circleToCircle(circle:FlxSprite, circle2:FlxSprite):Bool {
+		return FlxMath.isDistanceWithin(circle, circle2, circle.width + circle2.width, true);
+	}
+	
+	inline function get_stage():Stage {
 		return Game.stage;
 	}
 	
 	inline function get_walls():WallGroup {
-		return level.walls;
+		return stage.walls;
 	}
 	
 	inline function get_paddles():PaddleGroup {
-		return level.paddles;
+		return stage.paddles;
 	}
 	
 	inline function get_balls():BallGroup {
-		return level.balls;
+		return stage.balls;
 	}
 	
 	inline function get_powerups():PowerupGroup {
-		return level.powerups;
+		return stage.powerups;
 	}
 	
 }

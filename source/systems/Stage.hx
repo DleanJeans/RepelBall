@@ -43,13 +43,13 @@ class Stage extends FlxGroup {
 		
 		uis = new FlxSpriteGroup();
 		
-		add(systems);
 		add(walls);
 		add(paddles);
 		add(particles);
 		add(faces);
 		add(balls);
 		add(powerups);
+		add(systems);
 		
 		add(uis);
 	}
