@@ -68,8 +68,8 @@ class Game {
 		
 		states = new States();
 		renderer = new Renderer();
-		controllers = new ControllerList();
 		collision = new Collision();
+		controllers = new ControllerList();
 		pools = new Pools();
 		goalManager = new GoalManager();
 		color = new Colors();
