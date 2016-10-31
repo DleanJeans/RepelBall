@@ -2,9 +2,9 @@ package systems;
 
 import flash.display.BitmapData;
 import flash.display.Shape;
-import flash.display.Sprite;
 import flixel.FlxG;
 import flixel.FlxSprite;
+import flixel.system.FlxAssets;
 import flixel.util.FlxColor;
 import format.SVG;
 import objects.Ball;
@@ -14,7 +14,11 @@ import openfl.Assets;
 using flixel.util.FlxSpriteUtil;
 
 class Renderer {
-	public function new() {}
+	private var _svgShape:Shape;
+	
+	public function new() {
+		_svgShape = new Shape();
+	}
 	
 	public function drawBall(ball:Ball) {
 		var diameter = Game.unitLength();
@@ -97,15 +101,18 @@ class Renderer {
 		return !FlxG.bitmap.checkCache(key);
 	}
 	
-	private var _svgShape:Shape;
-	
 	public function getSvg(path:String):BitmapData {
 		if (FlxG.bitmap.checkCache(path)) return FlxG.bitmap.get(path).bitmap;
 		
-		if (_svgShape == null)
-			_svgShape = new Shape();
+		var svg:SVG = null;
 		
-		var svg = new SVG(Assets.getText(path));
+		try {
+			svg = new SVG(Assets.getText(path));
+		}
+		catch (e:Dynamic) {
+			return FlxAssets.getBitmapFromClass(GraphicLogo);
+		}
+		
 		var bitmapData = new BitmapData(cast svg.data.width, cast svg.data.height, true, 0x0);
 		
 		_svgShape.graphics.clear();
