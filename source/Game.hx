@@ -4,7 +4,6 @@ import systems.AnyInput;
 import systems.Colors;
 import systems.FramerateCounter;
 import systems.GoalManager;
-import systems.Stage;
 import systems.Messages;
 import systems.Pools;
 import systems.Renderer;
@@ -12,6 +11,7 @@ import systems.Save;
 import systems.Signals;
 import systems.SoundFX;
 import systems.Speed;
+import systems.Stage;
 import systems.States;
 import systems.TestingShortcuts;
 import systems.Tweens;
@@ -25,6 +25,7 @@ import systems.paddle.PaddleSystems;
 import systems.powerups.PowerupSystems;
 import systems.screen.ScreenSystems;
 import systems.trail.CometTrailWrapper;
+import ui.NotifyingText;
 import ui.Scoreboard;
 
 class Game {
@@ -60,6 +61,7 @@ class Game {
 	public static var save(default, null):Save;
 	public static var powerups(default, null):PowerupSystems;
 	public static var shortcuts(default, null):TestingShortcuts;
+	public static var notifier(default, null):NotifyingText;
 	
 	public static function init() {
 		Settings.apply();
@@ -73,7 +75,6 @@ class Game {
 		collision = new Collision();
 		pools = new Pools();
 		goalManager = new GoalManager();
-		scoreboard = new Scoreboard();
 		color = new Colors();
 		walls = new WallBuilder();
 		winManager = new WinManager();
@@ -89,6 +90,9 @@ class Game {
 		save = new Save();
 		powerups = new PowerupSystems();
 		shortcuts = new TestingShortcuts();
+		
+		scoreboard = new Scoreboard();
+		notifier = new NotifyingText();
 		
 		signals = new Signals();
 		framerateCounter = new FramerateCounter();

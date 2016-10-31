@@ -6,11 +6,9 @@ import flixel.group.FlxSpriteGroup;
 import flixel.text.FlxText;
 import flixel.util.FlxAxes;
 import flixel.util.FlxSignal;
-import ui.AnyInputText;
 
 class MinimalTitleScreen extends FlxSpriteGroup {
 	public var titleText(default, null):FlxText;
-	public var anyInputText(default, null):AnyInputText;
 	public var creditText(default, null):FlxText;
 	public var icon(default, null):FlxSprite;
 	
@@ -28,8 +26,7 @@ class MinimalTitleScreen extends FlxSpriteGroup {
 		start = new FlxSignal();
 		
 		titleText = new FlxText(0, 50, 0, "RepelBall", 75);
-		anyInputText = new AnyInputText();
-		creditText = new FlxText(0, 0, FlxG.width * 0.9, "Developed by Dlean Jeans\nPowered by HaxeFlixel", 25);
+		creditText = new FlxText(0, 0, FlxG.width * 0.9, "Developer: Dlean Jeans\nGame Engine: HaxeFlixel\nInspiration: Juice it or Lose it", 25);
 		icon = new FlxSprite(0, 0, AssetPaths.big_icon__png);
 	}
 	
@@ -39,18 +36,20 @@ class MinimalTitleScreen extends FlxSpriteGroup {
 		creditText.y -= 10;
 		creditText.alignment = FlxTextAlign.CENTER;
 		icon.screenCenter();
+		
+		Game.notifier.notify(Game.messages.askForAnyInput, Game.notifier.fadeInOut.bind(1));
 	}
 	
 	private function addStuff() {
 		add(titleText);
-		add(anyInputText);
 		add(creditText);
 		add(icon);
+		add(Game.notifier.text);
 	}
 	
 	override public function update(elapsed:Float):Void {
 		super.update(elapsed);
-		if (Game.anyInput.anyInputReceived())
+		if (Game.anyInput.receivedAny())
 			start.dispatch();
 	}
 	

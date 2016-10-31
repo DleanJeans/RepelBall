@@ -2,7 +2,6 @@ package states;
 
 import flixel.FlxSubState;
 import flixel.util.FlxTimer;
-import ui.AnyInputText;
 import ui.GoalText;
 import ui.RoundScoreText;
 import ui.TimerText;
@@ -11,7 +10,6 @@ class GoalState extends FlxSubState {
 	public var goalText(default, null):GoalText;
 	public var roundScoreText(default, null):RoundScoreText;
 	public var timerText(default, null):TimerText;
-	public var anyInputText(default, null):AnyInputText;
 	
 	public var multiGoalTimer(default, null):FlxTimer;
 	
@@ -19,16 +17,13 @@ class GoalState extends FlxSubState {
 		goalText = new GoalText();
 		roundScoreText = new RoundScoreText();
 		timerText = new TimerText();
-		anyInputText = new AnyInputText();
 		
 		goalText.visible = false;
-		anyInputText.visible = false;
 		timerText.setMidTop(roundScoreText.getMidBottom());
 		
 		add(goalText);
 		add(roundScoreText);
 		add(timerText);
-		add(anyInputText);
 		
 		goal();
 	}
@@ -72,7 +67,7 @@ class GoalState extends FlxSubState {
 		destroyMultiGoalTimer();
 		showGoalText();
 		moveRoundScoreTextUp();
-		showAnyInputText();
+		askForAnyInput();
 		pauseGame();
 	}
 	
@@ -94,8 +89,8 @@ class GoalState extends FlxSubState {
 		roundScoreText.setBottom(goalText.y);
 	}
 	
-	private inline function showAnyInputText() {
-		anyInputText.visible = true;
+	private inline function askForAnyInput() {
+		Game.notifier.notify(Game.messages.askForAnyInput, Game.notifier.fadeInOut.bind(1));
 	}
 	
 	private inline function pauseGame() {

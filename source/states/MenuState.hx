@@ -49,6 +49,8 @@ class MenuState extends FlxSubState {
 		Game.sfx.fadeOutTheme();
 		matchSettings.apply();
 		Game.states.play();
+		titleMenu.remove(Game.notifier.text);
+		Game.notifier.stopFadingInOut();
 	}
 }
 

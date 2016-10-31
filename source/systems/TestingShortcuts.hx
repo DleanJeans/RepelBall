@@ -4,29 +4,36 @@ import flixel.FlxBasic;
 import flixel.FlxG;
 import flixel.input.keyboard.FlxKeyList;
 
+typedef Shortcut = {
+	shortcutFunction:Void->Void,
+	?notifyingFunction:Void->Void
+}
 
 class TestingShortcuts extends FlxBasic {
-	public var shortcuts(default, null):Array<Void->Void> = new Array<Void->Void>();
+	public var shortcuts(default, null):Map<Int, Shortcut> = new Map<Int, Shortcut>();
 	private var _keyList:Array<Bool> = new Array<Bool>();
 	
 	public function new() {
 		super();
-		#if (testing && !FLX_NO_KEYBOARD)
+		#if testing
 		visible = false;
 		Game.stage.addSystem(this);
 		
-		setShortcut(1, Game.speed.toggleSlowMo);
-		setShortcut(2, Game.powerups.spawner.spawnRandom);
+		setShortcut(1, Game.speed.toggleSlowMo, Game.notifier.notify.bind("SlowMo Toggled!"));
+		setShortcut(2, Game.powerups.spawner.spawnRandom, Game.notifier.notify.bind("Spawn Powerup!"));
 		#end
 	}
 	
-	#if (testing && !FLX_NO_KEYBOARD)
-	public inline function setShortcut(from0to9:Int, shortcut:Void->Void) {
-		shortcuts[from0to9] = shortcut;
+	#if testing
+	public inline function setShortcut(from0to9:Int, shortcutFunction:Void->Void, ?notifyingFunction:Void->Void) {
+		shortcuts[from0to9] = {
+			shortcutFunction: shortcutFunction,
+			notifyingFunction: notifyingFunction
+		};
 	}
 	
-	public inline function removeShortcut(shortcut:Void->Void) {
-		shortcuts.remove(shortcut);
+	public inline function removeShortcut(from0to9:Int) {
+		shortcuts.remove(from0to9);
 	}
 	
 	override public function update(elapsed:Float):Void {
@@ -51,15 +58,18 @@ class TestingShortcuts extends FlxBasic {
 	}
 	
 	private function runShortcuts() {
-		var shortcut:Void->Void = null;
+		var shortcut:Shortcut = null;
 		var run:Bool;
 		
 		for (i in 0..._keyList.length) {
 			shortcut = shortcuts[i];
 			run = _keyList[i];
 			
-			if (shortcut != null && run)
-				shortcut();
+			if (shortcut != null && run) {
+				shortcut.shortcutFunction();
+				if (shortcut.notifyingFunction != null)
+					shortcut.notifyingFunction();
+			}
 		}
 	}
 	#end

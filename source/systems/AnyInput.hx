@@ -16,14 +16,14 @@ class AnyInput {
 	
 	public function listen(?listeners:Array<Void->Void>):Bool {
 		var inputReceived:Bool;
-		if (inputReceived = anyInputReceived()) {
+		if (inputReceived = receivedAny()) {
 			addListeners(listeners);
 			dispatch();
 		}
 		return inputReceived;
 	}
 	
-	public inline function anyInputReceived():Bool {
+	public inline function receivedAny():Bool {
 		return FlxG.mouse.justPressed 
 		#if !FLX_NO_KEYBOARD
 		|| FlxG.keys.justPressed.ANY
