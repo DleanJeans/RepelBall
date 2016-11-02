@@ -1,5 +1,6 @@
 package;
 
+import flash.display.StageQuality;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.system.FlxAssets;
@@ -67,7 +68,7 @@ class Settings {
 	public static var scoresToWin(default, null):Array<Int> = [3, 5, 10];
 	
 	public static function apply() {
-		FlxG.camera.antialiasing = true;
+		enableAntialiasing();
 		setupValuesRegardingScreenSize();
 		setupPreRoundCountdown();
 		setupUISettings();
@@ -75,6 +76,11 @@ class Settings {
 		setSeparateBias();
 		setDefaultFont();
 		disableFlixelMouseOnJs();
+	}
+	
+	private static function enableAntialiasing() {
+		FlxG.camera.antialiasing = true;
+		FlxG.stage.quality = StageQuality.HIGH;
 	}
 	
 	private static function setupValuesRegardingScreenSize() {
