@@ -16,6 +16,7 @@ class TestingShortcuts extends FlxBasic {
 	public function new() {
 		super();
 		#if testing
+		FlxG.console.registerClass(Game);
 		visible = false;
 		Game.stage.addSystem(this);
 		
