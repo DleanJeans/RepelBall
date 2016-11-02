@@ -41,17 +41,6 @@ class Mouth extends FlxSprite {
 		smile();
 	}
 	
-	private function drawMouthFromSvg():BitmapData {
-		var svg = new SVG(Assets.getText(AssetPaths.Mouths__svg));
-		var sprite = new Sprite();
-		var bitmapData = new BitmapData(24, 12 * 3, true, 0x0);
-		
-		svg.render(sprite.graphics);
-		bitmapData.draw(sprite);
-		
-		return bitmapData;
-	}
-	
 	override public function update(elapsed:Float):Void {
 		super.update(elapsed);
 		updateOffset();
