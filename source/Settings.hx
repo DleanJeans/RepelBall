@@ -38,7 +38,7 @@ class Settings {
 	public static var GLITCH_DURATION = 0.05;
 	
 	public static var POWERUP_POPPING_DURATION = 0.5;
-	public static var POWERUP_LIFETIME = 3;
+	public static var POWERUP_LIFETIME = 5;
 	
 	public static var POWERUP_AREA_WIDTH:Int;
 	public static var POWERUP_AREA_HEIGHT:Int;
