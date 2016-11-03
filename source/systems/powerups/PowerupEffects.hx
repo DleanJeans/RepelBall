@@ -17,8 +17,8 @@ class PowerupEffects {
 		var clone = Game.pools.cloneBall(ball);
 		var directionAngle = ball.velocity.angleBetween(FlxPoint.weak());
 		
-		var newPosition = getPointAwayFrom(ball.getCenter(), -Game.unitLength(0.5), directionAngle);
-		var newPosition2 = getPointAwayFrom(ball.getCenter(), Game.unitLength(0.5), directionAngle);
+		var newPosition = getPointAwayFrom(ball.getCenter(), -Settings.unitLength(0.5), directionAngle);
+		var newPosition2 = getPointAwayFrom(ball.getCenter(), Settings.unitLength(0.5), directionAngle);
 		
 		ball.setCenter(newPosition);
 		clone.setCenter(newPosition2);
@@ -41,8 +41,8 @@ class PowerupEffects {
 		var clone2 = Game.pools.cloneBall(ball);
 		var directionAngle = ball.velocity.angleBetween(FlxPoint.weak());
 		
-		var newPosition = getPointAwayFrom(ball.getCenter(), Game.unitLength(1), directionAngle);
-		var newPosition2 = getPointAwayFrom(ball.getCenter(), -Game.unitLength(1), directionAngle);
+		var newPosition = getPointAwayFrom(ball.getCenter(), Settings.unitLength(1), directionAngle);
+		var newPosition2 = getPointAwayFrom(ball.getCenter(), -Settings.unitLength(1), directionAngle);
 		
 		clone.setCenter(newPosition);
 		clone2.setCenter(newPosition2);

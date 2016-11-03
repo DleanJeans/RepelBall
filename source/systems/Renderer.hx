@@ -21,7 +21,7 @@ class Renderer {
 	}
 	
 	public function drawBall(ball:Ball) {
-		var diameter = Game.unitLength();
+		var diameter = Settings.unitLength();
 		var radius = diameter / 2;
 		var key = 'ball$diameter';
 		var draw = newKey(key);
@@ -33,10 +33,10 @@ class Renderer {
 	
 	public function drawPaddle(paddle:Paddle) {
 		if (paddle.movesHorizontally())
-			paddle.setSize(paddle.length, Game.unitLength());
-		else paddle.setSize(Game.unitLength(), paddle.length);
+			paddle.setSize(paddle.length, Settings.unitLength());
+		else paddle.setSize(Settings.unitLength(), paddle.length);
 		
-		drawRoundRect(paddle, cast paddle.width, cast paddle.height, Game.unitLength());
+		drawRoundRect(paddle, cast paddle.width, cast paddle.height, Settings.unitLength());
 	}
 	
 	public function drawWall(wall:Wall) {
@@ -44,7 +44,7 @@ class Renderer {
 	}
 	
 	public function drawEyeWhite(sprite:FlxSprite) {
-		var diameter = Game.unitLength(0.8);
+		var diameter = Settings.unitLength(0.8);
 		var radius = diameter / 2;
 		var key = "eyewhite";
 		var draw = newKey(key);
@@ -55,7 +55,7 @@ class Renderer {
 	}
 	
 	public function drawPupil(sprite:FlxSprite) {
-		var diameter = Game.unitLength(0.4);
+		var diameter = Settings.unitLength(0.4);
 		var radius = diameter / 2;
 		var key = "pupil";
 		var draw = newKey(key);

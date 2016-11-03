@@ -29,11 +29,6 @@ import ui.NotifyingText;
 import ui.Scoreboard;
 
 class Game {
-	private static inline var UNIT_LENGTH = 24;
-	public static inline function unitLength(times:Float = 1):Int {
-		return cast UNIT_LENGTH * times;
-	}
-	
 	public static var stage(default, null):Stage;
 	public static var match(default, null):Match;
 	

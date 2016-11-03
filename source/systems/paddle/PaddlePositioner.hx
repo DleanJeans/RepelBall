@@ -13,7 +13,7 @@ class PaddlePositioner {
 		if (unitHeight == null)
 			unitHeight = 3;
 		
-		var height = Game.unitLength(unitHeight);
+		var height = Settings.unitLength(unitHeight);
 		var wallCenter = wall.getCenter();
 		var heightVector = FlxPoint.weak(0, -height);
 		var facingAngle = FlxAngle.angleFromFacing(wall.facing, true);

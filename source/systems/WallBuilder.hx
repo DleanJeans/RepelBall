@@ -16,7 +16,7 @@ class WallBuilder {
 	}
 	
 	public function buildWalls() {
-		var wallWidth = Game.unitLength();
+		var wallWidth = Settings.unitLength();
 		
 		var topWallY = 0;
 		var bottomWallY = FlxG.height - wallWidth;

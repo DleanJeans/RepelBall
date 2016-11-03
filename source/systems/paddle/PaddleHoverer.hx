@@ -18,7 +18,7 @@ class PaddleHoverer {
 	
 	public function startHoveringAllPaddles() {
 		for (paddle in Game.stage.paddles)
-			startHovering(paddle, Game.unitLength(0.5));
+			startHovering(paddle, Settings.unitLength(0.5));
 	}
 	
 	public function stopHoveringAllPaddles() {
@@ -38,16 +38,16 @@ class PaddleHoverer {
 	
 	public function knockBackBallSpeed(ball:Ball, paddle:Paddle) {
 		var ballVelocity = paddle.get1Axis(ball.velocity, false);
-		var range = ballVelocity / Game.unitLength(2.5);
+		var range = ballVelocity / Settings.unitLength(2.5);
 		knockBack(paddle, range);
 	}
 	
-	public function knockBack(paddle:Paddle, range:Float = Game.unitLength(1)) {
+	public function knockBack(paddle:Paddle, range:Float = Settings.unitLength(1)) {
 		var hoveringTween = tweenMap.get(paddle);
 		hoveringTween.knockBack(range);
 	}
 	
-	public function startHovering(paddle:Paddle, range:Float = Game.unitLength(0.5)) {
+	public function startHovering(paddle:Paddle, range:Float = Settings.unitLength(0.5)) {
 		var hoveringTween = new HoveringTween(paddle);
 		hoveringTween.startTween(range);
 		tweenMap.set(paddle, hoveringTween);

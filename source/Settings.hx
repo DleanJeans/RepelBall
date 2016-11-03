@@ -7,6 +7,11 @@ import flixel.system.FlxAssets;
 import flixel.text.FlxText;
 
 class Settings {
+	private static inline var UNIT_LENGTH = 24;
+	public static inline function unitLength(times:Float = 1):Int {
+		return cast UNIT_LENGTH * times;
+	}
+	
 	public static var COLOR_SWATCH_LABEL_SIZE:Int;
 	public static var COLOR_SWATCH_SELECTOR_WIDTH:Int;
 	public static var COLOR_SWATCH_SIZE:Int;
@@ -144,7 +149,7 @@ class Settings {
 	}
 	
 	private static inline function setSeparateBias() {
-		FlxObject.SEPARATE_BIAS = Game.unitLength();
+		FlxObject.SEPARATE_BIAS = Settings.unitLength();
 	}
 	
 	private static inline function setDefaultFont() {
