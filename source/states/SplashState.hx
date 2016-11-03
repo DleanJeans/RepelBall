@@ -30,7 +30,7 @@ class SplashState extends FlxSubState {
 	override public function create():Void{
 		bgColor = Game.color.white;
 		
-		logo = new FlxSprite(0, 0, Game.renderer.getSvg(AssetPaths.RepelliumGames__svg));
+		logo = new FlxSprite(0, 0, Game.renderer.renderSvg(AssetPaths.RepelliumGames__svg));
 		logo.setGraphicSize(cast FlxG.width * 0.8);
 		logo.updateHitbox();
 		logo.screenCenter();

@@ -101,7 +101,7 @@ class Renderer {
 		return !FlxG.bitmap.checkCache(key);
 	}
 	
-	public function getSvg(path:String):BitmapData {
+	public function renderSvg(path:String):BitmapData {
 		if (FlxG.bitmap.checkCache(path)) return FlxG.bitmap.get(path).bitmap;
 		
 		var svg:SVG = null;

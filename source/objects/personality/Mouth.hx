@@ -36,7 +36,7 @@ class Mouth extends FlxSprite {
 	public function new() {
 		super(0, 0);
 		_scale = FlxPoint.get(1, 1);
-		loadGraphic(Game.renderer.getSvg(SVG_PATH), true, 24, 12);
+		loadGraphic(Game.renderer.renderSvg(SVG_PATH), true, 24, 12);
 		solid = false;
 		smile();
 	}
