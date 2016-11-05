@@ -13,9 +13,9 @@ import systems.SoundFX;
 import systems.Speed;
 import systems.Stage;
 import systems.States;
-import systems.TestingShortcuts;
 import systems.Tweens;
 import systems.WallBuilder;
+import systems.Watermark;
 import systems.WinManager;
 import systems.ball.BallSystems;
 import systems.collisions.Collision;
@@ -24,6 +24,7 @@ import systems.match.Match;
 import systems.paddle.PaddleSystems;
 import systems.powerups.PowerupSystems;
 import systems.screen.ScreenSystems;
+import systems.testing.TestingSystems;
 import systems.trail.CometTrailWrapper;
 import ui.NotifyingText;
 import ui.Scoreboard;
@@ -55,8 +56,9 @@ class Game {
 	public static var speed(default, null):Speed;
 	public static var save(default, null):Save;
 	public static var powerups(default, null):PowerupSystems;
-	public static var shortcuts(default, null):TestingShortcuts;
+	public static var testing(default, null):TestingSystems;
 	public static var notifier(default, null):NotifyingText;
+	public static var watermark(default, null):Watermark;
 	
 	public static function init() {
 		Settings.apply();
@@ -84,13 +86,14 @@ class Game {
 		speed = new Speed();
 		save = new Save();
 		powerups = new PowerupSystems();
-		shortcuts = new TestingShortcuts();
+		watermark = new Watermark();
 		
 		scoreboard = new Scoreboard();
 		notifier = new NotifyingText();
 		
-		signals = new Signals();
 		framerateCounter = new FramerateCounter();
+		signals = new Signals();
+		testing = new TestingSystems();
 	}
 	
 }

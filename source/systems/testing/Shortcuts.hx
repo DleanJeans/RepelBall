@@ -1,4 +1,4 @@
-package systems;
+package systems.testing;
 
 import flixel.FlxBasic;
 import flixel.FlxG;
@@ -9,7 +9,7 @@ typedef Shortcut = {
 	?notifyingFunction:Void->Void
 }
 
-class TestingShortcuts extends FlxBasic {
+class Shortcuts extends FlxBasic {
 	public var shortcuts(default, null):Map<Int, Shortcut> = new Map<Int, Shortcut>();
 	private var _keyList:Array<Bool> = new Array<Bool>();
 	
@@ -22,6 +22,7 @@ class TestingShortcuts extends FlxBasic {
 		
 		setShortcut(1, Game.speed.toggleSlowMo, Game.notifier.notify.bind("SlowMo Toggled!"));
 		setShortcut(2, Game.powerups.spawner.spawnRandom, Game.notifier.notify.bind("Spawn Powerup!"));
+		setShortcut(3, Game.watermark.toggle);
 		#end
 	}
 	

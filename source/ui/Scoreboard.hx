@@ -76,11 +76,6 @@ class Scoreboard extends FlxSpriteGroup {
 	
 	private function moreSetup() {
 		setMidLeft(Positioner.screenMidLeft);
-		
-		background1.scrollFactor.set();
-		background2.scrollFactor.set();
-		score1.scrollFactor.set();
-		score2.scrollFactor.set();
 	}
 	
 }

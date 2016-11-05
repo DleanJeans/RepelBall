@@ -42,6 +42,7 @@ class Stage extends FlxGroup {
 		powerups = new PowerupGroup();
 		
 		uis = new FlxSpriteGroup();
+		uis.scrollFactor.set();
 		
 		add(walls);
 		add(paddles);
