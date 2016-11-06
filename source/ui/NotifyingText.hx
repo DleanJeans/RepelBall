@@ -68,7 +68,7 @@ class NotifyingText {
 		}
 		else {
 			active = true;
-			notify("Notifier: " + Game.messages.onOff(false));
+			notify("Notifier: " + Game.messages.onOff(true));
 		}
 	}
 	
