@@ -36,6 +36,10 @@ class Messages {
 		return bool ? "ON" : "OFF";
 	}
 	
+	public inline function getSlowMoActivation():String {
+		return "Slow Mo: " + onOff(Game.speed.slowMoEnabled);
+	}
+	
 	inline function get_teamRoundScore1():String return Std.string(Game.match.team1.roundScore);
 	inline function get_teamRoundScore2():String return Std.string(Game.match.team2.roundScore);
 	inline function get_winningTeam():String return Std.string(Game.match.winningTeam.name);

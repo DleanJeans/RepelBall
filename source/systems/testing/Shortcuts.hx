@@ -3,14 +3,18 @@ package systems.testing;
 import flixel.FlxBasic;
 import flixel.FlxG;
 import flixel.input.keyboard.FlxKeyList;
+import flixel.util.FlxColor;
 
 typedef Shortcut = {
 	shortcutFunction:Void->Void,
-	?notifyingFunction:Void->Void
+	?message:String,
+	?getMessage:Void->String,
+	?effectFunction:Void->Void,
+	?color:FlxColor
 }
 
 class Shortcuts extends FlxBasic {
-	public var shortcuts(default, null):Map<Int, Shortcut> = new Map<Int, Shortcut>();
+	public var shortcuts(default, null):Array<Shortcut> = new Array<Shortcut>();
 	private var _keyList:Array<Bool> = new Array<Bool>();
 	
 	public function new() {
@@ -20,22 +24,36 @@ class Shortcuts extends FlxBasic {
 		visible = false;
 		Game.stage.addSystem(this);
 		
-		setShortcut(1, Game.speed.toggleSlowMo, Game.notifier.notify.bind("SlowMo Toggled!"));
-		setShortcut(2, Game.powerups.spawner.spawnRandom, Game.notifier.notify.bind("Spawn Powerup!"));
-		setShortcut(3, Game.watermark.toggle);
+		addShortcut(Game.speed.toggleSlowMo, null, Game.messages.getSlowMoActivation);
+		addShortcut(Game.powerups.spawner.spawnRandom, "Powerup Spawned!");
+		addShortcut(Game.watermark.toggle);
 		#end
 	}
 	
 	#if testing
-	public inline function setShortcut(from0to9:Int, shortcutFunction:Void->Void, ?notifyingFunction:Void->Void) {
-		shortcuts[from0to9] = {
-			shortcutFunction: shortcutFunction,
-			notifyingFunction: notifyingFunction
-		};
+	public function addShortcut(shortcutFunction:Void->Void, 
+	?message:String, ?getMessage:Void->String, ?effectFunction:Void->Void, color:FlxColor = FlxColor.WHITE) {
+		if (shortcuts.length > 9) {
+			FlxG.log.warn("Cannot addShortcut()! Shortcut slots full!");
+			return;
+		}
+		
+		for (i in 1...10) {
+			if (shortcuts[i] == null) {
+				shortcuts[i] = {
+					shortcutFunction: shortcutFunction,
+					message: message,
+					getMessage: getMessage,
+					effectFunction: effectFunction,
+					color: color
+				};
+				return;
+			}
+		}
 	}
 	
-	public inline function removeShortcut(from0to9:Int) {
-		shortcuts.remove(from0to9);
+	public inline function removeShortcut(shortcut:Shortcut) {
+		shortcuts.remove(shortcut);
 	}
 	
 	override public function update(elapsed:Float):Void {
@@ -49,7 +67,6 @@ class Shortcuts extends FlxBasic {
 	
 	private function updateKeyList() {
 		var keyList:FlxKeyList = FlxG.keys.justPressed;
-		_keyList[0] = keyList.ZERO;
 		_keyList[1] = keyList.ONE;
 		_keyList[2] = keyList.TWO;
 		_keyList[3] = keyList.THREE;
@@ -63,18 +80,29 @@ class Shortcuts extends FlxBasic {
 	
 	private function runShortcuts() {
 		var shortcut:Shortcut = null;
+		var message:String;
 		var run:Bool;
 		
-		for (i in 0..._keyList.length) {
+		for (i in 1..._keyList.length) {
 			shortcut = shortcuts[i];
 			run = _keyList[i];
 			
-			if (shortcut != null && run) {
+			if (run && shortcut != null) {
 				shortcut.shortcutFunction();
-				if (shortcut.notifyingFunction != null)
-					shortcut.notifyingFunction();
+				if (containsMessage(shortcut)) {
+					message = getMessage(shortcut);
+					Game.notifier.notify(message, shortcut.effectFunction, shortcut.color);
+				}
 			}
 		}
+	}
+	
+	private inline function containsMessage(shortcut:Shortcut) {
+		return shortcut.message != null || shortcut.getMessage != null;
+	}
+	
+	private inline function getMessage(shortcut:Shortcut) {
+		return shortcut.message != null ? shortcut.message : shortcut.getMessage();
 	}
 	#end
 	
