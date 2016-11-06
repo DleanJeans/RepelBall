@@ -13,6 +13,7 @@ import systems.SoundFX;
 import systems.Speed;
 import systems.Stage;
 import systems.States;
+import systems.Timers;
 import systems.Tweens;
 import systems.WallBuilder;
 import systems.Watermark;
@@ -59,6 +60,7 @@ class Game {
 	public static var testing(default, null):TestingSystems;
 	public static var notifier(default, null):NotifyingText;
 	public static var watermark(default, null):Watermark;
+	public static var timers(default, null):Timers;
 	
 	public static function init() {
 		Settings.apply();
@@ -87,6 +89,7 @@ class Game {
 		save = new Save();
 		powerups = new PowerupSystems();
 		watermark = new Watermark();
+		timers = new Timers();
 		
 		scoreboard = new Scoreboard();
 		notifier = new NotifyingText();
