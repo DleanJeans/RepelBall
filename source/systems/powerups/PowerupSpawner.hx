@@ -3,6 +3,7 @@ package systems.powerups;
 import flixel.FlxG;
 import flixel.math.FlxPoint;
 import flixel.util.FlxTimer;
+import objects.Powerup;
 import systems.Signals.Signal1;
 
 class PowerupSpawner {
@@ -54,11 +55,12 @@ class PowerupSpawner {
 		spawn(FlxG.random.weightedPick([75, 25]));
 	}
 	
-	public function spawn(type:Int) {
+	public function spawn(type:Int):Powerup {
 		var randomPoint = getRandomPoint();
 		var powerup = Game.pools.getPowerup(type, randomPoint);
 		Game.stage.addPowerup(powerup);
 		powerup.popUp();
+		return powerup;
 	}
 	
 	private inline function getRandomPoint():FlxPoint {

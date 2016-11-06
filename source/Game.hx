@@ -25,6 +25,7 @@ import systems.match.Match;
 import systems.paddle.PaddleSystems;
 import systems.powerups.PowerupSystems;
 import systems.screen.ScreenSystems;
+import systems.testing.ClickSpawner;
 import systems.testing.TestingSystems;
 import systems.trail.CometTrailWrapper;
 import ui.NotifyingText;
@@ -63,6 +64,7 @@ class Game {
 	public static var watermark(default, null):Watermark;
 	public static var timers(default, null):Timers;
 	public static var timeBoard(default, null):TimeBoard;
+	public static var clickSpawner(default, null):ClickSpawner;
 	
 	public static function init() {
 		Settings.apply();
@@ -92,6 +94,7 @@ class Game {
 		powerups = new PowerupSystems();
 		watermark = new Watermark();
 		timers = new Timers();
+		clickSpawner = new ClickSpawner();
 		
 		scoreboard = new Scoreboard();
 		notifier = new NotifyingText();
