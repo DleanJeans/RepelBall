@@ -28,7 +28,7 @@ import systems.screen.ScreenSystems;
 import systems.testing.ClickSpawner;
 import systems.testing.TestingSystems;
 import systems.trail.CometTrailWrapper;
-import ui.NotifyingText;
+import ui.Notifier;
 import ui.Scoreboard;
 import ui.TimeBoard;
 
@@ -60,7 +60,7 @@ class Game {
 	public static var save(default, null):Save;
 	public static var powerups(default, null):PowerupSystems;
 	public static var testing(default, null):TestingSystems;
-	public static var notifier(default, null):NotifyingText;
+	public static var notifier(default, null):Notifier;
 	public static var watermark(default, null):Watermark;
 	public static var timers(default, null):Timers;
 	public static var timeBoard(default, null):TimeBoard;
@@ -97,7 +97,7 @@ class Game {
 		clickSpawner = new ClickSpawner();
 		
 		scoreboard = new Scoreboard();
-		notifier = new NotifyingText();
+		notifier = new Notifier();
 		timeBoard = new TimeBoard();
 		
 		framerateCounter = new FramerateCounter();

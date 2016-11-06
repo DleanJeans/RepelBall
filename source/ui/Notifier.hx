@@ -6,7 +6,7 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.util.FlxSpriteUtil;
 
-class NotifyingText {
+class Notifier {
 	public var active:Bool = true;
 	public var text(default, null):FlxText;
 	public var fadeInOutTween(default, null):FlxTween;
