@@ -1,46 +1,30 @@
-<svg id="svg2" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="48" width="96" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 96.000004 48.000001" xmlns:dc="http://purl.org/dc/elements/1.1/">
- <defs id="defs4">
-  <radialGradient id="radialGradient4146" gradientUnits="userSpaceOnUse" cy="451.09" cx="216.51" gradientTransform="matrix(.49091 0 0 .49091 -82.286 806.92)" r="48.889">
-   <stop id="stop4142" stop-color="#2196f3" stop-opacity="0" offset="0"/>
-   <stop id="stop4144" stop-color="#2196f3" stop-opacity=".75" offset="1"/>
-  </radialGradient>
-  <radialGradient id="radialGradient4244" gradientUnits="userSpaceOnUse" cy="451.09" cx="216.51" gradientTransform="matrix(.49091 0 0 .49091 -34.286 806.92)" r="48.889">
-   <stop id="stop4248" stop-color="#69f0ae" stop-opacity="0" offset="0"/>
-   <stop id="stop4250" stop-color="#69f0ae" stop-opacity=".75" offset="1"/>
-  </radialGradient>
- </defs>
- <g id="layer1" transform="translate(0 -1004.4)">
-  <g id="g4169" fill-rule="evenodd">
-   <circle id="path4138" opacity=".5" cy="1028.4" cx="24" r="24" fill="url(#radialGradient4146)"/>
-   <g id="g4319">
-    <g id="g4163" transform="matrix(-.86603 .5 -.5 -.86603 565.16 1934.5)">
-     <path id="path4165" opacity=".5" d="m6 1052.4v-12l30 6z" fill="#90caf9"/>
-     <circle id="circle4167" cy="1046.4" cx="6" r="6" fill="#2196f3"/>
-    </g>
-    <g id="g4218" transform="matrix(-.25882 .96593 -.96593 -.25882 1030.8 1282.4)">
-     <path id="path4220" opacity=".5" d="m6 1052.4v-12l30 6z" fill="#90caf9"/>
-     <circle id="circle4222" cx="6" cy="1046.4" r="6" fill="#2196f3"/>
-    </g>
-   </g>
-  </g>
-  <g id="g4305">
-   <circle id="circle4226" opacity=".5" fill-rule="evenodd" cx="72" cy="1028.4" r="24" fill="url(#radialGradient4244)"/>
-   <g id="g4293">
-    <g id="g4228" transform="matrix(.38268 .92388 -.92388 .38268 1014.2 627.35)">
-     <g id="g4230" fill-rule="evenodd" transform="matrix(0 1 -1 0 1067.9 1007)">
-      <path id="path4232" opacity=".5" d="m6 1052.4v-12l30 6z" fill="#69f0ae"/>
-      <circle id="circle4234" cy="1046.4" cx="6" r="6" fill="#00e676"/>
-     </g>
-    </g>
-    <g id="g4238" fill-rule="evenodd" transform="matrix(-.13053 .99144 -.99144 -.13053 1100.9 1147.2)">
-     <path id="path4240" opacity=".5" d="m6 1052.4v-12l30 6z" fill="#69f0ae"/>
-     <circle id="circle4242" cy="1046.4" cx="6" r="6" fill="#00e676"/>
-    </g>
-    <g id="g4262" fill-rule="evenodd" transform="matrix(-.60876 .79335 -.79335 -.60876 910.85 1654.8)">
-     <path id="path4264" opacity=".5" d="m6 1052.4v-12l30 6z" fill="#69f0ae"/>
-     <circle id="circle4266" cx="6" cy="1046.4" r="6" fill="#00e676"/>
-    </g>
-   </g>
-  </g>
- </g>
+<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" height="48" width="144" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" viewBox="0 0 143.99999 48.000032">
+	<circle fill-rule="evenodd" transform="rotate(150)" cy="-39.99" cx="-19.462" r="6" fill="#2196f3"/>
+	<g>
+		<circle opacity=".5" fill-rule="evenodd" cy="24" cx="72" r="24" fill="#39ff9f"/>
+		<g fill-rule="evenodd">
+			<path opacity=".5" d="m84.219 24.978 4.5922 11.087-30.012 5.9372z" fill="#8ef3c1"/>
+			<circle cy="30.521" cx="86.515" r="6" fill="#00e676"/>
+		</g>
+		<path opacity=".5" d="m74.371 8.566 12.694 9.74-28.262 23.691z" fill="#8ef3c1"/>
+		<path d="m72.991 15.507a8 8 0 0 1 5.6569 -9.798 8 8 0 0 1 9.798 5.6569 8 8 0 0 1 -5.6569 9.798 8 8 0 0 1 -9.798 -5.6569z" fill-rule="evenodd" fill="#00e676"/>
+		<g fill-rule="evenodd">
+			<path opacity=".5" d="m56.77 11.474 11.897 1.5664-9.8645 28.96z" fill="#8ef3c1"/>
+			<circle cy="12.257" cx="62.719" r="6" fill="#00e676"/>
+		</g>
+	</g>
+	<g fill-rule="evenodd">
+		<circle opacity=".5" cx="24" fill-opacity=".75" cy="24" r="24" fill="#4caaf5"/>
+		<g>
+			<path opacity=".5" d="m16.806 9.8869 11.086 4.5921-17.024 25.42z" fill="#90caf9"/>
+			<circle cy="12.183" cx="22.349" r="6" fill="#2196f3"/>
+			<path opacity=".5" d="m33.849 19.705 6 10.393-28.98 9.804z" fill="#90caf9"/>
+			<circle cy="24.902" cx="36.849" r="6" fill="#2196f3"/>
+		</g>
+	</g>
+	<g>
+		<circle opacity=".5" fill-rule="evenodd" cx="120" cy="24" r="24" fill="#ff5722"/>
+		<path opacity=".5" d="m123.07 9.6153 11.314 11.314-31.113 19.799z" fill="#ffccbc"/>
+		<circle fill-rule="evenodd" cy="15.272" cx="128.73" r="8" fill="#ff5722"/>
+	</g>
 </svg>
