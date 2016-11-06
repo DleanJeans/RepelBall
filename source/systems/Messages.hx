@@ -18,22 +18,25 @@ class Messages {
 	
 	public function new() {}
 	
-	inline function get_askForAnyInput():String {
+	private inline function get_askForAnyInput():String {
 		return
 		if (FlxG.onMobile)
 			"Tap to continue"
 		else "Press any key to continue";
 	}
 	
-	function get_scoringTeam():String {
+	private function get_scoringTeam():String {
 		var scoringTeam = Game.match.lastScoringTeam;
 		if (scoringTeam != null)
 			return scoringTeam.name;
 		else return "";
 	}
 	
+	public inline function onOff(bool:Bool) {
+		return bool ? "ON" : "OFF";
+	}
+	
 	inline function get_teamRoundScore1():String return Std.string(Game.match.team1.roundScore);
 	inline function get_teamRoundScore2():String return Std.string(Game.match.team2.roundScore);
 	inline function get_winningTeam():String return Std.string(Game.match.winningTeam.name);
-	
 }

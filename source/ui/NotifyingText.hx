@@ -7,6 +7,7 @@ import flixel.util.FlxColor;
 import flixel.util.FlxSpriteUtil;
 
 class NotifyingText {
+	public var active:Bool = true;
 	public var text(default, null):FlxText;
 	public var fadeInOutTween(default, null):FlxTween;
 	
@@ -19,6 +20,8 @@ class NotifyingText {
 	}
 	
 	public function notify(text:String, ?effectFunction:Void->Void, color:FlxColor = Game.color.white) {
+		if (!active) return;
+		
 		this.text.text = text;
 		this.text.color = color;
 		
@@ -56,6 +59,17 @@ class NotifyingText {
 	public inline function hide() {
 		text.visible = false;
 		text.alpha = 0;
+	}
+	
+	public function toggleActivation() {
+		if (active) {
+			notify("Notifier: " + Game.messages.onOff(false));
+			active = false;
+		}
+		else {
+			active = true;
+			notify("Notifier: " + Game.messages.onOff(false));
+		}
 	}
 	
 }
