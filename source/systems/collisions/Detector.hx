@@ -2,6 +2,8 @@ package systems.collisions;
 
 import flixel.FlxG;
 import flixel.FlxObject;
+import flixel.FlxSprite;
+import flixel.math.FlxMath;
 import objects.Ball;
 import objects.Paddle;
 import objects.Powerup;
@@ -41,11 +43,15 @@ class Detector {
 	}
 	
 	function detect() {
-		FlxG.overlap(balls, balls, Game.signals.ball_hit.dispatch);
+		FlxG.overlap(balls, balls, Game.signals.ball_hit.dispatch, circleToCircle);
 		FlxG.overlap(balls, walls, Game.signals.ball_hit.dispatch);
 		FlxG.overlap(balls, paddles, Game.signals.ball_hit.dispatch);
-		FlxG.overlap(balls, powerups, Game.signals.ball_hit.dispatch);
+		FlxG.overlap(balls, powerups, Game.signals.ball_hit.dispatch, circleToCircle);
 		FlxG.overlap(paddles, walls, Game.signals.paddle_wall.dispatch);
+	}
+	
+	private inline function circleToCircle(circle:FlxSprite, circle2:FlxSprite):Bool {
+		return FlxMath.isDistanceWithin(circle, circle2, (circle.width + circle2.width) / 2, true);
 	}
 	
 	inline function get_level():Stage {
