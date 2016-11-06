@@ -29,6 +29,7 @@ import systems.testing.TestingSystems;
 import systems.trail.CometTrailWrapper;
 import ui.NotifyingText;
 import ui.Scoreboard;
+import ui.TimeBoard;
 
 class Game {
 	public static var stage(default, null):Stage;
@@ -61,6 +62,7 @@ class Game {
 	public static var notifier(default, null):NotifyingText;
 	public static var watermark(default, null):Watermark;
 	public static var timers(default, null):Timers;
+	public static var timeBoard(default, null):TimeBoard;
 	
 	public static function init() {
 		Settings.apply();
@@ -93,6 +95,7 @@ class Game {
 		
 		scoreboard = new Scoreboard();
 		notifier = new NotifyingText();
+		timeBoard = new TimeBoard();
 		
 		framerateCounter = new FramerateCounter();
 		signals = new Signals();

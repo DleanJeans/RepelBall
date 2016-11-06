@@ -27,6 +27,7 @@ class Shortcuts extends FlxBasic {
 		addShortcut(Game.speed.toggleSlowMo, null, Game.messages.getSlowMoActivation);
 		addShortcut(Game.powerups.spawner.spawnRandom, "Powerup Spawned!");
 		addShortcut(Game.watermark.toggle);
+		addShortcut(Game.timeBoard.toggle);
 		#end
 	}
 	
