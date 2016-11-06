@@ -34,7 +34,10 @@ class Settings {
 	
 	public static var COLOR_CHANGING_TWEEN_DURATION = 0.5;
 	
-	public static var SLOW_MO_TIME_SCALE = 0.2;
+	public static var SLOW_MO_TIME_SCALE = 0.1;
+	
+	public static var PAUSE_TIME_SCALE = 0.1;
+	public static var PAUSE_TIME = 0.03;
 	
 	public static var TRAIL_NODE_LIMIT = 25;
 	public static var TRAIL_COOLDOWN = 0.02 ;

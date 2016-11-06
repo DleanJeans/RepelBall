@@ -96,6 +96,7 @@ class Signals {
 		goalTeam.add(Game.match.addRoundScore);
 		goal.add(Game.goalManager.triggerGoalState);
 		goal.add(Game.screen.glitch.run);
+		goal.add(Game.speed.pause);
 		
 		ball_hit.add(Game.collision.detector.routeSignals);
 		ball_hit.add(Game.sfx.playBallHitSound);
@@ -121,5 +122,6 @@ class Signals {
 		ball_powerup.add(Game.powerups.manager.popOut);
 		ball_powerup.add(Game.powerups.manager.glitch);
 		ball_powerup.add(Game.screen.shake.ball);
+		ball_powerup.add(Game.speed.pauseOnBallCollision);
 	}
 }
