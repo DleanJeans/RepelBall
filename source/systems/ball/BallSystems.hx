@@ -6,6 +6,7 @@ class BallSystems {
 	public var pusher(default, null):BallAimer;
 	public var fx(default, null):BallEffect;
 	public var particles(default, null):BallParticles;
+	public var speed(default, null):BallSpeed;
 	
 	public function new() {
 		manager = new BallManager();
@@ -13,6 +14,7 @@ class BallSystems {
 		pusher = new BallAimer();
 		fx = new BallEffect();
 		particles = new BallParticles();
+		speed = new BallSpeed();
 	}
 	
 }

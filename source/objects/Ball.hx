@@ -8,7 +8,8 @@ import systems.collisions.SolidTimer;
 using flixel.util.FlxSpriteUtil;
 
 class Ball extends FlxSprite {
-	public var speed(default, null):Int;
+	@:allow(systems.ball.BallSpeed)
+	public var speedOffset(default, null):Int;
 	
 	public var lastHitPaddle:Paddle;
 	public var originalColor:FlxColor;
@@ -24,7 +25,7 @@ class Ball extends FlxSprite {
 	public function cloneBall():Ball {
 		var clone = Game.pools.getBall(this.getCenter(), velocity);
 		clone.setColor(originalColor);
-		clone.speed = speed;
+		clone.speedOffset = speedOffset;
 		return clone;
 	}
 	
@@ -46,11 +47,7 @@ class Ball extends FlxSprite {
 	}
 	
 	public inline function resetSpeed() {
-		speed = Settings.BALL_STARTING_SPEED;
-	}
-	
-	public inline function increaseSpeed(increment:Int = 50) {
-		speed += increment;
+		Game.ball.speed.resetBallSpeed(this);
 	}
 	
 	private inline function drawBall() {

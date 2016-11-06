@@ -2,6 +2,8 @@ package systems.collisions;
 
 import flixel.FlxObject;
 import flixel.math.FlxAngle;
+import flixel.math.FlxMath;
+import flixel.math.FlxPoint;
 import flixel.math.FlxVelocity;
 import objects.Ball;
 import objects.Paddle;
@@ -67,10 +69,9 @@ class Ball_Paddle {
 		var maxAngle = 45;
 		var normalizedAngle = getNormalizedAngle();
 		var newAngle = calculateNewAngle(maxAngle, normalizedAngle);
-		var newVelocity = FlxVelocity.velocityFromAngle(newAngle, ball.speed);
+		var currentAngle = ball.velocity.angleBetween(FlxPoint.weak()) + 90;
 		
-		ball.velocity.copyFrom(newVelocity);
-		newVelocity.put();
+		ball.velocity.rotate(FlxPoint.weak(), -currentAngle + newAngle);
 	}
 	
 	private function getNormalizedAngle():Float {

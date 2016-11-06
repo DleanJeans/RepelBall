@@ -56,6 +56,7 @@ class Signals {
 		preRoundStart.add(Game.cometTrail.removeAll);
 		preRoundStart.add(Game.cometTrail.disable);
 		preRoundStart.add(Game.ball.particles.killAll);
+		preRoundStart.add(Game.ball.speed.resetGlobalSpeed);
 		
 		roundStart.add(Game.match.startRound);
 		roundStart.add(Game.controllers.revive);
@@ -65,6 +66,7 @@ class Signals {
 		roundStart.add(Game.sfx.playThemeInGame);
 		roundStart.add(Game.cometTrail.enable);
 		roundStart.add(Game.powerups.spawner.startSpawning);
+		roundStart.add(Game.ball.speed.startRoundTimer);
 		
 		roundEnd.add(Game.match.endRound);
 		roundEnd.add(Game.match.addScore);
@@ -77,6 +79,7 @@ class Signals {
 		roundEnd.add(Game.ball.shooter.kill);
 		roundEnd.add(Game.sfx.fadeOutTheme);
 		roundEnd.add(Game.powerups.spawner.stopSpawning);
+		roundEnd.add(Game.timers.stopRoundTimer);
 		
 		postRoundEnd.add(Game.match.startNextRoundOrEndMatch);
 		postRoundEnd.add(Game.goalManager.clearGoalStateReference);
@@ -104,6 +107,7 @@ class Signals {
 		ball_hit.add(Game.ball.fx.popOnCollision);
 		ball_hit.add(Game.ball.fx.tweenColor);
 		ball_hit.add(Game.ball.particles.emitOnCollision);
+		ball_hit.add(Game.ball.speed.applySpeedOnCollision);
 		
 		ball_ball.add(Game.collision.handler.ball_ball);
 		
@@ -116,7 +120,6 @@ class Signals {
 		paddle_wall.add(Game.paddle.expression.reattachFace);
 		
 		ball_paddle.add(Game.collision.handler.ball_paddle);
-		ball_paddle.add(Game.ball.manager.increaseBallSpeed);
 		ball_paddle.add(Game.paddle.hoverer.knockBackBallSpeed);
 		
 		ball_powerup.add(Game.powerups.manager.activate);
