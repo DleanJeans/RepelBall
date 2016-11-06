@@ -10,9 +10,9 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="800"
-   height="800"
-   viewBox="0 0 800 800"
+   width="600"
+   height="600"
+   viewBox="0 0 600 600"
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r13725"
@@ -50,8 +50,8 @@
        id="filter4536"
        x="-0.0612"
        width="1.1224"
-       y="-3.06"
-       height="7.12">
+       y="-3.0599999"
+       height="7.1199999">
       <feGaussianBlur
          inkscape:collect="always"
          stdDeviation="12.75"
@@ -65,9 +65,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.7875"
-     inkscape:cx="391.63626"
-     inkscape:cy="461.164"
+     inkscape:zoom="0.35"
+     inkscape:cx="60.705396"
+     inkscape:cy="334.28566"
      inkscape:document-units="px"
      inkscape:current-layer="g4174"
      showgrid="false"
@@ -98,16 +98,19 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(632.38098,-101.88596)">
+     transform="translate(532.38098,-201.88596)">
     <g
        id="g4174">
       <rect
-         y="101.88596"
-         x="-632.38098"
-         height="800"
-         width="800"
+         y="201.88596"
+         x="-532.38098"
+         height="600"
+         width="600"
          id="rect4162"
-         style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:0;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+         style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:0;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         inkscape:export-filename="C:\Users\Dlean\Desktop\RG.png"
+         inkscape:export-xdpi="90"
+         inkscape:export-ydpi="90" />
       <text
          transform="scale(1.0003156,0.99968449)"
          sodipodi:linespacing="125%"
