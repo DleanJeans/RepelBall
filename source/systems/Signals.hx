@@ -92,6 +92,7 @@ class Signals {
 		
 		ballSpawned.add(Game.cometTrail.addBall);
 		ballSpawned.add(Game.stage.addBall);
+		ballSpawned.add(Game.ball.manager.disableSolidTemporarily);
 		
 		goalTeam.add(Game.match.addRoundScore);
 		goal.add(Game.goalManager.triggerGoalState);
@@ -107,7 +108,7 @@ class Signals {
 		ball_ball.add(Game.collision.handler.ball_ball);
 		
 		ball_wall.add(Game.match.checkGoal);
-		ball_wall.add(Game.ball.manager.disableBallSolid);
+		ball_wall.add(Game.ball.manager.disableSolidIfGoal);
 		ball_wall.add(Game.collision.handler.ball_wall);
 		ball_wall.add(Game.screen.shake.ball);
 		

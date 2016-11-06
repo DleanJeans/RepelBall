@@ -25,16 +25,13 @@ class BallManager {
 		Game.signals.ballSpawned.dispatch(ball);
 	}
 	
-	public inline function disableBallSolid(ball:Ball, wall:Wall) {
+	public inline function disableSolidIfGoal(ball:Ball, wall:Wall) {
 		if (Game.match.wallIsGoal(wall))
 			ball.solid = false;
 	}
 	
-	public function increaseBallSpeed(ball:Ball, paddle:Paddle) {
-		if (ball.lastHitPaddle != paddle) {
-			ball.increaseSpeed();
-			ball.lastHitPaddle = paddle;
-		}
+	public inline function disableSolidTemporarily(ball:Ball) {
+		ball.startSolidTimer();
 	}
 	
 	public function findNearestBall(paddle:Paddle) {

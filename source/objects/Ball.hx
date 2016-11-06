@@ -4,6 +4,7 @@ import flixel.FlxSprite;
 import flixel.math.FlxVelocity;
 import flixel.util.FlxColor;
 import objects.Paddle;
+import systems.collisions.SolidTimer;
 using flixel.util.FlxSpriteUtil;
 
 class Ball extends FlxSprite {
@@ -11,9 +12,11 @@ class Ball extends FlxSprite {
 	
 	public var lastHitPaddle:Paddle;
 	public var originalColor:FlxColor;
+	public var solidTimer(default, null):SolidTimer;
 	
 	public function new() {
 		super();
+		solidTimer = new SolidTimer(this);
 		elasticity = 1;
 		drawBall();
 	}
@@ -32,7 +35,10 @@ class Ball extends FlxSprite {
 	public inline function resetBall() {
 		resetColor();
 		resetSpeed();
-		solid = true;
+	}
+	
+	public function startSolidTimer() {
+		solidTimer.disableFor();
 	}
 	
 	public function resetColor() {
