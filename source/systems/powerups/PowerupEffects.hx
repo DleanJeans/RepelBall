@@ -26,9 +26,6 @@ class PowerupEffects {
 		rotateBallDirection(ball, 30);
 		rotateBallDirection(clone, -30);
 		
-		boostBallSpeed(ball, 0.25);
-		boostBallSpeed(clone, 0.25);
-		
 		Game.ball.manager.addBallToLevel(clone);
 		Game.signals.ball_hit.dispatch(clone, null);
 		
@@ -47,12 +44,8 @@ class PowerupEffects {
 		clone.setCenter(newPosition);
 		clone2.setCenter(newPosition2);
 		
-		rotateBallDirection(clone, 45);
-		rotateBallDirection(clone2, -45);
-		
-		boostBallSpeed(ball, 0.25);
-		boostBallSpeed(clone, 0.25);
-		boostBallSpeed(clone2, 0.25);
+		rotateBallDirection(clone, -45);
+		rotateBallDirection(clone2, 45);
 		
 		Game.ball.manager.addBallToLevel(clone);
 		Game.ball.manager.addBallToLevel(clone2);
