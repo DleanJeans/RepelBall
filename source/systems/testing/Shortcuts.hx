@@ -24,6 +24,7 @@ class Shortcuts extends FlxBasic {
 		visible = false;
 		Game.stage.addSystem(this);
 		
+		addShortcut(Game.framerateCounter.toggleVisible);
 		addShortcut(Game.speed.toggleSlowMo, null, Game.messages.getSlowMoActivation);
 		addShortcut(Game.powerups.spawner.spawnRandom, "Powerup Spawned!");
 		addShortcut(Game.clickSpawner.toggleSpawningPowerup, null, Game.clickSpawner.getMessage);

@@ -15,8 +15,8 @@ class FramerateCounter {
 	}
 	
 	public function checkInputForToggling() {
-		#if !FLX_NO_KEYBOARD
-		if (FlxG.keys.justPressed.TAB)
+		#if android
+		if (FlxG.android.justPressed.MENU)
 			toggleVisible();
 		#end
 	}
