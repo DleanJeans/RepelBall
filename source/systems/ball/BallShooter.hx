@@ -9,7 +9,7 @@ import objects.Paddle;
 
 class BallShooter extends FlxObject {
 	public var maxBalls(default, set):Int = 1;
-	public var interval(default, null):Float = 0.5;
+	public var interval(default, null):Float = 0.1;
 	public var position(get, null):FlxPoint;
 	public var queue(default, null):Array<FlxPoint>;
 	
