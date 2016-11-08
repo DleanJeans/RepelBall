@@ -12,7 +12,7 @@ class BallSpeed {
 	}
 	
 	public function startRoundTimer() {
-		Game.timers.roundTimer.start(19, function(_) increaseGlobalSpeed(), 0);
+		Game.timers.roundTimer.start(10, function(_) increaseGlobalSpeed(), 0);
 	}
 	
 	public inline function resetGlobalSpeed() {
