@@ -15,6 +15,7 @@ class TimeBoard extends FlxSpriteGroup {
 		add(text);
 		
 		visible = false;
+		active = false;
 		
 		Game.stage.addUI(this);
 	}
