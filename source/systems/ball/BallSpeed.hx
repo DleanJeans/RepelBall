@@ -20,7 +20,7 @@ class BallSpeed {
 	}
 	
 	public inline function resetBallSpeed(ball:Ball) {
-		ball.speedOffset = 0;
+		ball.speedBoost = 0;
 	}
 	
 	public inline function increaseGlobalSpeed(offset:Int = Settings.unitLength(2)) {
@@ -29,7 +29,12 @@ class BallSpeed {
 	}
 	
 	public inline function increaseBallSpeed(ball:Ball, offset:Int = Settings.unitLength(2)) {
-		ball.speedOffset += offset;
+		ball.speedBoost += offset;
+		applySpeed(ball);
+	}
+	
+	public inline function decreaseBallSpeed(ball:Ball, offset:Int = Settings.unitLength(2)) {
+		ball.speedBoost -= offset;
 		applySpeed(ball);
 	}
 	
@@ -42,7 +47,7 @@ class BallSpeed {
 	}
 	
 	public function applySpeed(ball:Ball) {
-		var ballSpeed = globalSpeed + ball.speedOffset;
+		var ballSpeed = globalSpeed + ball.speedBoost;
 		var actualSpeed = ball.velocity.distanceTo(FlxPoint.weak());
 		
 		ball.velocity.scale(ballSpeed / actualSpeed);

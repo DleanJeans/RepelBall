@@ -27,12 +27,12 @@ class ClickSpawner extends FlxBasic {
 	
 	public function toggleSpawningPowerup() {
 		if (spawn == spawnNothing) {
-			enableSpawningPowerup(0);
+			enableSpawningPowerup(2);
 			_message = "Click To Spawn Powerup";
 		}
 		else {
 			setToSpawnNothing();
-			_message = "Click To Spawn Powerup OFF";
+			_message = "Click To Spawn Powerup: OFF";
 		}
 		
 	}

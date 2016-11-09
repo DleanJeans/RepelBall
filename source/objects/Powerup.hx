@@ -11,8 +11,11 @@ class Powerup extends FlxSprite {
 	
 	public static inline var DOUBLE_BALLS = 0;
 	public static inline var TRIPLE_BALLS = 1;
+	public static inline var SPEED_BOOST = 2;
 	
+	public var type(default, null):Int;
 	public var activate(default, null):Ball->Void;
+	public var deactivate(default, null):Ball->Void;
 	
 	private var _solidTimer(default, null):SolidTimer;
 	private var _lifeTimer:FlxTimer;
@@ -29,8 +32,10 @@ class Powerup extends FlxSprite {
 	}
 	
 	public function setType(type:Int) {
+		this.type = type;
 		loadFrame(type);
-		activate = Game.powerups.effects.powerups[type];
+		activate = Game.powerups.activations.list[type];
+		deactivate = Game.powerups.deactivations.list[type];
 	}
 	
 	private function loadFrame(frame:Int) {

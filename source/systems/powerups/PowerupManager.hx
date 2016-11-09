@@ -9,6 +9,7 @@ class PowerupManager {
 	
 	public function activate(ball:Ball, powerup:Powerup) {
 		powerup.activate(ball);
+		ball.startPowerupTimer(powerup.deactivate);
 	}
 	
 	public function popOut(ball:Ball, powerup:Powerup) {

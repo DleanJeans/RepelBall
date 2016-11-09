@@ -52,7 +52,7 @@ class PowerupSpawner {
 	}
 	
 	public inline function spawnRandom() {
-		spawn(FlxG.random.weightedPick([75, 25]));
+		spawn(FlxG.random.weightedPick([2, 1, 3]));
 	}
 	
 	public function spawn(type:Int):Powerup {

@@ -6,11 +6,11 @@ import flixel.math.FlxAngle;
 import flixel.math.FlxPoint;
 import objects.Ball;
 
-class PowerupEffects {
-	public var powerups:Array<Ball->Void>;
+class PowerupActivations {
+	public var list:Array<Ball->Void>;
 	
 	public function new() {
-		powerups = [ doubleClone, tripleClone ];
+		list = [ doubleClone, tripleClone, speedBoost ];
 	}
 	
 	public function doubleClone(ball:Ball) {
@@ -67,6 +67,10 @@ class PowerupEffects {
 	
 	private inline function boostBallSpeed(ball:Ball, extraScale:Float) {
 		ball.velocity.scale(1 - extraScale);
+	}
+	
+	public function speedBoost(ball:Ball) {
+		Game.ball.speed.increaseBallSpeed(ball, Settings.powerup.speedBoost);
 	}
 	
 }

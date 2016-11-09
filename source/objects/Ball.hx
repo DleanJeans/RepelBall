@@ -5,19 +5,22 @@ import flixel.math.FlxVelocity;
 import flixel.util.FlxColor;
 import objects.Paddle;
 import systems.collisions.SolidTimer;
+import systems.timers.PowerupTimer;
 using flixel.util.FlxSpriteUtil;
 
 class Ball extends FlxSprite {
 	@:allow(systems.ball.BallSpeed)
-	public var speedOffset(default, null):Int;
+	public var speedBoost(default, null):Int;
 	
 	public var lastHitPaddle:Paddle;
 	public var originalColor:FlxColor;
 	public var solidTimer(default, null):SolidTimer;
+	public var powerupTimer(default, null):PowerupTimer;
 	
 	public function new() {
 		super();
 		solidTimer = new SolidTimer(this);
+		powerupTimer = new PowerupTimer(this);
 		elasticity = 1;
 		drawBall();
 	}
@@ -25,7 +28,7 @@ class Ball extends FlxSprite {
 	public function cloneBall():Ball {
 		var clone = Game.pools.getBall(this.getCenter(), velocity);
 		clone.setColor(originalColor);
-		clone.speedOffset = speedOffset;
+		clone.speedBoost = speedBoost;
 		return clone;
 	}
 	
@@ -40,6 +43,10 @@ class Ball extends FlxSprite {
 	
 	public function startSolidTimer() {
 		solidTimer.disableFor();
+	}
+	
+	public function startPowerupTimer(deactive:Ball->Void) {
+		powerupTimer.start(deactive);
 	}
 	
 	public function resetColor() {
