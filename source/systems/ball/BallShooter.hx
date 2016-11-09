@@ -63,7 +63,7 @@ class BallShooter extends FlxObject {
 		var projectile = FlxVector.get();
 		projectile.copyFrom(startingPoint.copyTo().subtractPoint(position));
 		projectile.rotate(FlxPoint.weak(), FlxG.random.int( -45, 45));
-		projectile.length = Settings.BALL_STARTING_SPEED;
+		projectile.length = Game.ball.speed.globalSpeed;
 		return projectile;
 	}
 	

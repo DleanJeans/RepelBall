@@ -26,7 +26,7 @@ class Speed {
 	
 	public inline function toggleSlowMo() {
 		#if testing
-		Game.speed.slowMo = Game.speed.slowMo == 1 ? Settings.SLOW_MO_TIME_SCALE: 1;
+		Game.speed.slowMo = Game.speed.slowMo == 1 ? Settings.timeScale.slowMo: 1;
 		#end
 	}
 	
@@ -35,9 +35,9 @@ class Speed {
 	}
 	
 	public function pause() {
-		pauseScale = Settings.PAUSE_TIME_SCALE;
+		pauseScale = Settings.timeScale.pause;
 		
-		Game.timers.pauseTimer.start(Settings.PAUSE_TIME, function(_) pauseScale = 1);
+		Game.timers.pauseTimer.start(Settings.duration.pause, function(_) pauseScale = 1);
 	}
 	
 }

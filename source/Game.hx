@@ -68,6 +68,7 @@ class Game {
 	
 	public static function init() {
 		Settings.apply();
+		UI.init();
 		
 		stage = new Stage();
 		match = new Match();

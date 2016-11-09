@@ -12,10 +12,10 @@ class GoalText extends FlxSpriteGroup {
 	public function new() {
 		super();
 		
-		scoringTeam = new FlxText(0, 0, Settings.MESSAGES_FIELD_WIDTH, "", 70);
+		scoringTeam = new FlxText(0, 0, UI.message.fieldWidth, "", 70);
 		Settings.alignCenter(scoringTeam);
 		
-		scored = new FlxText(0, 0, Settings.MESSAGES_FIELD_WIDTH, "", 60);
+		scored = new FlxText(0, 0, UI.message.fieldWidth, "", 60);
 		scored.setMidTop(scoringTeam.getMidBottom());
 		Settings.alignCenter(scored);
 		

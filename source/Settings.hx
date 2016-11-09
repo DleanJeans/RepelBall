@@ -1,10 +1,13 @@
 package;
 
-import flash.display.StageQuality;
+import flixel.util.helpers.FlxBounds;
+import openfl.display.StageQuality;
 import flixel.FlxG;
 import flixel.FlxObject;
+import flixel.math.FlxRect;
 import flixel.system.FlxAssets;
 import flixel.text.FlxText;
+import flixel.util.helpers.FlxRange;
 
 class Settings {
 	private static inline var UNIT_LENGTH = 24;
@@ -12,78 +15,55 @@ class Settings {
 		return cast UNIT_LENGTH * times;
 	}
 	
-	public static var COLOR_SWATCH_LABEL_SIZE:Int;
-	public static var COLOR_SWATCH_SELECTOR_WIDTH:Int;
-	public static var COLOR_SWATCH_SIZE:Int;
-	
-	public static var LOOP_SELECTOR_TEXT_SIZE:Int;
-	public static var LOOP_SELECTOR_HEIGHT:Int;
-	public static var LOOP_SELECTOR_SPACE_Y:Int;
-	
-	public static var TEAM_SETTINGS_TEAM_NAME_SIZE:Int;
-	public static var TEAM_SETTINGS_PADDLE_BACK_SIZE:Int;
-	public static var TEAM_SETTINGS_SPACE_X:Int;
-	
-	public static var MESSAGES_FIELD_WIDTH:Float;
-	
-	public static var BALL_STARTING_SPEED:Int;
-	public static var BALL_FX_DURATION = 0.1;
-	
-	public static var PRE_ROUND_COUNTDOWN:Int = 3;
-	public static var MULTI_GOAL_THRESHOLD:Int = 1;
-	
-	public static var COLOR_CHANGING_TWEEN_DURATION = 0.5;
-	
-	public static var SLOW_MO_TIME_SCALE = 0.1;
-	
-	public static var PAUSE_TIME_SCALE = 0.1;
-	public static var PAUSE_TIME = 0.03;
-	
-	public static var TRAIL_NODE_LIMIT = 25;
-	public static var TRAIL_COOLDOWN = 0.02 ;
-	
-	public static var SCREEN_SHAKE_DURATION = 0.1;
-	public static var GLITCH_DURATION = 0.05;
-	
-	public static var POWERUP_POPPING_DURATION = 0.5;
-	public static var POWERUP_LIFETIME = 10;
-	
-	public static var POWERUP_AREA_WIDTH:Int;
-	public static var POWERUP_AREA_HEIGHT:Int;
-	public static var POWERUP_MIN_X:Int;
-	public static var POWERUP_MAX_X:Int;
-	public static var POWERUP_MIN_Y:Int;
-	public static var POWERUP_MAX_Y:Int;
-	
-	/**
-	 * Mouth will frown when ball is outside of this distance
-	 */
-	public static var EXPRESSION_FROWN_BALL_OUT_REACH = 25;
-	/**
-	 * Eyes will look at the nearest ball in this radius
-	 */
-	public static var EXPRESSION_BALL_DETECTION_RADIUS:Float;
-	
-	public static var MIN_HOVERING_DURATION = 0.4;
-	public static var MAX_HOVERING_DURATION = 0.6;
-	public static var MAX_HOVERING_DELAY = 0.25;
-	public static var KNOCK_BACK_DURATION = 0.5;
-	
-	public static var MIN_POWERUP_HOVERING_SCALE = 0.85;
-	public static var MAX_POWERUP_HOVERING_SCALE = 1.15;
+	public static var duration:Duration = {};
+	public static var timeScale:TimeScale = {};
+	public static var trail:Trail = {};
+	public static var ball:Ball = {};
+	public static var powerup:Powerup = {};
+	public static var paddle:Paddle = {};
+	public static var expression:Expression = {};
 	
 	public static var maxBalls(default, null):Array<Int> = [for (i in 1...5) i];
 	public static var scoresToWin(default, null):Array<Int> = [3, 5, 10];
 	
 	public static function apply() {
+		init();
+		
 		enableAntialiasing();
-		setupValuesRegardingScreenSize();
 		setupPreRoundCountdown();
-		setupUISettings();
 		addTestScoreSettingsOnDebug();
 		setSeparateBias();
 		setDefaultFont();
 		disableFlixelMouseOnJs();
+	}
+	
+	private static function init() {
+		duration.multiGoalThresholdTime = 1;
+		duration.preRoundCountdown = 3;
+		duration.glitch = 0.1;
+		duration.screenShake = 0.05;
+		duration.pause = 0.03;
+		duration.paddleColorTween = 0.5;
+		duration.hovering = new FlxBounds(0.4, 0.6);
+		
+		timeScale.pause = 0.1;
+		timeScale.slowMo = 0.1;
+		
+		trail.cooldown = 0.02;
+		trail.nodeLimit = 25;
+		
+		ball.fxDuration = 0.1;
+		
+		powerup.area = FlxRect.get(FlxG.width * 0.1, FlxG.height * 0.25, FlxG.width * 0.8, FlxG.height * 0.5);
+		powerup.popDuration = 0.5;
+		powerup.lifeTime = 10;
+		powerup.hoveringScale = new FlxBounds(0.85, 1.15);
+		
+		paddle.maxHoveringDelay = 0.25;
+		paddle.knockBackDuration = 0.5;
+		
+		expression.frownBallOutOfReach = 25;
+		expression.ballDetectionRadius = FlxG.width / 2;
 	}
 	
 	private static function enableAntialiasing() {
@@ -91,57 +71,9 @@ class Settings {
 		FlxG.stage.quality = StageQuality.HIGH;
 	}
 	
-	private static function setupValuesRegardingScreenSize() {
-		BALL_STARTING_SPEED = cast FlxG.height / 4;
-		MESSAGES_FIELD_WIDTH = FlxG.width * 0.85;
-		EXPRESSION_BALL_DETECTION_RADIUS = FlxG.height / 3;
-		
-		POWERUP_AREA_WIDTH = cast FlxG.width * 0.8;
-		POWERUP_AREA_HEIGHT = cast FlxG.height * 0.5;
-		POWERUP_MIN_X = cast (FlxG.width - POWERUP_AREA_WIDTH) / 2;
-		POWERUP_MAX_X = cast POWERUP_MIN_X + POWERUP_AREA_WIDTH;
-		POWERUP_MIN_Y = cast (FlxG.height - POWERUP_AREA_HEIGHT) / 2;
-		POWERUP_MAX_Y = cast POWERUP_MIN_Y + POWERUP_AREA_HEIGHT;
-	}
-	
 	private static function setupPreRoundCountdown() {
 		#if testing
-		PRE_ROUND_COUNTDOWN = 1;
-		#end
-	}
-	
-	/**
-	 * Setup bigger Match Settings for mobile targets
-	 */
-	private static function setupUISettings() {
-		#if mobile
-		
-		COLOR_SWATCH_LABEL_SIZE = 30;
-		COLOR_SWATCH_SELECTOR_WIDTH = 6;
-		COLOR_SWATCH_SIZE = 50;
-		
-		TEAM_SETTINGS_TEAM_NAME_SIZE = 40;
-		TEAM_SETTINGS_PADDLE_BACK_SIZE = 150;
-		TEAM_SETTINGS_SPACE_X = -20;
-		
-		LOOP_SELECTOR_HEIGHT = 60;
-		LOOP_SELECTOR_TEXT_SIZE = 35;
-		LOOP_SELECTOR_SPACE_Y = 0;
-		
-		#else
-		
-		COLOR_SWATCH_LABEL_SIZE = 20;
-		COLOR_SWATCH_SELECTOR_WIDTH = 6;
-		COLOR_SWATCH_SIZE = 30;
-		
-		TEAM_SETTINGS_TEAM_NAME_SIZE = 30;
-		TEAM_SETTINGS_PADDLE_BACK_SIZE = 150;
-		TEAM_SETTINGS_SPACE_X = 20;
-		
-		LOOP_SELECTOR_HEIGHT = 30;
-		LOOP_SELECTOR_TEXT_SIZE = 25;
-		LOOP_SELECTOR_SPACE_Y = 20;
-		
+		Settings.duration.preRoundCountdown = 1;
 		#end
 	}
 	
@@ -171,4 +103,45 @@ class Settings {
 		text.alignment = FlxTextAlign.CENTER;
 	}
 	
+}
+
+typedef Duration = {
+	?hovering:FlxBounds<Float>,
+	?preRoundCountdown:Int,
+	?multiGoalThresholdTime:Float,
+	?pause:Float,
+	?screenShake:Float,
+	?glitch:Float,
+	?paddleColorTween:Float,
+}
+
+typedef TimeScale = {
+	?slowMo:Float,
+	?pause:Float,
+}
+
+typedef Trail = {
+	?nodeLimit:Int,
+	?cooldown:Float,
+}
+
+typedef Ball = {
+	?fxDuration:Float,
+}
+
+typedef Powerup = {
+	?area:FlxRect,
+	?popDuration:Float,
+	?lifeTime:Float,
+	?hoveringScale:FlxBounds<Float>,
+}
+
+typedef Paddle = {
+	?maxHoveringDelay:Float,
+	?knockBackDuration:Float,
+}
+
+typedef Expression = {
+	?frownBallOutOfReach:Int,
+	?ballDetectionRadius:Float,
 }

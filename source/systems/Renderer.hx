@@ -94,7 +94,7 @@ class Renderer {
 	}
 	
 	public inline function drawPaddleBack(paddleBack:FlxSprite) {
-		paddleBack.makeGraphic(Settings.TEAM_SETTINGS_PADDLE_BACK_SIZE, Settings.TEAM_SETTINGS_PADDLE_BACK_SIZE);
+		paddleBack.makeGraphic(UI.teamSettings.paddleBackSize, UI.teamSettings.paddleBackSize);
 	}
 	
 	private inline function newKey(key:String):Bool {

@@ -25,7 +25,7 @@ class Powerup extends FlxSprite {
 	}
 	
 	public function startLifeTimer() {
-		_lifeTimer.start(Settings.POWERUP_LIFETIME, function(_) popOutThenKill());
+		_lifeTimer.start(Settings.powerup.lifeTime, function(_) popOutThenKill());
 	}
 	
 	public function setType(type:Int) {
@@ -39,9 +39,9 @@ class Powerup extends FlxSprite {
 	
 	public function popUp() {
 		scale.set();
-		var maxScale = Settings.MAX_POWERUP_HOVERING_SCALE;
+		var maxScale = Settings.powerup.hoveringScale.max;
 		Game.tween.powerupScale(this, maxScale, maxScale, startHovering);
-		_solidTimer.disableFor(Settings.POWERUP_POPPING_DURATION / 2);
+		_solidTimer.disableFor(Settings.powerup.popDuration / 2);
 	}
 	
 	private function startHovering(tween:FlxTween) {

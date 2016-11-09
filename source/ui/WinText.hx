@@ -12,11 +12,11 @@ class WinText extends FlxSpriteGroup {
 	public function new() {
 		super();
 		
-		winner = new FlxText(0, 0, Settings.MESSAGES_FIELD_WIDTH, Game.messages.winningTeam, 70);
+		winner = new FlxText(0, 0, UI.message.fieldWidth, Game.messages.winningTeam, 70);
 		winner.color = Game.color.winningTeam;
 		Settings.alignCenter(winner);
 		
-		won = new FlxText(0, 0, Settings.MESSAGES_FIELD_WIDTH, Game.messages.won, 60);
+		won = new FlxText(0, 0, UI.message.fieldWidth, Game.messages.won, 60);
 		won.setMidTop(winner.getMidBottom());
 		won.alignment = FlxTextAlign.CENTER;
 		Settings.alignCenter(won);

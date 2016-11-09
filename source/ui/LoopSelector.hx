@@ -79,7 +79,7 @@ class LoopSelector extends FlxSpriteGroup {
 	}
 	
 	private function setupLabel() {
-		label.size = Settings.LOOP_SELECTOR_TEXT_SIZE;
+		label.size = UI.loopSelector.textSize;
 		label.text = _labelText;
 		label.fieldWidth = _labelFieldWidth;
 	}
@@ -110,7 +110,7 @@ class LoopSelector extends FlxSpriteGroup {
 	}
 	
 	private function setupMidText() {
-		midText.size = Settings.LOOP_SELECTOR_TEXT_SIZE;
+		midText.size = UI.loopSelector.textSize;
 		midText.fieldWidth = _width;
 		midText.alignment = FlxTextAlign.CENTER;
 		midText.setCenter(background.getCenter());

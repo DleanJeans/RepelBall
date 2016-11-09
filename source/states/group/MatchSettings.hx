@@ -72,11 +72,11 @@ class MatchSettings extends FlxSpriteGroup {
 		maxBallsLoop.y = newMatchHeader.getBottom() + 50;
 		maxBallsLoop.screenCenter(FlxAxes.X);
 		scoresLoop.screenCenter(FlxAxes.X);
-		scoresLoop.y = maxBallsLoop.getBottom() + Settings.LOOP_SELECTOR_SPACE_Y;
+		scoresLoop.y = maxBallsLoop.getBottom() + UI.loopSelector.spaceY;
 		
 		teamSettingsGroup.add(teamSettings1);
 		teamSettingsGroup.add(teamSettings2);
-		teamSettings2.x = teamSettings1.getRight() + Settings.TEAM_SETTINGS_SPACE_X;
+		teamSettings2.x = teamSettings1.getRight() + UI.teamSettings.spaceX;
 		teamSettingsGroup.screenCenter(FlxAxes.X);
 		
 		maxBallsLoop.select(Game.save.maxBallsIndex);

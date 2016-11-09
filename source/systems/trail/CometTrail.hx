@@ -15,14 +15,19 @@ import systems.trail.CometTrail.Trail;
 
 class CometTrail extends FlxSprite {
 	public var trailMap(default, null):TrailMap;
+	public var nodeLimit:Int;
+	public var cooldown:Float;
 	
 	private var _elapsed:Float = 0;
 	
 	public function new(x:Float = 0, y:Float = 0, width:Int = 0, height:Int = 0) {
 		super(x, y);
 		
-		makeGraphic(width <= 0 ? FlxG.width : width, height <= 0 ? FlxG.height : height, FlxColor.TRANSPARENT);
 		trailMap = new TrailMap();
+		nodeLimit = Settings.trail.nodeLimit;
+		cooldown = Settings.trail.cooldown;
+		
+		makeGraphic(width <= 0 ? FlxG.width : width, height <= 0 ? FlxG.height : height, FlxColor.TRANSPARENT);
 	}
 	
 	public function removeAll() {
@@ -52,7 +57,7 @@ class CometTrail extends FlxSprite {
 	override public function draw() {
 		super.draw();
 		
-		if (_elapsed >= Settings.TRAIL_COOLDOWN) {
+		if (_elapsed >= cooldown) {
 			_elapsed = 0;
 			addNodes();
 		}
@@ -75,7 +80,7 @@ class CometTrail extends FlxSprite {
 			nodes = getNodes(sprite);
 			spriteCenter = sprite.getMidpoint();
 			
-			if (nodes.length >= Settings.TRAIL_NODE_LIMIT) {
+			if (nodes.length >= nodeLimit) {
 				newNode = nodes.shift();
 				newNode.point.copyFrom(spriteCenter);
 				spriteCenter.put();
