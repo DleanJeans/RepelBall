@@ -46,7 +46,7 @@ class Powerup extends FlxSprite {
 		scale.set();
 		var maxScale = Settings.powerup.hoveringScale.max;
 		Game.tween.powerupScale(this, maxScale, maxScale, startHovering);
-		_solidTimer.disableFor(Settings.powerup.popDuration / 2);
+		_solidTimer.disableFor(Settings.powerup.popDuration / 10);
 	}
 	
 	private function startHovering(tween:FlxTween) {
