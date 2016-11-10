@@ -38,6 +38,7 @@ class Settings {
 	}
 	
 	private static function init() {
+		duration.thrillLoop = 5;
 		duration.multiGoalThresholdTime = 1;
 		duration.preRoundCountdown = 3;
 		duration.glitch = 0.1;
@@ -108,6 +109,7 @@ class Settings {
 }
 
 typedef Duration = {
+	?thrillLoop:Float,
 	?hovering:FlxBounds<Float>,
 	?preRoundCountdown:Int,
 	?multiGoalThresholdTime:Float,

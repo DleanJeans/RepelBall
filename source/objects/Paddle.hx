@@ -10,8 +10,9 @@ import objects.personality.EyePair;
 using flixel.util.FlxSpriteUtil;
 
 class Paddle extends FlxSprite {
+	public var speed(get, null):Int;
+	public var speedBoost(default, null):Int = 0;
 	public var startingPosition(default, null):FlxPoint;
-	public var speed:Int = FlxG.width;
 	public var length(default, set):Int = Settings.unitLength(5);
 	public var wrapper(default, null):PaddleWrapper;
 	
@@ -68,6 +69,10 @@ class Paddle extends FlxSprite {
 		super.set_facing(Direction);
 		drawPaddle();
 		return Direction;
+	}
+	
+	function get_speed():Int {
+		return Game.paddle.speed.globalSpeed + speedBoost;
 	}
 	
 }

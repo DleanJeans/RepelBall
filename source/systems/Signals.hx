@@ -35,6 +35,8 @@ class Signals {
 	public var roundStart:Signal = new Signal();
 	public var roundEnd:Signal = new Signal();
 	public var postRoundEnd:Signal = new Signal();
+	
+	public var thrill:Signal = new Signal();
 
 	public function new() {
 		matchStart.add(Game.match.start);
@@ -56,6 +58,7 @@ class Signals {
 		preRoundStart.add(Game.cometTrail.disable);
 		preRoundStart.add(Game.ball.particles.killAll);
 		preRoundStart.add(Game.ball.speed.resetGlobalSpeed);
+		preRoundStart.add(Game.paddle.speed.resetGlobalSpeed);
 		
 		roundStart.add(Game.match.startRound);
 		roundStart.add(Game.controllers.revive);
@@ -65,7 +68,7 @@ class Signals {
 		roundStart.add(Game.sfx.playThemeInGame);
 		roundStart.add(Game.cometTrail.enable);
 		roundStart.add(Game.powerups.spawner.startSpawning);
-		roundStart.add(Game.ball.speed.startRoundTimer);
+		roundStart.add(Game.timers.startAll);
 		
 		roundEnd.add(Game.match.endRound);
 		roundEnd.add(Game.match.addScore);
@@ -78,7 +81,7 @@ class Signals {
 		roundEnd.add(Game.ball.shooter.kill);
 		roundEnd.add(Game.sfx.fadeOutTheme);
 		roundEnd.add(Game.powerups.spawner.stopSpawning);
-		roundEnd.add(Game.timers.stopRoundTimer);
+		roundEnd.add(Game.timers.stopAll);
 		
 		postRoundEnd.add(Game.match.startNextRoundOrEndMatch);
 		postRoundEnd.add(Game.goalManager.clearGoalStateReference);
@@ -95,6 +98,8 @@ class Signals {
 		ballSpawned.add(Game.cometTrail.addBall);
 		ballSpawned.add(Game.stage.addBall);
 		ballSpawned.add(Game.ball.manager.disableSolidTemporarily);
+		
+		thrill.add(__thrill);
 		
 		goalTeam.add(Game.match.addRoundScore);
 		goal.add(Game.goalManager.triggerGoalState);
@@ -126,5 +131,10 @@ class Signals {
 		ball_powerup.add(Game.powerups.manager.glitch);
 		ball_powerup.add(Game.screen.shake.ball);
 		ball_powerup.add(Game.speed.pauseOnBallCollision);
+	}
+	
+	private function __thrill() {
+		Game.ball.speed.increaseGlobalSpeed();
+		Game.paddle.speed.increaseGlobalSpeed();
 	}
 }

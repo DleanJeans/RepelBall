@@ -6,6 +6,7 @@ class PaddleSystems {
 	public var squeezer(default, null):PaddleSqueezer;
 	public var movement(default, null):PaddleMovement;
 	public var position(default, null):PaddlePositioner;
+	public var speed(default, null):PaddleSpeed;
 	
 	public function new() {
 		hoverer = new PaddleHoverer();
@@ -13,6 +14,7 @@ class PaddleSystems {
 		squeezer = new PaddleSqueezer();
 		movement = new PaddleMovement();
 		position = new PaddlePositioner();
+		speed = new PaddleSpeed();
 	}
 	
 }

@@ -27,9 +27,7 @@ class TimeBoard extends FlxSpriteGroup {
 	}
 	
 	private function updateText() {
-		var timer = Game.timers.roundTimer;
-		var totalTime = timer.elapsedLoops * timer.time + timer.elapsedTime;
-		text.text = FlxStringUtil.formatTime(totalTime, true);
+		text.text = FlxStringUtil.formatTime(Game.timers.roundTimer.elapsedTime, true);
 	}
 	
 	public function toggle() {
