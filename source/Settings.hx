@@ -60,7 +60,7 @@ class Settings {
 		powerup.lifeTime = 10;
 		powerup.hoveringScale = new FlxBounds(0.85, 1.15);
 		powerup.effectDuration = 3;
-		powerup.speedBoost = unitLength(4);
+		powerup.speedBoost = unitLength(12);
 		
 		paddle.maxHoveringDelay = 0.25;
 		paddle.knockBackDuration = 0.5;
