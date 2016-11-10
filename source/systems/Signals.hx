@@ -82,6 +82,7 @@ class Signals {
 		roundEnd.add(Game.sfx.fadeOutTheme);
 		roundEnd.add(Game.powerups.spawner.stopSpawning);
 		roundEnd.add(Game.timers.stopAll);
+		roundEnd.add(Game.sfx.playKidsCheering);
 		
 		postRoundEnd.add(Game.match.startNextRoundOrEndMatch);
 		postRoundEnd.add(Game.goalManager.clearGoalStateReference);
@@ -105,6 +106,7 @@ class Signals {
 		goal.add(Game.goalManager.triggerGoalState);
 		goal.add(Game.screen.glitch.run);
 		goal.add(Game.speed.pause);
+		goal.add(Game.sfx.playKidsCheering);
 		
 		ball_hit.add(Game.collision.detector.routeSignals);
 		ball_hit.add(Game.sfx.playBallHitSound);
