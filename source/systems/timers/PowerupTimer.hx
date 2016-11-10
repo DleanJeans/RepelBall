@@ -19,6 +19,12 @@ class PowerupTimer {
 		timer.start(Settings.powerup.effectDuration, onComplete.bind(deactive));
 	}
 	
+	public function stopAll() {
+		for (timer in timers) {
+			timer.cancel();
+		}
+	}
+	
 	private inline function onComplete(deactive:Ball->Void, timer:FlxTimer) {
 		deactive(ball);
 	}

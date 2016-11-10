@@ -25,6 +25,11 @@ class Ball extends FlxSprite {
 		drawBall();
 	}
 	
+	override public function kill():Void {
+		super.kill();
+		powerupTimer.stopAll();
+	}
+	
 	public function cloneBall():Ball {
 		var clone = Game.pools.getBall(this.getCenter(), velocity);
 		clone.setColor(originalColor);
