@@ -1,4 +1,4 @@
-package systems.collisions;
+package systems.timers;
 
 import flixel.FlxObject;
 import flixel.util.FlxTimer;

@@ -1,6 +1,5 @@
 package systems;
 
-import flixel.FlxBasic;
 import flixel.util.FlxSignal;
 import flixel.util.FlxSignal.FlxTypedSignal;
 import objects.Ball;

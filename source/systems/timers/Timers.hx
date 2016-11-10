@@ -1,4 +1,4 @@
-package systems;
+package systems.timers;
 
 import flixel.util.FlxTimer;
 

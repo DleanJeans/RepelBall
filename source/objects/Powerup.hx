@@ -4,7 +4,7 @@ import flixel.FlxSprite;
 import flixel.tweens.FlxTween;
 import flixel.util.FlxTimer;
 import objects.Ball;
-import systems.collisions.SolidTimer;
+import systems.timers.SolidTimer;
 
 class Powerup extends FlxSprite {
 	public static inline var SVG_PATH = AssetPaths.Powerups__svg;
@@ -12,6 +12,7 @@ class Powerup extends FlxSprite {
 	public static inline var DOUBLE_BALLS = 0;
 	public static inline var TRIPLE_BALLS = 1;
 	public static inline var SPEED_BOOST = 2;
+	public static inline var POWERUP_COUNT = 3;
 	
 	public var type(default, null):Int;
 	public var activate(default, null):Ball->Void;

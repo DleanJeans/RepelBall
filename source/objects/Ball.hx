@@ -1,11 +1,10 @@
 package objects;
 
 import flixel.FlxSprite;
-import flixel.math.FlxVelocity;
 import flixel.util.FlxColor;
 import objects.Paddle;
-import systems.collisions.SolidTimer;
 import systems.timers.PowerupTimer;
+import systems.timers.SolidTimer;
 using flixel.util.FlxSpriteUtil;
 
 class Ball extends FlxSprite {

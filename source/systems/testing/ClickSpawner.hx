@@ -4,6 +4,7 @@ import flixel.FlxBasic;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.math.FlxPoint;
+import objects.Powerup;
 
 class ClickSpawner extends FlxBasic {
 	public var spawn:Void->FlxObject;
@@ -13,6 +14,7 @@ class ClickSpawner extends FlxBasic {
 	private var _mousePosition:FlxPoint;
 	private var _object:FlxObject;
 	private var _message:String;
+	private var _powerupType:Int = -1;
 	
 	public function new() {
 		super();
@@ -25,10 +27,13 @@ class ClickSpawner extends FlxBasic {
 		return _message;
 	}
 	
-	public function toggleSpawningPowerup() {
-		if (spawn == spawnNothing) {
-			enableSpawningPowerup(2);
-			_message = "Click To Spawn Powerup";
+	public function switchPowerup() {
+		if (++_powerupType >= Powerup.POWERUP_COUNT)
+			_powerupType = -1;
+		
+		if (_powerupType > - 1) {
+			enableSpawningPowerup(_powerupType);
+			_message = "Click To Spawn Powerup Type " + _powerupType;
 		}
 		else {
 			setToSpawnNothing();
