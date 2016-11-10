@@ -20,7 +20,9 @@ class ClickSpawner extends FlxBasic {
 		super();
 		visible = false;
 		setToSpawnNothing();
+		#if testing
 		Game.stage.addSystem(this);
+		#end
 	}
 	
 	public inline function getMessage() {
