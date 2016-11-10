@@ -68,6 +68,7 @@ class ClickSpawner extends FlxBasic {
 			_mousePosition = FlxG.mouse.getWorldPosition(_mousePosition);
 			
 			_object = spawn();
+			if (_object == null) return;
 			_object.setCenter(_mousePosition);
 			addToStage(_object);
 			notify();
