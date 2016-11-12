@@ -14,6 +14,8 @@ class Powerup extends FlxSprite {
 	public static inline var SPEED_BOOST = 2;
 	public static inline var POWERUP_COUNT = 3;
 	
+	public var hoveringTween:FlxTween;
+	
 	public var type(default, null):Int;
 	public var activate(default, null):Ball->Void;
 	public var deactivate(default, null):Ball->Void;

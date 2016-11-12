@@ -12,7 +12,6 @@ import objects.Ball;
 import objects.Paddle;
 import objects.PaddleWrapper;
 import objects.Powerup;
-import systems.Tweens.PowerupTweenMap;
 import systems.trail.CometTrail.Trail;
 
 typedef TypedPaddleTweenMap<T:FlxTween> = Map<Paddle, T>;
@@ -21,26 +20,18 @@ typedef PaddleTweenMap = TypedPaddleTweenMap<FlxTween>;
 typedef TypedBallTweenMap<T:FlxTween> = Map<Ball, T>;
 typedef BallTweenMap = TypedBallTweenMap<FlxTween>;
 
-typedef PowerupTweenMap = Map<Powerup, FlxTween>;
-
 enum Restart {
 	DO_RESTART;
 	NO_RESTART;
 }
 
 class Tweens {
-	public var hoverers(default, null):PaddleTweenMap;
-	public var squeezers(default, null):PaddleTweenMap;
 	public var ballColors(default, null):TypedBallTweenMap<ColorTween>;
 	public var ballScales(default, null):BallTweenMap;
-	public var powerups(default, null):PowerupTweenMap;
 	
 	public function new() {
-		//hoverers = new PaddleTweenMap();
-		//squeezers = new PaddleTweenMap();
 		ballColors = new TypedBallTweenMap<ColorTween>();
 		ballScales = new BallTweenMap();
-		powerups = new PowerupTweenMap();
 	}
 	
 	
@@ -48,19 +39,17 @@ class Tweens {
 		var minScale = Settings.powerup.hoveringScale.min;
 		var duration = FlxG.random.float(Settings.duration.hovering.min, Settings.duration.hovering.max);
 		var values = { x:minScale, y:minScale };
-		var tween:FlxTween = cancelTween(powerups, powerup);
+		stopTween(powerup.hoveringTween);
 		
-		tween = FlxTween.tween(powerup.scale, values, duration, { type:FlxTween.PINGPONG, ease:FlxEase.sineInOut });
-		powerups.set(powerup, tween);
-		return tween;
+		powerup.hoveringTween = FlxTween.tween(powerup.scale, values, duration, { type:FlxTween.PINGPONG, ease:FlxEase.sineInOut });
+		return powerup.hoveringTween;
 	}
 	
 	public inline function powerupScale(powerup:Powerup, newScaleX:Float, newScaleY:Float, ?onComplete:TweenCallback) {
-		var tween = cancelTween(powerups, powerup);
-		tween = FlxTween.tween(powerup.scale, { x:newScaleX, y:newScaleY }, Settings.powerup.popDuration,
+		stopTween(powerup.hoveringTween);
+		powerup.hoveringTween = FlxTween.tween(powerup.scale, { x:newScaleX, y:newScaleY }, Settings.powerup.popDuration,
 		{ type:FlxTween.PERSIST, ease:FlxEase.backOut, onComplete:onComplete });
-		powerups.set(powerup, tween);
-		return tween;
+		return powerup.hoveringTween;
 	}
 	
 	
@@ -145,6 +134,11 @@ class Tweens {
 		if (tween != null && !tween.finished)
 			tween.cancel();
 		return cast tween;
+	}
+	
+	public function stopTween(tween:FlxTween) {
+		if (tween != null && !tween.finished)
+			tween.cancel();
 	}
 	
 	private function restartTween<T1:FlxSprite, T2:FlxTween>(map:Map<T1, T2>, sprite:FlxSprite, ?restart:Restart):T2 {

@@ -20,4 +20,12 @@ class PowerupManager {
 		Game.screen.glitch.run();
 	}
 	
+	public function stopHoveringAll() {
+		Game.stage.powerups.forEach(stopHovering);
+	}
+	
+	public function stopHovering(powerup:Powerup) {
+		Game.tween.stopTween(powerup.hoveringTween);
+	}
+	
 }

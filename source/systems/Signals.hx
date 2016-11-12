@@ -83,6 +83,7 @@ class Signals {
 		roundEnd.add(Game.powerups.spawner.stopSpawning);
 		roundEnd.add(Game.timers.stopAll);
 		roundEnd.add(Game.sfx.playKidsCheering);
+		roundEnd.add(Game.powerups.manager.stopHoveringAll);
 		
 		postRoundEnd.add(Game.match.startNextRoundOrEndMatch);
 		postRoundEnd.add(Game.goalManager.clearGoalStateReference);
