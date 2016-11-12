@@ -57,7 +57,7 @@ class Settings {
 		
 		powerup.area = FlxRect.get(FlxG.width * 0.1, FlxG.height * 0.25, FlxG.width * 0.8, FlxG.height * 0.5);
 		powerup.popDuration = 0.5;
-		powerup.lifeTime = 10;
+		powerup.lifeTime = 7.5;
 		powerup.hoveringScale = new FlxBounds(0.85, 1.15);
 		powerup.effectDuration = 3;
 		powerup.speedBoost = unitLength(12);
