@@ -35,7 +35,10 @@ class BallManager {
 	}
 	
 	public function findNearestBall(paddle:Paddle) {
-		var nearest:Ball = null;
+		var nearest:Ball = ballMap[paddle];
+		if (nearest != null)
+			return nearest;
+		
 		var nearestTime:Float = Math.POSITIVE_INFINITY;
 		
 		var ballToPaddle = FlxPoint.get();

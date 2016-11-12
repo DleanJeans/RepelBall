@@ -14,25 +14,15 @@ class SimpleAI extends Controller {
 	}
 	
 	override public function update(elapsed:Float):Void {
-		if (anyNull([Game.stage, paddle])) return;
+		if (paddle == null) return;
 		
 		var nearestBall = getNearestBall();
 		controlPaddle(nearestBall);
 	}
 	
-	private function anyNull(objects:Array<Dynamic>) {
-		for (o in objects) {
-            if (o == null)
-                return true;
-        }
-        return false;
-	}
-	
 	private function getNearestBall() {
 		return Game.ball.manager.findNearestBall(paddle);
 	}
-	
-	public var distanceThreshold = 480;
 	
 	private function controlPaddle(nearestBall:Ball) {
 		var dist = getDistance(nearestBall);
@@ -76,8 +66,7 @@ class SimpleAI extends Controller {
 			var distanceToPaddle = paddleCenterPerp - ballCenterPerp;
 			var timeToPaddle = distanceToPaddle / ballVelocityPerp;
 			
-			if (distanceToPaddle < distanceThreshold)
-				dest = ballCenterParallel + ballVelocityParallel * timeToPaddle;
+			dest = ballCenterParallel + ballVelocityParallel * timeToPaddle;
 		}
 		
 		return dest - paddleCenterParallel;
