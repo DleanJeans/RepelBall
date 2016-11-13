@@ -8,7 +8,7 @@ class PowerupActivations {
 	
 	public function new() {
 		clonePowerup = new ClonePowerups();
-		list = [ clonePowerup.doubleClone, clonePowerup.tripleClone, speedBoost ];
+		list = [ speedBoost, clonePowerup.doubleClone, clonePowerup.tripleClone ];
 	}
 	
 	public function speedBoost(ball:Ball) {

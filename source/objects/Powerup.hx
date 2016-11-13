@@ -9,9 +9,9 @@ import systems.timers.SolidTimer;
 class Powerup extends FlxSprite {
 	public static inline var SVG_PATH = AssetPaths.Powerups__svg;
 	
-	public static inline var DOUBLE_BALLS = 0;
-	public static inline var TRIPLE_BALLS = 1;
-	public static inline var SPEED_BOOST = 2;
+	public static inline var SPEED_BOOST = 0;
+	public static inline var DOUBLE_BALLS = 1;
+	public static inline var TRIPLE_BALLS = 2;
 	public static inline var POWERUP_COUNT = 3;
 	
 	public var hoveringTween:FlxTween;

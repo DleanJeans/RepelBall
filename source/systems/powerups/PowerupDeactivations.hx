@@ -6,7 +6,7 @@ class PowerupDeactivations {
 	public var list:Array<Ball->Void>;
 	
 	public function new() {
-		list = [ destroyClone, destroyClone, deactivateBoost ];
+		list = [ deactivateBoost, destroyClone, destroyClone ];
 	}
 	
 	public function destroyClone(ball:Ball) {

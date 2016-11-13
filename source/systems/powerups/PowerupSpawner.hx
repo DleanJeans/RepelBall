@@ -8,10 +8,6 @@ import objects.Powerup;
 import systems.Signals.Signal1;
 
 class PowerupSpawner {
-	public static inline var POWERUPS_COUNT = 2;
-	public static inline var DOUBLE_BALLS = 0;
-	public static inline var TRIPLE_BALLS = 1;
-	
 	public static inline var FIRST_WAVE = 1;
 	public static inline var SECOND_WAVE = 0;
 	
@@ -27,7 +23,7 @@ class PowerupSpawner {
 	private var _secondWaveCount:Int = 0;
 	
 	public function new() {
-		spawnPerMinute = 30;
+		spawnPerMinute = Settings.powerup.spawnPerMinute;
 		
 		_patternTimer = new FlxTimer();
 		_spawnTimer = new FlxTimer();
@@ -41,7 +37,7 @@ class PowerupSpawner {
 		var timeMark = timer.elapsedLoops % 2;
 		switch (timeMark) {
 			case FIRST_WAVE:
-				_firstWaveCount = FlxG.random.int(_spawnPerWave.min, _spawnPerWave.max + 1);
+				_firstWaveCount = FlxG.random.int(_spawnPerWave.min, _spawnPerWave.max);
 				_secondWaveCount =  _maxSpawnPer2Wave - _firstWaveCount;
 				
 				spawnFirstWave();
@@ -77,7 +73,7 @@ class PowerupSpawner {
 	}
 	
 	public inline function spawnRandom() {
-		spawn(FlxG.random.weightedPick([2, 1, 4]));
+		spawn(FlxG.random.weightedPick([4, 2, 1]));
 	}
 	
 	public function spawn(type:Int):Powerup {
@@ -111,7 +107,7 @@ class PowerupSpawner {
 		var half = cast _maxSpawnPer2Wave / 2;
 		_spawnPerWave = new FlxBounds<Int>(
 			half - 1 == 0 ? half : half - 1, 
-			half + 1 == _maxSpawnPer2Wave ? half : half + 1
+			half + 2 == _maxSpawnPer2Wave ? half + 1 == _maxSpawnPer2Wave ? half : half + 1 : half + 2
 		);
 		return spawnPerMinute = newSpawn;
 	}

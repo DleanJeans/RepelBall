@@ -26,8 +26,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="2.9596211"
-     inkscape:cx="100.70963"
-     inkscape:cy="45.726975"
+     inkscape:cx="24.179563"
+     inkscape:cy="20.836401"
      inkscape:document-units="px"
      inkscape:current-layer="svg2"
      showgrid="false"
@@ -49,7 +49,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -60,15 +60,9 @@
      height="48.000031"
      x="-5.3405794e-005"
      y="-3.1352043e-005" />
-  <circle
-     r="6"
-     cy="-39.990051"
-     cx="-19.461637"
-     id="circle4386"
-     style="opacity:1;fill:#2196f3;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:0;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-     transform="matrix(-0.86602541,0.49999999,-0.49999999,-0.86602541,0,0)" />
   <g
-     id="g4830">
+     id="g4830"
+     transform="translate(47.999977,0)">
     <circle
        r="24"
        cy="23.999983"
@@ -76,7 +70,8 @@
        id="circle4226"
        style="opacity:0.5;fill:#39ff9f;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:0;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
     <g
-       id="g4819">
+       id="g4819"
+       transform="matrix(0.93804866,0,0,0.93804866,3.5138273,2.6020366)">
       <g
          id="g4815">
         <path
@@ -128,7 +123,8 @@
     </g>
   </g>
   <g
-     id="g4797">
+     id="g4797"
+     transform="translate(47.999977,0)">
     <circle
        style="opacity:0.5;fill:#4caaf5;fill-opacity:0.75;fill-rule:evenodd;stroke:none;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:0;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="path4138"
@@ -170,7 +166,8 @@
     </g>
   </g>
   <g
-     id="g4847">
+     id="g4847"
+     transform="translate(-96.000053,0)">
     <circle
        style="opacity:0.5;fill:#ff5722;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:10;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:0;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="circle4181"

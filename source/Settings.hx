@@ -60,6 +60,7 @@ class Settings {
 		powerup.lifeTime = 7.5;
 		powerup.hoveringScale = new FlxBounds(0.85, 1.15);
 		powerup.effectDuration = 3;
+		powerup.spawnPerMinute = 20;
 		powerup.speedBoost = unitLength(12);
 		
 		paddle.maxHoveringDelay = 0.25;
@@ -139,6 +140,7 @@ typedef Powerup = {
 	?lifeTime:Float,
 	?hoveringScale:FlxBounds<Float>,
 	?effectDuration:Float,
+	?spawnPerMinute:Int,
 	
 	?speedBoost:Int,
 }
