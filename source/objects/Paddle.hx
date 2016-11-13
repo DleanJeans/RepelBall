@@ -5,6 +5,7 @@ import flixel.FlxObject;
 import flixel.FlxSprite;
 import flixel.math.FlxAngle;
 import flixel.math.FlxPoint;
+import flixel.tweens.misc.VarTween;
 import flixel.util.FlxColor;
 import objects.personality.EyePair;
 using flixel.util.FlxSpriteUtil;
@@ -13,6 +14,7 @@ class Paddle extends FlxSprite {
 	public var speed(get, null):Int;
 	public var speedBoost(default, null):Int = 0;
 	public var startingPosition(default, null):FlxPoint;
+	
 	public var length(default, set):Int = Settings.unitLength(5);
 	public var wrapper(default, null):PaddleWrapper;
 	

@@ -1,6 +1,8 @@
 package objects;
 
 import flixel.FlxSprite;
+import flixel.tweens.misc.ColorTween;
+import flixel.tweens.misc.VarTween;
 import flixel.util.FlxColor;
 import objects.Paddle;
 import systems.timers.PowerupTimer;
@@ -13,6 +15,10 @@ class Ball extends FlxSprite {
 	
 	public var lastHitPaddle:Paddle;
 	public var originalColor:FlxColor;
+	
+	public var colorTween:ColorTween;
+	public var scaleTween:VarTween;
+	
 	public var solidTimer(default, null):SolidTimer;
 	public var powerupTimer(default, null):PowerupTimer;
 	

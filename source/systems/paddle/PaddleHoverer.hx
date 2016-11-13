@@ -93,7 +93,7 @@ class HoveringTween {
 		var down = downVector(range);
 		
 		hoveringOffset.set(-down.x / 2, -down.y / 2);
-		hoveringTween = Game.tween.hovering(hoveringOffset, down, updateOffset);
+		hoveringTween = Game.tween.paddleHovering(hoveringOffset, down, updateOffset);
 	}
 	
 	private inline function downVector(range:Float):FlxPoint {
@@ -109,7 +109,7 @@ class HoveringTween {
 		var down = downVector(range);
 		
 		stopKnockbackTween();
-		knockBackTween = Game.tween.knockBack(knockBackOffset, down);
+		knockBackTween = Game.tween.paddleKnockBack(knockBackOffset, down);
 	}
 	
 	private function stopKnockbackTween() {

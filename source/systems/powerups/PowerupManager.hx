@@ -25,7 +25,7 @@ class PowerupManager {
 	}
 	
 	public function stopHovering(powerup:Powerup) {
-		Game.tween.stopTween(powerup.hoveringTween);
+		Game.tween.stopTween(powerup.scaleTween);
 	}
 	
 }
