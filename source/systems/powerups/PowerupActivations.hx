@@ -3,7 +3,9 @@ package systems.powerups;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.math.FlxAngle;
+import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
+import flixel.util.helpers.FlxBounds;
 import objects.Ball;
 
 class PowerupActivations {
@@ -14,54 +16,65 @@ class PowerupActivations {
 	}
 	
 	public function doubleClone(ball:Ball) {
+		boundBallAngle(ball);
+		
 		var clone = Game.pools.cloneBall(ball);
-		var directionAngle = ball.velocity.angleBetween(FlxPoint.weak());
 		
-		var newPosition = getPointAwayFrom(ball.getCenter(), -Settings.unitLength(0.5), directionAngle);
-		var newPosition2 = getPointAwayFrom(ball.getCenter(), Settings.unitLength(0.5), directionAngle);
-		
-		ball.setCenter(newPosition);
-		clone.setCenter(newPosition2);
-		
-		rotateBallDirection(ball, 30);
-		rotateBallDirection(clone, -30);
+		rotateBallByAngle(ball, 30);
+		rotateBallByAngle(clone, -30);
 		
 		Game.ball.manager.addBallToLevel(clone);
-		Game.signals.ball_hit.dispatch(clone, null);
-		
-		newPosition.put();
-		newPosition2.put();
+		Game.ball.fx.pop(clone);
+		Game.ball.fx.tweenColor(clone, null);
 	}
 	
 	public function tripleClone(ball:Ball) {
+		boundBallAngle(ball, 30);
+		
 		var clone = Game.pools.cloneBall(ball);
 		var clone2 = Game.pools.cloneBall(ball);
-		var directionAngle = ball.velocity.angleBetween(FlxPoint.weak());
 		
-		var newPosition = getPointAwayFrom(ball.getCenter(), Settings.unitLength(1), directionAngle);
-		var newPosition2 = getPointAwayFrom(ball.getCenter(), -Settings.unitLength(1), directionAngle);
-		
-		clone.setCenter(newPosition);
-		clone2.setCenter(newPosition2);
-		
-		rotateBallDirection(clone, -45);
-		rotateBallDirection(clone2, 45);
+		rotateBallByAngle(clone, -45);
+		rotateBallByAngle(clone2, 45);
 		
 		Game.ball.manager.addBallToLevel(clone);
 		Game.ball.manager.addBallToLevel(clone2);
 		
-		Game.signals.ball_hit.dispatch(clone, null);
-		Game.signals.ball_hit.dispatch(clone2, null);
+		Game.ball.fx.pop(clone);
+		Game.ball.fx.pop(clone2);
 		
-		newPosition.put();
-		newPosition2.put();
+		Game.ball.fx.tweenColor(clone, null);
+		Game.ball.fx.tweenColor(clone2, null);
 	}
 	
-	private inline function getPointAwayFrom(point:FlxPoint, distance:Float, angle:Float):FlxPoint {
-		return point.copyTo().addPoint(FlxAngle.getCartesianCoords(distance, angle));
+	private var _upperBounds = new FlxBounds<Float>(0);
+	private var _lowerBounds = new FlxBounds<Float>(0);
+	
+	private function boundBallAngle(ball:Ball, range:Int = 60) {
+		var angle = getAngle(ball);
+		_upperBounds.set( -90 - range / 2, -90 + range / 2);
+		_lowerBounds.set(90 - range / 2, 90 + range / 2);
+		
+		if (ball.velocity.y < 0) {
+			if (!FlxMath.inBounds(angle, _upperBounds.min, _upperBounds.max))
+				rotateBallToAngle(ball, angle = FlxMath.bound(angle, _upperBounds.min, _upperBounds.max));
+		}
+		else {
+			if (!FlxMath.inBounds(angle, _lowerBounds.min, _lowerBounds.max))
+				rotateBallToAngle(ball, angle = FlxMath.bound(angle, _lowerBounds.min, _lowerBounds.max));
+		}
 	}
 	
-	private inline function rotateBallDirection(ball:Ball, byAngle:Float) {
+	private function rotateBallToAngle(ball:Ball, toAngle:Float) {
+		var currentAngle = getAngle(ball);
+		ball.velocity.rotate(FlxPoint.weak(), toAngle - currentAngle);
+	}
+	
+	private inline function getAngle(ball:Ball) {
+		return FlxAngle.wrapAngle(ball.velocity.angleBetween(FlxPoint.weak()) + 90);
+	}
+	
+	private inline function rotateBallByAngle(ball:Ball, byAngle:Float) {
 		ball.velocity.rotate(FlxPoint.weak(), byAngle);
 	}
 	

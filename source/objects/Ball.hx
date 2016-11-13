@@ -46,7 +46,7 @@ class Ball extends FlxSprite {
 	}
 	
 	public function startSolidTimer() {
-		solidTimer.disableFor();
+		solidTimer.disableFor(0.2);
 	}
 	
 	public function startPowerupTimer(deactive:Ball->Void) {
