@@ -1,319 +1,217 @@
 package systems.trail;
 
-import flash.display.Graphics;
-import flixel.FlxG;
+import flixel.FlxBasic;
 import flixel.FlxSprite;
 import flixel.math.FlxAngle;
 import flixel.math.FlxMath;
 import flixel.math.FlxPoint;
-import flixel.math.FlxVector;
-import flixel.math.FlxVelocity;
 import flixel.util.FlxColor;
+import flixel.util.FlxDestroyUtil;
+import flixel.util.FlxPath;
 import flixel.util.FlxSpriteUtil;
-import openfl.display.GraphicsPathWinding;
-import systems.trail.CometTrail.Trail;
 
-class CometTrail extends FlxSprite {
-	public var trailMap(default, null):TrailMap;
-	public var nodeLimit:Int;
-	public var cooldown:Float;
+typedef NodeDataMap = Map<FlxPoint, NodeData>;
+typedef NodeData = {
+	?radius:Float,
+	?angle:Float,
+}
+
+class CometTrail extends FlxBasic {
+	public static var HALF_PI = Math.PI * 0.5;
 	
-	private var _elapsed:Float = 0;
+	public var canvas:FlxSprite;
 	
-	public function new(x:Float = 0, y:Float = 0, width:Int = 0, height:Int = 0) {
-		super(x, y);
+	public var sprite(default, null):FlxSprite;
+	public var path(default, null):FlxPath;
+	public var length(default, null):Float;
+	
+	public var headSize:Float;
+	public var color:FlxColor;
+	public var nodeLimit:Int = 25;
+	
+	private var _nodeDataMap:NodeDataMap = new NodeDataMap();
+	private var _spriteCenter:FlxPoint = FlxPoint.get();
+	private var _addNodeNow:Bool = false;
+	
+	public function new(sprite:FlxSprite, canvas:FlxSprite, ?headSize:Float, ?color:FlxColor) {
+		super();
 		
-		trailMap = new TrailMap();
-		nodeLimit = Settings.trail.nodeLimit;
-		cooldown = Settings.trail.cooldown;
+		this.canvas = canvas;
+		this.sprite = sprite;
+		this.headSize = headSize == null ? (sprite.width + sprite.height) / 2 : headSize;
 		
-		makeGraphic(width <= 0 ? FlxG.width : width, height <= 0 ? FlxG.height : height, FlxColor.TRANSPARENT);
-	}
-	
-	public function removeAll() {
-		for (sprite in trailMap.keys()) {
-			var nodes = getNodes(sprite);
-			for (node in nodes)
-				node.point.put();
-			trailMap.remove(sprite);
+		path = new FlxPath();
+		
+		if (color == null) {
+			color = Game.color.white;
+			color.alphaFloat = 0.5;
 		}
+		this.color = color;
 	}
 	
-	public function add(sprite:FlxSprite, ?trailColor:FlxColor, ?trailSize:Float) {
-		if (trailSize == null)
-			trailSize = (sprite.width + sprite.height) / 2;
-		if (trailColor == null) {
-			trailColor = sprite.color;
-			trailColor.alphaFloat = 0.5;
-		}
-		trailMap.set(sprite, { nodes: new Nodes(), color:trailColor, size: trailSize });
+	public inline function addNodeNow() {
+		_addNodeNow = true;
 	}
 	
-	override public function update(elapsed:Float):Void {
-		super.update(elapsed);
-		_elapsed += elapsed;
+	override public function destroy():Void {
+		super.destroy();
+		canvas = null;
+		sprite = null;
+		path = FlxDestroyUtil.destroy(path);
+		_nodeDataMap = null;
+		_spriteCenter.put();
 	}
 	
-	override public function draw() {
+	override public function draw():Void {
 		super.draw();
 		
-		if (_elapsed >= cooldown) {
-			_elapsed = 0;
-			addNodes();
-		}
-		else {
-			updateYoungestNodes();
-		}
+		sprite.getMidpoint(_spriteCenter);
 		
-		calculateTrailsLength();
-		clearCanvas();
-		calculateTrailsAttribute();
-		drawTrail();
+		if (_addNodeNow) {
+			_addNodeNow = false;
+			addNewNode();
+		}
+		else updateTailNode();
+		
+		if (path.nodes.length < 2) return;
+		calculateLength();
+		calculateRadiusAndAngle();
+		if (canvas != null)
+			drawTrail();
 	}
 	
-	private function addNodes() {
-		var nodes:Nodes;
-		var spriteCenter:FlxPoint;
-		var newNode:Node;
+	private function addNewNode() {
+		var newNode:FlxPoint;
 		
-		for (sprite in trailMap.keys()) {
-			nodes = getNodes(sprite);
-			spriteCenter = sprite.getMidpoint();
-			
-			if (nodes.length >= nodeLimit) {
-				newNode = nodes.shift();
-				newNode.point.copyFrom(spriteCenter);
-				spriteCenter.put();
+		if (path.nodes.length >= nodeLimit)
+			newNode = path.nodes.shift();
+		else newNode = FlxPoint.get();
+		newNode.copyFrom(_spriteCenter);
+		
+		path.addPoint(newNode, true);
+	}
+	
+	private function updateTailNode() {
+		if (path.nodes.length <= 1) return;
+		
+		path.tail().copyFrom(_spriteCenter);
+	}
+	
+	private function calculateLength() {
+		var nodeCopy = FlxPoint.get();
+		var segment = FlxPoint.get();
+		length = 0;
+		
+		for (i in 0...path.nodes.length) {
+			var thisNode = path.nodes[i];
+			var nextNode = path.nodes[i + 1];
+			if (thisNode != null && nextNode != null) {
+				segment.copyFrom(thisNode.copyTo(nodeCopy).subtractPoint(nextNode));
+				length += FlxMath.vectorLength(segment.x, segment.y);
 			}
-			else {
-				newNode = createNewNode(spriteCenter);
-			}
-			nodes.push(newNode);
-			newNode = null;
-		}
-	}
-	
-	private function updateYoungestNodes() {
-		var nodes:Nodes;
-		var spriteCenter:FlxPoint;
-		
-		for (sprite in trailMap.keys()) {
-			nodes = getNodes(sprite);
-			if (nodes.length == 0) return;
-			
-			spriteCenter = sprite.getMidpoint();
-			
-			nodes[nodes.length - 1].point.copyFrom(spriteCenter);
-			spriteCenter.put();
-		}
-	}
-	
-	private inline function createNewNode(point:FlxPoint) {
-		var node:Node = {
-			point: point,
-		};
-		return node;
-	}
-	
-	private inline function getNodes(sprite:FlxSprite):Nodes {
-		return getTrail(sprite).nodes;
-	}
-	
-	public inline function getTrail(sprite:FlxSprite):Trail {
-		return trailMap[sprite];
-	}
-	
-	private function calculateTrailsLength() {
-		var trail:Trail;
-		var nodes:Nodes;
-		var segment = FlxVector.get();
-		var lastNode:Node = null;
-		var thisNode:Node = null;
-		
-		for (sprite in trailMap.keys()) {
-			trail = getTrail(sprite);
-			nodes = trail.nodes;
-			trail.length = 0;
-			
-			for (node in nodes) {
-				thisNode = node;
-				if (lastNode != null && thisNode != null) {
-					segment.copyFrom(lastNode.point.copyTo().subtractPoint(thisNode.point));
-					trail.length += segment.length;
-				}
-				lastNode = thisNode;
-			}
-			
-			lastNode = null;
-			thisNode = null;
+			else break;
 		}
 		
+		nodeCopy.put();
 		segment.put();
 	}
 	
-	private inline function getNLastPoint(nodes:Nodes, n:Int = 1):FlxPoint {
-		return getNLastNode(nodes, n).point;
-	}
-	
-	private inline function getNLastNode(nodes:Nodes, n:Int = 1):Node {
-		return nodes[nodes.length - n];
-	}
-	
-	private inline function setSegment(segment:FlxPoint, p2:FlxPoint, p1:FlxPoint):FlxPoint {
-		return segment.copyFrom(getSegment(p2, p1));
-	}
-	
-	private inline function getSegment(p2:FlxPoint, p1:FlxPoint):FlxPoint {
-		return p2.subtractPoint(p1);
-	}
-	
-	public function clearCanvas() {
-		FlxSpriteUtil.fill(this, FlxColor.TRANSPARENT);
-	}
-	
-	private function calculateTrailsAttribute() {
-		var trail:Trail;
-		
-		for (sprite in trailMap.keys()) {
-			trail = trailMap.get(sprite);
-			calculateNodesAttribute(trail);
-		}
-	}
-	
-	private function calculateNodesAttribute(trail:Trail) {
-		var nodes:Nodes = trail.nodes;
-		
+	private function calculateRadiusAndAngle() {
+		var nodeCopy = FlxPoint.get();
+		var prevSegment = FlxPoint.get();
+		var nextSegment = FlxPoint.get();
 		var currentLength:Float = 0;
+		var angle:Null<Float> = null;
 		
-		var thisNode:Node;
-		var prevNode:Node;
-		var nextNode:Node;
-		
-		var nextSegment:FlxPoint = null;
-		var prevSegment:FlxPoint = null;
-		
-		var lastAngle:Null<Float> = null;
-		
-		for (i in 0...nodes.length) {
-			if (i == 0) continue;
-			
-			thisNode = nodes[i];
-			prevNode = nodes[i - 1];
-			nextNode = nodes[i + 1];
+		for (i in 0...path.nodes.length) {
+			var prevNode = path.nodes[i - 1];
+			var thisNode = path.nodes[i];
+			var nextNode = path.nodes[i + 1];
 			
 			if (prevNode != null) {
-				prevSegment = thisNode.point.copyTo().subtractPoint(prevNode.point);
+				prevSegment.copyFrom(thisNode.copyTo(nodeCopy).subtractPoint(prevNode));
 				currentLength += prevSegment.distanceTo(FlxPoint.weak());
 			}
 			if (nextNode != null)
-				nextSegment = nextNode.point.copyTo().subtractPoint(thisNode.point);
+				nextSegment.copyFrom(nextNode.copyTo(nodeCopy).subtractPoint(thisNode));
 			
-			thisNode.radius = trail.size / 2 * currentLength / trail.length;
-			thisNode.angle = calculateNodeAngle(prevSegment, nextSegment, lastAngle);
+			var radius = headSize * currentLength / length * 0.5;
+			angle = calculateAngle(prevSegment, nextSegment, angle);
 			
-			lastAngle = thisNode.angle;
-			
-			prevSegment = null;
-			nextSegment = null;
+			_nodeDataMap.set(thisNode, {
+				radius: radius,
+				angle: angle
+			});
 		}
 	}
 	
-	private function calculateNodeAngle(prevSegment:FlxPoint, ?nextSegment:FlxPoint, ?lastNodeAngle:Float):Float {
-		var angle = Math.atan2(prevSegment.y, prevSegment.x) + Math.PI / 2;
+	private function calculateAngle(prevSegment:FlxPoint, ?nextSegment:FlxPoint, ?lastAngle:Float):Float {
+		var angle = Math.atan2(prevSegment.y, prevSegment.x) + HALF_PI;
+		
 		if (nextSegment != null) {
-			angle += Math.atan2(nextSegment.y, nextSegment.x) + Math.PI / 2;
-			angle /= 2;
+			angle += Math.atan2(nextSegment.y, nextSegment.x) + HALF_PI;
+			angle *= 0.5;
 		}
+		
 		angle *= FlxAngle.TO_DEG;
-		angle = FlxMath.roundDecimal(angle, 2);
-		angle = FlxAngle.wrapAngle(angle);
 		
-		if (lastNodeAngle != null && Math.abs(FlxAngle.wrapAngle(lastNodeAngle - angle)) > 90)
-			angle = FlxAngle.wrapAngle(angle + 180);
+		if (lastAngle != null) {
+			var angleDifference = Math.abs(FlxAngle.wrapAngle(lastAngle - angle));
+			if (angleDifference > 90)
+				angle += 180;
+		}
 		
-		return angle;
+		return FlxAngle.wrapAngle(angle);
 	}
 	
 	private function drawTrail() {
-		var trail:Trail;
-		var nodes:Nodes;
+		var outline = getOutline();
+		drawToCanvas(outline);
+		FlxDestroyUtil.putArray(outline);
+	}
+	
+	private function getOutline():Array<FlxPoint> {
+		var toOutline = FlxPoint.get();
 		
-		var outlinePoints = new Array<FlxPoint>();
-		var outline2 = new Array<FlxPoint>();
-		var outline1 = new Array<FlxPoint>();
+		var outline1:Array<FlxPoint> = new Array<FlxPoint>();
+		var outline2:Array<FlxPoint> = new Array<FlxPoint>();
 		
-		var thisNode:Node;
-		var toRadius:FlxPoint;
-		
-		var outlineNode1:FlxPoint;
-		var outlineNode2:FlxPoint;
-		
-		for (sprite in trailMap.keys()) {
-			trail = getTrail(sprite);
-			nodes = trail.nodes;
+		for (n in path.nodes) {
+			if (n == path.head()) continue;
+			var node:FlxPoint = n;
 			
-			if (nodes.length == 0) return;
+			var nodeData:NodeData = _nodeDataMap.get(node);
+			FlxAngle.getCartesianCoords(nodeData.radius, nodeData.angle, toOutline);
 			
-			var oldestNode = nodes[0];
-			for (node in nodes) {
-				if (node == oldestNode) continue;
-				
-				thisNode = node;
-				toRadius = FlxVelocity.velocityFromAngle(thisNode.angle, thisNode.radius);
-				
-				outlineNode1 = thisNode.point.copyTo().addPoint(toRadius);
-				outlineNode2 = thisNode.point.copyTo().subtractPoint(toRadius);
-				
-				outline1.push(outlineNode1);
-				outline2.push(outlineNode2);
-			}
+			var outlineNode1 = node.copyTo().addPoint(toOutline);
+			var outlineNode2 = node.copyTo().subtractPoint(toOutline);
 			
-			outline1.reverse();
-			outlinePoints = outlinePoints.concat(outline1);
-			outlinePoints.push(oldestNode.point.copyTo());
-			outlinePoints = outlinePoints.concat(outline2);
-			
-			drawTrailNonZero(trail.color, outlinePoints);
-			
-			// put all copies to pool
-			// and remove all references
-			while (outlinePoints.length > 0)
-				outlinePoints.pop().put();
-			outline1.splice(0, outline1.length);
-			outline2.splice(0, outline2.length);
+			outline1.push(outlineNode1);
+			outline2.push(outlineNode2);
 		}
+		
+		toOutline.put();
+		
+		outline1.reverse();
+		outline1.push(path.head().copyTo());
+		outline1 = outline1.concat(outline2);
+		
+		return outline1;
 	}
 	
-	private function drawTrailNonZero(color:FlxColor, outlinePoints:Array<FlxPoint>) {
+	private function drawToCanvas(outline:Array<FlxPoint>) {
 		FlxSpriteUtil.beginDraw(color);
-		FlxSpriteUtil.flashGfx.drawPath(
-			getCommands(outlinePoints.length),
-			[ for (point in outlinePoints) for (i in 0...2) i == 0 ? point.x : point.y],
-			GraphicsPathWinding.NON_ZERO);
-		FlxSpriteUtil.endDraw(this);
+		FlxSpriteUtil.flashGfx.drawPath(getDrawCommands(outline.length), getOutlineNodeXYArray(outline), "nonZero");
+		FlxSpriteUtil.endDraw(canvas);
 	}
 	
-	private function getCommands(length:Int):Array<Int> {
-		var commands = [ for (i in 1...length) 2];
+	private inline function getDrawCommands(length:Int) {
+		var commands = [ for (i in 1...length) 2 ];
 		commands.unshift(1);
 		return commands;
 	}
 	
-}
-
-typedef TrailMap = Map<FlxSprite, Trail>;
-
-typedef Trail = {
-	nodes:Nodes,
-	size:Float,
-	color:FlxColor,
-	?length:Float
-}
-
-typedef Nodes = Array<Node>;
-
-typedef Node = {
-	point:FlxPoint,
-	?angle:Float,
-	?radius:Float
+	private inline function getOutlineNodeXYArray(outline:Array<FlxPoint>) {
+		return [ for (node in outline) for (i in 0...2) i == 0 ? node.x : node.y ];
+	}
 }

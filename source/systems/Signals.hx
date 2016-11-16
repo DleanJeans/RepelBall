@@ -51,7 +51,7 @@ class Signals {
 		preRoundStart.add(Game.states.countdown);
 		preRoundStart.add(Game.stage.resetPaddlesPosition);
 		preRoundStart.add(Game.paddle.hoverer.resumeAllHovering);
-		preRoundStart.add(Game.cometTrail.trail.clearCanvas);
+		preRoundStart.add(Game.cometTrail.clearCanvas);
 		preRoundStart.add(Game.stage.clearBalls);
 		preRoundStart.add(Game.stage.clearPowerups);
 		preRoundStart.add(Game.cometTrail.removeAll);

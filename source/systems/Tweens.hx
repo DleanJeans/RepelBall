@@ -9,10 +9,8 @@ import flixel.tweens.misc.ColorTween;
 import flixel.tweens.misc.VarTween;
 import flixel.util.FlxColor;
 import objects.Ball;
-import objects.Paddle;
 import objects.PaddleWrapper;
 import objects.Powerup;
-import systems.trail.CometTrail.Trail;
 
 class Tweens {
 	public function new() {}
@@ -36,11 +34,11 @@ class Tweens {
 		return FlxTween.tween(selector, { x:x, y:y }, 0.25, { ease:FlxEase.quartOut });
 	}
 	
-	public function ballColor(ball:Ball, newColor:FlxColor) {
+	public function ballColor(ball:Ball, newColor:FlxColor, ?onComplete:TweenCallback) {
 		restartTween(ball.colorTween);
 		if (ball.colorTween == null)
 			ball.colorTween = FlxTween.color(ball, Settings.ball.fxDuration, Game.color.white, newColor, 
-			{ type:FlxTween.PERSIST, onUpdate:Game.cometTrail.updateTrailColor.bind(ball) });
+			{ type:FlxTween.PERSIST, onUpdate:Game.cometTrail.updateTrailColor.bind(ball), onComplete:onComplete });
 		else ball.colorTween.tween(Settings.ball.fxDuration, Game.color.white, newColor, ball);
 	}
 	
