@@ -97,6 +97,9 @@ class Eye extends FlxSpriteGroup {
 		pupilColor = Game.color.black;
 		
 		eyeWhite.solid = pupil.solid = false;
+		ignoreDrawDebug =
+		eyeWhite.ignoreDrawDebug = 
+		pupil.ignoreDrawDebug = true;
 		
 		centerPupil();
 	}

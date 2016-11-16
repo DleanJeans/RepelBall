@@ -11,6 +11,7 @@ class Face extends FlxSpriteGroup {
 	public function new(paddle:Paddle) {
 		super();
 		this.paddle = paddle;
+		ignoreDrawDebug = true;
 		
 		eyes = new EyePair();
 		mouth = new Mouth();

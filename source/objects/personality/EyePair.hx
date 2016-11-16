@@ -27,6 +27,8 @@ class EyePair extends FlxSpriteGroup {
 		leftEye = new Eye();
 		rightEye = new Eye();
 		
+		ignoreDrawDebug = true;
+		
 		add(leftEye);
 		add(rightEye);
 	}
